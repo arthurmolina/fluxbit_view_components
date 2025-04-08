@@ -1,0 +1,7 @@
+<% Fluxbit::Config::BadgeComponent.styles[:colors].keys.each do |color| %>
+  <%= fx_badge(
+    color: color,
+    pill: true,
+    with_content: color.to_s.titlecase,
+  ) %>
+<% end %>

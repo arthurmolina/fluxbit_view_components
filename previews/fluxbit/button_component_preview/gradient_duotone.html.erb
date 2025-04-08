@@ -1,0 +1,7 @@
+<% %i{cyan_to_blue_gradient green_to_blue_gradient pink_to_orange_gradient purple_to_blue_gradient purple_to_pink_gradient red_to_yellow_gradient teal_to_lime_gradient}.each do |color| %>
+  <%= fx_button(
+    color: color,
+    class: 'relative inline-flex mr-2 mb-5 w-36',
+    with_content: color.to_s.titlecase
+  ) %>
+<% end %>

@@ -1,0 +1,5 @@
+<% Fluxbit::Config::HeadingComponent.styles[:spacings].keys.each do |spacing| %>
+  <div style="margin-bottom: 20px;">
+    <%= fx_heading(spacing: spacing, with_content: "Sample Heading with #{spacing} spacing") %>
+  </div>
+<% end %>

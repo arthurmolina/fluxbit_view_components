@@ -1,0 +1,19 @@
+<div class='m-12'>
+  <% %i{right bottom}.each do |placement| %>
+    <%= fx_badge(popover_placement: placement) do |button| %>
+      <% button.with_popover(title: 'Popover Title') do %>
+        Popover at <b><%= placement%></b>
+      <% end %>
+      Hover <i><b><%= placement%></b></i>
+    <% end %>
+  <% end %>
+
+  <% %i{left top}.each do |placement| %>
+    <%= fx_badge(
+      with_content: "Click #{placement}",
+      popover_text: "Popover at #{placement}",
+      popover_placement: placement,
+      popover_trigger: :click
+    ) %>
+  <% end %>
+</div>

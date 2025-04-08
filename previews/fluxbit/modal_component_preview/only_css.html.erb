@@ -1,0 +1,14 @@
+<%= fx_modal(
+  id: 'modal',
+  title: 'A title',
+  only_css: true,
+  opened: true,
+  close_button_props: {
+    onclick: "this.parentElement.parentElement.parentElement.parentElement.classList.add('hidden');"
+  }
+) do %>
+  This way is useful when you want to use with turbo.
+  There is no need to create a buttom to open the modal.
+<% end %>
+
+<div class="h-40"></div>

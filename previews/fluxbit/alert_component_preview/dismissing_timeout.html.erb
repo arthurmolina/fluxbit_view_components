@@ -1,0 +1,10 @@
+<%= fx_alert(
+  onclick: 'alert("Alert box!");',
+  with_content: "This dismiss in 5 seconds!",
+  dismiss_timeout: 5000
+) %>
+
+<%= fx_button(onClick: 'window.location.reload();') do %>
+  <%= anyicon icon: 'heroicons_solid:arrow-path', class: 'w-4 h-4 mr-2'%>
+  Reload
+<% end %>

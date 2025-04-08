@@ -1,0 +1,17 @@
+<div class="h-[48rem]">
+<%
+  timeout = 0
+  Fluxbit::Config::AlertComponent.styles[:animations].keys.each do |animation|
+  timeout += 1000
+%>
+  <%= fx_alert(
+    with_content: "This dismiss using #{animation}!",
+    dismiss_timeout: timeout,
+    out_animation: animation
+  ) %>
+<% end %>
+<%= fx_button(onClick: 'window.location.reload();') do %>
+  <%= anyicon icon: 'heroicons_solid:arrow-path', class: 'w-4 h-4'%>
+  Reload
+<% end %>
+</div>

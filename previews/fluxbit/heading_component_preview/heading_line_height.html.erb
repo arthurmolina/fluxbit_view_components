@@ -1,0 +1,3 @@
+<% Fluxbit::Config::HeadingComponent.styles[:line_heights].keys.each do |line_height| %>
+  <%= fx_heading(size: 2, spacing: :tight, line_height: line_height, with_content: "Line Height: #{line_height}") %>
+<% end %>

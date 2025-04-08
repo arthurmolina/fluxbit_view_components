@@ -1,0 +1,14 @@
+<%= fx_flex(
+  vertical: vertical,
+  reverse: reverse,
+  justify_content: justify_content,
+  align_items: align_items,
+  wrap: wrap,
+  wrap_reverse: wrap_reverse,
+  gap: gap,
+  class: "h-60 border-2") do
+%>
+  <% (1..5).each do |i| %>
+    <%= fx_button(with_content: "Button #{i}") %>
+  <% end %>
+<% end %>

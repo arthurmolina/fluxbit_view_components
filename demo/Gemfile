@@ -1,0 +1,45 @@
+source "https://rubygems.org"
+
+ruby file: ".ruby-version"
+
+gem "rails", "~> 8.0.1"
+gem "propshaft"
+gem "sqlite3", ">= 2.1"
+gem "puma", ">= 5.0"
+gem "jsbundling-rails"
+gem "turbo-rails"
+gem "stimulus-rails"
+gem "cssbundling-rails"
+gem "jbuilder"
+
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# gem "bcrypt", "~> 3.1.7"
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: %i[ windows jruby ]
+
+gem "solid_cache"
+gem "solid_queue"
+gem "solid_cable"
+
+gem "bootsnap", require: false
+
+gem "thruster", require: false
+
+group :development, :test do
+  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "brakeman", require: false
+  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  gem "rubocop-rails-omakase", require: false
+  gem "foreman"
+  gem "pry"
+end
+
+group :development do
+  gem "web-console"
+end
+
+gem "view_components"
+gem "lookbook", "~> 2.0"
+gem "fluxbit_view_components", path: "../"
+gem "anyicon"

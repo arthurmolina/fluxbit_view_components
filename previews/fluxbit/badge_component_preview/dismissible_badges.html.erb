@@ -1,0 +1,6 @@
+<% Fluxbit::Config::BadgeComponent.styles[:colors].keys.each do |color| %>
+  <%= fx_badge(id: "badge-#{color}", color: color) do %>
+    <%= color.to_s.titlecase %>
+    <%= anyicon icon: 'heroicons_outline:x-mark', class: 'w-3 h-3 cursor-pointer', 'data-dismiss-target' => "#badge-#{color}", 'aria-label' => "Remove" %>
+  <% end %>
+<% end %>

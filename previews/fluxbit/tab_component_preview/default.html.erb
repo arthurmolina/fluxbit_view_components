@@ -1,0 +1,9 @@
+<%= fx_tab(variant: :default, color: :blue, vertical: false) do |tabs| %>
+  <%= tabs.with_tab title: "Profile", active: true, icon: anyicon(icon: "heroicons_solid:user") do |content| %>
+    <p>Profile details</p>
+  <% end %>
+  <%= tabs.with_tab title: "Settings", icon: anyicon(icon: "heroicons_solid:pencil") do |content| %>
+    <p>Settings details</p>
+  <% end %>
+  <%= tabs.with_tab title: "Disabled", icon: anyicon(icon: "heroicons_solid:exclamation-triangle"), disabled: true%>
+<% end %>

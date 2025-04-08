@@ -1,0 +1,7 @@
+<% %i{success danger info warning dark invalid_color}.each do |color| %>
+  <%= fx_alert(
+    color: color,
+    with_content: "Alert #{color}!",
+    dismiss_timeout: 0
+  ) %>
+<% end %>

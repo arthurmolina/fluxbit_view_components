@@ -1,0 +1,13 @@
+<%= fx_modal(id: 'modal') do |modal| %>
+  <% modal.with_title do %>
+    <h1>A <b>Title</b></h1>
+  <% end %>
+  <% modal.with_footer do %>
+    A <b>Footer</b>
+  <% end %>
+  Content of the modal
+<% end %>
+
+<%= fx_button("data-modal-target": "modal", "data-modal-toggle": "modal", with_content: 'Open modal') %>
+
+<div class="h-40"></div>

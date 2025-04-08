@@ -1,0 +1,7 @@
+<% (0..Fluxbit::Config::ButtonComponent.styles[:size].count-1).each do |size| %>
+  <%= fx_button(
+    size: size,
+    class: 'relative inline-flex mr-2 mb-5 w-36',
+    with_content: "Button #{size}"
+  ) %>
+<% end %>

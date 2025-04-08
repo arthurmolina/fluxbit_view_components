@@ -1,0 +1,8 @@
+<% %i{transparent default success failure info warning dark light purple}.each do |color| %>
+  <%= fx_button(
+    color: color,
+    pill: true,
+    class: 'relative inline-flex mr-2 mb-5 w-36',
+    with_content: color.to_s.titlecase
+  ) %>
+<% end %>

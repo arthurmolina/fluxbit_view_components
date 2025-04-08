@@ -1,0 +1,15 @@
+<%= fx_modal(
+  id: 'modal',
+  title: 'A title',
+  class: 'bg-red-100/50',
+  header_props: {
+    class: 'dark:border-red-600',
+    remove_class: 'dark:border-gray-600'
+  }
+) do %>
+  Content of the modal
+<% end %>
+
+<%= fx_button("data-modal-target": "modal", "data-modal-toggle": "modal", with_content: 'Open modal') %>
+
+<div class="h-40"></div>

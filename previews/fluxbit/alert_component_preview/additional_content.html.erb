@@ -1,0 +1,15 @@
+<%= fx_alert(dismiss_timeout: 0) do %>
+<div class="mb-4 text-sm">
+    More info about this info alert goes here. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.
+</div>
+
+<div class="flex">
+  <%= fx_button(size: :xs) do %>
+    <%= anyicon icon: 'heroicons_solid:eye', class: ':w-4 h-4 mr-2' %>
+    View More
+  <% end %>
+  <%= fx_button(size: :xs, color: :transparent) do %>
+    Dismiss
+  <% end %>
+</div>
+<% end %>

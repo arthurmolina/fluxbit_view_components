@@ -1,0 +1,20 @@
+<div class="m-12">
+  <% %i{right bottom}.each do |placement| %>
+    <%= fx_badge(tooltip_placement: placement) do |button| %>
+      <% button.with_tooltip do %>
+        Tooltip <b><%= placement%></b>
+      <% end %>
+      Hover&nbsp;<i><b><%= placement%></b></i>
+    <% end %>
+  <% end %>
+
+  <% %i{left top}.each do |placement| %>
+    <%= fx_badge(
+      with_content: "Click #{placement}",
+      tooltip_text: "Popover at #{placement}",
+      tooltip_placement: placement,
+      tooltip_trigger: :click
+    ) %>
+  <% end %>
+
+</div>

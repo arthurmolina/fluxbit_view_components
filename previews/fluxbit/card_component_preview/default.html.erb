@@ -1,0 +1,26 @@
+<%= render Fluxbit::CardComponent.new(
+  color: :danger,
+  shadow: true,
+  hoverable: true,
+  tooltip_text: "Card info",
+  image: 'https://flowbite.com/docs/images/blog/image-4.jpg',
+  image_position: :left,
+  image_props: {},
+  href: 'https://flowbite.com/docs/images/blog/',
+  color: :danger
+) do |card| %>
+  <% card.with_header do %>
+    <h5>Card Title</h5>
+  <% end %>
+  <% card.with_section do %>
+    <p>Paragraph of content.</p>
+    <p>Paragraph of content.</p>
+    <p>Paragraph of content.</p>
+    <p>Paragraph of content.</p>
+  <% end %>
+  <% card.with_footer do %>
+    <small>Footer text</small>
+  <% end %>
+<% end %>
+
+

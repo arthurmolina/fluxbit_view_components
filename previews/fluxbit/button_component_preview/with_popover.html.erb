@@ -1,0 +1,21 @@
+<div class="flex flex-col w-full items-center">
+  <% %i{right bottom}.each do |placement| %>
+    <%= fx_button(class: 'relative inline-flex mr-2 mb-5 w-36', popover_placement: placement) do |button| %>
+      <% button.with_popover(title: 'Popover Title') do %>
+        Popover at <b><%= placement%></b>
+      <% end %>
+      Hover&nbsp;<i><b><%= placement%></b></i>
+    <% end %>
+  <% end %>
+
+  <% %i{left top}.each do |placement| %>
+    <%= fx_button(
+      class: 'relative inline-flex mr-2 mb-5 w-36',
+      with_content: "Click #{placement}",
+      popover_text: "Popover at #{placement}",
+      popover_placement: placement,
+      popover_trigger: :click
+    ) %>
+  <% end %>
+
+</div>

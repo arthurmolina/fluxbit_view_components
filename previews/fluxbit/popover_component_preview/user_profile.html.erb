@@ -1,0 +1,36 @@
+<div class="flex flex-col w-full items-center">
+  <%= fx_button(class: 'relative inline-flex mr-2 mb-5 w-36', popover_placement: :top) do |button| %>
+    <% button.with_popover do %>
+      <div class="flex items-center justify-between mb-2">
+        <a href="#">
+          <%= fx_gravatar(email: 'arthurmolina@gmail.com') %>
+        </a>
+        <div>
+          <%= fx_button(size: 0, with_content: 'Folow') %>
+        </div>
+      </div>
+      <p class="text-base font-semibold leading-none text-gray-900 dark:text-white">
+        <a href="#">Arthur Molina</a>
+      </p>
+      <p class="mb-3 text-sm font-normal">
+        <a href="#" class="hover:underline">@arthurmolina</a>
+      </p>
+      <p class="mb-4 text-sm">Open-source contributor. Building <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">fluxbit</a>.</p>
+      <ul class="flex text-sm">
+        <li class="me-2">
+          <a href="#" class="hover:underline">
+            <span class="font-semibold text-gray-900 dark:text-white">799</span>
+            <span>Following</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="hover:underline">
+            <span class="font-semibold text-gray-900 dark:text-white">3,758</span>
+            <span>Followers</span>
+          </a>
+        </li>
+      </ul>
+    <% end %>
+    User Profile</b></i>
+  <% end %>
+</div>

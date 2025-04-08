@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'ansi/code'
+
+include ANSI::Code
+
+str = red + "Hello" + blue + "World"
+
+puts str
+
+
+def log(message)
+  puts "#{bold}#{yellow}[ #{green}bin/setup #{yellow}] #{reset}#{message}"
+end
+
+
+log('oi')
