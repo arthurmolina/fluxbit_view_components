@@ -1,5 +1,9 @@
 # Fluxbit ViewComponents
 
+![Gem Downloads (for latest version)](https://img.shields.io/gem/dtv/fluxbit_view_components) ![GitHub License](https://img.shields.io/github/license/arthurmolina/fluxbit_view_components) ![GitHub last commit](https://img.shields.io/github/last-commit/arthurmolina/fluxbit_view_components) ![Gem Downloads (for latest version)](https://img.shields.io/gem/dtv/fluxbit_view_components) ![Gem Total Downloads](https://img.shields.io/gem/dt/fluxbit_view_components) ![GitHub forks](https://img.shields.io/github/forks/arthurmolina/fluxbit_view_components)
+
+
+
 Fluxbit ViewComponents is an implementation of the Fluxbit Design System using [ViewComponent](https://github.com/github/view_component).
 
 <div style="text-align: center;">
