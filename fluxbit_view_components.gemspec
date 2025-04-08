@@ -5,8 +5,8 @@ require_relative "lib/fluxbit/view_components/version"
 Gem::Specification.new do |spec|
   spec.name = "fluxbit_view_components"
   spec.version = Fluxbit::ViewComponents::VERSION
-  spec.authors = [ "Dan Gamble", "Kirill Platonov" ]
-  spec.email = [ "dan@dangamble.co.uk" ]
+  spec.authors = [ "Arthur Molina" ]
+  spec.email = [ "arthurmolina@gmail.com" ]
 
   spec.homepage = "https://github.com/baoagency/fluxbit-view-components"
   spec.summary = "ViewComponents for Fluxbit Design System"
