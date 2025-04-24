@@ -39,6 +39,7 @@ group :development do
   gem "web-console"
 end
 
+gem "dotenv"
 gem "view_components"
 gem "lookbook", "~> 2.0"
 gem "fluxbit_view_components", path: "../"
