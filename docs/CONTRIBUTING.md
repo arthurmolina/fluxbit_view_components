@@ -1,3 +1,7 @@
+---
+title: Contributing
+---
+
 # Contributing
 
 Help us to make this project better by contributing. Whether it's new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a _github issue_ or submit a _pull request_.

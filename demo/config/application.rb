@@ -44,11 +44,19 @@ module Demo
 
     # ViewComponent
     config.view_component.default_preview_layout = "preview"
-    config.lookbook.preview_display_options = { theme: [ "light", "dark" ] }
     config.view_component.preview_paths << Rails.root.join("../previews").to_s
     config.view_component.view_component_path = Rails.root.join("../app/components").to_s
 
     # Lookbook
+    svg_file_path = Rails.root.join("public/fluxbit_logo.svg")
+    svg_content = File.read(svg_file_path)
+    config.lookbook.project_logo = svg_content
+    config.lookbook.ui_favicon = svg_content.gsub("currentColor", "#0068e6")
     config.lookbook.project_name = "Fluxbit ViewComponents"
+    config.lookbook.preview_display_options = { theme: [ "light", "dark" ] }
+    config.lookbook.preview_inspector.sidebar_panels = [ "pages", "previews" ]
+    config.lookbook.page_collection_label = "Documentation"
+    config.lookbook.page_paths = [ Rails.root.join("../docs").to_s ]
+    config.lookbook.page_extensions << "md"
   end
 end
