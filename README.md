@@ -12,7 +12,9 @@ Fluxbit ViewComponents is an implementation of the Fluxbit Design System using [
 
 ## Preview
 
-I don't have a site to host the lookbook. Sorry.
+We have a Lookbook app online to show the documentation and all the Components available in action!
+
+Just [Click here!](https://fluxbit.artz.to)
 
 ## Usage
 
