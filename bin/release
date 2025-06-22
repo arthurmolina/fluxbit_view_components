@@ -20,15 +20,3 @@ gem build fluxbit_view_components.gemspec
 gem push "fluxbit_view_components-$VERSION.gem"
 rm "fluxbit_view_components-$VERSION.gem"
 
-echo "Need to publish NPM package too?"
-
-while true; do
-  read -p "Deploy new version of fluxbitviewcomponents.org? [Yn] " yn
-  case $yn in
-    [Yy]* )
-      kamal deploy
-      break;;
-    [Nn]* ) break;;
-    * ) echo "Please answer yes or no.";;
-  esac
-done
