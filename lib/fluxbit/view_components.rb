@@ -9,7 +9,13 @@ module Fluxbit
 
   module Config
     module Form
-      require "fluxbit/config/form/helper_text_component"
+      require "fluxbit/config/form/help_text_component"
+      require "fluxbit/config/form/check_box_component"
+      require "fluxbit/config/form/dropzone_component"
+      require "fluxbit/config/form/label_component"
+      require "fluxbit/config/form/range_component"
+      require "fluxbit/config/form/text_field_component"
+      require "fluxbit/config/form/toggle_component"
     end
 
     require "fluxbit/config/alert_component"

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Fluxbit::Config::Form::HelperTextComponent
+module Fluxbit::Config::Form::HelpTextComponent
   mattr_accessor :color, default: :default
 
   # rubocop: disable Layout/LineLength, Metrics/BlockLength

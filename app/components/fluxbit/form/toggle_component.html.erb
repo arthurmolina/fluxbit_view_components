@@ -1,0 +1,23 @@
+<%= content_tag :div, **@wrapper_html do %>
+  <label class="<%= label_class %>">
+    <%= if @invert_label
+      label
+    else
+      @other_label || (other_label if other_label?)
+    end %>
+
+    <% if @form.present? && @attribute.present? %>
+      <%= @form.check_box(@attribute, **@props) %>
+    <% else %>
+      <%= check_box_tag(@name, **@props) %>
+    <% end %>
+
+    <span class="<%= toggle_class %>"></span>
+    <%= if @invert_label
+      @other_label || (other_label if other_label?)
+    else
+      label
+    end %>
+  </label>
+  <%= help_text %>
+<% end %>

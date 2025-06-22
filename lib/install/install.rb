@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-gem_path = Gem.loaded_specs['fluxbit_view_components'].full_gem_path
+gem_path = Gem.loaded_specs["fluxbit_view_components"].full_gem_path
 template_path = File.join(gem_path, "lib/fluxbit/templates/tailwind.config.js.template")
 darkmode_path = File.join(gem_path, "lib/fluxbit/templates/darkmode.js.template")
 layout_path = Rails.root.join("app/views/layouts/application.html.erb")
@@ -37,7 +37,7 @@ if stylesheets_path.exist?
   say.call "- Updating CSS with Flowbite imports..."
   content = File.read(stylesheets_path)
   content.prepend("@import \"flowbite/src/themes/default\";\n")
-  content << "\n@plugin \"flowbite/plugin\";\n@source \"../../../node_modules/flowbite\";\n@config \"../../../tailwind.config.js\";\n"
+  content << "\n@plugin \"flowbite/plugin\";\n@source \"../../../node_modules/flowbite\";\n@config \"../../../tailwind.config.js\";\n@custom-variant dark (&:where(.dark, .dark *));\n\n"
   File.write(stylesheets_path, content)
 else
   say.call "⚠️ Couldn't find application.tailwind.css, skipping CSS modifications", :red
@@ -59,7 +59,7 @@ if layout_path.exist?
 
 
   if layout_content.include?("<body")
-    # gsub_file layout_path.to_s, "<html", "<html class=\"<%= fluxbit_html_classes %>\""
+    # gsub_file layout_path.to_s, "<html", "<html class=\"<%= fx_html_class %>\""
     gsub_file layout_path.to_s, "<body>", "<body class=\"<%= fx_body_class %>\">"
   else
     say.call "<body> tag is not found in application layout.", :red

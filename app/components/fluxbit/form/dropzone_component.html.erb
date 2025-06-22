@@ -1,0 +1,39 @@
+<%= content_tag :div, **@wrapper_html do %>
+<div class="<%= self.styles[:base] %>">
+  <label for="<%= id %>" class="<%= self.styles[:label] %> <%= self.styles[:height][@height] %>">
+    <div class="<%= self.styles[:inner_div] %>">
+      <% if content? %>
+        <%= content %>
+      <% else %>
+        <%= create_icon %>
+
+        <% if @title != false %>
+          <p class="<%= self.styles[:title] %>">
+            <% if @title != true %>
+              <%= @title %>
+            <% else %>
+              <span class="font-semibold">Click to upload</span> or drag and drop
+            <% end %>
+          </p>
+        <% end %>
+
+        <% if @subtitle != false %>
+          <p class="<%= self.styles[:subtitle] %>">
+            <% if @subtitle != true %>
+              <%= @subtitle %>
+            <% else %>
+              SVG, PNG, JPG or GIF (MAX. 800x400px)
+            <% end %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+    <% if @form.present? && @attribute.present? %>
+      <%= @form.file_field(@attribute, **@props) %>
+    <% else %>
+      <%= file_field_tag(@name, **@props) %>
+    <% end %>
+  </label>
+</div>
+<%= help_text %>
+<% end %>
