@@ -13,7 +13,7 @@ class Fluxbit::Form::CheckBoxComponentTest < ViewComponent::TestCase
   end
 
   def test_renders_radio_button_type
-    render_inline(Fluxbit::Form::CheckBoxComponent.new(name: "gender", type: "radio_button", value: "male", label: "Male"))
+    render_inline(Fluxbit::Form::CheckBoxComponent.new(name: "gender", type: :radio_button, value: "male", label: "Male"))
     assert_selector "input[type='radio'][name='gender'][value='male']"
     assert_text "Male"
   end
