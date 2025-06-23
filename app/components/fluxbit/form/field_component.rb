@@ -16,11 +16,12 @@ class Fluxbit::Form::FieldComponent < Fluxbit::Form::Component
     @helper_popover_placement = props.delete(:helper_popover_placement) || "right"
     @label = label_value(props.delete(:label), @object, @attribute, @id)
     @wrapper_html = props.delete(:wrapper_html) || {}
+    @wrapper_html = { class: @wrapper_html } if @wrapper_html.is_a?(String)
     define_wrapper_options
   end
 
   def define_wrapper_options
     add(to: @wrapper_html, class: "required") if @props[:required].present?
-    add(to: @wrapper_html, class: @name) if @name.present?
+    add(to: @wrapper_html, class: @name.to_s) if @name.present?
   end
 end

@@ -103,6 +103,7 @@ class Fluxbit::CardComponent < Fluxbit::Component
         concat(image_html)
         concat(header_html) if header_html
         concat(body_html) if body_html
+        concat(content) if content?
         concat(footer_html) if footer_html
       end
     elsif @image && @image_position == :left
@@ -124,7 +125,7 @@ class Fluxbit::CardComponent < Fluxbit::Component
       end
     else
       # Fallback: render without image or with an unrecognized image_position.
-      body_html = body_content ? content_tag(:div, body_content, class: self.class.styles[:body]) : nil
+      body_html = body_content || content ? content_tag(:div, body_content || content, class: self.class.styles[:body]) : nil
       content_tag(container_tag, **@props) do
         concat(header_html) if header_html
         concat(body_html) if body_html
