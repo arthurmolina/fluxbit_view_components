@@ -1,0 +1,10 @@
+<%% if turbo_frame_request? %>
+  <turbo-frame id="modal">
+    <%%= fx_modal(title: "Edit <%= class_name %>") do %>
+      <%%= render "form", <%= file_name %>: @<%= file_name %> %>
+    <%% end %>
+  </turbo-frame>
+<%% else %>
+  <%%= fx_heading(with_content: "Edit <%= class_name %>") %>
+  <%%= render "form", <%= file_name %>: @<%= file_name %> %>
+<% end %>

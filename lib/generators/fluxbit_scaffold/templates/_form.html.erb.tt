@@ -1,0 +1,39 @@
+<%%= form_with(model: @<%= file_name %>, id: "<%= file_name %>_form", builder: Fluxbit::FormBuilder, format: turbo_frame_request? ? :turbo_stream : :html) do |form| %>
+  <%% if @<%= file_name %>.errors.any? %>
+    <div class="mb-4">
+      <%%= fx_alert(with_content: "#{pluralize(@<%= file_name %>.errors.count, 'error')} prevented this <%= file_name %> from being saved:", 
+            variant: :danger) %>
+      <ul class="text-sm text-red-600 pl-5 list-disc">
+        <%% @<%= file_name %>.errors.full_messages.each do |msg| %>
+          <li><%%= msg %></li>
+        <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+
+<% attributes.each do |att| 
+  name, type = att.name, att.type.to_s 
+  next if type == 'password_digest'  # handle password fields separately 
+-%>
+  <% if ['references','belongs_to'].include?(type) -%>
+    <%%= form.fx_select :<%= "#{name}_id" %>, <%= name.camelize %>.all, :id, :name, prompt: true, wrapper_html: {class: "mb-4"} %>
+  <% elsif type == 'boolean' -%>
+    <%%= form.fx_toggle :<%= name %>, wrapper_html: {class: "mb-4"} %>
+  <% elsif type == 'password' -%>
+    <%%= form.fx_password_field :<%= name %>, wrapper_html: {class: "mb-4"} %>
+  <% elsif type == 'text' -%>
+    <%%= form.fx_text_area :<%= name %>, rows: 5, wrapper_html: {class: "mb-4"} %>
+  <% elsif type == 'attachment' || type == 'attachments' -%>
+    <%%= form.fx_dropzone :<%= name %>, wrapper_html: {class: "mb-4"}, <%= 'multiple: true' if type == 'attachments' %>%>
+  <% else -%>
+    <%%= form.fx_text_field :<%= name %>, wrapper_html: {class: "mb-4"} %>
+  <% end -%>
+<% end -%>
+
+<% if attributes.any? { |a| a.type == :password_digest } -%>
+  <%%= form.fx_password_field :password, wrapper_html: {class: "mb-4"} %>
+  <%%= form.fx_password_field :password_confirmation, wrapper_html: {class: "mb-4"} %>
+<% end -%>
+
+  <%%= form.fx_submit %>
+<%% end %>

@@ -1,0 +1,30 @@
+<p id="notice"><%%= notice %></p>
+
+<%%= fx_heading do %><%= class_name.pluralize %><%% end %>
+
+<div class="mb-4">
+  <%%= fx_button with_content: "New <%= class_name %>", as: :a, href: new_<%= file_name %>_path, 
+        data: { turbo_frame: "modal" } %>
+</div>
+
+<turbo-frame id="modal"></turbo-frame>
+
+<table class="w-full text-sm text-left text-gray-600">
+  <thead class="bg-gray-50 text-gray-700">
+    <tr>
+<% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
+      <th scope="col" class="px-4 py-2"><%= attr.name.humanize %></th>
+<% end -%>
+      <th scope="col" class="px-4 py-2" colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody id="<%= file_name.pluralize %>">
+    <%% @<%= file_name.pluralize %>.each do |<%= file_name %>| %>
+      <%%= render <%= file_name %> %>
+    <%% end %>
+  </tbody>
+</table>
+
+<div class="mt-4">
+  <%%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+</div>

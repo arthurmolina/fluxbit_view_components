@@ -1,0 +1,12 @@
+<%% if @<%= file_name %>.errors.any? %>
+  <%%# On failure: re-render the form (with errors still in modal) %>
+  <%%= turbo_stream.replace "<%= file_name %>_form", partial: "<%= file_name.pluralize %>/form", 
+        locals: { <%= file_name %>: @<%= file_name %> } %>
+<%% else %>
+  <%%# On success: replace the existing row, clear modal, and show notice %>
+  <%%= turbo_stream.replace "<%%= dom_id(@<%= file_name %>) %>", 
+        partial: "<%= file_name.pluralize %>/<%= file_name %>", 
+        locals: { <%= file_name %>: @<%= file_name %> } %>
+  <%%= turbo_stream.update "modal", "" %>
+  <%%= turbo_stream.replace "notice", fx_alert(with_content: "<%= class_name %> was successfully updated.", variant: :success) %>
+<%% end %>

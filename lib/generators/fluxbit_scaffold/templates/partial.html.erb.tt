@@ -1,0 +1,18 @@
+<tr id="<%%= dom_id(<%= file_name %>) %>">
+  <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| 
+    attr_name = attr.name -%>
+    <td class="px-4 py-2"><%%= <%= file_name %>.<%= attr_name %> %></td>
+  <% end -%>
+  <td class="px-4 py-2">
+    <%%= fx_button with_content: "Show", as: :a, href: <%= file_name %>_path(<%= file_name %>) %>
+  </td>
+  <td class="px-4 py-2">
+    <%%= fx_button with_content: "Edit", as: :a, href: edit_<%= file_name %>_path(<%= file_name %>), 
+          data: { turbo_frame: "modal" } %>
+  </td>
+  <td class="px-4 py-2">
+    <%%= fx_button with_content: "Delete", as: :a, href: <%= file_name %>_path(<%= file_name %>), 
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, 
+          variant: :danger %>
+  </td>
+</tr>

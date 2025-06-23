@@ -1,0 +1,17 @@
+<p id="notice"><%%= notice %></p>
+
+<%%= fx_heading with_content: "<%= class_name %> Details" %>
+
+<%%= fx_card do %>
+  <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
+    <p class="mb-2">
+      <strong><%= attr.name.humanize %>:</strong>
+      <%%= @<%= file_name %>.<%= attr.name %> %>
+    </p>
+  <% end -%>
+<%% end %>
+
+<div class="mt-4">
+  <%%= fx_button "Edit", href: edit_<%= file_name %>_path(@<%= file_name %>), data: { turbo_frame: "modal" } %>
+  <%%= fx_button "Back", href: <%= file_name.pluralize %>_path %>
+</div>

@@ -21,6 +21,8 @@ gem "standard"
 gem "selenium-webdriver", "=4.9.0"
 gem "pry"
 gem "anyicon"
+gem "pagy"
+gem "pundit"
 
 group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]

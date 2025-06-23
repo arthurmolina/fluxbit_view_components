@@ -1,0 +1,125 @@
+class <%= class_name.pluralize %>Controller < ApplicationController
+  before_action :set_<%= file_name %>, only: [:show, :edit, :update, :destroy]
+
+  # GET /<%= file_name.pluralize %>
+  def index
+    @pagy, @<%= file_name.pluralize %> = pagy(policy_scope(<%= class_name %>))
+    respond_to do |format|
+      format.html   # index.html.erb
+      format.json { render json: @<%= file_name.pluralize %> }
+    end
+  end
+
+  # GET /<%= file_name.pluralize %>/1
+  def show
+    authorize @<%= file_name %>
+    respond_to do |format|
+      format.html   # show.html.erb
+      format.json { render json: @<%= file_name %> }
+    end
+  end
+
+  # GET /<%= file_name.pluralize %>/new
+  def new
+    @<%= file_name %> = <%= class_name %>.new
+    authorize @<%= file_name %>
+    respond_to do |format|
+      format.html   # new.html.erb (form in modal)
+      format.json { render json: @<%= file_name %> }
+    end
+  end
+
+  # GET /<%= file_name.pluralize %>/1/edit
+  def edit
+    authorize @<%= file_name %>
+    respond_to do |format|
+      format.html   # edit.html.erb (form in modal)
+      format.json { render json: @<%= file_name %> }
+    end
+  end
+
+  # POST /<%= file_name.pluralize %>
+  def create
+    @<%= file_name %> = <%= class_name %>.new(<%= file_name %>_params)
+    authorize @<%= file_name %>
+    respond_to do |format|
+      if @<%= file_name %>.save
+        format.html do 
+          flash[:notice] = "<%= class_name %> was successfully created."
+          redirect_to @<%= file_name %>  # redirect to show page
+        end
+        format.turbo_stream   # renders create.turbo_stream.erb
+        format.json { render json: @<%= file_name %>, status: :created }
+      else
+        format.html do
+          # Re-render the form for HTML (status 422 for validation errors)
+          render :new, status: :unprocessable_entity 
+        end
+        format.turbo_stream   # renders create.turbo_stream.erb (re-render form with errors)
+        format.json { render json: @<%= file_name %>.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /<%= file_name.pluralize %>/1
+  def update
+    authorize @<%= file_name %>
+    respond_to do |format|
+      if @<%= file_name %>.update(<%= file_name %>_params)
+        format.html do 
+          flash[:notice] = "<%= class_name %> was successfully updated."
+          redirect_to @<%= file_name %> 
+        end
+        format.turbo_stream   # renders update.turbo_stream.erb
+        format.json { render json: @<%= file_name %> }
+      else
+        format.html do 
+          render :edit, status: :unprocessable_entity 
+        end
+        format.turbo_stream   # renders update.turbo_stream.erb (re-render form with errors)
+        format.json { render json: @<%= file_name %>.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /<%= file_name.pluralize %>/1
+  def destroy
+    authorize @<%= file_name %>
+    @<%= file_name %>.destroy
+    respond_to do |format|
+      format.html do 
+        flash[:notice] = "<%= class_name %> was successfully deleted."
+        redirect_to <%= file_name.pluralize %>_path 
+      end
+      format.turbo_stream   # renders destroy.turbo_stream.erb
+      format.json { head :no_content }
+    end
+  end
+
+  private
+
+    def set_<%= file_name %>
+      @<%= file_name %> = <%= class_name %>.find(params[:id])
+      # Note: Pundit authorization for @<%= file_name %> happens in each action
+    end
+
+    # Only allow a list of trusted parameters through.
+    def <%= file_name %>_params
+      params.require(:<%= file_name %>).permit(
+        <%# Permit all scaffolded attributes; references use foreign_key_id %>
+        <%- allowed_attrs = attributes.map do |att| 
+              attr_name, attr_type = att.name, att.type.to_s
+              if ['references', 'belongs_to'].include?(attr_type)
+                ":#{attr_name}_id"
+              elsif attr_type == 'password_digest'
+                # For password digest, permit password and password_confirmation
+                ':password, :password_confirmation'
+              else
+                ":#{attr_name}"
+              end 
+            end
+        -%>
+        <%= allowed_attrs.join(', ') %>
+      )
+    end
+end
