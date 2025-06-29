@@ -7,4 +7,4 @@
 <%% else %>
   <%%= fx_heading(with_content: "Edit <%= class_name %>") %>
   <%%= render "form", <%= file_name %>: @<%= file_name %> %>
-<% end %>
+<%% end %>

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require_relative "lib/fluxbit/view_components/version"
+# require_relative "lib/fluxbit/view_components/engine"
+# require_relative "lib/generators/fluxbit/scaffold_generator" if defined?(Rails::Generators)
+# require_relative "lib/generators/fluxbit/devise_views_generator" if defined?(Rails::Generators)
 
 Gem::Specification.new do |spec|
   spec.name = "fluxbit_view_components"

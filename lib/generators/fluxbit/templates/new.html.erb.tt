@@ -5,6 +5,6 @@
     <%% end %>
   </turbo-frame>
 <%% else %>
-  <%= fx_heading(with_content: "New <%= class_name %>") %>
+  <%%= fx_heading(with_content: "New <%= class_name %>") %>
   <%%= render "form", <%= file_name %>: @<%= file_name %> %>
 <%% end %>

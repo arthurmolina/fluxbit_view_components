@@ -1,0 +1,28 @@
+<% content_for(:header) do %>
+  <%= fx_heading with_content: "Edit #{resource_name.to_s.humanize}", size: 2, class: "text-center" %>
+<% end %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, builder: Fluxbit::FormBuilder) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= f.fx_email_field :email, autofocus: true, autocomplete: "email", wrapper_html: {class: "mb-6 field"} %>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <%= f.fx_password_field :password, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"},
+      help_text: [
+        "Leave blank if you don't want to change it",
+        @minimum_password_length ? "#{@minimum_password_length} characters minimum" : ""
+      ]
+  %>
+  <%= f.fx_password_field :password_confirmation, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"} %>
+  <%= f.fx_password_field :current_password, autocomplete: "current-password", wrapper_html: {class: "mb-6 field"}, help_text: "We need your current password to confirm your changes" %>
+  <%= f.fx_submit "Update" %>
+<% end %>
+
+<%= fx_heading with_content: "Cancel my account", size: 5, class: "text-center my-6", remove_class: "mb-4" %>
+
+<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
+<%= fx_link_to "Back", :back %>

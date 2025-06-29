@@ -26,6 +26,7 @@ module Fluxbit
     require "fluxbit/config/flex_component"
     require "fluxbit/config/gravatar_component"
     require "fluxbit/config/heading_component"
+    require "fluxbit/config/link_component"
     require "fluxbit/config/modal_component"
     require "fluxbit/config/paragraph_component"
     require "fluxbit/config/popover_component"

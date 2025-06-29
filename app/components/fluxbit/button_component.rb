@@ -39,6 +39,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
     super
     @props = props
     @form = @props.delete(:form)
+    @content = @props.delete(:content)
     @as = @props.delete(:as) || @@as
     @pill = @props.delete(:pill) || @@pill
     @color = @props.delete(:color) || @@color
@@ -46,6 +47,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
     @first_button = @props.delete(:first_button) || false
     @last_button = @props.delete(:last_button) || false
     @outline = @color.end_with?("_outline")
+    @full_sized = options(@props.delete(:full_sized), default: true)
     declare_size(@props.delete(:size) || @@size)
     declare_disabled
     declare_classes
@@ -72,6 +74,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
       to: @props,
       first_element: true
     )
+    add(class: styles[:full_sized], to: @props) if @full_sized
     add(class: styles[:inner][:base], to: @props) if @grouped
     add(class: styles[:inner][:position][:start], to: @props) if @grouped && @first_button
     add(class: styles[:inner][:position][:end], to: @props) if @grouped && @last_button
@@ -90,7 +93,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
 
   def call
     concat(
-      (@form.nil? ? content_tag(@as, content, @props) : @form.submit(**@props)) +
+      (@form.nil? ? content_tag(@as, @content || content, @props) : @form.submit(@content || content, **@props)) +
       render_popover_or_tooltip.to_s
     )
   end
