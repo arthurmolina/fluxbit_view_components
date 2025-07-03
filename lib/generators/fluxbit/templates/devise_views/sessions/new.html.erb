@@ -1,5 +1,5 @@
 <% content_for(:header) do %>
-  <%= fx_heading with_content: "Log in", size: 2, class: "text-center" %>
+  <%= fx_heading with_content: "Log in", size: 2, class: "text-center mt-8" %>
 <% end %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), builder: Fluxbit::FormBuilder) do |f| %>
