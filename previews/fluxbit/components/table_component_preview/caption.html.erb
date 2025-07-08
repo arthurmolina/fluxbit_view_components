@@ -1,0 +1,16 @@
+<%= fx_table do |table| %>
+  <% table.with_caption { "Product List (Caption)" } %>
+  <% table.with_header do |header| %>
+    <% header.with_cell { "Product name" } %>
+    <% header.with_cell { "Color" } %>
+    <% header.with_cell { "Category" } %>
+    <% header.with_cell { "Price" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Apple MacBook Pro 17" } %>
+    <% row.with_cell { "Silver" } %>
+    <% row.with_cell { "Laptop" } %>
+    <% row.with_cell { "$2999" } %>
+  <% end %>
+<% end %>

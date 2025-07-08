@@ -1,0 +1,39 @@
+<%= fx_table do |table| %>
+  <% table.with_caption(class: "text-green-600", remove_class: "text-gray-900") { "Product List" } %>
+  <% table.with_footer_caption(class: "text-green-600", remove_class: "text-gray-900") { "Product List" } %>
+
+  <% table.with_header(class: "animate-bounce", remove_class: "uppercase") do |header| %>
+    <% header.with_cell { "Product name" } %>
+    <% header.with_cell { "Color" } %>
+    <% header.with_cell { "Category" } %>
+    <% header.with_cell { "Price" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Apple MacBook Pro 17" } %>
+    <% row.with_cell(class: "text-purple-600 px-10", remove_class: "px-6") { "Silver" } %>
+    <% row.with_cell { "Laptop" } %>
+    <% row.with_cell { "$2999" } %>
+  <% end %>
+
+  <% table.with_row(class: "animate-pulse") do |row| %>
+    <% row.with_cell { "Microsoft Surface Pro" } %>
+    <% row.with_cell { "White" } %>
+    <% row.with_cell { "Laptop PC" } %>
+    <% row.with_cell { "$1999" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Magic Mouse 2" } %>
+    <% row.with_cell { "Black" } %>
+    <% row.with_cell { "Accessories" } %>
+    <% row.with_cell { "$99" } %>
+  <% end %>
+
+  <% table.with_footer(class: "text-red-600", remove_class: "text-gray-700") do |footer| %>
+    <% footer.with_cell { "Product name" } %>
+    <% footer.with_cell { "Color" } %>
+    <% footer.with_cell { "Category" } %>
+    <% footer.with_cell { "Price" } %>
+  <% end %>
+<% end %>

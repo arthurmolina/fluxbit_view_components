@@ -31,6 +31,7 @@ module Fluxbit
     require "fluxbit/config/paragraph_component"
     require "fluxbit/config/popover_component"
     require "fluxbit/config/tab_component"
+    require "fluxbit/config/table_component"
     require "fluxbit/config/text_component"
     require "fluxbit/config/tooltip_component"
   end

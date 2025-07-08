@@ -32,6 +32,7 @@ class Fluxbit::Form::Component < Fluxbit::Component
 
   def label_value(label, object, attribute, id)
     return object.class.human_attribute_name(attribute) if label.nil? && !object.nil? && !attribute.nil?
+    return attribute.to_s.humanize if label.nil? && object.nil?
     return id.to_s.humanize if label.nil? && !id.nil?
     return label unless label.nil?
 

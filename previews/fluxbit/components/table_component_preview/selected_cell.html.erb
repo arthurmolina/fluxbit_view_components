@@ -1,0 +1,29 @@
+<%= fx_table do |table| %>
+  <% table.with_header do |header| %>
+    <% header.with_cell { "Product name" } %>
+    <% header.with_cell { "Color" } %>
+    <% header.with_cell { "Category" } %>
+    <% header.with_cell { "Price" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Apple MacBook Pro 17" } %>
+    <% row.with_cell { "Silver" } %>
+    <% row.with_cell { "Laptop" } %>
+    <% row.with_cell(selected: true) { "$2999" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell(selected: true) { "Microsoft Surface Pro" } %>
+    <% row.with_cell { "White" } %>
+    <% row.with_cell { "Laptop PC" } %>
+    <% row.with_cell { "$1999" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Magic Mouse 2" } %>
+    <% row.with_cell { "Black" } %>
+    <% row.with_cell(selected: true) { "Accessories" } %>
+    <% row.with_cell { "$99" } %>
+  <% end %>
+<% end %>

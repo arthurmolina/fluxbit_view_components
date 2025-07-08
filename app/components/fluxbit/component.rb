@@ -27,7 +27,11 @@ class Fluxbit::Component < ViewComponent::Base
   end
 
   def remove_class(elements, from)
-    from.split.reject { |c| c.in?(elements.split) }.join(" ")
+    from.split.reject { |c| c.in?(elements || "".split) }.join(" ")
+  end
+
+  def remove_class_from_props(props)
+    props[:class] = remove_class(props.delete(:remove_class) || "", props[:class])
   end
 
   def options(value, collection: nil, default: nil)
