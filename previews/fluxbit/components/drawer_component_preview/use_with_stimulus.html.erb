@@ -1,0 +1,44 @@
+<div data-controller="fluxbit-drawer">
+  <%= fx_drawer(id: "drawer-with-stimulus", data: {"fluxbit-drawer-target": "drawer"}) do |drawer| %>
+    <% drawer.with_header do %>
+      <%= anyicon("heroicons_solid:information-circle", class: "w-8 h-8 me-2.5") %>
+      Info
+    <% end %>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis pulvinar pharetra. Integer ullamcorper enim sit amet blandit lacinia. Integer quis scelerisque ipsum. Suspendisse aliquam dapibus est. Sed facilisis dui lorem, eget vestibulum ante varius nec. Suspendisse potenti. Morbi lacinia, neque in porttitor pellentesque, ex lectus viverra magna, id sollicitudin velit nibh et neque. Mauris sed libero est. Phasellus dapibus augue ac massa sollicitudin, eget tempor ante lobortis. Mauris consectetur magna leo, sed volutpat leo volutpat sit amet. Morbi viverra, tortor id lacinia cursus, lorem nisi semper enim, eget mattis purus risus sed ligula. Quisque pulvinar orci eu interdum aliquam. Nulla et purus facilisis, finibus mi sit amet, consequat lacus.
+  <% end %>
+
+  <div class="text-center">
+    <%= fx_button(
+      with_content: "Show",
+      data: {
+        action: "click->fluxbit-drawer#show",
+        fluxbit_drawer_id: "drawer-with-stimulus",
+      },
+      aria: { controls: "drawer-with-stimulus" },
+      remove_class: "w-full",
+      class: "mx-auto"
+    ) %>
+    
+    <%= fx_button(
+      with_content: "Hide",
+      data: {
+        action: "click->fluxbit-drawer#hide",
+        fluxbit_drawer_id: "drawer-with-stimulus",
+      },
+      aria: { controls: "drawer-with-stimulus" },
+      remove_class: "w-full",
+      class: "mx-auto"
+    ) %>
+
+    <%= fx_button(
+      with_content: "Toggle",
+      data: {
+        action: "click->fluxbit-drawer#toggle",
+        fluxbit_drawer_id: "drawer-with-stimulus",
+      },
+      aria: { controls: "drawer-with-stimulus" },
+      remove_class: "w-full",
+      class: "mx-auto"
+    ) %>
+  </div>
+</div>

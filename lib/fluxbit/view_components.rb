@@ -23,6 +23,7 @@ module Fluxbit
     require "fluxbit/config/badge_component"
     require "fluxbit/config/button_component"
     require "fluxbit/config/card_component"
+    require "fluxbit/config/drawer_component"
     require "fluxbit/config/flex_component"
     require "fluxbit/config/gravatar_component"
     require "fluxbit/config/heading_component"
