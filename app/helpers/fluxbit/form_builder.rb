@@ -84,9 +84,9 @@ module Fluxbit
       render Fluxbit::Form::SelectComponent.new(form: self, attribute: method, **options, &block)
     end
 
-    def fx_submit(content, **options, &block)
+    def fx_submit(content = nil, **options, &block)
       options[:form] = self
-      options[:content] = content
+      options[:content] = content if content.present?
       options[:color] ||= :primary
       options[:size] ||= 2
       options[:disabled] = true if object&.persisted? && !object.valid?
