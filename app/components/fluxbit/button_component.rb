@@ -14,6 +14,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
     @tooltip_props = props
     @tooltip_text = block.call
   }
+  renders_one :dropdown, Fluxbit::DropdownComponent
 
   ##
   # Initializes the button component with the given properties.
@@ -48,6 +49,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
     @last_button = @props.delete(:last_button) || false
     @outline = @color.end_with?("_outline")
     @full_sized = options(@props.delete(:full_sized), default: true)
+    @remove_dropdown_arrow = options(@props.delete(:remove_dropdown_arrow), default: false)
     declare_size(@props.delete(:size) || @@size)
     declare_disabled
     declare_classes
@@ -92,9 +94,21 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
   end
 
   def call
-    concat(
-      (@form.nil? ? content_tag(@as, @content || content, @props) : @form.submit(@content || content, **@props)) +
-      render_popover_or_tooltip.to_s
-    )
+    @props["data-dropdown-toggle"] = dropdown.get_item if dropdown?
+
+    concat(render_button)
+    concat(render_popover_or_tooltip.to_s)
+    concat(dropdown&.to_s || "")
+  end
+
+  private
+  def render_button
+    button_content = (@content || content) + (dropdown? && !@remove_dropdown_arrow ? chevron_down : "")
+
+    if @form.nil?
+      content_tag(@as, button_content, @props)
+    else
+      @form.submit(button_content, **@props)
+    end
   end
 end
