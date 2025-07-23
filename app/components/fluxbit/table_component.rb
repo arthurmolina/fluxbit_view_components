@@ -137,6 +137,7 @@ class Fluxbit::TableComponent < Fluxbit::Component
     @bordered = options @props.delete(:bordered), default: @@bordered
     @hover = options @props.delete(:hover), default: @@hover
     @shadow = options @props.delete(:shadow), default: @@shadow
+    @only_rows = options @props.delete(:only_rows), default: false
 
     # Wrapper HTML
     @wrapper_html = @props.delete(:wrapper_html) || {}
@@ -172,6 +173,8 @@ class Fluxbit::TableComponent < Fluxbit::Component
   end
 
   def call
+    return safe_join(rows) if @only_rows && rows?
+
     # Wrapper
     content_tag(:div, **@wrapper_html) do
       # Table
@@ -188,9 +191,13 @@ class Fluxbit::TableComponent < Fluxbit::Component
         # body
         concat(
           content_tag(:tbody, **@tbody_html) do
-            concat(safe_join rows)
+            if content.present?
+              content
+            else
+              concat(safe_join rows) if rows?
+            end
           end
-        ) if rows?
+        )
 
         # Footer
         concat(
