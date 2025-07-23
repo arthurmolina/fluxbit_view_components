@@ -101,7 +101,7 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
     content_tag(
       tag,
       anyicon(
-        icon: icon_v,
+        icon_v,
         class: styles[:additional_icons][:class][@color]
       ),
       **props

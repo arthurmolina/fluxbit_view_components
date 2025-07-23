@@ -16,15 +16,15 @@ class Fluxbit::Components::TabComponentPreview < ViewComponent::Preview
       tab_panel: tab_panel,
       vertical: vertical,
     ) do |tabs|
-      tabs.with_tab title: "Profile", active: true, icon: anyicon(icon: "heroicons_solid:user") do |content|
+      tabs.with_tab title: "Profile", active: true, icon: anyicon("heroicons_solid:user") do |content|
         'Profile details'
       end
 
-      tabs.with_tab title: "Settings", icon: anyicon(icon: "heroicons_solid:pencil") do |content|
+      tabs.with_tab title: "Settings", icon: anyicon("heroicons_solid:pencil") do |content|
         'Settings details'
       end
 
-      tabs.with_tab title: "Disabled", icon: anyicon(icon: "heroicons_solid:exclamation-triangle"), disabled: true
+      tabs.with_tab title: "Disabled", icon: anyicon("heroicons_solid:exclamation-triangle"), disabled: true
     end
   end
 
@@ -36,8 +36,8 @@ class Fluxbit::Components::TabComponentPreview < ViewComponent::Preview
 
   private
 
-  def anyicon(icon: "heroicons_solid:user", **props)
-    Anyicon::Icon.render icon: icon, **props
+  def anyicon(icon = "heroicons_solid:user", **props)
+    Anyicon::Icon.render icon, **props
   end
 
   def variant_options

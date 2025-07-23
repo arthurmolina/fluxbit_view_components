@@ -131,7 +131,7 @@ class Fluxbit::ModalComponent < Fluxbit::Component
       **@close_button_props
     ) do
       concat content_tag(:span, "Dismiss", class: "sr-only")
-      concat anyicon(icon: "heroicons_outline:x-mark", class: "w-5 h-5")
+      concat anyicon("heroicons_outline:x-mark", class: "w-5 h-5")
     end
   end
 

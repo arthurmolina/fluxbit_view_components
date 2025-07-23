@@ -34,6 +34,6 @@ class Fluxbit::Form::DropzoneComponent < Fluxbit::Form::FieldComponent
   end
 
   def create_icon
-    anyicon(icon: @icon, class: styles[:icon])
+    anyicon(@icon, class: styles[:icon])
   end
 end

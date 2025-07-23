@@ -1,7 +1,7 @@
 <% Fluxbit::Config::TabComponent.styles[:tab_list][:tab_item][:variant][:default][:active].keys.each do |color| %>
   <%= fx_tab(variant: :underline, color: color, vertical: false) do |tabs| %>
-    <%= tabs.with_tab title: color.to_s.humanize, active: true, icon: anyicon(icon: "heroicons_solid:user") %>
-    <%= tabs.with_tab title: "Settings", icon: anyicon(icon: "heroicons_solid:pencil") %>
-    <%= tabs.with_tab title: "Disabled", icon: anyicon(icon: "heroicons_solid:exclamation-triangle"), disabled: true %>
+    <%= tabs.with_tab title: color.to_s.humanize, active: true, icon: anyicon("heroicons_solid:user") %>
+    <%= tabs.with_tab title: "Settings", icon: anyicon("heroicons_solid:pencil") %>
+    <%= tabs.with_tab title: "Disabled", icon: anyicon("heroicons_solid:exclamation-triangle"), disabled: true %>
   <% end %>
 <% end %>

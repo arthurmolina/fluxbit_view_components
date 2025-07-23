@@ -70,8 +70,8 @@ class Fluxbit::Component < ViewComponent::Base
       (0...10).map { ('a'..'z').to_a[rand(26)] }.join}_target"
   end
 
-  def anyicon(icon:, **props)
-    Anyicon::Icon.render(icon: icon, **props)
+  def anyicon(icon, **props)
+    Anyicon::Icon.render(icon, **props)
   end
 
   def random_id
@@ -86,5 +86,31 @@ class Fluxbit::Component < ViewComponent::Base
     self.class.to_s.match(/Fluxbit::(\w+)Component/)[1].underscore
   rescue
     "any"
+  end
+
+  def chevron_right(**props)
+    add to: props, class: "w-2.5 h-2.5 ms-3", first_element: true
+    remove_class_from_props(props)
+    props["aria-hidden"] = "true"
+    props[:xmlns] = "http://www.w3.org/2000/svg"
+    props[:fill] = "none"
+    props[:viewBox] = "0 0 6 10"
+
+    content_tag :svg, **props do
+      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => 2, d: "m1 9 4-4-4-4"
+    end
+  end
+
+  def chevron_down(**props)
+    add to: props, class: "w-2.5 h-2.5 ms-3", first_element: true
+    remove_class_from_props(props)
+    props["aria-hidden"] = "true"
+    props[:xmlns] = "http://www.w3.org/2000/svg"
+    props[:fill] = "none"
+    props[:viewBox] = "0 0 10 6"
+
+    content_tag :svg, **props do
+      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => 2, d: "m1 1 4 4 4-4"
+    end
   end
 end

@@ -42,7 +42,7 @@ class Fluxbit::Form::LabelComponent < Fluxbit::Form::Component
     return "" if @helper_popover.nil?
 
     content_tag :span,
-                anyicon(icon: @@helper_popover_icon, class: @@helper_popover_icon_class),
+                anyicon(@@helper_popover_icon, class: @@helper_popover_icon_class),
                 {
                   "data-popover-placement": @helper_popover_placement,
                   "data-popover-target": target,

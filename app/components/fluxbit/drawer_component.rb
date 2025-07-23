@@ -80,7 +80,7 @@ class Fluxbit::DrawerComponent < Fluxbit::Component
     @props[:id] ||= fx_id
     @props[:tabindex] = "-1"
     @props["aria-labelledby"] = "#{@props[:id]}-label"
-    # binding.pry
+
     @using_stimulus = @props["data-fluxbit-drawer-target"].present? || @props["data-controller"].to_s.include?("fluxbit-drawer") ||
                       (
                         @props[:data].present? && (
