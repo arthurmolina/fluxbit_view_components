@@ -1,0 +1,43 @@
+{
+  "name": "fluxbit-view-components",
+  "version": "0.1.0",
+  "description": "ViewComponents for Fluxbit View Components",
+  "main": "app/assets/javascripts/fluxbit_view_components.js",
+  "module": "app/assets/javascripts/fluxbit_view_components/index.js",
+  "repository": "git@github.com:arthurmolina/fluxbit_view_components.git",
+  "author": "Arthur Molina <arthurmolina@gmail.com>",
+  "files": [
+    "app/javascript/fluxbit/*.js",
+    "src/*.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@hotwired/stimulus": "^3.0.0",
+    "@rails/request.js": ">= 0.0.6"
+  },
+  "scripts": {
+    "build": "rollup --config rollup.config.js",
+    "prerelease": "yarn build && git --no-pager diff && echo && npm pack --dry-run",
+    "release": "npm publish"
+  },
+  "devDependencies": {
+    "@floating-ui/dom": "^1.5.3",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@shopify/polaris": "^11.26.0",
+    "postcss": "^8.4.35",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "rollup": "^2.79.1",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo": "^8.0.13",
+    "@rails/request.js": "^0.0.9",
+    "flowbite": "^3.1.2"
+  }
+}

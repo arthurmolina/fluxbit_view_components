@@ -19,6 +19,14 @@ module Fluxbit
         ActionView::Base.field_error_proc = ->(html_tag, _instance) { html_tag.html_safe }
       end
 
+      initializer "fluxbitview_components.assets" do |app|
+        if app.config.respond_to?(:assets)
+          app.config.assets.precompile += %w[
+            fluxbit_view_components.js
+          ]
+        end
+      end
+
       initializer "fluxbit_view_components.importmap", before: "importmap" do |app|
         if app.config.respond_to?(:importmap) && app.config.importmap.has_key?(:cache_sweepers)
           app.config.importmap.cache_sweepers << Engine.root.join("app/assets/javascripts")
@@ -27,8 +35,8 @@ module Fluxbit
 
       initializer "fluxbit_view_components.helpers" do
         ActiveSupport.on_load(:action_controller_base) do
-          helper Fluxbit::ClassesHelper
           helper Fluxbit::ComponentsHelper
+          helper Fluxbit::ViewHelper
         end
       end
     end
