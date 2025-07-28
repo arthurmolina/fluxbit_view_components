@@ -11,7 +11,7 @@ module Fluxbit::Config::Form::ToggleComponent
   mattr_accessor :styles do
     {
       label: "text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center",
-      input: "w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 rounded-sm dark:bg-gray-700 dark:border-gray-600 sr-only peer",
+      input: "size-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 rounded-sm dark:bg-gray-700 dark:border-gray-600 sr-only peer",
       toggle: {
         base: "me-3 shrink-0 rounded-full peer-focus:ring-4 peer-checked:after:translate-x-full peer-checked:rtl:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:border after:rounded-full after:transition-all relative",
         checked: {

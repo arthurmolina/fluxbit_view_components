@@ -3,7 +3,7 @@
 module Fluxbit::Config::Form::LabelComponent
   mattr_accessor :color, default: :default
   mattr_accessor :helper_popover_icon, default: "heroicons_solid:question-mark-circle"
-  mattr_accessor :helper_popover_icon_class, default: "w-4 h-4"
+  mattr_accessor :helper_popover_icon_class, default: "size-4"
   mattr_accessor :sizing, default: 1
   mattr_accessor :helper_popover_placement, default: "right"
 

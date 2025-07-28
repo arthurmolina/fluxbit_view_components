@@ -40,8 +40,10 @@ class Fluxbit::DropdownItemComponent < Fluxbit::Component
 
     content_tag(:li, **@item_props) do
       concat(content_tag(@type.to_sym, **@content_html) do
-        concat(anyicon(@icon, **@icon_html)) if @icon.present?
-        concat(content || @param_content)
+        concat content_tag :div, class: "flex" do
+            concat(anyicon(@icon, **@icon_html)) if @icon.present?
+            concat(content || @param_content)
+          end
         concat(chevron_right(class: "ml-auto")) if items.any?
       end)
       concat(

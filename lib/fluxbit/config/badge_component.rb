@@ -55,11 +55,11 @@ module Fluxbit::Config::BadgeComponent
       ],
       perfect_rounded: [
         "h-fit px-2.5 py-0.5",
-        "justify-center w-4 h-4",
-        "justify-center w-6 h-6",
-        "justify-center w-8 h-8",
-        "justify-center w-10 h-10",
-        "justify-center w-12 h-12"
+        "justify-center size-4",
+        "justify-center size-6",
+        "justify-center size-8",
+        "justify-center size-10",
+        "justify-center size-12"
     ],
       notification: {
         default: "absolute",

@@ -102,10 +102,12 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
   end
 
   private
+
   def render_button
-    button_content = (@content || content) + (dropdown? && !@remove_dropdown_arrow ? chevron_down : "")
+    button_content = @content || content
 
     if @form.nil?
+      button_content += dropdown? && !@remove_dropdown_arrow ? chevron_down : ""
       content_tag(@as, button_content, @props)
     else
       @form.submit(button_content, **@props)

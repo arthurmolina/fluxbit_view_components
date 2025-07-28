@@ -12,8 +12,9 @@
     <% item.with_item "Overview", content_html: {href: "#"}, as: :a %>
     <% item.with_item "My downloads", content_html: {href: "#"}, as: :a %>
     <% item.with_item "Billing", content_html: {href: "#"}, dropdown_placement: "left-start" do |item2| %>
-      <% item2.with_item "Rewards", content_html: {href: "#"}, as: :a %>
-      <% item2.with_item "Earnings", content_html: {href: "#"}, as: :a %>
+      <% item2.with_item "Rewards", as: :button, content_html: {href: "#"}, icon: "heroicons_solid:eye" %>
+      <% item2.with_item "Earnings", as: :button, content_html: {href: "#"} %>
+      <% item2.with_item "Earnings", as: :button, content_html: {href: "#"} %>
     <% end %>
   <% end %>
 <% end %>

@@ -66,7 +66,7 @@ module Fluxbit::Config::TableComponent
           dark: "bg-gray-800 dark:bg-gray-200"
         },
         cell: {
-          base: "px-6 py-4",
+          base: "px-6 py-2",
           selected: "font-medium text-gray-900 whitespace-nowrap dark:text-white"
         }
       }

@@ -81,22 +81,22 @@ class Fluxbit::DrawerComponent < Fluxbit::Component
     @props[:tabindex] = "-1"
     @props["aria-labelledby"] = "#{@props[:id]}-label"
 
-    @using_stimulus = @props["data-fluxbit-drawer-target"].present? || @props["data-controller"].to_s.include?("fluxbit-drawer") ||
+    @using_stimulus = @props["data-fx-drawer-target"].present? || @props["data-controller"].to_s.include?("fx-drawer") ||
                       (
                         @props[:data].present? && (
-                          @props[:data][:"fluxbit-drawer-target"].present? || (@props[:data][:controller] || "").to_s.include?("fluxbit-drawer")
+                          @props[:data][:"fx-drawer-target"].present? || (@props[:data][:controller] || "").to_s.include?("fx-drawer")
                         )
                       )
 
     if @using_stimulus
-      if @props["data-controller"].to_s.include?("fluxbit-drawer") || @props[:data][:controller].to_s.include?("fluxbit-drawer")
-        @props["data-fluxbit-drawer-auto-show-value"] = @auto_show
-        @props["data-fluxbit-drawer-placement-value"] = @placement.to_s
-        @props["data-fluxbit-drawer-backdrop-value"] = @backdrop
-        @props["data-fluxbit-drawer-body-scrolling-value"] = @body_scrolling
-        @props["data-fluxbit-drawer-edge-value"] = @swipeable
-        @props["data-fluxbit-drawer-edge-offset-value"] = @edge_offset if @edge_offset.present? && @swipeable
-        @props["data-fluxbit-drawer-backdrop-classes-value"] = @backdrop_classes if @backdrop_classes.present?
+      if @props["data-controller"].to_s.include?("fx-drawer") || @props[:data][:controller].to_s.include?("fx-drawer")
+        @props["data-fx-drawer-auto-show-value"] = @auto_show
+        @props["data-fx-drawer-placement-value"] = @placement.to_s
+        @props["data-fx-drawer-backdrop-value"] = @backdrop
+        @props["data-fx-drawer-body-scrolling-value"] = @body_scrolling
+        @props["data-fx-drawer-edge-value"] = @swipeable
+        @props["data-fx-drawer-edge-offset-value"] = @edge_offset if @edge_offset.present? && @swipeable
+        @props["data-fx-drawer-backdrop-classes-value"] = @backdrop_classes if @backdrop_classes.present?
       else
         @props["data-auto-show"] = @auto_show
         @props["data-placement"] = @placement.to_s

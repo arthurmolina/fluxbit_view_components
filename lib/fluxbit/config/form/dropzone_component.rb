@@ -12,7 +12,7 @@ module Fluxbit::Config::Form::DropzoneComponent
       inner_div: "flex flex-col items-center justify-center pt-5 pb-6",
       title: "mb-2 text-sm text-slate-500 dark:text-slate-400",
       subtitle: "text-xs text-slate-500 dark:text-slate-400",
-      icon: "w-10 h-10 mb-4 text-slate-500 dark:text-slate-400",
+      icon: "size-10 mb-4 text-slate-500 dark:text-slate-400",
       height: [ "", "h-32", "h-64", "h-96" ]
     }
   end

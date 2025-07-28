@@ -54,11 +54,11 @@ module Fluxbit::Config::Form::TextFieldComponent
       ],
       additional_icons: {
         class: {
-          default: "mt-1 w-4 h-4 text-slate-500 dark:text-slate-400",
-          success: "mt-1 w-4 h-4 text-green-500 dark:text-green-400",
-          failure: "mt-1 w-4 h-4 text-red-500 dark:text-red-400",
-          info: "mt-1 w-4 h-4 text-cyan-500 dark:text-cyan-400",
-          warning: "mt-1 w-4 h-4 text-yellow-500 dark:text-yellow-400"
+          default: "mt-1 size-4 text-slate-500 dark:text-slate-400",
+          success: "mt-1 size-4 text-green-500 dark:text-green-400",
+          failure: "mt-1 size-4 text-red-500 dark:text-red-400",
+          info: "mt-1 size-4 text-cyan-500 dark:text-cyan-400",
+          warning: "mt-1 size-4 text-yellow-500 dark:text-yellow-400"
         },
         icon: "absolute inset-y-0 left-0 flex items-center pl-3",
         right_icon: "absolute inset-y-0 right-0 flex items-center pr-3",

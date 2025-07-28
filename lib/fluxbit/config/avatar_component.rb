@@ -42,20 +42,20 @@ module Fluxbit::Config::AvatarComponent
         pink: "ring-pink-500 dark:ring-pink-500"
       },
       size: {
-        xs: "w-6 h-6",
-        sm: "w-8 h-8",
-        md: "w-10 h-10",
-        lg: "w-20 h-20",
-        xl: "w-36 h-36"
+        xs: "size-6",
+        sm: "size-8",
+        md: "size-10",
+        lg: "size-20",
+        xl: "size-36"
       },
       placeholder_icon: {
         base: "relative overflow-hidden bg-gray-200 dark:bg-gray-600",
         size: {
-          xs: "w-8 h-8",
-          sm: "w-10 h-10",
-          md: "w-12 h-12",
-          lg: "w-22 h-22",
-          xl: "w-38 h-38"
+          xs: "size-8",
+          sm: "size-10",
+          md: "size-12",
+          lg: "size-22",
+          xl: "size-38"
         }
       },
       stacked: "ring-2 ring-gray-300 dark:ring-gray-500",

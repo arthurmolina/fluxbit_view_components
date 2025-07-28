@@ -40,33 +40,33 @@ class Fluxbit::DrawerComponentTest < ViewComponent::TestCase
   end
 
   test "renders with backdrop disabled" do
-    render_drawer(backdrop: false, data: { "fluxbit-drawer-target": "drawer" }) { "No backdrop" }
+    render_drawer(backdrop: false, data: { "fx-drawer-target": "drawer" }) { "No backdrop" }
     # backdrop is a JS/Stimulus option, check data attribute
     assert_selector "[data-backdrop='false']"
   end
 
   test "renders with auto_show disabled" do
-    render_drawer(auto_show: false, data: { controller: "fluxbit-drawer" }) { "No auto show" }
-    assert_selector "[data-fluxbit-drawer-auto-show-value='false']"
+    render_drawer(auto_show: false, data: { controller: "fx-drawer" }) { "No auto show" }
+    assert_selector "[data-fx-drawer-auto-show-value='false']"
   end
 
   test "renders with auto_show disabled, second way" do
-    render_drawer(auto_show: false, data: { "fluxbit-drawer-target": "drawer" }) { "No auto show" }
+    render_drawer(auto_show: false, data: { "fx-drawer-target": "drawer" }) { "No auto show" }
     assert_selector "[data-auto-show='false']"
   end
 
   test "renders with body_scrolling enabled" do
-    render_drawer(body_scrolling: true, data: { "fluxbit-drawer-target": "drawer" }) { "Body scrolling" }
+    render_drawer(body_scrolling: true, data: { "fx-drawer-target": "drawer" }) { "Body scrolling" }
     assert_selector "[data-body-scrolling='true']"
   end
 
   test "renders with edge_offset and swipeable" do
-    render_drawer(swipeable: true, edge_offset: "60px", data: { "fluxbit-drawer-target": "drawer" }) { "Edge offset" }
+    render_drawer(swipeable: true, edge_offset: "60px", data: { "fx-drawer-target": "drawer" }) { "Edge offset" }
     assert_selector "[data-edge-offset='60px']"
   end
 
   test "renders with custom backdrop_classes" do
-    render_drawer(backdrop_classes: "custom-backdrop", data: { "fluxbit-drawer-target": "drawer" }) { "Backdrop classes" }
+    render_drawer(backdrop_classes: "custom-backdrop", data: { "fx-drawer-target": "drawer" }) { "Backdrop classes" }
     assert_selector "[data-backdrop-classes='custom-backdrop']"
   end
 
@@ -80,11 +80,11 @@ class Fluxbit::DrawerComponentTest < ViewComponent::TestCase
   end
 
   test "renders with stimulus data attributes" do
-    render_drawer(data: { controller: "fluxbit-drawer", "fluxbit-drawer-target": "drawer-default" }) { "Stimulus drawer" }
-    assert_selector "[data-controller='fluxbit-drawer']"
-    assert_selector "[data-fluxbit-drawer-target='drawer-default']"
-    assert_selector "[data-fluxbit-drawer-auto-show-value]"
-    assert_selector "[data-fluxbit-drawer-placement-value]"
+    render_drawer(data: { controller: "fx-drawer", "fx-drawer-target": "drawer-default" }) { "Stimulus drawer" }
+    assert_selector "[data-controller='fx-drawer']"
+    assert_selector "[data-fx-drawer-target='drawer-default']"
+    assert_selector "[data-fx-drawer-auto-show-value]"
+    assert_selector "[data-fx-drawer-placement-value]"
   end
 
   test "renders with non-stimulus data attributes" do
