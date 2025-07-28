@@ -15,10 +15,6 @@ export default class extends Controller {
     onToggle: Object
   }
 
-  initialize() {
-    console.log('FxDrawer controller initialized');
-  }
-
   connect() {
     this.drawers = {};
 
@@ -111,7 +107,6 @@ export default class extends Controller {
   toggle(event) {
     const targetId = event.target.dataset[this._toCamelCase(this.identifier + '-id')];
     if (targetId) {
-      console.warn(`Drawer with id ${targetId} toggle.`);
       if (this.drawers[targetId]) this.drawers[targetId].toggle();
       else console.warn(`Drawer with id ${targetId} not found.`);
     } else

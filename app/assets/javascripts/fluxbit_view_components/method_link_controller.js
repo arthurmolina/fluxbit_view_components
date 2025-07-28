@@ -7,10 +7,6 @@ export default class extends Controller {
     confirm: String,
     params: Object
   }
-  
-  initialize() {
-    console.log('FxMethodLink controller initialized');
-  }
 
   connect() {
     // Ensure we're dealing with an anchor tag

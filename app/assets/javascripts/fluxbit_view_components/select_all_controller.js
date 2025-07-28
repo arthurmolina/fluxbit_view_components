@@ -1,7 +1,24 @@
 import { Controller } from "@hotwired/stimulus";
 
+// This controller manages the behavior of a select all checkbox and its associated checkboxes
+// It allows users to select or deselect all items in a list and provides visual feedback based on the selection state.
+// It also updates the visibility and enabled/disabled state of other elements based on the selection state
+// The code is based on Stimulus Component Checkbox Select All 
+// (https://github.com/stimulus-components/stimulus-components/tree/master/components/checkbox-select-all)
+//
+// Copyright (c) 2024 Guillaume Briday <guillaumebriday@gmail.com>
+// Licensed under the MIT License
+// Modified by Arthur Molina <arthurmolina@gmail.com>, 2025
 export default class extends Controller {
-  static targets = ["checkboxAll", "checkbox"];
+  static targets = [
+    "selectAll",
+    "select",
+    "disableOnEmptySelect",
+    "enableOnEmptySelect",
+    "hideOnEmptySelect",
+    "showOnEmptySelect",
+    "count"
+  ];
 
   static values = {
     disableIndeterminate: {
@@ -11,31 +28,26 @@ export default class extends Controller {
   };
 
   initialize() {
-    console.log('FxSelectAll controller initialized');
     this.toggle = this.toggle.bind(this);
     this.refresh = this.refresh.bind(this);
   }
 
-  connect() {
-    console.log('FxSelectAll controller connected');
-  }
-
-  checkboxAllTargetConnected(checkbox) {
+  selectAllTargetConnected(checkbox) {
     checkbox.addEventListener("change", this.toggle);
     this.refresh();
   }
 
-  checkboxTargetConnected(checkbox) {
+  selectTargetConnected(checkbox) {
     checkbox.addEventListener("change", this.refresh);
     this.refresh();
   }
 
-  checkboxAllTargetDisconnected(checkbox) {
+  selectAllTargetDisconnected(checkbox) {
     checkbox.removeEventListener("change", this.toggle);
     this.refresh();
   }
 
-  checkboxTargetDisconnected(checkbox) {
+  selectTargetDisconnected(checkbox) {
     checkbox.removeEventListener("change", this.refresh);
     this.refresh();
   }
@@ -43,22 +55,51 @@ export default class extends Controller {
   toggle(e) {
     e.preventDefault();
 
-    this.checkboxTargets.forEach((checkbox) => {
+    this.selectTargets.forEach((checkbox) => {
       checkbox.checked = e.target.checked;
       this.triggerInputEvent(checkbox);
     });
   }
 
   refresh() {
-    const checkboxesCount = this.checkboxTargets.length;
+    const checkboxesCount = this.selectTargets.length;
     const checkboxesCheckedCount = this.checked.length;
 
     if (this.disableIndeterminateValue) {
-      this.checkboxAllTarget.checked = checkboxesCheckedCount === checkboxesCount;
+      this.selectAllTarget.checked = checkboxesCheckedCount === checkboxesCount;
     } else {
-      this.checkboxAllTarget.checked = checkboxesCheckedCount > 0;
-      this.checkboxAllTarget.indeterminate = checkboxesCheckedCount > 0 && checkboxesCheckedCount < checkboxesCount;
+      this.selectAllTarget.checked = checkboxesCheckedCount > 0;
+      this.selectAllTarget.indeterminate = checkboxesCheckedCount > 0 && checkboxesCheckedCount < checkboxesCount;
     }
+    this.updateVisibility();
+    this.updateDisabledState();
+    this.updateCount();
+  }
+
+  updateVisibility() {
+    const hasChecked = this.checkedCount() > 0;
+    this.hideOnEmptySelectTargets.forEach((el) => {
+      el.classList.toggle("hidden", hasChecked);
+    });
+    this.showOnEmptySelectTargets.forEach((el) => {
+      el.classList.toggle("hidden", !hasChecked);
+    });
+  }
+
+  updateDisabledState() {
+    const hasChecked = this.checkedCount() > 0;
+    this.disableOnEmptySelectTargets.forEach((el) => {
+      el.disabled = !hasChecked;
+    });
+    this.enableOnEmptySelectTargets.forEach((el) => {
+      el.disabled = hasChecked;
+    });
+  }
+
+  updateCount() {
+    this.countTargets.forEach((el) => {
+      el.textContent = this.checkedCount().toString();
+    });
   }
 
   triggerInputEvent(checkbox) {
@@ -66,11 +107,15 @@ export default class extends Controller {
     checkbox.dispatchEvent(event);
   }
 
+  checkedCount() {
+    return this.checked.length;
+  }
+
   get checked() {
-    return this.checkboxTargets.filter((checkbox) => checkbox.checked);
+    return this.selectTargets.filter((checkbox) => checkbox.checked);
   }
 
   get unchecked() {
-    return this.checkboxTargets.filter((checkbox) => !checkbox.checked);
+    return this.selectTargets.filter((checkbox) => !checkbox.checked);
   }
 }

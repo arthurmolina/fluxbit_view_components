@@ -13,10 +13,6 @@ export default class extends Controller {
     onToggle: Object
   }
 
-  initialize() {
-    console.log('FxModal controller initialized');
-  }
-
   connect() {
     this.modals = {};
 
@@ -94,7 +90,6 @@ export default class extends Controller {
   toggle(event) {
     const targetId = event.target.dataset[this._toCamelCase(this.identifier + '-id')];
     if (targetId) {
-      console.warn(`Modal with id ${targetId} toggle.`);
       if (this.modals[targetId]) this.modals[targetId].toggle();
       else console.warn(`Modal with id ${targetId} not found.`);
     } else
