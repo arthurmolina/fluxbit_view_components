@@ -10,7 +10,7 @@ module Fluxbit::Config::Form::HelpTextComponent
       colors: {
         default: "text-gray-500 dark:text-gray-400",
         success: "text-green-600 dark:text-green-500",
-        failure: "text-red-600 dark:text-red-500",
+        danger: "text-red-600 dark:text-red-500",
         info: "text-cyan-600 dark:text-cyan-500",
         warning: "text-yellow-600 dark:text-yellow-500"
       }

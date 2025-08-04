@@ -27,7 +27,7 @@ class Fluxbit::Form::ToggleComponent < Fluxbit::Form::FieldComponent
   # @param name [String] Name of the field (required unless using form builder)
   # @param other_label [String] Additional label, rendered via slot (optional)
   # @param sizing [Integer] Size index for the toggle (default: config)
-  # @param color [Symbol] Checked toggle color (:default, :success, :failure, :info, :warning, etc)
+  # @param color [Symbol] Checked toggle color (:default, :success, :danger, :info, :warning, etc)
   # @param unchecked_color [Symbol] Unchecked toggle color (see config)
   # @param button_color [Symbol] Color for the toggle button
   # @param invert_label [Boolean] If true, inverts label/toggle order (default: config)
@@ -54,7 +54,7 @@ class Fluxbit::Form::ToggleComponent < Fluxbit::Form::FieldComponent
 
   def valid_color(color)
     return color if styles[:toggle][:checked].key?(color)
-    return :failure if errors.present?
+    return :danger if errors.present?
 
     @@color
   end

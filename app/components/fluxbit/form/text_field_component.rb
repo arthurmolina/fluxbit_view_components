@@ -33,7 +33,7 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
   # @param right_icon_props [Hash] Props for the right icon (optional)
   # @param div_props [Hash] Props for the whole div (optional)
   # @param multiline [Boolean] Renders a textarea if true
-  # @param color [Symbol] Field color (`:default`, `:success`, `:failure`, etc)
+  # @param color [Symbol] Field color (`:default`, `:success`, `:danger`, etc)
   # @param sizing [Integer] Input size
   # @param shadow [Boolean] Adds drop shadow if true
   # @param disabled [Boolean] Disables the input if true
@@ -69,7 +69,7 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
 
   def valid_color(color)
     return color if styles[:bg].key?(color)
-    return :failure if errors.present?
+    return :danger if errors.present?
 
     @@color
   end

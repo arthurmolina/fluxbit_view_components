@@ -17,7 +17,7 @@ module Fluxbit::Config::BadgeComponent
       colors: {
         info: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
         dark: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
-        failure: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300",
+        danger: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300",
         success: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
         warning: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
         indigo: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300",
@@ -28,7 +28,7 @@ module Fluxbit::Config::BadgeComponent
         teal: "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-400",
         solid_info: "text-white bg-blue-500 border-1 border-white dark:border-gray-900",
         solid_dark: "text-white bg-gray-500 border-1 border-white dark:border-gray-900",
-        solid_failure: "text-white bg-red-500 border-1 border-white dark:border-gray-900",
+        solid_danger: "text-white bg-red-500 border-1 border-white dark:border-gray-900",
         solid_success: "text-white bg-green-500 border-1 border-white dark:border-gray-900",
         solid_warning: "text-white bg-yellow-500 border-1 border-white dark:border-gray-900",
         solid_indigo: "text-white bg-indigo-500 border-1 border-white dark:border-gray-900",
@@ -40,7 +40,7 @@ module Fluxbit::Config::BadgeComponent
 
         info_bordered: "bg-blue-100 text-blue-800 dark:bg-gray-700 dark:text-blue-400 border border-blue-400",
         dark_bordered: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400 border border-gray-500",
-        failure_bordered: "bg-red-100 text-red-800 dark:bg-gray-700 dark:text-red-400 border border-red-400",
+        danger_bordered: "bg-red-100 text-red-800 dark:bg-gray-700 dark:text-red-400 border border-red-400",
         success_bordered: "bg-green-100 text-green-800 dark:bg-gray-700 dark:text-green-400 border border-green-400",
         warning_bordered: "bg-yellow-100 text-yellow-800 dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300",
         indigo_bordered: "bg-indigo-100 text-indigo-800 dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400",

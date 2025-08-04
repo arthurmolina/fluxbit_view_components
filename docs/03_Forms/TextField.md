@@ -24,8 +24,8 @@ It’s suitable for login forms, profile fields, contact forms, and anywhere you
 | icon         | Symbol  |          | Left icon (Anyicon name or symbol)                             |
 | right_icon   | Symbol  |          | Right icon (Anyicon name or symbol)                            |
 | addon        | String  |          | Addon (text or icon) before the field                          |
-| color        | Symbol  | :default | State: `:default`, `:success`, `:failure`, `:warning`, `:info` |
-| help_text    | String  |          | Help or error text below the field                           |
+| color        | Symbol  | :default | State: `:default`, `:success`, `:danger`, `:warning`, `:info`  |
+| help_text    | String  |          | Help or error text below the field                             |
 | sizing       | Symbol  | :md      | `:sm`, `:md`, or `:lg`                                         |
 | shadow       | Boolean | false    | Adds a drop shadow if true                                     |
 | disabled     | Boolean | false    | Disables the input                                             |
@@ -81,7 +81,7 @@ The component uses Tailwind classes for base, border, focus ring, background, pl
 **Validation error**
 
 ```erb
-&lt;%= fx_text_field name: "email", label: "Email", color: :failure, help_text: "Invalid email address" %&gt;
+&lt;%= fx_text_field name: "email", label: "Email", color: :danger, help_text: "Invalid email address" %&gt;
 ```
 
 

@@ -16,8 +16,8 @@ class Fluxbit::Form::HelpTextComponentTest < ViewComponent::TestCase
     assert_selector "p.text-green-600", text: "Success!"
   end
 
-  def test_renders_with_failure_color
-    render_inline(Fluxbit::Form::HelpTextComponent.new(color: :failure)) { "Failed" }
+  def test_renders_with_danger_color
+    render_inline(Fluxbit::Form::HelpTextComponent.new(color: :danger)) { "Failed" }
     assert_selector "p.text-red-600", text: "Failed"
   end
 

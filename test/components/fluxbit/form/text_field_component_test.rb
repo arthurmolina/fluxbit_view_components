@@ -53,7 +53,7 @@ class Fluxbit::Form::TextFieldComponentTest < ViewComponent::TestCase
   end
 
   def test_colors
-    %i[default success failure warning info].each do |color|
+    %i[default success danger warning info].each do |color|
       render_inline(Fluxbit::Form::TextFieldComponent.new(name: "c#{color}", color: color))
       assert_selector ".border"
     end

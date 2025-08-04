@@ -20,7 +20,7 @@ class Fluxbit::Form::HelpTextComponent < Fluxbit::Form::Component
   def initialize(color: nil, **props)
     super
     @props = props
-    color = @@color unless color.in? %i[info default success failure warning]
+    color = @@color unless color.in? styles[:colors].keys
     add class: style(color), to: @props, first_element: true
   end
 

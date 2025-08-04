@@ -125,7 +125,7 @@ To do this you can create a initializer file like the:
 ```ruby
 # /config/initializerss/change_button_component_defaults.rb
 
-Fluxbit::Config::ButtonComponent.color = :failure # the default is :default
+Fluxbit::Config::ButtonComponent.color = :danger # the default is :default
 Fluxbit::Config::ButtonComponent.pill = :true # the default is false
 Fluxbit::Config::ButtonComponent.size = :xl # the default is :md
 Fluxbit::Config::ButtonComponent.as = :a # the default is :button

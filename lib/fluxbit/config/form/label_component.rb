@@ -14,7 +14,7 @@ module Fluxbit::Config::Form::LabelComponent
       colors: {
         default: "text-gray-900 dark:text-white",
         success: "text-green-700 dark:text-green-500",
-        failure: "text-red-700 dark:text-red-500",
+        danger: "text-red-700 dark:text-red-500",
         info: "text-cyan-500 dark:text-cyan-600",
         warning: "text-yellow-500 dark:text-yellow-600"
       },

@@ -39,7 +39,7 @@ The result is:
 
 | Param              | Default  | Description
 |:-------------------|:---------|:-----------
-| color:             | :default | Sets the color of the badge (e.g., `:default`, `:failure`, `:success`, etc.), which corresponds to predefined styles.
+| color:             | :default | Sets the color of the badge (e.g., `:default`, `:danger`, `:success`, etc.), which corresponds to predefined styles.
 | pill:              | false    | If set to `true`, the badge will have a "pill" shape (fully rounded edges).
 | size:              | 0        | Defines the size of the badge (0 to <%=Fluxbit::Config::BadgeComponent.styles[:sizes].count - 1 %>).
 | perfect_rounded:   | 0        | If set to something other than `0` (e.g., 0 to <%=Fluxbit::Config::BadgeComponent.styles[:perfect_rounded].count - 1 %>), the badge becomes a perfectly rounded shape sized accordingly.

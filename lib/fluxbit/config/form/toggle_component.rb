@@ -17,7 +17,7 @@ module Fluxbit::Config::Form::ToggleComponent
         checked: {
           default: "peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600",
           success: "peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:bg-green-600",
-          failure: "peer-focus:ring-red-300 dark:peer-focus:ring-red-800 peer-checked:bg-red-600",
+          danger: "peer-focus:ring-red-300 dark:peer-focus:ring-red-800 peer-checked:bg-red-600",
           info: "peer-focus:ring-cyan-300 dark:peer-focus:ring-cyan-800 peer-checked:bg-cyan-600",
           warning: "peer-focus:ring-yellow-300 dark:peer-focus:ring-yellow-800 peer-checked:bg-yellow-600",
           dark: "peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 peer-checked:bg-gray-600",
@@ -33,7 +33,7 @@ module Fluxbit::Config::Form::ToggleComponent
           default: "bg-slate-200 dark:bg-slate-700 dark:border-slate-600 after:border-slate-300",
           blue: "bg-blue-600 dark:bg-blue-500 dark:border-blue-500 after:border-blue-600",
           success: "bg-green-600 dark:bg-green-500 dark:border-green-500 after:border-green-600",
-          failure: "bg-red-600 dark:bg-red-500 dark:border-red-500 after:border-red-600",
+          danger: "bg-red-600 dark:bg-red-500 dark:border-red-500 after:border-red-600",
           info: "bg-cyan-600 dark:bg-cyan-500 dark:border-cyan-500 after:border-cyan-600",
           warning: "bg-yellow-600 dark:bg-yellow-500 dark:border-yellow-500 after:border-yellow-600",
           teal: "bg-teal-600 dark:bg-teal-500 dark:border-teal-500 after:border-teal-600",
@@ -45,7 +45,7 @@ module Fluxbit::Config::Form::ToggleComponent
           dark: "bg-gray-600 dark:bg-gray-800 dark:border-gray-600 after:border-gray-300",
           light: "bg-gray-50 dark:bg-gray-300 dark:border-gray-200 after:border-gray-50",
           light_success: "bg-green-200 dark:bg-green-700 dark:border-green-600 after:border-green-300",
-          light_failure: "bg-red-200 dark:bg-red-700 dark:border-red-600 after:border-red-300",
+          light_danger: "bg-red-200 dark:bg-red-700 dark:border-red-600 after:border-red-300",
           light_info: "bg-cyan-200 dark:bg-cyan-700 dark:border-cyan-600 after:border-cyan-300",
           light_warning: "bg-yellow-200 dark:bg-yellow-700 dark:border-yellow-600 after:border-yellow-300",
           light_teal: "bg-teal-200 dark:bg-teal-700 dark:border-teal-600 after:border-teal-300",
@@ -58,7 +58,7 @@ module Fluxbit::Config::Form::ToggleComponent
         button: {
           default: "after:bg-white",
           success: "after:bg-green-500",
-          failure: "after:bg-red-500",
+          danger: "after:bg-red-500",
           info: "after:bg-cyan-500"
 
         },

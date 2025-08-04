@@ -41,7 +41,7 @@ class Fluxbit::Form::CheckBoxComponentPreview < ViewComponent::Preview
       placeholder: "Enter your full name",
       help_text: "Help text",
       helper_popover: "Helper popover",
-      color: :failure,
+      color: :danger,
       shadow: true
     ))
   end

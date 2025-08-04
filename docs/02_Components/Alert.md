@@ -103,7 +103,7 @@ To do this you can create a initializer file like the:
 ```ruby
 # /config/initializerss/change_alert_component_defaults.rb
 
-Fluxbit::Config::AlertComponent.color = :failure # the default is :info
+Fluxbit::Config::AlertComponent.color = :danger # the default is :info
 Fluxbit::Config::AlertComponent.icon = :default # the default is :default
 Fluxbit::Config::AlertComponent.can_close = false # the default is true
 Fluxbit::Config::AlertComponent.out_animation = :fade_out # the default is :fade_out

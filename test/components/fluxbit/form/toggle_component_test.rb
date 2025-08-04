@@ -35,7 +35,7 @@ class Fluxbit::Form::ToggleComponentTest < ViewComponent::TestCase
   end
 
   def test_renders_with_custom_color
-    render_inline(Fluxbit::Form::ToggleComponent.new(name: "danger", color: :failure))
+    render_inline(Fluxbit::Form::ToggleComponent.new(name: "danger", color: :danger))
     assert_selector "span", class: /bg-red-600|peer-checked:bg-red-600/
   end
 

@@ -18,7 +18,7 @@ class Fluxbit::Form::LabelComponent < Fluxbit::Form::Component
   # @param helper_popover [String] Popover content shown on icon hover
   # @param helper_popover_placement [String] Placement of the popover (default: "right")
   # @param sizing [Integer] Size index for label text (default: config default)
-  # @param color [Symbol] Label color (:default, :success, :failure, :info, :warning)
+  # @param color [Symbol] Label color (:default, :success, :danger, :info, :warning)
   # @param class [String] Additional CSS classes for the label element
   # @param ... any other HTML attribute supported by the <label> tag
   def initialize(**props)
