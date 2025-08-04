@@ -29,21 +29,6 @@
 #
 class Fluxbit::TableComponent < Fluxbit::Component
   include Fluxbit::Config::TableComponent
-  renders_one :caption, lambda { |*args, **props, &block|
-    add(class: props[:class], to: @caption_html) if props[:class]
-    @caption_html = props.merge(@caption_html)
-    remove_class_from_props @caption_html
-
-    block.call
-  }
-
-  renders_one :footer_caption, lambda { |*args, **props, &block|
-    add(class: props[:class], to: @footer_caption_html) if props[:class]
-    @footer_caption_html = props.merge(@footer_caption_html)
-    remove_class_from_props @footer_caption_html
-
-    block.call
-  }
 
   renders_one :footer, lambda { |*args, **props, &block|
     add class: styles[:footer][:base], to: props
@@ -100,7 +85,6 @@ class Fluxbit::TableComponent < Fluxbit::Component
   # @option props [Boolean] :bordered (false) Determines if the table should have borders.
   # @option props [Boolean] :hover (false) Determines if the table rows should highlight on hover.
   # @option props [Boolean] :shadow (false) Determines if the table should have a shadow effect.
-  # @option props [Hash] :wrapper_html Additional HTML attributes for the wrapper div.
   # @option props [Hash] :thead_html Additional HTML attributes for the table header.
   # @option props [Hash] :tbody_html Additional HTML attributes for the table body.
   # @option props [Hash] :tr_html Additional HTML attributes for the table rows.
@@ -112,7 +96,6 @@ class Fluxbit::TableComponent < Fluxbit::Component
   #     bordered: true,
   #     hover: true,
   #     shadow: true,
-  #     wrapper_html: { class: "my-custom-wrapper" },
   #     thead_html: { class: "my-custom-thead" },
   #     tbody_html: { class: "my-custom-tbody" },
   #     tr_html: { class: "my-custom-tr" }
@@ -144,14 +127,6 @@ class Fluxbit::TableComponent < Fluxbit::Component
     add(class: styles[:wrapper][:base], to: @wrapper_html)
     add(class: styles[:wrapper][:shadow], to: @wrapper_html) if @shadow
 
-    # Caption HTML
-    @caption_html = @props.delete(:caption_html) || {}
-    add(class: styles[:caption], to: @caption_html)
-
-    # Footer Caption HTML
-    @footer_caption_html = @props.delete(:footer_caption_html) || {}
-    add(class: styles[:caption], to: @footer_caption_html)
-
     # Head HTML
     @thead_html = @props.delete(:thead_html) || {}
     # add(class: styles[:head][:base], to: @thead_html)
@@ -176,38 +151,36 @@ class Fluxbit::TableComponent < Fluxbit::Component
     return safe_join(rows) if @only_rows && rows?
 
     # Wrapper
-    content_tag(:div, **@wrapper_html) do
+    capture do
       # Table
-      concat(content_tag(:table, **@props) do
-        # Caption
-        concat(content_tag(:caption, caption, **@caption_html)) if caption?
-        # header
-        concat(
-          content_tag(:thead, **@thead_html) do
-            concat(safe_join headers)
-          end
-        ) if headers?
-
-        # body
-        concat(
-          content_tag(:tbody, **@tbody_html) do
-            if content.present?
-              content
-            else
-              concat(safe_join rows) if rows?
+      concat(content_tag(:div, **@wrapper_html) do
+        concat(content_tag(:table, **@props) do
+          # header
+          concat(
+            content_tag(:thead, **@thead_html) do
+              concat(safe_join headers)
             end
-          end
-        )
+          ) if headers?
 
-        # Footer
-        concat(
-          content_tag(:tfoot, **@tfoot_html) do
-            concat(footer)
-          end
-        ) if footer?
+          # body
+          concat(
+            content_tag(:tbody, **@tbody_html) do
+              if content.present?
+                content
+              else
+                concat(safe_join rows) if rows?
+              end
+            end
+          )
+
+          # Footer
+          concat(
+            content_tag(:tfoot, **@tfoot_html) do
+              concat(footer)
+            end
+          ) if footer?
+        end)
       end)
-
-      concat(content_tag(:div, footer_caption, **@footer_caption_html)) if footer_caption?
     end
   end
 end
