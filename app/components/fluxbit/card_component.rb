@@ -30,7 +30,13 @@ class Fluxbit::CardComponent < Fluxbit::Component
 
   renders_one :header
   renders_one :footer
-  renders_one :section
+  renders_many :sections, lambda { |*args, **props, &block|
+    no_class = props.delete(:no_class) || false
+    add(class: styles[:body], to: props) unless no_class
+    # remove_class_from_props props
+
+    content_tag(:div, block.call, **props)
+  }
 
   # Initializes the card component with various customization options.
   #
@@ -50,7 +56,7 @@ class Fluxbit::CardComponent < Fluxbit::Component
   # @param popover_trigger [String] Trigger event for the popover.
   # @param props [Hash] Additional HTML attributes for the container.
   def initialize(color: :default, shadow: true, border: true, rounded: true, hoverable: false,
-                 image: nil, image_position: :top, image_props: {},
+                 image: nil, image_position: :top, image_html: {},
                  tooltip_text: nil, tooltip_placement: "top", tooltip_trigger: "hover",
                  popover_text: nil, popover_placement: "top", popover_trigger: "click",
                  **props)
@@ -61,7 +67,7 @@ class Fluxbit::CardComponent < Fluxbit::Component
     @hoverable         = hoverable
     @image             = image
     @image_position    = image_position.to_sym
-    @image_props       = image_props
+    @image_html       = image_html
     @tooltip_text      = tooltip_text
     @tooltip_placement = tooltip_placement
     @tooltip_trigger   = tooltip_trigger
@@ -69,7 +75,7 @@ class Fluxbit::CardComponent < Fluxbit::Component
     @popover_placement = popover_placement
     @popover_trigger   = popover_trigger
     @props             = props
-    @image_props[:src] = @image
+    @image_html[:src] = @image
   end
 
   def before_render
@@ -89,33 +95,33 @@ class Fluxbit::CardComponent < Fluxbit::Component
   def call
     container_tag = @props[:href] ? :a : :div
 
-    header_html = header ? content_tag(:div, header, class: self.class.styles[:header]) : nil
-    footer_html = footer ? content_tag(:div, footer, class: self.class.styles[:footer]) : nil
-    body_content = section ? section : nil
+    header_html = header? ? content_tag(:div, header, class: self.class.styles[:header]) : nil
+    footer_html = footer? ? content_tag(:div, footer, class: self.class.styles[:footer]) : nil
+    body_content = content || safe_join(sections)
 
     if @image && @image_position == :top
       # Top image layout: image at the top, then header, body, and footer.
-      add(class: styles[:image_top], to: @image_props)
-      image_html = content_tag(:img, nil, **@image_props)
-      body_html  = body_content ? content_tag(:div, body_content, class: self.class.styles[:body]) : nil
+      add(class: styles[:image_top], to: @image_html)
+      image_html = content_tag(:img, nil, **@image_html)
 
       content_tag(container_tag, **@props) do
         concat(image_html)
         concat(header_html) if header_html
-        concat(body_html) if body_html
+        concat(body_content) if body_content
         concat(content) if content?
         concat(footer_html) if footer_html
       end
     elsif @image && @image_position == :left
       # Left image layout: image on the left and content on the right in a flex container.
-      add(class: styles[:image_left], to: @image_props)
+      add(class: styles[:image_left], to: @image_html)
       image_html = content_tag(:div, class: "x") do
-        content_tag(:img, nil, **@image_props)
+        content_tag(:img, nil, **@image_html)
       end
       content_inner = "".html_safe
       content_inner << header_html.to_s if header_html
       if body_content.present?
-        content_inner << content_tag(:div, body_content, class: self.class.styles[:body] + " " + self.class.styles[:content_left])
+        # content_inner << content_tag(:div, body_content, class: self.class.styles[:body] + " " + self.class.styles[:content_left])
+        content_inner << body_content
       end
       content_inner << footer_html.to_s if footer_html
 
@@ -125,10 +131,9 @@ class Fluxbit::CardComponent < Fluxbit::Component
       end
     else
       # Fallback: render without image or with an unrecognized image_position.
-      body_html = body_content || content ? content_tag(:div, body_content || content, class: self.class.styles[:body]) : nil
       content_tag(container_tag, **@props) do
         concat(header_html) if header_html
-        concat(body_html) if body_html
+        concat(body_content) if body_content
         concat(footer_html) if footer_html
       end
     end

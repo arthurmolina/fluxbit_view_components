@@ -91,7 +91,13 @@ module Fluxbit
       options[:size] ||= 2
       options[:disabled] = true if object&.persisted? && !object.valid?
 
-      render Fluxbit::ButtonComponent.new(**options, &block)
+      if block_given?
+        render Fluxbit::ButtonComponent.new(**options) do |*args|
+          yield(*args)
+        end
+      else
+        render Fluxbit::ButtonComponent.new(**options)
+      end
     end
   end
 end
