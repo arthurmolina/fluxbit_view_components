@@ -1,91 +1,66 @@
 import { Controller } from "@hotwired/stimulus";
 
-class FxSelectAll extends Controller {
-  static targets=[ "selectAll", "select", "disableOnEmptySelect", "enableOnEmptySelect", "hideOnEmptySelect", "showOnEmptySelect", "count" ];
+class FxAssigner extends Controller {
+  assign(event) {
+    if (event.params["preventDefault"] === "true") {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    Object.keys(event.params["change"]).forEach(el => {
+      const targetElement = document.querySelector(el);
+      if (!targetElement) {
+        console.error(`fx-assigner: Target element "${el}" not found.`);
+        return;
+      }
+      Object.keys(event.params["change"][el]).forEach(attr => {
+        let value = "";
+        if (typeof event.params["change"][el][attr] == "object") {
+          const element = event.params["change"][el][attr]["element"];
+          const attribute = event.params["change"][el][attr]["attribute"];
+          const fromElement = document.querySelector(element);
+          if (!fromElement) {
+            console.error(`fx-assigner: Element "${element}" not found.`);
+            return;
+          }
+          if (attribute === "innerHTML") value = fromElement.innerHTML; else if (attribute === "value") value = fromElement.value; else if (attribute === "textContent") value = fromElement.textContent; else value = fromElement.getAttribute(attribute);
+        } else value = event.params["change"][el][attr];
+        if (attr === "innerHTML") targetElement.innerHTML = value; else if (attr === "value") targetElement.value = value; else if (attr === "textContent") targetElement.textContent = value; else targetElement.setAttribute(attr, value);
+      });
+    });
+  }
+}
+
+class FxAutoSubmit extends Controller {
   static values={
-    disableIndeterminate: {
-      type: Boolean,
-      default: false
+    delay: {
+      type: Number,
+      default: 150
     }
   };
-  initialize() {
-    this.toggle = this.toggle.bind(this);
-    this.refresh = this.refresh.bind(this);
+  connect() {
+    this.timeout = null;
   }
-  selectAllTargetConnected(checkbox) {
-    checkbox.addEventListener("change", this.toggle);
-    this.refresh();
-  }
-  selectTargetConnected(checkbox) {
-    checkbox.addEventListener("change", this.refresh);
-    this.refresh();
-  }
-  selectAllTargetDisconnected(checkbox) {
-    checkbox.removeEventListener("change", this.toggle);
-    this.refresh();
-  }
-  selectTargetDisconnected(checkbox) {
-    checkbox.removeEventListener("change", this.refresh);
-    this.refresh();
-  }
-  toggle(e) {
-    e.preventDefault();
-    this.selectTargets.forEach(checkbox => {
-      checkbox.checked = e.target.checked;
-      this.triggerInputEvent(checkbox);
-    });
-  }
-  refresh() {
-    const checkboxesCount = this.selectTargets.length;
-    const checkboxesCheckedCount = this.checked.length;
-    if (this.disableIndeterminateValue) {
-      this.selectAllTarget.checked = checkboxesCheckedCount === checkboxesCount;
-    } else {
-      this.selectAllTarget.checked = checkboxesCheckedCount > 0;
-      this.selectAllTarget.indeterminate = checkboxesCheckedCount > 0 && checkboxesCheckedCount < checkboxesCount;
+  submit(event) {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
     }
-    this.updateVisibility();
-    this.updateDisabledState();
-    this.updateCount();
+    this.timeout = setTimeout(() => {
+      if (event.params["formId"]) {
+        const form = document.getElementById(event.params["formId"]);
+        if (!form) {
+          console.error(`fx-auto-submit: Form with ID "${event.params["formId"]}" not found.`);
+          return;
+        }
+        form.requestSubmit();
+        return;
+      }
+      this.element.requestSubmit();
+    }, this.delayValue);
   }
-  updateVisibility() {
-    const hasChecked = this.checkedCount() > 0;
-    this.hideOnEmptySelectTargets.forEach(el => {
-      el.classList.toggle("hidden", hasChecked);
-    });
-    this.showOnEmptySelectTargets.forEach(el => {
-      el.classList.toggle("hidden", !hasChecked);
-    });
-  }
-  updateDisabledState() {
-    const hasChecked = this.checkedCount() > 0;
-    this.disableOnEmptySelectTargets.forEach(el => {
-      el.disabled = !hasChecked;
-    });
-    this.enableOnEmptySelectTargets.forEach(el => {
-      el.disabled = hasChecked;
-    });
-  }
-  updateCount() {
-    this.countTargets.forEach(el => {
-      el.textContent = this.checkedCount().toString();
-    });
-  }
-  triggerInputEvent(checkbox) {
-    const event = new Event("input", {
-      bubbles: false,
-      cancelable: true
-    });
-    checkbox.dispatchEvent(event);
-  }
-  checkedCount() {
-    return this.checked.length;
-  }
-  get checked() {
-    return this.selectTargets.filter(checkbox => checkbox.checked);
-  }
-  get unchecked() {
-    return this.selectTargets.filter(checkbox => !checkbox.checked);
+  disconnect() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 }
 
@@ -175,7 +150,7 @@ class FxDrawer extends Controller {
     return options;
   }
   _toCamelCase(str) {
-    return str.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+    return str.replace(/-([a-z])/g, (_match, letter) => letter.toUpperCase());
   }
   toggle(event) {
     const targetId = event.target.dataset[this._toCamelCase(this.identifier + "-id")];
@@ -200,6 +175,120 @@ class FxDrawer extends Controller {
     } else Object.entries(this.drawers).forEach(([_id, drawer]) => {
       if (drawer) drawer.hide();
     });
+  }
+}
+
+class FxMethodLink extends Controller {
+  static values={
+    method: "get",
+    url: String,
+    params: Object,
+    formDataId: String,
+    debug: false,
+    eventType: "click"
+  };
+  connect() {
+    this.element.addEventListener(this.eventTypeValue, this.click.bind(this));
+  }
+  disconnect() {
+    this.element.removeEventListener(this.eventTypeValue, this.click.bind(this));
+  }
+  click(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const formData = this.createFormData();
+    if (this.hasParamsValue) this.addParams(formData);
+    const url = this.hasUrlValue ? this.urlValue : this.element.href;
+    this.submitRequest(url, formData);
+  }
+  createFormData() {
+    const formData = new FormData;
+    if (this.hasFormDataIdValue) {
+      const existingForm = document.getElementById(this.formDataIdValue);
+      const formElements = existingForm.querySelectorAll("input, select, textarea");
+      formElements.forEach(element => {
+        if (element.name && (element.type !== "checkbox" || element.checked)) formData.append(element.name, element.value);
+      });
+    }
+    formData.append("_method", (this.methodValue || formData.method).toUpperCase());
+    formData.append("authenticity_token", this.getCSRFToken());
+    return formData;
+  }
+  addParams(formData) {
+    this.appendNestedParams(formData, this.paramsValue, "");
+  }
+  appendNestedParams(formData, obj, prefix) {
+    Object.entries(obj).forEach(([key, value]) => {
+      const fullKey = prefix ? `${prefix}[${key}]` : key;
+      if (typeof value === "object" && value !== null) {
+        if (this.isElementReference(value)) {
+          const resolvedValue = this.resolveElementValue(value);
+          formData.append(fullKey, resolvedValue);
+        } else {
+          this.appendNestedParams(formData, value, fullKey);
+        }
+      } else {
+        formData.append(fullKey, value);
+      }
+    });
+  }
+  isElementReference(obj) {
+    return obj.hasOwnProperty("element") && obj.hasOwnProperty("attribute");
+  }
+  resolveElementValue(elementRef) {
+    const {element: element, attribute: attribute} = elementRef;
+    const domElement = document.querySelector(element);
+    if (!domElement) {
+      console.error(`fx-method-link: Element "${element}" not found.`);
+      return "";
+    }
+    switch (attribute) {
+     case "innerHTML":
+      return domElement.innerHTML;
+
+     case "value":
+      return domElement.value;
+
+     case "textContent":
+      return domElement.textContent;
+
+     default:
+      return domElement.getAttribute(attribute) || "";
+    }
+  }
+  submitRequest(url, formData) {
+    if (this.debugValue) {
+      console.log("Submitting form data:");
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+    }
+    fetch(url, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "text/vnd.turbo-stream.html, text/html",
+        "X-Requested-With": "XMLHttpRequest"
+      }
+    }).then(response => {
+      if (response.ok) {
+        if (response.headers.get("Content-Type")?.includes("turbo-stream")) {
+          return response.text().then(html => {
+            Turbo.renderStreamMessage(html);
+          });
+        } else {
+          window.location.reload();
+        }
+      } else {
+        console.error("Request failed:", response.statusText);
+      }
+    }).catch(error => {
+      console.error("Network error:", error);
+    });
+  }
+  getCSRFToken() {
+    const token = document.querySelector('meta[name="csrf-token"]');
+    return token ? token.getAttribute("content") : "";
   }
 }
 
@@ -231,7 +320,7 @@ class FxModal extends Controller {
       });
     }
   }
-  async _ensureDrawerLoaded() {
+  async _ensureModalLoaded() {
     if (typeof Modal === "undefined") {
       const module = await import("flowbite");
       window.Modal = module.Modal;
@@ -330,83 +419,104 @@ class FxRowClick extends Controller {
   }
 }
 
-class FxMethodLink extends Controller {
+class FxSelectAll extends Controller {
+  static targets=[ "selectAll", "select", "disableOnEmptySelect", "enableOnEmptySelect", "hideOnEmptySelect", "showOnEmptySelect", "count" ];
   static values={
-    method: String,
-    url: String,
-    confirm: String,
-    params: Object
+    disableIndeterminate: {
+      type: Boolean,
+      default: false
+    }
   };
-  connect() {
-    if (this.element.tagName !== "A") {
-      console.warn("method-link controller should only be used on <a> tags");
-      return;
-    }
-    this.element.addEventListener("click", this.click.bind(this));
+  initialize() {
+    this.toggle = this.toggle.bind(this);
+    this.refresh = this.refresh.bind(this);
   }
-  disconnect() {
-    this.element.removeEventListener("click", this.click.bind(this));
+  selectAllTargetConnected(checkbox) {
+    checkbox.addEventListener("change", this.toggle);
+    this.refresh();
   }
-  click(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    if (this.hasConfirmValue && !confirm(this.confirmValue)) {
-      return;
-    }
-    this.submitRequest();
+  selectTargetConnected(checkbox) {
+    checkbox.addEventListener("change", this.refresh);
+    this.refresh();
   }
-  submitRequest() {
-    const url = this.hasUrlValue ? this.urlValue : this.element.href;
-    const method = this.methodValue.toLowerCase();
-    const formData = new FormData;
-    formData.append("_method", method.toUpperCase());
-    formData.append("authenticity_token", this.getCSRFToken());
-    if (this.hasParamsValue) {
-      Object.entries(this.paramsValue).forEach(([key, value]) => {
-        if (typeof value === "object") {
-          Object.entries(value).forEach(([subKey, subValue]) => {
-            formData.append(`${key}[${subKey}]`, subValue);
-          });
-        } else {
-          formData.append(key, value);
-        }
-      });
+  selectAllTargetDisconnected(checkbox) {
+    checkbox.removeEventListener("change", this.toggle);
+    this.refresh();
+  }
+  selectTargetDisconnected(checkbox) {
+    checkbox.removeEventListener("change", this.refresh);
+    this.refresh();
+  }
+  toggle(e) {
+    e.preventDefault();
+    this.selectTargets.forEach(checkbox => {
+      checkbox.checked = e.target.checked;
+      this.triggerInputEvent(checkbox);
+    });
+    this.refresh();
+  }
+  refresh() {
+    const checkboxesCount = this.selectTargets.length;
+    const checkboxesCheckedCount = this.checked.length;
+    if (this.disableIndeterminateValue) {
+      this.selectAllTarget.checked = checkboxesCheckedCount === checkboxesCount;
+    } else {
+      this.selectAllTarget.checked = checkboxesCheckedCount > 0;
+      this.selectAllTarget.indeterminate = checkboxesCheckedCount > 0 && checkboxesCheckedCount < checkboxesCount;
     }
-    fetch(url, {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "text/vnd.turbo-stream.html, text/html",
-        "X-Requested-With": "XMLHttpRequest"
-      }
-    }).then(response => {
-      if (response.ok) {
-        if (response.headers.get("Content-Type")?.includes("turbo-stream")) {
-          return response.text().then(html => {
-            Turbo.renderStreamMessage(html);
-          });
-        } else {
-          window.location.reload();
-        }
-      } else {
-        console.error("Request failed:", response.statusText);
-      }
-    }).catch(error => {
-      console.error("Network error:", error);
+    this.updateVisibility();
+    this.updateDisabledState();
+    this.updateCount();
+  }
+  updateVisibility() {
+    const hasChecked = this.checkedCount() > 0;
+    this.hideOnEmptySelectTargets.forEach(el => {
+      el.classList.toggle("hidden", hasChecked);
+    });
+    this.showOnEmptySelectTargets.forEach(el => {
+      el.classList.toggle("hidden", !hasChecked);
     });
   }
-  getCSRFToken() {
-    const token = document.querySelector('meta[name="csrf-token"]');
-    return token ? token.getAttribute("content") : "";
+  updateDisabledState() {
+    const hasChecked = this.checkedCount() > 0;
+    this.disableOnEmptySelectTargets.forEach(el => {
+      el.disabled = !hasChecked;
+    });
+    this.enableOnEmptySelectTargets.forEach(el => {
+      el.disabled = hasChecked;
+    });
+  }
+  updateCount() {
+    this.countTargets.forEach(el => {
+      el.textContent = this.checkedCount().toString();
+    });
+  }
+  triggerInputEvent(checkbox) {
+    const event = new Event("input", {
+      bubbles: false,
+      cancelable: true
+    });
+    checkbox.dispatchEvent(event);
+  }
+  checkedCount() {
+    return this.checked.length;
+  }
+  get checked() {
+    return this.selectTargets.filter(checkbox => checkbox.checked);
+  }
+  get unchecked() {
+    return this.selectTargets.filter(checkbox => !checkbox.checked);
   }
 }
 
 function registerFluxbitControllers(application) {
-  application.register("fx-select-all", FxSelectAll);
+  application.register("fx-assigner", FxAssigner);
+  application.register("fx-auto-submit", FxAutoSubmit);
   application.register("fx-drawer", FxDrawer);
+  application.register("fx-method-link", FxMethodLink);
   application.register("fx-modal", FxModal);
   application.register("fx-row-click", FxRowClick);
-  application.register("fx-method-link", FxMethodLink);
+  application.register("fx-select-all", FxSelectAll);
 }
 
-export { FxDrawer, FxMethodLink, FxModal, FxRowClick, FxSelectAll, registerFluxbitControllers };
+export { FxAssigner, FxAutoSubmit, FxDrawer, FxMethodLink, FxModal, FxRowClick, FxSelectAll, registerFluxbitControllers };

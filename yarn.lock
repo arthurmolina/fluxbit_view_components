@@ -46,11 +46,6 @@
   resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.2.2.tgz#071aab59c600fed95b97939e605ff261a4251608"
   integrity sha512-eGeIqNOQpXoPAIP7tC1+1Yc1yl1xnwYqg+3mzqxyrbE5pg5YFBZcA6YoTiByJB6DKAEsiWtl6tjTJS4IYtbB7A==
 
-"@hotwired/turbo@^8.0.13":
-  version "8.0.13"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.13.tgz#ab35fda9d358432c8a872a833844b38cccb8c25b"
-  integrity sha512-M7qXUqcGab6G5PKOiwhgbByTtrPgKPFCTMNQ52QhzUEXEqmp0/ApEguUesh/FPiUjrmFec+3lq98KsWnYY2C7g==
-
 "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.12"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.12.tgz#2234ce26c62889f03db3d7fea43c1932ab3e927b"
@@ -160,6 +155,11 @@
     "@types/react-transition-group" "^4.4.2"
     react-fast-compare "^3.2.0"
     react-transition-group "^4.4.2"
+
+"@stimulus-components/auto-submit@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@stimulus-components/auto-submit/-/auto-submit-6.0.0.tgz#5649e2cca24834ff0d62b4ef1944393a8b0f5dfe"
+  integrity sha512-GBwjjnNuDZey9kdJinTGyrkIMCNVnPrTQvqihC0pBiwieIMfZIp+TT7Giee0Z0DS+pX6WdJweIeo8xEYD/VZJg==
 
 "@types/estree@^1.0.0":
   version "1.0.8"

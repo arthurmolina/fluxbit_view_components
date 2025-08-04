@@ -101,7 +101,7 @@ export default class extends Controller {
   }
 
   _toCamelCase(str) {
-    return str.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+    return str.replace(/-([a-z])/g, (_match, letter) => letter.toUpperCase());
   }
 
   toggle(event) {

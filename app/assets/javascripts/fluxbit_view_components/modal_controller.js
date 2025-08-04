@@ -35,7 +35,7 @@ export default class extends Controller {
     }
   }
 
-  async _ensureDrawerLoaded() {
+  async _ensureModalLoaded() {
     if (typeof Modal === "undefined") {
       const module = await import('flowbite');
       window.Modal = module.Modal;

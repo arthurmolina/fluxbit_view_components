@@ -59,6 +59,7 @@ export default class extends Controller {
       checkbox.checked = e.target.checked;
       this.triggerInputEvent(checkbox);
     });
+    this.refresh()
   }
 
   refresh() {
