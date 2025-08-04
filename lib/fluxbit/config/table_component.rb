@@ -13,7 +13,6 @@ module Fluxbit::Config::TableComponent
         base: "w-full text-left text-sm rtl:text-right text-gray-500 dark:text-gray-400",
         shadow: "absolute left-0 top-0 -z-10 h-full w-full rounded-lg bg-white drop-shadow-md dark:bg-black"
       },
-      caption: "p-5 text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800",
       wrapper: {
         base: "overflow-x-auto relative",
         shadow: "shadow-md sm:rounded-lg"

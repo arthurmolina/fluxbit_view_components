@@ -19,7 +19,7 @@ class Fluxbit::TabComponent < Fluxbit::Component
     @vertical = props.delete(:vertical) || @@vertical
     @tab_panel = (props.delete(:tab_panel) || @@tab_panel).to_sym
     @tabs_group = []
-    @ul_props = props.delete(:ul_props) || {}
+    @ul_html = props.delete(:ul_html) || {}
     @props = props
     @vertical = false if @variant == :full_width
     super
@@ -43,21 +43,21 @@ class Fluxbit::TabComponent < Fluxbit::Component
   private
 
   def render_tab_list
-    add class: styles[:tab_list][:ul][@vertical ? :vertical : :horizontal], to: @ul_props, first_element: true
-    add class: styles[:tab_list][:variant][variant], to: @ul_props
-    @ul_props[:role] = "tablist"
+    add class: styles[:tab_list][:ul][@vertical ? :vertical : :horizontal], to: @ul_html, first_element: true
+    add class: styles[:tab_list][:variant][variant], to: @ul_html
+    @ul_html[:role] = "tablist"
 
     if @has_panels
-      @ul_props[:data] = {
+      @ul_html[:data] = {
         "tabs-toggle": "##{fx_id}-content",
         "tabs-active-classes": styles[:tab_list][:tab_item][:variant][variant][:active][@color],
         "tabs-inactive-classes": styles[:tab_list][:tab_item][:variant][variant][:inactive]
       }
     end
 
-    @ul_props[:id] = fx_id
+    @ul_html[:id] = fx_id
 
-    content_tag :ul, **@ul_props do
+    content_tag :ul, **@ul_html do
       safe_join(@tabs_group.map.with_index { |tab, index| render_tab(tab, index) })
     end
   end
@@ -102,12 +102,12 @@ class Fluxbit::TabComponent < Fluxbit::Component
       tab.props.delete :"aria-controls"
     end
 
-    li_props = tab.props.delete(:li_props) || {}
-    li_props[:role] = "presentation"
-    li_props[:id] = "#{fx_id}-#{index}-li"
-    add class: styles[:tab_list][:li], to: li_props, first_element: true
+    li_html = tab.props.delete(:li_html) || {}
+    li_html[:role] = "presentation"
+    li_html[:id] = "#{fx_id}-#{index}-li"
+    add class: styles[:tab_list][:li], to: li_html, first_element: true
 
-    content_tag :li, **li_props do
+    content_tag :li, **li_html do
       content_tag :a, **tab.props do
         concat(render_icon(tab_icon)) if tab_icon
         concat(content_tag(:span, tab_title))
@@ -130,13 +130,13 @@ class Fluxbit::TabComponent < Fluxbit::Component
   end
 
   def render_tabpanel(tab, index)
-    content_props = tab.props[:content_props] || {}
-    add class: styles[:tabpanel][@vertical ? :vertical : :horizontal][@tab_panel][tab.props[:active] ? :active : :inactive], to: content_props, first_element: true
+    content_html = tab.props[:content_html] || {}
+    add class: styles[:tabpanel][@vertical ? :vertical : :horizontal][@tab_panel][tab.props[:active] ? :active : :inactive], to: content_html, first_element: true
 
-    content_props[:id] = "#{fx_id}-tabpanel-#{index}"
-    content_props[:role] = "tabpanel"
-    content_props[:"aria-labelledby"] = "#{fx_id}-#{index}"
+    content_html[:id] = "#{fx_id}-tabpanel-#{index}"
+    content_html[:role] = "tabpanel"
+    content_html[:"aria-labelledby"] = "#{fx_id}-#{index}"
 
-    content_tag :div, tab.content, **content_props
+    content_tag :div, tab.content, **content_html
   end
 end

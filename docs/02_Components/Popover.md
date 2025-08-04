@@ -33,7 +33,7 @@ The result look like this:
 | has_arrown:     | true   | Determines if an arrow should be displayed on the popover.
 | image:          | nil    | he URL of an image to be displayed in the popover.
 | image_position: | :right | The position of the image relative to the content (:left or :right).
-| image_props:    | {}     | Additional HTML attributes for the image element.
+| image_html:     | {}     | Additional HTML attributes for the image element.
 | size:           | 1      | The size of the popover, corresponding to predefined Tailwind classes (e.g., `0` to  <%=Fluxbit::Config::PopoverComponent.styles[:size].count - 1 %>).
 | remove_class:   | ""     | Classes to be removed from the default popover class list.
 | **props         |        | Remaining options declared as HTML attributes, applied to the outer popover container.

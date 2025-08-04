@@ -38,10 +38,10 @@ The result look like this:
 | only_css:          | false     | If `true`, a button to open isn't obligatory.
 | static:            | false     | If `true`, the modal will not close when clicking the backdrop or pressing the ESC key (i.e., it’s “static”).
 | remove_class:      | ""        | Classes to be removed from the default modal class list.
-| content_props:     | {}        | Additional HTML attributes for the content wrapper (the inner container of the modal).
-| header_props:      | {}        | Additional HTML attributes for the header section.
-| footer_props:      | {}        | Additional HTML attributes for the footer section.
-| close_button_props:| {}        | Additional HTML attributes for the close button.
+| content_html:      | {}        | Additional HTML attributes for the content wrapper (the inner container of the modal).
+| header_html:       | {}        | Additional HTML attributes for the header section.
+| footer_html:       | {}        | Additional HTML attributes for the footer section.
+| close_button_html: | {}        | Additional HTML attributes for the close button.
 | **props            |           | Remaining options declared as HTML attributes, applied to the outer modal container.
 
 ## Slots

@@ -16,7 +16,7 @@ class Fluxbit::PopoverComponent < Fluxbit::Component
   # @option props [Boolean] :has_arrow (true) Determines if an arrow should be displayed on the popover.
   # @option props [String] :image (nil) The URL of an image to be displayed in the popover.
   # @option props [Symbol] :image_position (:right) The position of the image relative to the content (:left or :right).
-  # @option props [Hash] :image_props ({}) Additional HTML attributes for the image element.
+  # @option props [Hash] :image_html ({}) Additional HTML attributes for the image element.
   # @option props [Symbol, String] :size (2) The size of the popover (0 to 4).
   # @option props [String] :remove_class ('') Classes to be removed from the default popover class list.
   # @option props [Hash] **props Remaining options declared as HTML attributes, applied to the popover container.
@@ -27,16 +27,16 @@ class Fluxbit::PopoverComponent < Fluxbit::Component
     @has_arrow = options @props.delete(:has_arrow), default: @@has_arrow
     @image = @props.delete(:image)
     @image_position = options @props.delete(:image_position), default: @@image_position
-    @image_props = options @props.delete(:image_props), default: @@image_props
+    @image_html = options @props.delete(:image_html), default: @@image_html
     @props["data-popover"] = "data-popover"
     @props["role"] = "tooltip"
 
     add(class: [ styles[:base], styles[:size][@props.delete(:size) || @@size] ], to: @props)
-    add(class: styles[:image_content][:image], to: @image_props)
-    @image_props[:src] = @image
+    add(class: styles[:image_content][:image], to: @image_html)
+    @image_html[:src] = @image
 
     @props[:class] = remove_class(@props.delete(:remove_class) || "", @props[:class])
-    @image_props[:class] = remove_class(@props.delete(:remove_class) || "", @image_props[:class])
+    @image_html[:class] = remove_class(@props.delete(:remove_class) || "", @image_html[:class])
   end
 
   def call
@@ -47,11 +47,11 @@ class Fluxbit::PopoverComponent < Fluxbit::Component
           content
         else
           if @image_position == :left
-            concat content_tag(:img, nil, @image_props)
+            concat content_tag(:img, nil, @image_html)
             concat content_tag(:div, content, class: styles[:image_content][:text])
           else
             concat content_tag(:div, content, class: styles[:image_content][:text])
-            concat content_tag(:img, nil, @image_props)
+            concat content_tag(:img, nil, @image_html)
           end
         end
       end)

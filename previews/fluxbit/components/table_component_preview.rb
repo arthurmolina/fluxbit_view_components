@@ -9,8 +9,6 @@ class Fluxbit::Components::TableComponentPreview < ViewComponent::Preview
   def bordered_rows; end
   def hover_rows; end
   def shadow; end
-  def caption; end
-  def footer_caption; end
   def table_footer; end
   def selected_cell; end
   def colored_rows; end

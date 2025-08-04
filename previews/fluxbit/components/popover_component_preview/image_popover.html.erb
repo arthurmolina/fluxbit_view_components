@@ -4,7 +4,7 @@
 <% end %>
 has historically been home to myriad peoples and cultures. In addition to the various ancient peoples dispersed throughout what is now modern-day Italy, the most predominant being the Indo-European Italic peoples who gave the peninsula its name, beginning from the classical era, Phoenicians and Carthaginians founded colonies mostly in insular Italy</p>
 
-<%= fx_popover(id: 'italy-popover', size: 4, image: image_path("italy.png"), image_props: {alt: "Italy map"}) do %>
+<%= fx_popover(id: 'italy-popover', size: 4, image: image_path("italy.png"), image_html: {alt: "Italy map"}) do %>
   <%= fx_heading(size: 6, with_content: 'About Italy') %>
   <p>Italy is located in the middle of the Mediterranean Sea, in Southern Europe it is also considered part of Western Europe. A unitary parliamentary republic with Rome as its capital and largest city.</p>
   <%= fx_txt(as: :a, color: :blue, href: '#', class: 'flex items-center') do %>

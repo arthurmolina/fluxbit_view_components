@@ -23,10 +23,10 @@ class Fluxbit::ModalComponent < Fluxbit::Component
   # @option props [Boolean] :only_css (false) Determines if the modal can be closed by clicking the backdrop, using a CSS-based approach.
   # @option props [Boolean] :static (false) If true, the modal will not close when clicking the backdrop or pressing the ESC key.
   # @option props [String] :remove_class ('') Classes to be removed from the default modal class list.
-  # @option props [Hash] :content_props ({}) Additional HTML attributes and classes for the content wrapper inside the modal.
-  # @option props [Hash] :header_props ({}) Additional HTML attributes and classes for the header section.
-  # @option props [Hash] :footer_props ({}) Additional HTML attributes and classes for the footer section.
-  # @option props [Hash] :close_button_props ({}) Additional HTML attributes and classes for the close button element.
+  # @option props [Hash] :content_html ({}) Additional HTML attributes and classes for the content wrapper inside the modal.
+  # @option props [Hash] :header_html ({}) Additional HTML attributes and classes for the header section.
+  # @option props [Hash] :footer_html ({}) Additional HTML attributes and classes for the footer section.
+  # @option props [Hash] :close_button_html ({}) Additional HTML attributes and classes for the close button element.
   # @option props [Hash] **props Remaining options declared as HTML attributes, applied to the modal container.
   def initialize(**props)
     super
@@ -50,27 +50,27 @@ class Fluxbit::ModalComponent < Fluxbit::Component
     @props[:class] = remove_class(@props.delete(:remove_class) || "", @props[:class])
 
     # Content properties
-    @content_props = @props.delete(:content_props) || {}
-    add(class: content_classes, to: @content_props, first_element: true)
-    @content_props[:class] = remove_class(@content_props.delete(:remove_class) || "", @content_props[:class])
+    @content_html = @props.delete(:content_html) || {}
+    add(class: content_classes, to: @content_html, first_element: true)
+    @content_html[:class] = remove_class(@content_html.delete(:remove_class) || "", @content_html[:class])
 
     # Header properties
-    @header_props = @props.delete(:header_props) || {}
-    add(class: header_classes, to: @header_props, first_element: true)
-    @header_props[:class] = remove_class(@header_props.delete(:remove_class) || "", @header_props[:class])
+    @header_html = @props.delete(:header_html) || {}
+    add(class: header_classes, to: @header_html, first_element: true)
+    @header_html[:class] = remove_class(@header_html.delete(:remove_class) || "", @header_html[:class])
 
     # Footer properties
-    @footer_props = @props.delete(:footer_props) || {}
-    add(class: footer_classes, to: @footer_props, first_element: true)
-    @footer_props[:class] = remove_class(@footer_props.delete(:remove_class) || "", @footer_props[:class])
+    @footer_html = @props.delete(:footer_html) || {}
+    add(class: footer_classes, to: @footer_html, first_element: true)
+    @footer_html[:class] = remove_class(@footer_html.delete(:remove_class) || "", @footer_html[:class])
 
     # Close button properties
-    @close_button_props = @props.delete(:close_button_props) || {}
-    add(class: styles[:header][:close][:base], to: @close_button_props, first_element: true)
-    @close_button_props[:class] = remove_class(@close_button_props.delete(:remove_class) || "", @close_button_props[:class])
-    @close_button_props[:type] = "button"
-    @close_button_props["data-modal-hide"] = @props[:id]
-    @close_button_props["aria-label"] = "Close"
+    @close_button_html = @props.delete(:close_button_html) || {}
+    add(class: styles[:header][:close][:base], to: @close_button_html, first_element: true)
+    @close_button_html[:class] = remove_class(@close_button_html.delete(:remove_class) || "", @close_button_html[:class])
+    @close_button_html[:type] = "button"
+    @close_button_html["data-modal-hide"] = @props[:id]
+    @close_button_html["aria-label"] = "Close"
   end
 
   def call
@@ -78,11 +78,11 @@ class Fluxbit::ModalComponent < Fluxbit::Component
       :div,
       **@props
     ) do
-      content_tag(:div, **@content_props) do
+      content_tag(:div, **@content_html) do
         content_tag(:div, class: styles[:content][:inner]) do
           concat(header) if title? || @title.present? || @close_button
           concat(content_tag(:div, content, class: body_classes))
-          concat(content_tag(:div, footer, **@footer_props)) if footer?
+          concat(content_tag(:div, footer, **@footer_html)) if footer?
         end
       end
     end
@@ -114,7 +114,7 @@ class Fluxbit::ModalComponent < Fluxbit::Component
   def header
     return close_button if @close_button && !title? && !@title.present?
 
-    content_tag(:div, **@header_props) do
+    content_tag(:div, **@header_html) do
       concat(title) if title?
       concat(content_tag(:h3, @title, class: styles[:header][:title])) if @title.present?
       concat(close_button) if @close_button
@@ -128,7 +128,7 @@ class Fluxbit::ModalComponent < Fluxbit::Component
   def close_button
     content_tag(
       :button,
-      **@close_button_props
+      **@close_button_html
     ) do
       concat content_tag(:span, "Dismiss", class: "sr-only")
       concat anyicon("heroicons_outline:x-mark", class: "size-5")

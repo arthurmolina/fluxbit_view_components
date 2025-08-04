@@ -5,7 +5,7 @@
   tooltip_text: "Card info",
   image: 'https://flowbite.com/docs/images/blog/image-4.jpg',
   image_position: :left,
-  image_props: {},
+  image_html: {},
   href: 'https://flowbite.com/docs/images/blog/',
   color: :danger
 ) do |card| %>
@@ -14,10 +14,12 @@
   <% end %>
   <% card.with_section do %>
     <p>Paragraph of content.</p>
-    <p>Paragraph of content.</p>
-    <p>Paragraph of content.</p>
+  <% end %>
+  <% card.with_section do %>
     <p>Paragraph of content.</p>
   <% end %>
+  <% card.with_section { "Content" } %>
+  <% card.with_section(no_class: true) { "Content without classes" } %>
   <% card.with_footer do %>
     <small>Footer text</small>
   <% end %>

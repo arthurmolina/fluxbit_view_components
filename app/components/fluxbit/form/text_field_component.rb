@@ -28,10 +28,10 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
   # @param icon [Symbol] Left icon (optional)
   # @param right_icon [Symbol] Right icon (optional)
   # @param addon [String] Add-on text or icon before the input (optional)
-  # @param addon_props [Hash] Props for the Add-on (optional)
-  # @param icon_props [Hash] Props for the left icon (optional)
-  # @param right_icon_props [Hash] Props for the right icon (optional)
-  # @param div_props [Hash] Props for the whole div (optional)
+  # @param addon_html [Hash] Props for the Add-on (optional)
+  # @param icon_html [Hash] Props for the left icon (optional)
+  # @param right_icon_html [Hash] Props for the right icon (optional)
+  # @param div_html [Hash] Props for the whole div (optional)
   # @param multiline [Boolean] Renders a textarea if true
   # @param color [Symbol] Field color (`:default`, `:success`, `:danger`, etc)
   # @param sizing [Integer] Input size
@@ -48,10 +48,10 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
     @shadow = @props.delete(:shadow)
     @addon = @props.delete(:addon)
     @right_icon = @props.delete(:right_icon)
-    @addon_props = @props.delete(:addon_props) || {}
-    @div_props = @props.delete(:div_props) || {}
-    @icon_props = @props.delete(:icon_props) || {}
-    @right_icon_props = @props.delete(:right_icon_props) || {}
+    @addon_html = @props.delete(:addon_html) || {}
+    @div_html = @props.delete(:div_html) || {}
+    @icon_html = @props.delete(:icon_html) || {}
+    @right_icon_html = @props.delete(:right_icon_html) || {}
     @sizing = sizing_with_addon @props.delete(:sizing)
     @props[:type] = @type
 
@@ -109,20 +109,20 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
   end
 
   def create_icon
-    add class: styles[:additional_icons][:icon], to: @icon_props
-    add(class: "pointer-events-none", to: @icon_props) unless events?(@icon_props)
-    icon(@icon, props: @icon_props)
+    add class: styles[:additional_icons][:icon], to: @icon_html
+    add(class: "pointer-events-none", to: @icon_html) unless events?(@icon_html)
+    icon(@icon, props: @icon_html)
   end
 
   def create_addon
-    add class: styles[:additional_icons][:addon][@color], to: @addon_props
-    icon(@addon, tag: :span, props: @addon_props)
+    add class: styles[:additional_icons][:addon][@color], to: @addon_html
+    icon(@addon, tag: :span, props: @addon_html)
   end
 
   def create_right_icon
-    add class: styles[:additional_icons][:right_icon], to: @right_icon_props
-    add(class: "pointer-events-none", to: @right_icon_props) unless events?(@right_icon_props)
-    icon(@right_icon, props: @right_icon_props)
+    add class: styles[:additional_icons][:right_icon], to: @right_icon_html
+    add(class: "pointer-events-none", to: @right_icon_html) unless events?(@right_icon_html)
+    icon(@right_icon, props: @right_icon_html)
   end
 
   def events?(props)
@@ -150,13 +150,13 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
   end
 
   def icon_container_with_addon
-    add class: "flex", to: @div_props
-    content_tag :div, safe_join([ create_addon, create_right_icon, input ]), @div_props
+    add class: "flex", to: @div_html
+    content_tag :div, safe_join([ create_addon, create_right_icon, input ]), @div_html
   end
 
   def icon_container_without_addon
-    add class: "relative w-full", to: @div_props
-    content_tag :div, safe_join([ create_icon, create_right_icon, input ]), @div_props
+    add class: "relative w-full", to: @div_html
+    content_tag :div, safe_join([ create_icon, create_right_icon, input ]), @div_html
   end
 
   def icon_container

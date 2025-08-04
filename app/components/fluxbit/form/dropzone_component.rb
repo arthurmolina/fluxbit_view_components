@@ -19,7 +19,7 @@ class Fluxbit::Form::DropzoneComponent < Fluxbit::Form::FieldComponent
   # @param title [Boolean, String] Title text above the dropzone (true for default, false to hide, or custom string)
   # @param subtitle [Boolean, String] Subtitle text below the title (true for default, false to hide, or custom string)
   # @param icon [String, Symbol] Icon to display above the title (defaults to config)
-  # @param icon_props [Hash] Extra props for the icon element
+  # @param icon_html [Hash] Extra props for the icon element
   # @param height [Integer] Height preset (0: auto, 1: h-32, 2: h-64, 3: h-96; default is 0)
   # @param help_text [String] Helper or error text below the field
   # @param ... any other HTML attribute supported by file_field_tag
@@ -28,7 +28,7 @@ class Fluxbit::Form::DropzoneComponent < Fluxbit::Form::FieldComponent
     @title = options(@props.delete(:title), default: true)
     @subtitle = options(@props.delete(:subtitle), default: true)
     @icon = @props.delete(:icon) || @@icon
-    @icon_props = @props.delete(:icon_props) || { class: styles[:icon] }
+    @icon_html = @props.delete(:icon_html) || { class: styles[:icon] }
     @height = @props.delete(:height) || @@height
     add to: @props, class: "hidden"
   end

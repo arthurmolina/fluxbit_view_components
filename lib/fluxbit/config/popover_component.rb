@@ -3,7 +3,7 @@
 module Fluxbit::Config::PopoverComponent
   mattr_accessor :has_arrow, default: true
   mattr_accessor :image_position, default: :right
-  mattr_accessor :image_props, default: {}
+  mattr_accessor :image_html, default: {}
   mattr_accessor :size, default: 2
 
   # rubocop: disable Layout/LineLength, Metrics/BlockLength
