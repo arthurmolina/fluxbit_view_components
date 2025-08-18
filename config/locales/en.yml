@@ -1,6 +1,23 @@
 en:
   fluxbit:
-    form_builder:
-      errors_summary:
-        one: "There is 1 error with this %{model}:"
-        other: "There are %{count} errors with this %{model}:"
+    alert:
+      aria_close: Close
+      dismiss: Dismiss
+    drawer:
+      dismiss: Dismiss
+    modal:
+      aria_close: Close
+      dismiss: Dismiss
+    pagination:
+      aria_label:
+        nav:
+          one: Page
+          other: Pages
+        prev: Previous
+        next: Next
+        first: First
+        last: Last
+      first: First
+      last: Last
+      prev: Previous
+      next: Next
