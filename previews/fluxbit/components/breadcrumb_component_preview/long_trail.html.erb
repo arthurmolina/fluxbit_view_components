@@ -1,4 +1,4 @@
-<%= render Fluxbit::BreadcrumbComponent.new do |c| %>
+<%= fx_breadcrumb do |c| %>
   <% c.with_item href: "/" do %>Home<% end %>
   <% c.with_item href: "/departments" do %>Departments<% end %>
   <% c.with_item href: "/departments/engineering" do %>Engineering<% end %>

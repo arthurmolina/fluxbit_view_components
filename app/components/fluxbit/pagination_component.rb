@@ -173,7 +173,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
   end
 
   def url_for(page)
-    vars = @pagy.vars || {}
+    vars = @pagy&.vars || {}
     # Use current request parameters as base
     params = (respond_to?(:request) ? request.GET : controller.request.GET).dup
     params.merge!(vars[:params].transform_keys(&:to_s)) if vars[:params].is_a?(Hash)

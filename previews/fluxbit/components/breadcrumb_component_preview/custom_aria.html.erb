@@ -1,4 +1,4 @@
-<%= render Fluxbit::BreadcrumbComponent.new("aria-label" => "Navigation trail") do |c| %>
+<%= fx_breadcrumb("aria-label" => "Navigation trail") do |c| %>
   <% c.with_item href: "/" do %>Home<% end %>
   <% c.with_item href: "/client-area" do %>Client Area<% end %>
   <% c.with_item current_page: true do %>Details<% end %>

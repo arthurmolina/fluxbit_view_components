@@ -1,0 +1,29 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="mb-2 font-semibold">First page</h3>
+    <%= fx_pagination(
+          nil,
+          page: 1,
+          last: 5,
+          prev: nil,
+          next: 2,
+          size: 5,
+          show_first_last: true,
+          request_path: "/docs"
+        ) %>
+  </div>
+
+  <div>
+    <h3 class="mb-2 font-semibold">Last page</h3>
+    <%= fx_pagination(
+          nil,
+          page: 5,
+          last: 5,
+          prev: 4,
+          next: nil,
+          size: 5,
+          show_first_last: true,
+          request_path: "/docs"
+        ) %>
+  </div>
+</div>
