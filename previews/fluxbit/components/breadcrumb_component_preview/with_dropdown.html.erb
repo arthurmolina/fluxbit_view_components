@@ -1,0 +1,13 @@
+<%= render Fluxbit::BreadcrumbComponent.new do |c| %>
+  <% c.with_item href: "/", icon: "heroicons_solid:home" do %>Home<% end %>
+
+  <% c.with_item do |item| %>
+    Projects
+    <%# The Breadcrumb::Item supports a Dropdown slot: %>
+    <% item.with_dropdown id: "menu-bc-1" do %>
+      Actions list goes here
+    <% end %>
+  <% end %>
+
+  <% c.with_item current_page: true do %>Overview<% end %>
+<% end %>

@@ -1,0 +1,5 @@
+<%= render Fluxbit::BreadcrumbComponent.new do |c| %>
+  <% c.with_item href: "/" do %>Home<% end %>
+  <% c.with_item href: "/projects" do %>Projects<% end %>
+  <% c.with_item current_page: true do %>Overview<% end %>
+<% end %>

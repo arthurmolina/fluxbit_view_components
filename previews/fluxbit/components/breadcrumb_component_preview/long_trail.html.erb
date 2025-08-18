@@ -1,0 +1,7 @@
+<%= render Fluxbit::BreadcrumbComponent.new do |c| %>
+  <% c.with_item href: "/" do %>Home<% end %>
+  <% c.with_item href: "/departments" do %>Departments<% end %>
+  <% c.with_item href: "/departments/engineering" do %>Engineering<% end %>
+  <% c.with_item href: "/departments/engineering/platform" do %>Platform<% end %>
+  <% c.with_item current_page: true do %>On-call Playbook<% end %>
+<% end %>
