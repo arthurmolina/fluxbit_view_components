@@ -2,8 +2,8 @@
 
 require "test_helper"
 
-class Fluxbit::ClassesHelperTest < ActionView::TestCase
-  include Fluxbit::ClassesHelper
+class Fluxbit::ViewHelperTest < ActionView::TestCase
+  include Fluxbit::ViewHelper
 
   def test_fx_body_class
     expected_class = "h-full bg-slate-100 dark:bg-slate-900 dark:text-white"

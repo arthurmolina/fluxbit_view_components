@@ -4,7 +4,7 @@ module Fluxbit
   module ComponentTestHelpers
     include ActionView::Helpers::TagHelper
     include ViewComponent::TestHelpers
-    include Fluxbit::ClassesHelper
+    include Fluxbit::ViewHelper
     include Fluxbit::ComponentsHelper
   end
 end

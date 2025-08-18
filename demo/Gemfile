@@ -44,3 +44,6 @@ gem "view_components"
 gem "lookbook", "~> 2.0"
 gem "fluxbit_view_components", path: "../"
 gem "anyicon"
+
+gem "pagy"
+gem "pundit"

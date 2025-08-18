@@ -12,7 +12,7 @@ module Fluxbit
     end
 
     def import_into_application_css
-      import_line = "@import \"fluxbit_pagy\";"
+      import_line = "@import \"./fluxbit_pagy\";"
       tailwind_path = "app/assets/stylesheets/application.tailwind.css"
       default_path  = "app/assets/stylesheets/application.css"
 
