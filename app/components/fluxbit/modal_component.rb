@@ -70,7 +70,6 @@ class Fluxbit::ModalComponent < Fluxbit::Component
     @close_button_html[:class] = remove_class(@close_button_html.delete(:remove_class) || "", @close_button_html[:class])
     @close_button_html[:type] = "button"
     @close_button_html["data-modal-hide"] = @props[:id]
-    @close_button_html["aria-label"] = "Close"
   end
 
   def call
@@ -126,12 +125,13 @@ class Fluxbit::ModalComponent < Fluxbit::Component
   end
 
   def close_button
+    @close_button_html["aria-label"] = t("fluxbit.modal.aria_close")
     content_tag(
       :button,
       **@close_button_html
     ) do
-      concat content_tag(:span, "Dismiss", class: "sr-only")
-      concat anyicon("heroicons_outline:x-mark", class: "size-5")
+      concat content_tag(:span, t("fluxbit.modal.dismiss"), class: "sr-only")
+      concat close_icon(class: "size-3")
     end
   end
 

@@ -44,7 +44,7 @@ class Fluxbit::DropdownItemComponent < Fluxbit::Component
           concat(anyicon(@icon, **@icon_html)) if @icon.present?
           concat(content || @param_content)
         end)
-        concat(chevron_right(class: "ml-auto")) if items.any?
+        concat(chevron_right(class: "ms-3 ml-auto")) if items.any?
       end)
       concat(
         inner_dropdown(items, id: @content_html["data-dropdown-toggle"], sizing: height, auto_divider: auto_divider)

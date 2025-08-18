@@ -105,21 +105,21 @@ class Fluxbit::AlertComponent < Fluxbit::Component
     icon = icon || @@icon
     return anyicon(icon, class: class_icon) if icon != :default
 
-    anyicon("heroicons_solid:#{styles[:default_icons][@color]}", class: class_icon + " size-4")
+    anyicon("heroicons_solid:#{styles[:default_icons][@color]}", class: class_icon + " size-5")
   end
 
   def close_button
     return "" unless @can_close
 
     b_props = {
-      "aria-label" => "Close",
+      "aria-label" => t("fluxbit.alert.aria_close"),
       "data-dismiss-target" => "##{@props["id"]}",
       type: "button"
     }
 
     add to: b_props, class: [ styles[:close_button][:base], styles[:close_button][:colors][@color] ]
     content_tag :button, b_props do
-      concat content_tag(:span, "Dismiss", class: "sr-only")
+      concat content_tag(:span, t("fluxbit.alert.dismiss"), class: "sr-only")
       concat anyicon("heroicons_outline:x-mark", class: "size-5")
     end
   end

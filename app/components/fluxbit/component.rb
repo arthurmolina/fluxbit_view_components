@@ -27,7 +27,10 @@ class Fluxbit::Component < ViewComponent::Base
   end
 
   def remove_class(elements, from)
-    from.split.reject { |c| c.in?(elements || "".split) }.join(" ")
+    return "" if from.blank?
+    return from if elements.blank?
+
+    from.split.reject { |c| c.in?( (elements || "").split) }.join(" ")
   end
 
   def remove_class_from_props(props)
@@ -89,28 +92,120 @@ class Fluxbit::Component < ViewComponent::Base
   end
 
   def chevron_right(**props)
-    add to: props, class: "w-2.5 h-2.5 ms-3", first_element: true
+    add to: props, class: "w-2.5 h-2.5", first_element: true
     remove_class_from_props(props)
     props["aria-hidden"] = "true"
     props[:xmlns] = "http://www.w3.org/2000/svg"
     props[:fill] = "none"
     props[:viewBox] = "0 0 6 10"
+    stroke_width = props.delete(:stroke_width) || 2
 
     content_tag :svg, **props do
-      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => 2, d: "m1 9 4-4-4-4"
+      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m1 9 4-4-4-4"
     end
   end
 
-  def chevron_down(**props)
-    add to: props, class: "w-2.5 h-2.5 ms-3", first_element: true
+  def chevron_left(**props)
+    add to: props, class: "w-2.5 h-2.5", first_element: true
+    remove_class_from_props(props)
+    props["aria-hidden"] = "true"
+    props[:xmlns] = "http://www.w3.org/2000/svg"
+    props[:fill] = "none"
+    props[:viewBox] = "0 0 6 10"
+    stroke_width = props.delete(:stroke_width) || 2
+
+    content_tag :svg, **props do
+      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m5 1-4 4 4 4"
+    end
+  end
+
+  def chevron_up(**props)
+    add to: props, class: "w-2.5 h-2.5", first_element: true
     remove_class_from_props(props)
     props["aria-hidden"] = "true"
     props[:xmlns] = "http://www.w3.org/2000/svg"
     props[:fill] = "none"
     props[:viewBox] = "0 0 10 6"
+    stroke_width = props.delete(:stroke_width) || 2
 
     content_tag :svg, **props do
-      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => 2, d: "m1 1 4 4 4-4"
+      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m1 5 4-4 4 4"
+    end
+  end
+
+  def chevron_down(**props)
+    add to: props, class: "w-2.5 h-2.5", first_element: true
+    remove_class_from_props(props)
+    props["aria-hidden"] = "true"
+    props[:xmlns] = "http://www.w3.org/2000/svg"
+    props[:fill] = "none"
+    props[:viewBox] = "0 0 10 6"
+    stroke_width = props.delete(:stroke_width) || 2
+
+    content_tag :svg, **props do
+      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m1 1 4 4 4-4"
+    end
+  end
+
+  def close_icon(**props)
+    props["aria-hidden"] = "true"
+    props[:xmlns] = "http://www.w3.org/2000/svg"
+    props[:fill] = "none"
+    props[:viewBox] = "0 0 14 14"
+
+    content_tag :svg, **props do
+      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => 2, d: "m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+    end
+  end
+
+  def chevron_double_left(**props)
+    add to: props, class: "w-3 h-2.5", first_element: true
+    remove_class_from_props(props)
+    props["aria-hidden"] = "true"
+    props[:xmlns] = "http://www.w3.org/2000/svg"
+    props[:fill] = "none"
+    props[:viewBox] = "0 0 10 10"
+    stroke_width = props.delete(:stroke_width) || 2
+
+    content_tag :svg, **props do
+      safe_join [
+        content_tag(:path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M4 1l-4 4 4 4"),
+        content_tag(:path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M10 1l-4 4 4 4")
+      ]
+    end
+  end
+
+  def chevron_double_right(**props)
+    add to: props, class: "w-3 h-2.5", first_element: true
+    remove_class_from_props(props)
+    props["aria-hidden"] = "true"
+    props[:xmlns] = "http://www.w3.org/2000/svg"
+    props[:fill] = "none"
+    props[:viewBox] = "0 0 12 10"
+    stroke_width = props.delete(:stroke_width) || 2
+
+    content_tag :svg, **props do
+      safe_join [
+        content_tag(:path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M2 1l4 4-4 4"),
+        content_tag(:path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M8 1l4 4-4 4")
+      ]
+    end
+  end
+
+  def ellipsis_horizontal(**props)
+    add to: props, class: "w-2.5 h-2.5", first_element: true
+    remove_class_from_props(props)
+    props["aria-hidden"] = "true"
+    props[:xmlns] = "http://www.w3.org/2000/svg"
+    props[:fill] = "currentColor"
+    props[:viewBox] = "0 0 10 2"
+
+    content_tag :svg, **props do
+      safe_join [
+        content_tag(:circle, "", cx: 1, cy: 1, r: 1),
+        content_tag(:circle, "", cx: 5, cy: 1, r: 1),
+        content_tag(:circle, "", cx: 9, cy: 1, r: 1)
+      ]
     end
   end
 end

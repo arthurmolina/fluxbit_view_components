@@ -41,13 +41,13 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
     @props = props
     @form = @props.delete(:form)
     @content = @props.delete(:content)
-    @as = @props.delete(:as) || @@as
-    @pill = @props.delete(:pill) || @@pill
-    @color = @props.delete(:color) || @@color
-    @grouped = @props.delete(:grouped) || false
-    @first_button = @props.delete(:first_button) || false
-    @last_button = @props.delete(:last_button) || false
-    @outline = @color.end_with?("_outline")
+    @as = options @props.delete(:as), default: @@as
+    @pill = options @props.delete(:pill), default: @@pill
+    @color = options (@props.delete(:color) || "").to_sym, collection: styles[:colors].keys, default: @@color
+    @grouped = options @props.delete(:grouped), default: false
+    @first_button = options @props.delete(:first_button), default: false
+    @last_button = options @props.delete(:last_button), default: false
+    @outline = @color.to_s.end_with?("_outline")
     @full_sized = options(@props.delete(:full_sized), default: true)
     @remove_dropdown_arrow = options(@props.delete(:remove_dropdown_arrow), default: false)
     declare_size(@props.delete(:size) || @@size)
@@ -107,7 +107,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
     button_content = @content || content
 
     if @form.nil?
-      button_content += dropdown? && !@remove_dropdown_arrow ? chevron_down : ""
+      button_content += dropdown? && !@remove_dropdown_arrow ? chevron_down(class: "ms-3") : ""
       content_tag(@as, button_content, @props)
     else
       @form.submit(button_content, **@props)

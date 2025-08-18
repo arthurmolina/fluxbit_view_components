@@ -36,12 +36,13 @@ class Fluxbit::BadgeComponent < Fluxbit::Component
   def initialize(**props)
     super
     @props = props
-    @color = @props.delete(:color) || @@color
-    @pill = @props.delete(:pill) || @@pill
-    @size = @props.delete(:size) || @@size
-    @perfect_rounded = @props.delete(:perfect_rounded) || @@perfect_rounded
-    @notification = @props.delete(:notification) || @@notification
-    @as = @props.delete(:as) || @@as
+    @color = options @props.delete(:color), collection: styles[:colors].keys, default: @@color
+    @pill = options @props.delete(:pill), default: @@pill
+    @size = options @props.delete(:size), default: @@size
+    @perfect_rounded = options @props.delete(:perfect_rounded), default: @@perfect_rounded
+    @notification = options @props.delete(:notification), default: @@notification
+    @as = options @props.delete(:as), default: @@as
+
     add(class: badge_classes, to: @props, first_element: true)
     @props[:class] = remove_class(@props.delete(:remove_class) || "", @props[:class])
   end
@@ -63,9 +64,9 @@ class Fluxbit::BadgeComponent < Fluxbit::Component
         styles[:colors][@color.to_sym],
         styles[:sizes][@size.to_i],
         styles[:perfect_rounded][@perfect_rounded.to_i],
+        styles[:pill][@pill ? :on : :off],
         notification_classes
       ]
-      base_classes << "rounded-full" if @pill
       base_classes.join(" ")
     end
   end

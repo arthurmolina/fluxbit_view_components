@@ -12,8 +12,11 @@ module Fluxbit::Config::BadgeComponent
   # rubocop: disable Layout/LineLength, Metrics/BlockLength
   mattr_accessor :styles do
     {
-      base: "inline-flex items-center gap-1 font-medium me-2 rounded-sm",
-      pill: "rounded-full",
+      base: "inline-flex items-center gap-1 font-medium me-2",
+      pill: {
+        off: "rounded-sm",
+        on: "rounded-full",
+      },
       colors: {
         info: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
         dark: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
@@ -60,7 +63,7 @@ module Fluxbit::Config::BadgeComponent
         "justify-center size-8",
         "justify-center size-10",
         "justify-center size-12"
-    ],
+      ],
       notification: {
         default: "absolute",
         positions: {

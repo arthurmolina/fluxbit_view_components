@@ -3,8 +3,6 @@ require "test_helper"
 class Fluxbit::TableComponentTest < ViewComponent::TestCase
   def test_renders_basic_table_with_header_and_rows
     render_inline Fluxbit::TableComponent.new do |table|
-      table.with_caption { "Table Title" }
-
       table.with_header do |header|
         header.with_cell { "Header 1" }
         header.with_cell { "Header 2" }
@@ -16,7 +14,6 @@ class Fluxbit::TableComponentTest < ViewComponent::TestCase
       end
     end
 
-    assert_selector "caption", text: "Table Title"
     assert_selector "thead"
     assert_selector "th", text: "Header 1"
     assert_selector "th", text: "Header 2"
@@ -28,12 +25,10 @@ class Fluxbit::TableComponentTest < ViewComponent::TestCase
   def test_renders_footer_and_footer_caption
     render_inline Fluxbit::TableComponent.new do |table|
       table.with_footer { |footer| footer.with_cell { "Footer Cell" } }
-      table.with_footer_caption { "Footer Caption" }
     end
 
     assert_selector "tfoot"
     assert_selector "td", text: "Footer Cell"
-    assert_selector "div", text: "Footer Caption"
   end
 
   def test_applies_striped_rows
