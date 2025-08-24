@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 require_relative "lib/fluxbit/view_components/version"
-# require_relative "lib/fluxbit/view_components/engine"
-# require_relative "lib/generators/fluxbit/scaffold_generator" if defined?(Rails::Generators)
-# require_relative "lib/generators/fluxbit/devise_views_generator" if defined?(Rails::Generators)
 
 Gem::Specification.new do |spec|
   spec.name = "fluxbit_view_components"
@@ -11,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = [ "Arthur Molina" ]
   spec.email = [ "arthurmolina@gmail.com" ]
 
-  spec.homepage = "https://github.com/baoagency/fluxbit-view-components"
-  spec.summary = "ViewComponents for Fluxbit Design System"
+  spec.homepage = "https://github.com/arthurmolina/fluxbit_view_components"
+  spec.summary = "ViewComponents based on Flowbite Design System"
   spec.license = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
