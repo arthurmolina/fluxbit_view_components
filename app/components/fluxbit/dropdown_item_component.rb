@@ -62,7 +62,7 @@ class Fluxbit::DropdownItemComponent < Fluxbit::Component
     ]
 
     content_tag :div, **props do
-      content_tag :ul, items.join.html_safe, class: styles[:ul]
+      content_tag :ul, safe_join(items), class: styles[:ul]
     end
   end
 end

@@ -60,8 +60,10 @@ class Fluxbit::Form::Component < Fluxbit::Component
   def help_text
     return "" if @help_text.blank? || @help_text.compact.blank?
 
-    @help_text.compact.map do |text|
+    nodes = @help_text.compact.map do |text|
       Fluxbit::Form::HelpTextComponent.new(color: @color).with_content(text).render_in(view_context)
-    end.join.html_safe
+    end
+
+    view_context.safe_join(nodes)
   end
 end

@@ -117,17 +117,14 @@ class Fluxbit::CardComponent < Fluxbit::Component
       image_html = content_tag(:div, class: "x") do
         content_tag(:img, nil, **@image_html)
       end
-      content_inner = "".html_safe
-      content_inner << header_html.to_s if header_html
-      if body_content.present?
-        # content_inner << content_tag(:div, body_content, class: self.class.styles[:body] + " " + self.class.styles[:content_left])
-        content_inner << body_content
-      end
-      content_inner << footer_html.to_s if footer_html
+      content_parts = []
+      content_parts << header_html if header_html
+      content_parts << body_content if body_content.present?
+      content_parts << footer_html if footer_html
 
       content_tag(container_tag, **@props) do
         concat(image_html)
-        concat(content_tag(:div, content_inner, class: "flex-1"))
+        concat(content_tag(:div, safe_join(content_parts), class: "flex-1"))
       end
     else
       # Fallback: render without image or with an unrecognized image_position.

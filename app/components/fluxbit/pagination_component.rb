@@ -91,7 +91,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
 
     content_tag(:a, **props) do
       concat(chevron_double_left) if @show_icons
-      concat(content_tag :span, translate("first").html_safe, class: @show_texts ? (@show_icons ? styles[:text_with_icon_prev] : styles[:only_text]) : styles[:only_icon])
+      concat(content_tag :span, translate("first"), class: @show_texts ? (@show_icons ? styles[:text_with_icon_prev] : styles[:only_text]) : styles[:only_icon])
     end
   end
 
@@ -106,7 +106,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
     add class: styles[:next], to: props
 
     content_tag(:a, **props) do
-      concat(content_tag :span, translate("last").html_safe, class: @show_texts ? (@show_icons ? styles[:text_with_icon_next] : styles[:only_text]) : styles[:only_icon])
+      concat(content_tag :span, translate("last"), class: @show_texts ? (@show_icons ? styles[:text_with_icon_next] : styles[:only_text]) : styles[:only_icon])
       concat(chevron_double_right) if @show_icons
     end
   end
@@ -123,7 +123,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
 
     content_tag(:a, **props) do
       concat(chevron_left) if @show_icons
-      concat(content_tag :span, translate("prev").html_safe, class: @show_texts ? (@show_icons ? styles[:text_with_icon_prev] : styles[:only_text]) : styles[:only_icon])
+      concat(content_tag :span, translate("prev"), class: @show_texts ? (@show_icons ? styles[:text_with_icon_prev] : styles[:only_text]) : styles[:only_icon])
     end
   end
 
@@ -138,7 +138,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
     add(class: styles[:next], to: props) unless @show_first_last
 
     content_tag(:a, **props) do
-      concat(content_tag :span, translate("next").html_safe, class: @show_texts ? (@show_icons ? styles[:text_with_icon_next] : styles[:only_text]) : styles[:only_icon])
+      concat(content_tag :span, translate("next"), class: @show_texts ? (@show_icons ? styles[:text_with_icon_next] : styles[:only_text]) : styles[:only_icon])
       concat(chevron_right) if @show_icons
     end
   end

@@ -116,11 +116,18 @@ class Fluxbit::TabComponent < Fluxbit::Component
   end
 
   def render_icon(icon)
-    if icon.include?('class="')
-      icon.gsub("class=\"", "class=\"#{styles[:tab_list][:tab_item][:icon]} ")
+    return "" if icon.blank?
+
+    modified = if icon.include?('class="')
+      icon.gsub('class="', "class=\"#{styles[:tab_list][:tab_item][:icon]} ")
     else
       icon.gsub("<svg", "<svg class=\"#{styles[:tab_list][:tab_item][:icon]}\"")
-    end.html_safe
+    end
+
+    allowed_tags = %w[svg path circle rect line polyline polygon g defs title use]
+    allowed_attrs = %w[class fill stroke stroke-width stroke-linecap stroke-linejoin width height viewBox xmlns x y d points cx cy r x1 y1 x2 y2 href aria-hidden]
+
+    view_context.sanitize(modified, tags: allowed_tags, attributes: allowed_attrs)
   end
 
   def render_tab_panels

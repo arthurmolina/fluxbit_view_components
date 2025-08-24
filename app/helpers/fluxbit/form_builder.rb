@@ -22,14 +22,17 @@ module Fluxbit
         within: within,
         data: { errors_summary: true }
       ) do |banner|
-        [
-          render(Fluxbit::ListComponent.new) do |list|
-            object.errors.full_messages.each do |error|
-              list.with_item { error.html_safe }
-            end
-          end,
-          (template.capture { yield(banner) } if block_given?)
-        ].compact.join.html_safe
+        parts = []
+
+        parts << render(Fluxbit::ListComponent.new) do |list|
+          object.errors.full_messages.each do |error|
+            list.with_item { template.sanitize(error.to_s, tags: [], attributes: []) }
+          end
+        end
+
+        parts << template.capture { yield(banner) } if block_given?
+
+        template.safe_join(parts)
       end
     end
 

@@ -33,7 +33,7 @@ class Fluxbit::DropdownComponent < Fluxbit::Component
   def call
     content_tag :div, @props do
       content_tag :ul, class: styles[:ul] do
-        concat(items.join.html_safe) if items.any?
+        concat(safe_join(items)) if items.any?
         concat(Fluxbit::DropdownItemComponent.new(content).render_in(view_context)) if content.present?
       end
     end
