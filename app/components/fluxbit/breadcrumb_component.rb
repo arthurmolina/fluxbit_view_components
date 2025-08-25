@@ -20,8 +20,8 @@ class Fluxbit::BreadcrumbComponent < Fluxbit::Component
   end
 
   def call
-    content_tag :nav, @props do
-      content_tag :ol, safe_join(items), class: styles[:root][:list]
+    tag.nav(**@props) do
+      tag.ol(safe_join(items), class: styles[:root][:list])
     end
   end
 
@@ -48,13 +48,13 @@ class Fluxbit::BreadcrumbComponent < Fluxbit::Component
 
       @props["data-dropdown-toggle"] = dropdown.get_item if dropdown?
 
-      content_tag :li, class: styles[:item][:base] do
+      tag.li(class: styles[:item][:base]) do
         concat chevron_right(class: styles[:item][:chevron], stroke_width: 1)
         if @current_page || @href.blank?
           concat anyicon(@icon, class: styles[:item][:icon]) if @icon
-          concat content_tag(:span, item_content, **@props)
+          concat tag.span(item_content, **@props)
         else
-          concat(content_tag(:a, href: @href, **@props) do
+          concat(tag.a(href: @href, **@props) do
             concat(anyicon(@icon, class: styles[:item][:icon])) if @icon
             concat item_content
           end)

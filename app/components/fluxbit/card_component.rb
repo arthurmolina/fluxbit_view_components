@@ -35,7 +35,7 @@ class Fluxbit::CardComponent < Fluxbit::Component
     add(class: styles[:body], to: props) unless no_class
     # remove_class_from_props props
 
-    content_tag(:div, block.call, **props)
+    tag.div(block.call, **props)
   }
 
   # Initializes the card component with various customization options.
@@ -95,14 +95,14 @@ class Fluxbit::CardComponent < Fluxbit::Component
   def call
     container_tag = @props[:href] ? :a : :div
 
-    header_html = header? ? content_tag(:div, header, class: self.class.styles[:header]) : nil
-    footer_html = footer? ? content_tag(:div, footer, class: self.class.styles[:footer]) : nil
+    header_html = header? ? tag.div(header, class: self.class.styles[:header]) : nil
+    footer_html = footer? ? tag.div(footer, class: self.class.styles[:footer]) : nil
     body_content = content || safe_join(sections)
 
     if @image && @image_position == :top
       # Top image layout: image at the top, then header, body, and footer.
       add(class: styles[:image_top], to: @image_html)
-      image_html = content_tag(:img, nil, **@image_html)
+      image_html = tag.img(**@image_html)
 
       content_tag(container_tag, **@props) do
         concat(image_html)
@@ -114,8 +114,8 @@ class Fluxbit::CardComponent < Fluxbit::Component
     elsif @image && @image_position == :left
       # Left image layout: image on the left and content on the right in a flex container.
       add(class: styles[:image_left], to: @image_html)
-      image_html = content_tag(:div, class: "x") do
-        content_tag(:img, nil, **@image_html)
+      image_html = tag.div(class: "x") do
+        tag.img(**@image_html)
       end
       content_parts = []
       content_parts << header_html if header_html
@@ -124,7 +124,7 @@ class Fluxbit::CardComponent < Fluxbit::Component
 
       content_tag(container_tag, **@props) do
         concat(image_html)
-        concat(content_tag(:div, safe_join(content_parts), class: "flex-1"))
+        concat(tag.div(safe_join(content_parts), class: "flex-1"))
       end
     else
       # Fallback: render without image or with an unrecognized image_position.

@@ -34,7 +34,7 @@ class Fluxbit::FlexComponent < Fluxbit::Component
   end
 
   def call
-    content_tag :div, content, @props
+    tag.div(content, **@props)
   end
 
   private

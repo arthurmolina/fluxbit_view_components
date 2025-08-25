@@ -31,7 +31,7 @@ class Fluxbit::TabComponent < Fluxbit::Component
     add class: styles[:div][@vertical ? :vertical : :horizontal], to: @props, first_element: true
 
     if @has_panels
-      content_tag :div, **@props do
+      tag.div(**@props) do
         concat(render_tab_list)
         concat(render_tab_panels)
       end
@@ -57,7 +57,7 @@ class Fluxbit::TabComponent < Fluxbit::Component
 
     @ul_html[:id] = fx_id
 
-    content_tag :ul, **@ul_html do
+    tag.ul(**@ul_html) do
       safe_join(@tabs_group.map.with_index { |tab, index| render_tab(tab, index) })
     end
   end
@@ -107,10 +107,10 @@ class Fluxbit::TabComponent < Fluxbit::Component
     li_html[:id] = "#{fx_id}-#{index}-li"
     add class: styles[:tab_list][:li], to: li_html, first_element: true
 
-    content_tag :li, **li_html do
-      content_tag :a, **tab.props do
+    tag.li(**li_html) do
+      tag.a(**tab.props) do
         concat(render_icon(tab_icon)) if tab_icon
-        concat(content_tag(:span, tab_title))
+        concat(tag.span(tab_title))
       end
     end
   end
@@ -131,7 +131,7 @@ class Fluxbit::TabComponent < Fluxbit::Component
   end
 
   def render_tab_panels
-    content_tag :div, id: "##{fx_id}-content", class: styles[:tabpanel_container][@vertical ? :vertical : :horizontal] do
+    tag.div(id: "##{fx_id}-content", class: styles[:tabpanel_container][@vertical ? :vertical : :horizontal]) do
       safe_join(@tabs_group.map.with_index { |tab, index| render_tabpanel(tab, index) })
     end
   end
@@ -144,6 +144,6 @@ class Fluxbit::TabComponent < Fluxbit::Component
     content_html[:role] = "tabpanel"
     content_html[:"aria-labelledby"] = "#{fx_id}-#{index}"
 
-    content_tag :div, tab.content, **content_html
+    tag.div(tab.content, **content_html)
   end
 end

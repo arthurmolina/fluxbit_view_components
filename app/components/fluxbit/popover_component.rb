@@ -40,18 +40,18 @@ class Fluxbit::PopoverComponent < Fluxbit::Component
   end
 
   def call
-    content_tag :div, @props do
+    tag.div(**@props) do
       concat div_title unless @title.blank?
-      concat (content_tag(:div, class: styles[@image.blank? ? :content : :image_base]) do
+      concat (tag.div(class: styles[@image.blank? ? :content : :image_base]) do
         if @image.blank?
           content
         else
           if @image_position == :left
-            concat content_tag(:img, nil, @image_html)
-            concat content_tag(:div, content, class: styles[:image_content][:text])
+            concat tag.img(**@image_html)
+            concat tag.div(content, class: styles[:image_content][:text])
           else
-            concat content_tag(:div, content, class: styles[:image_content][:text])
-            concat content_tag(:img, nil, @image_html)
+            concat tag.div(content, class: styles[:image_content][:text])
+            concat tag.img(**@image_html)
           end
         end
       end)
@@ -60,12 +60,12 @@ class Fluxbit::PopoverComponent < Fluxbit::Component
   end
 
   def popper_arrow
-    content_tag :div, "", "data-popper-arrow" => true
+    tag.div("data-popper-arrow" => true)
   end
 
   def div_title
-    content_tag :div, class: styles[:title][:div] do
-      content_tag :h3, @title, class: styles[:title][:h3]
+    tag.div(class: styles[:title][:div]) do
+      tag.h3(@title, class: styles[:title][:h3])
     end
   end
 end

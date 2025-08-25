@@ -11,7 +11,7 @@ class Fluxbit::AvatarGroupComponent < Fluxbit::Component
   renders_many :gravatars, Fluxbit::GravatarComponent
 
   def call
-    content_tag :div, class: styles[:group] do
+    tag.div(class: styles[:group]) do
       avatars.each do |avatar|
         concat render(avatar)
       end

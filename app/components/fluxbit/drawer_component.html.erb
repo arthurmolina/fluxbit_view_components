@@ -1,4 +1,4 @@
-<%= content_tag :div, **@props do %>
+<%= tag.div(**@props) do %>
   <% if @swipeable %>
   <div class="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700" data-drawer-toggle="<%= @props[:id] %>">
     <span class="absolute w-8 h-1 -translate-x-1/2 bg-gray-300 rounded-lg top-3 left-1/2 dark:bg-gray-600"></span>

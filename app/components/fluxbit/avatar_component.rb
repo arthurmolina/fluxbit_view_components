@@ -55,11 +55,11 @@ class Fluxbit::AvatarComponent < Fluxbit::Component
   end
 
   def avatar_itself
-    return content_tag(:img, "", @props) unless @src.nil? || @placeholder_initials
+    return tag.img(**@props) unless @src.nil? || @placeholder_initials
 
-    content_tag :div, @props do
+    tag.div(**@props) do
       if @placeholder_initials
-        content_tag :span, @placeholder_initials, class: styles[:initials][:text]
+        tag.span(@placeholder_initials, class: styles[:initials][:text])
       else
         placeholder_icon
       end
@@ -80,8 +80,8 @@ class Fluxbit::AvatarComponent < Fluxbit::Component
       "clip-rule": "evenodd"
     }
 
-    content_tag(:svg, svg_attributes) do
-      content_tag(:path, "", path_attributes)
+    tag.svg(**svg_attributes) do
+      tag.path(**path_attributes)
     end
   end
 
@@ -92,20 +92,19 @@ class Fluxbit::AvatarComponent < Fluxbit::Component
   end
 
   def dot_indicator
-    content_tag :span,
-                "",
-                class: [
-                  styles[:status][:base],
-                  styles[:status][:options][@status],
-                  styles[@rounded ? :rounded : :not_rounded][:status_position][@status_position[0]],
+    tag.span("", class: [
+      styles[:status][:base],
+      styles[:status][:options][@status],
+      styles[@rounded ? :rounded : :not_rounded][:status_position][@status_position[0]],
                   styles[@rounded ? :rounded : :not_rounded][:status_position][@status_position[1]][@size]
                 ].join(" ")
+    )
   end
 
   def call
     return avatar_itself unless @status
 
-    content_tag :div, class: "relative" do
+    tag.div(class: "relative") do
       concat avatar_itself
       concat dot_indicator
     end

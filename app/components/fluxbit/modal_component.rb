@@ -73,15 +73,12 @@ class Fluxbit::ModalComponent < Fluxbit::Component
   end
 
   def call
-    content_tag(
-      :div,
-      **@props
-    ) do
-      content_tag(:div, **@content_html) do
-        content_tag(:div, class: styles[:content][:inner]) do
+    tag.div(**@props) do
+      tag.div(**@content_html) do
+        tag.div(class: styles[:content][:inner]) do
           concat(header) if title? || @title.present? || @close_button
-          concat(content_tag(:div, content, class: body_classes))
-          concat(content_tag(:div, footer, **@footer_html)) if footer?
+          concat(tag.div(content, class: body_classes))
+          concat(tag.div(footer, **@footer_html)) if footer?
         end
       end
     end

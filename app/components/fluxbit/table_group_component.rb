@@ -23,6 +23,6 @@ class Fluxbit::TableGroupComponent < Fluxbit::Component
   end
 
   def call
-    content_tag(:tr, safe_join(cells), @props)
+    tag.tr(safe_join(cells), **@props)
   end
 end

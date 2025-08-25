@@ -31,8 +31,8 @@ class Fluxbit::DropdownComponent < Fluxbit::Component
   end
 
   def call
-    content_tag :div, @props do
-      content_tag :ul, class: styles[:ul] do
+    tag.div(**@props) do
+      tag.ul(class: styles[:ul]) do
         concat(safe_join(items)) if items.any?
         concat(Fluxbit::DropdownItemComponent.new(content).render_in(view_context)) if content.present?
       end

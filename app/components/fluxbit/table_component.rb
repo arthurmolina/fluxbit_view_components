@@ -153,29 +153,29 @@ class Fluxbit::TableComponent < Fluxbit::Component
     # Wrapper
     capture do
       # Table
-      concat(content_tag(:div, **@wrapper_html) do
-        concat(content_tag(:table, **@props) do
+      concat(tag.div(**@wrapper_html) do
+        concat(tag.table(**@props) do
           # header
           concat(
-            content_tag(:thead, **@thead_html) do
+            tag.thead(**@thead_html) do
               concat(safe_join headers)
             end
           ) if headers?
 
           # body
           concat(
-            content_tag(:tbody, **@tbody_html) do
+            tag.tbody(**@tbody_html) do
               if content.present?
                 content
               else
-                concat(safe_join rows) if rows?
+                concat(safe_join(rows)) if rows?
               end
             end
           )
 
           # Footer
           concat(
-            content_tag(:tfoot, **@tfoot_html) do
+            tag.tfoot(**@tfoot_html) do
               concat(footer)
             end
           ) if footer?

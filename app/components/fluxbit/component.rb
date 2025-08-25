@@ -100,8 +100,8 @@ class Fluxbit::Component < ViewComponent::Base
     props[:viewBox] = "0 0 6 10"
     stroke_width = props.delete(:stroke_width) || 2
 
-    content_tag :svg, **props do
-      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m1 9 4-4-4-4"
+    tag.svg(**props) do
+      tag.path(stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m1 9 4-4-4-4")
     end
   end
 
@@ -114,8 +114,8 @@ class Fluxbit::Component < ViewComponent::Base
     props[:viewBox] = "0 0 6 10"
     stroke_width = props.delete(:stroke_width) || 2
 
-    content_tag :svg, **props do
-      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m5 1-4 4 4 4"
+    tag.svg(**props) do
+      tag.path(stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m5 1-4 4 4 4")
     end
   end
 
@@ -128,8 +128,8 @@ class Fluxbit::Component < ViewComponent::Base
     props[:viewBox] = "0 0 10 6"
     stroke_width = props.delete(:stroke_width) || 2
 
-    content_tag :svg, **props do
-      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m1 5 4-4 4 4"
+    tag.svg(**props) do
+      tag.path(stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m1 5 4-4 4 4")
     end
   end
 
@@ -142,8 +142,8 @@ class Fluxbit::Component < ViewComponent::Base
     props[:viewBox] = "0 0 10 6"
     stroke_width = props.delete(:stroke_width) || 2
 
-    content_tag :svg, **props do
-      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m1 1 4 4 4-4"
+    tag.svg(**props) do
+      tag.path(stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "m1 1 4 4 4-4")
     end
   end
 
@@ -153,8 +153,8 @@ class Fluxbit::Component < ViewComponent::Base
     props[:fill] = "none"
     props[:viewBox] = "0 0 14 14"
 
-    content_tag :svg, **props do
-      content_tag :path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => 2, d: "m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+    tag.svg(**props) do
+      tag.path(stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => 2, d: "m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6")
     end
   end
 
@@ -167,10 +167,10 @@ class Fluxbit::Component < ViewComponent::Base
     props[:viewBox] = "0 0 10 10"
     stroke_width = props.delete(:stroke_width) || 2
 
-    content_tag :svg, **props do
+    tag.svg(**props) do
       safe_join [
-        content_tag(:path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M4 1l-4 4 4 4"),
-        content_tag(:path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M10 1l-4 4 4 4")
+        tag.path(stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M4 1l-4 4 4 4"),
+        tag.path(stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M10 1l-4 4 4 4")
       ]
     end
   end
@@ -184,10 +184,10 @@ class Fluxbit::Component < ViewComponent::Base
     props[:viewBox] = "0 0 12 10"
     stroke_width = props.delete(:stroke_width) || 2
 
-    content_tag :svg, **props do
+    tag.svg(**props) do
       safe_join [
-        content_tag(:path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M2 1l4 4-4 4"),
-        content_tag(:path, "", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M8 1l4 4-4 4")
+        tag.path(stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M2 1l4 4-4 4"),
+        tag.path(stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => stroke_width, d: "M8 1l4 4-4 4")
       ]
     end
   end
@@ -200,11 +200,11 @@ class Fluxbit::Component < ViewComponent::Base
     props[:fill] = "currentColor"
     props[:viewBox] = "0 0 10 2"
 
-    content_tag :svg, **props do
+    tag.svg(**props) do
       safe_join [
-        content_tag(:circle, "", cx: 1, cy: 1, r: 1),
-        content_tag(:circle, "", cx: 5, cy: 1, r: 1),
-        content_tag(:circle, "", cx: 9, cy: 1, r: 1)
+        tag.circle(cx: 1, cy: 1, r: 1),
+        tag.circle(cx: 5, cy: 1, r: 1),
+        tag.circle(cx: 9, cy: 1, r: 1)
       ]
     end
   end

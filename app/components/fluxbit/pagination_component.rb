@@ -51,7 +51,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
   end
 
   def call
-    content_tag(:nav, **@props) do
+    tag.nav(**@props) do
       concat first_button if @show_first_last
       concat prev_button if @show_prev_next
 
@@ -59,11 +59,11 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
         series.each do |item|
           case item
           when Integer
-            concat(content_tag(:a, item.to_s, href: url_for(item), role: "link", class: @page_link_style, aria: { label: item.to_s }))
+            concat(tag.a(item.to_s, href: url_for(item), role: "link", class: @page_link_style, aria: { label: item.to_s }))
           when String
-            concat(content_tag(:a, item.to_s, role: "link", class: @current_style, aria: { disabled: true, current: "page" }))
+            concat(tag.a(item.to_s, role: "link", class: @current_style, aria: { disabled: true, current: "page" }))
           when :gap
-            concat(content_tag(:a, ellipsis_horizontal, role: "link", class: @page_link_style, aria: { disabled: true }))
+            concat(tag.a(ellipsis_horizontal, role: "link", class: @page_link_style, aria: { disabled: true }))
           end
         end
       end
@@ -89,9 +89,12 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
     end
     add class: styles[:previous], to: props
 
-    content_tag(:a, **props) do
+    tag.a(**props) do
       concat(chevron_double_left) if @show_icons
-      concat(content_tag :span, translate("first"), class: @show_texts ? (@show_icons ? styles[:text_with_icon_prev] : styles[:only_text]) : styles[:only_icon])
+      concat(tag.span(
+        translate("first"),
+        class: @show_texts ? (@show_icons ? styles[:text_with_icon_prev] : styles[:only_text]) : styles[:only_icon]
+      ))
     end
   end
 
@@ -105,8 +108,11 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
     end
     add class: styles[:next], to: props
 
-    content_tag(:a, **props) do
-      concat(content_tag :span, translate("last"), class: @show_texts ? (@show_icons ? styles[:text_with_icon_next] : styles[:only_text]) : styles[:only_icon])
+    tag.a(**props) do
+      concat(tag.span(
+        translate("last"),
+        class: @show_texts ? (@show_icons ? styles[:text_with_icon_next] : styles[:only_text]) : styles[:only_icon]
+      ))
       concat(chevron_double_right) if @show_icons
     end
   end
@@ -121,9 +127,13 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
     end
     add(class: styles[:previous], to: props) unless @show_first_last
 
-    content_tag(:a, **props) do
+    tag.a(**props) do
       concat(chevron_left) if @show_icons
-      concat(content_tag :span, translate("prev"), class: @show_texts ? (@show_icons ? styles[:text_with_icon_prev] : styles[:only_text]) : styles[:only_icon])
+      concat(tag.span(
+        translate("prev"),
+        class: @show_texts ? (@show_icons ? styles[:text_with_icon_prev] : styles[:only_text]) : styles[:only_icon]
+        )
+      )
     end
   end
 
@@ -137,8 +147,11 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
     end
     add(class: styles[:next], to: props) unless @show_first_last
 
-    content_tag(:a, **props) do
-      concat(content_tag :span, translate("next"), class: @show_texts ? (@show_icons ? styles[:text_with_icon_next] : styles[:only_text]) : styles[:only_icon])
+    tag.a(**props) do
+      concat(tag.span(
+        translate("next"),
+        class: @show_texts ? (@show_icons ? styles[:text_with_icon_next] : styles[:only_text]) : styles[:only_icon]
+      ))
       concat(chevron_right) if @show_icons
     end
   end

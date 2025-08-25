@@ -24,7 +24,7 @@ class Fluxbit::DropdownItemComponent < Fluxbit::Component
   end
 
   def call
-    return content_tag(:li, "", class: styles[:divider]) if @divider
+    return tag.li(class: styles[:divider]) if @divider
 
     if items.any?
       @content_html["data-dropdown-toggle"] = @item_props.delete(:dropdown_id) || "inner-dropdown-#{random_id}"
@@ -38,9 +38,9 @@ class Fluxbit::DropdownItemComponent < Fluxbit::Component
     add to: @content_html, class: styles[:items][:types][@type]
     remove_class_from_props(@content_html)
 
-    content_tag(:li, **@item_props) do
+    tag.li(**@item_props) do
       concat(content_tag(@type.to_sym, **@content_html) do
-        concat(content_tag :div, class: "flex" do
+        concat(tag.div(class: "flex") do
           concat(anyicon(@icon, **@icon_html)) if @icon.present?
           concat(content || @param_content)
         end)
@@ -61,8 +61,8 @@ class Fluxbit::DropdownItemComponent < Fluxbit::Component
       auto_divider ? styles[:auto_divider] : nil
     ]
 
-    content_tag :div, **props do
-      content_tag :ul, safe_join(items), class: styles[:ul]
+    tag.div(**props) do
+      tag.ul(safe_join(items), class: styles[:ul])
     end
   end
 end

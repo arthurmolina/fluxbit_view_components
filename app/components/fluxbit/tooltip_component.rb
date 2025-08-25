@@ -24,7 +24,7 @@ class Fluxbit::TooltipComponent < Fluxbit::Component
   end
 
   def call
-    content_tag(:div, @props) do
+    tag.div(**@props) do
       concat content
       concat arrow
     end
@@ -33,6 +33,6 @@ class Fluxbit::TooltipComponent < Fluxbit::Component
   def arrow
     return "" unless @has_arrow
 
-    content_tag :div, "", "data-popper-arrow" => true, class: "tooltip-arrow"
+    tag.div("", "data-popper-arrow" => true, class: "tooltip-arrow")
   end
 end

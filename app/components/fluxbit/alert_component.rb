@@ -73,9 +73,9 @@ class Fluxbit::AlertComponent < Fluxbit::Component
   end
 
   def call
-    content_tag :div, @props do
+    tag.div(**@props) do
       concat @icon
-      concat content_tag(:div, content, class: "ml-3 text-sm font-medium")
+      concat tag.div(content, class: "ml-3 text-sm font-medium")
       concat close_button
     end
   end
@@ -118,8 +118,8 @@ class Fluxbit::AlertComponent < Fluxbit::Component
     }
 
     add to: b_props, class: [ styles[:close_button][:base], styles[:close_button][:colors][@color] ]
-    content_tag :button, b_props do
-      concat content_tag(:span, t("fluxbit.alert.dismiss"), class: "sr-only")
+    tag.button(**b_props) do
+      concat tag.span(t("fluxbit.alert.dismiss"), class: "sr-only")
       concat anyicon("heroicons_outline:x-mark", class: "size-5")
     end
   end

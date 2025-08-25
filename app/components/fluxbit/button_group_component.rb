@@ -27,7 +27,7 @@ class Fluxbit::ButtonGroupComponent < Fluxbit::Component
 
   def call
     buttons
-    content_tag :div, **@props do
+    tag.div(**@props) do
       @buttons_group.each_with_index do |button, index|
         button_props = button.props || {}
         button_content = button.content
