@@ -3,6 +3,9 @@ en:
     alert:
       aria_close: Close
       dismiss: Dismiss
+    banner:
+      aria_close: Close
+      dismiss: Dismiss
     drawer:
       dismiss: Dismiss
     modal:
