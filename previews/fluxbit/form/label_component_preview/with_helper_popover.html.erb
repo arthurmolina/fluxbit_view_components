@@ -1,0 +1,26 @@
+<div class="space-y-6">
+  <%= fx_label(
+    with_content: "API Key",
+    helper_popover: "Your API key is used to authenticate requests to our service. Keep it secure and don't share it publicly.",
+    for: "api_key"
+  ) %>
+
+  <%= fx_label(
+    with_content: "Tax ID",
+    helper_popover: "Enter your federal tax identification number. This is typically your SSN for individuals or EIN for businesses.",
+    for: "tax_id"
+  ) %>
+
+  <%= fx_label(
+    with_content: "Webhook URL",
+    helper_popover: "This is the endpoint where we'll send notifications about account events. It must be a valid HTTPS URL that can receive POST requests.",
+    for: "webhook_url"
+  ) %>
+
+  <%= fx_label(
+    with_content: "Timezone",
+    color: :info,
+    helper_popover: "Select your local timezone to ensure dates and times are displayed correctly in your account.",
+    for: "timezone"
+  ) %>
+</div>

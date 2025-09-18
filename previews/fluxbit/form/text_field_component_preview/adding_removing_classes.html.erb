@@ -1,0 +1,67 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-2">Default Text Field:</h4>
+    <%= fx_text_field(
+      name: "default_field",
+      label: "Default Styling",
+      placeholder: "Standard text field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Custom Classes Added:</h4>
+    <%= fx_text_field(
+      name: "custom_field",
+      label: "Custom Styled Field",
+      placeholder: "Custom styling",
+      class: "font-mono tracking-wide text-center border-2 border-dashed"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Base Classes Removed:</h4>
+    <%= fx_text_field(
+      name: "modified_field",
+      label: "Modified Base Styling",
+      placeholder: "Modified base classes",
+      remove_class: "border rounded-lg",
+      class: "border-2 border-blue-500 rounded-xl"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">Custom Theme with Wrapper:</h4>
+    <%= fx_text_field(
+      name: "themed_field",
+      label: "Themed Text Field",
+      placeholder: "Themed styling",
+      class: "bg-gradient-to-r from-purple-50 to-pink-50 border-purple-300 focus:border-purple-500",
+      wrapper_html: { class: "bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200" }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">High Contrast Accessibility:</h4>
+    <%= fx_text_field(
+      name: "accessible_field",
+      label: "High Contrast Field",
+      placeholder: "High contrast version",
+      remove_class: "bg-slate-50",
+      class: "bg-yellow-100 border-2 border-black text-black placeholder-gray-700",
+      help_text: "High contrast version for better accessibility"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">Custom Icon and Addon Styling:</h4>
+    <%= fx_text_field(
+      name: "custom_icon_field",
+      label: "Custom Icon Styling",
+      icon: "heroicons_solid:star",
+      addon: "★",
+      placeholder: "Custom icon and addon",
+      icon_html: { class: "text-yellow-500" },
+      addon_html: { class: "bg-yellow-100 border-yellow-300 text-yellow-800" }
+    ) %>
+  </div>
+</div>

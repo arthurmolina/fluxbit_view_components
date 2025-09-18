@@ -1,0 +1,71 @@
+<div class="space-y-4">
+  <%= fx_text_field(
+    name: "text_field",
+    label: "Text Field",
+    type: :text,
+    placeholder: "Regular text input"
+  ) %>
+
+  <%= fx_text_field(
+    name: "email_field",
+    label: "Email Field",
+    type: :email,
+    placeholder: "user@example.com"
+  ) %>
+
+  <%= fx_text_field(
+    name: "password_field",
+    label: "Password Field",
+    type: :password,
+    placeholder: "Enter password"
+  ) %>
+
+  <%= fx_text_field(
+    name: "number_field",
+    label: "Number Field",
+    type: :number,
+    placeholder: "123",
+    min: 0,
+    max: 100
+  ) %>
+
+  <%= fx_text_field(
+    name: "tel_field",
+    label: "Phone Number",
+    type: :tel,
+    placeholder: "(555) 123-4567"
+  ) %>
+
+  <%= fx_text_field(
+    name: "url_field",
+    label: "Website URL",
+    type: :url,
+    placeholder: "https://example.com"
+  ) %>
+
+  <%= fx_text_field(
+    name: "search_field",
+    label: "Search Query",
+    type: :search,
+    placeholder: "Search for anything..."
+  ) %>
+
+  <%= fx_text_field(
+    name: "date_field",
+    label: "Date",
+    type: :date
+  ) %>
+
+  <%= fx_text_field(
+    name: "time_field",
+    label: "Time",
+    type: :time
+  ) %>
+
+  <%= fx_text_field(
+    name: "color_field",
+    label: "Color Picker",
+    type: :color,
+    value: "#3b82f6"
+  ) %>
+</div>

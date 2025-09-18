@@ -1,0 +1,18 @@
+<div class="flex gap-6">
+  <div class="text-center">
+    <%= render(Fluxbit::AvatarComponent.new(src: "https://i.pravatar.cc/150?img=1", status: :online, status_position: :top_left, size: :lg)) %>
+    <p class="text-xs mt-2">Top Left</p>
+  </div>
+  <div class="text-center">
+    <%= render(Fluxbit::AvatarComponent.new(src: "https://i.pravatar.cc/150?img=2", status: :online, status_position: :top_right, size: :lg)) %>
+    <p class="text-xs mt-2">Top Right</p>
+  </div>
+  <div class="text-center">
+    <%= render(Fluxbit::AvatarComponent.new(src: "https://i.pravatar.cc/150?img=3", status: :online, status_position: :bottom_left, size: :lg)) %>
+    <p class="text-xs mt-2">Bottom Left</p>
+  </div>
+  <div class="text-center">
+    <%= render(Fluxbit::AvatarComponent.new(src: "https://i.pravatar.cc/150?img=4", status: :online, status_position: :bottom_right, size: :lg)) %>
+    <p class="text-xs mt-2">Bottom Right</p>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Simple card with content</h3>
+  <%= fx_card { 'This is a simple card with just text content. It uses all default styling.' } %>
+
+  <h3 class="text-lg font-semibold mb-4">Card with header and footer</h3>
+  <%= fx_card do |card| %>
+    <% card.with_header do %>
+      <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Card Title</h5>
+    <% end %>
+    <% card.with_section do %>
+      <p class="font-normal text-gray-700 dark:text-gray-400">This card demonstrates the basic structure with header, content, and footer sections.</p>
+    <% end %>
+    <% card.with_footer do %>
+      <small class="text-gray-500 dark:text-gray-400">Footer information</small>
+    <% end %>
+  <% end %>
+
+  <h3 class="text-lg font-semibold mb-4">Card with multiple sections</h3>
+  <%= fx_card do |card| %>
+    <% card.with_header do %>
+      <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Multiple Sections</h5>
+    <% end %>
+    <% card.with_section do %>
+      <p class="font-normal text-gray-700 dark:text-gray-400">This is the first section of content.</p>
+    <% end %>
+    <% card.with_section do %>
+      <p class="font-normal text-gray-700 dark:text-gray-400">This is the second section of content.</p>
+    <% end %>
+    <% card.with_section do %>
+      <div class="flex items-center space-x-2">
+        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Tag</span>
+        <span>Third section with custom content</span>
+      </div>
+    <% end %>
+  <% end %>
+</div>

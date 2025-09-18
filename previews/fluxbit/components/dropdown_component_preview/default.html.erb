@@ -1,8 +1,10 @@
-<%= fx_button(type: :button, remove_class: "w-full", remove_dropdown_arrow: true) do |button| %>
-  Dropdown button
-  <% button.with_dropdown do |dropdown| %>
-    <% dropdown.with_item "Dashboard", icon: "heroicons_solid:eye", content_html: {href: "#"}, as: :a %>
-    <% dropdown.with_item divider: true %>
-    <% dropdown.with_item "Earnings", as: :button %>
+<div class="h-50">
+  <%= fx_button(type: :button, remove_class: "w-full", remove_dropdown_arrow: true) do |button| %>
+    Dropdown button
+    <% button.with_dropdown do |dropdown| %>
+      <% dropdown.with_item "Dashboard", icon: "heroicons_solid:eye", content_html: {href: "#"}, as: :a %>
+      <% dropdown.with_item divider: true %>
+      <% dropdown.with_item "Earnings", as: :button %>
+    <% end %>
   <% end %>
-<% end %>
+</div>

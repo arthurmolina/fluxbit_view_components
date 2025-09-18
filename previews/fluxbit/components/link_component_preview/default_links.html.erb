@@ -1,0 +1,37 @@
+<div class="space-y-4">
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Simple link</h3>
+    <%= fx_link(href: "#") do %>
+      This is a simple link
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Link with content method</h3>
+    <%= fx_link(href: "#") { "Link created with with_content method" } %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Link to different pages</h3>
+    <div class="space-y-2">
+      <%= fx_link(href: "/") do %>
+        Home page
+      <% end %>
+      <br>
+      <%= fx_link(href: "/about") do %>
+        About page
+      <% end %>
+      <br>
+      <%= fx_link(href: "/contact") do %>
+        Contact page
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Link with longer text</h3>
+    <%= fx_link(href: "#") do %>
+      This is a longer link text that demonstrates how the component handles multi-word content and maintains proper styling across different text lengths.
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="flex space-x-8 items-start h-64">
+  <div class="flex flex-col items-center">
+    <h4 class="font-semibold mb-4">Volume Control</h4>
+    <%= fx_range(
+      name: "volume_vertical",
+      label: "Volume",
+      value: 75,
+      min: 0,
+      max: 100,
+      vertical: true,
+      sizing: 1
+    ) %>
+  </div>
+
+  <div class="flex flex-col items-center">
+    <h4 class="font-semibold mb-4">Bass Level</h4>
+    <%= fx_range(
+      name: "bass_vertical",
+      label: "Bass",
+      value: 40,
+      min: 0,
+      max: 100,
+      vertical: true,
+      sizing: 1
+    ) %>
+  </div>
+
+  <div class="flex flex-col items-center">
+    <h4 class="font-semibold mb-4">Treble Level</h4>
+    <%= fx_range(
+      name: "treble_vertical",
+      label: "Treble",
+      value: 60,
+      min: 0,
+      max: 100,
+      vertical: true,
+      sizing: 1
+    ) %>
+  </div>
+
+  <div class="flex flex-col items-center">
+    <h4 class="font-semibold mb-4">Balance</h4>
+    <%= fx_range(
+      name: "balance_vertical",
+      label: "Balance",
+      value: 50,
+      min: 0,
+      max: 100,
+      vertical: true,
+      sizing: 2
+    ) %>
+  </div>
+</div>

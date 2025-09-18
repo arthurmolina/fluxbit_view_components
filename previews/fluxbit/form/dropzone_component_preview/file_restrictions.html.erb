@@ -1,0 +1,27 @@
+<div class="space-y-6">
+  <%= fx_dropzone(
+    name: "images_only",
+    title: "Images Only",
+    subtitle: "PNG, JPG, GIF, WebP",
+    accept: "image/*",
+    icon: "heroicons_solid:photo",
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "documents_only",
+    title: "Documents Only",
+    subtitle: "PDF, DOC, DOCX",
+    accept: ".pdf,.doc,.docx",
+    icon: "heroicons_solid:document_plus",
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "specific_types",
+    title: "Specific File Types",
+    subtitle: "JSON, CSV, XML files",
+    accept: ".json,.csv,.xml",
+    height: 2
+  ) %>
+</div>

@@ -1,0 +1,17 @@
+<div class="space-y-4">
+  <%= fx_toggle(
+    label: "Disabled Unchecked",
+    name: "disabled_unchecked",
+    disabled: true,
+    checked: false,
+    help_text: "This toggle is disabled and cannot be changed"
+  ) %>
+
+  <%= fx_toggle(
+    label: "Disabled Checked",
+    name: "disabled_checked",
+    disabled: true,
+    checked: true,
+    help_text: "This toggle is disabled but checked"
+  ) %>
+</div>

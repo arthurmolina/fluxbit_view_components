@@ -1,0 +1,50 @@
+<%= fx_tab(variant: :default, color: :blue) do |tabs| %>
+  <%= tabs.with_tab title: "Dashboard", active: true do %>
+    <div class="p-4">
+      <%= fx_heading(size: 3) do %>Dashboard Overview<% end %>
+      <p class="text-gray-600 dark:text-gray-400 mt-2">
+        Welcome to your dashboard. Here you can see an overview of your account activity and recent updates.
+      </p>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <%= fx_card(class: "p-4") do %>
+          <h4 class="font-semibold">Total Users</h4>
+          <p class="text-2xl font-bold text-blue-600">1,234</p>
+        <% end %>
+        <%= fx_card(class: "p-4") do %>
+          <h4 class="font-semibold">Revenue</h4>
+          <p class="text-2xl font-bold text-green-600">$12,345</p>
+        <% end %>
+        <%= fx_card(class: "p-4") do %>
+          <h4 class="font-semibold">Orders</h4>
+          <p class="text-2xl font-bold text-purple-600">567</p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Analytics" do %>
+    <div class="p-4">
+      <%= fx_heading(size: 3) do %>Analytics Reports<% end %>
+      <p class="text-gray-600 dark:text-gray-400 mt-2">
+        Detailed analytics and reporting for your business metrics.
+      </p>
+      <div class="mt-4">
+        <%= fx_badge(color: :info, with_content: "Coming Soon") %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Settings" do %>
+    <div class="p-4">
+      <%= fx_heading(size: 3) do %>Account Settings<% end %>
+      <p class="text-gray-600 dark:text-gray-400 mt-2">
+        Manage your account preferences and configuration options.
+      </p>
+      <div class="mt-4 space-y-4">
+        <%= fx_toggle(:notifications, label: "Email Notifications") %>
+        <%= fx_toggle(:marketing, label: "Marketing Updates") %>
+        <%= fx_button(color: :primary) do %>Save Changes<% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

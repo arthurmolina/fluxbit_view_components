@@ -1,0 +1,67 @@
+<div class="space-y-8">
+  <div>
+    <h4 class="font-semibold mb-4">Image Types Only</h4>
+    <%= fx_upload_image(
+      name: "image_only",
+      label: "Profile Photo",
+      title: "Upload Photo",
+      accept: "image/*",
+      help_text: "Only image files are allowed"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Specific Image Formats</h4>
+    <%= fx_upload_image(
+      name: "specific_formats",
+      label: "Logo Upload",
+      title: "Upload Logo",
+      accept: ".jpg,.jpeg,.png,.gif",
+      help_text: "Accepted formats: JPG, PNG, GIF"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">High Quality Images Only</h4>
+    <%= fx_upload_image(
+      name: "high_quality",
+      label: "Print Quality Image",
+      title: "Upload Image",
+      accept: ".png,.tiff,.bmp",
+      help_text: "High-quality formats only: PNG, TIFF, BMP"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Web Optimized Images</h4>
+    <%= fx_upload_image(
+      name: "web_optimized",
+      label: "Web Image",
+      title: "Upload Image",
+      accept: ".jpg,.jpeg,.png,.webp",
+      help_text: "Web-optimized formats: JPG, PNG, WebP"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Vector Graphics</h4>
+    <%= fx_upload_image(
+      name: "vector_graphics",
+      label: "Icon/Logo",
+      title: "Upload Vector",
+      accept: ".svg,.eps,.ai",
+      help_text: "Vector formats: SVG, EPS, AI"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Documents with Images</h4>
+    <%= fx_upload_image(
+      name: "documents",
+      label: "Document Scan",
+      title: "Upload Document",
+      accept: ".pdf,.jpg,.jpeg,.png",
+      help_text: "Documents: PDF, JPG, PNG"
+    ) %>
+  </div>
+</div>

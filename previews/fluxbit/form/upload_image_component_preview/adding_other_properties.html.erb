@@ -1,0 +1,132 @@
+<div class="space-y-8">
+  <div>
+    <h4 class="font-semibold mb-4">With Custom ID and Data Attributes:</h4>
+    <%= fx_upload_image(
+      name: "tracked_upload",
+      label: "Tracked Upload",
+      title: "Upload Image",
+      id: "analytics-upload",
+      data: {
+        testid: "file-upload",
+        controller: "upload-tracker",
+        target: "fileInput",
+        action: "change->upload-tracker#handleUpload"
+      }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Form Association:</h4>
+    <%= fx_upload_image(
+      name: "form_upload",
+      label: "Form Associated Upload",
+      title: "Upload File",
+      form: "main-form",
+      required: true,
+      accept: "image/*"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With File Size Limit:</h4>
+    <%= fx_upload_image(
+      name: "size_limited_upload",
+      label: "Size Limited Upload",
+      title: "Upload Image",
+      accept: "image/*",
+      data: { max_file_size: "5242880" },
+      help_text: "Maximum file size: 5MB"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Custom Event Handlers:</h4>
+    <%= fx_upload_image(
+      name: "event_upload",
+      label: "Event Handler Upload",
+      title: "Upload Image",
+      onchange: "console.log('File selected:', this.files[0]?.name)",
+      onclick: "console.log('Upload clicked')",
+      accept: "image/*"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Validation Attributes:</h4>
+    <%= fx_upload_image(
+      name: "validated_upload",
+      label: "Validated Upload",
+      title: "Upload Document",
+      required: true,
+      accept: ".pdf,.jpg,.jpeg,.png",
+      data: {
+        validate: "file-type",
+        allowed_types: "pdf,jpg,jpeg,png",
+        max_size: "10485760"
+      },
+      help_text: "Required: PDF, JPG, or PNG up to 10MB"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Accessibility Attributes:</h4>
+    <%= fx_upload_image(
+      name: "accessible_upload",
+      label: "Accessible Upload",
+      title: "Upload Image",
+      aria: {
+        describedby: "upload-description",
+        required: "true"
+      },
+      tabindex: "0"
+    ) %>
+    <p id="upload-description" class="text-sm text-gray-600 mt-1">Upload an image file for your profile</p>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Capture Attribute (Mobile Camera):</h4>
+    <%= fx_upload_image(
+      name: "camera_upload",
+      label: "Camera Upload",
+      title: "Take Photo",
+      accept: "image/*",
+      capture: "user",
+      help_text: "Take a photo with your camera or upload from gallery"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Wrapper and Container Attributes:</h4>
+    <%= fx_upload_image(
+      name: "container_upload",
+      label: "Container Upload",
+      title: "Upload Image",
+      wrapper_html: {
+        id: "upload-container",
+        data: {
+          controller: "drag-drop",
+          action: "dragover->drag-drop#handleDragOver drop->drag-drop#handleDrop"
+        },
+        style: "transition: all 0.3s ease; min-height: 200px;",
+        class: "border-2 border-dashed border-gray-300 hover:border-blue-500 rounded-lg p-6"
+      }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Security and Privacy Attributes:</h4>
+    <%= fx_upload_image(
+      name: "secure_upload",
+      label: "Secure Upload",
+      title: "Upload Securely",
+      accept: "image/*",
+      data: {
+        encrypt: "true",
+        secure_upload: "enabled",
+        privacy_level: "high"
+      },
+      autocomplete: "off",
+      help_text: "Files are encrypted during upload"
+    ) %>
+  </div>
+</div>

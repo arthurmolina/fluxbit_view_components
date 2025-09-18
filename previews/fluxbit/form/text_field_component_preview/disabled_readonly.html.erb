@@ -1,0 +1,82 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Normal Fields</h4>
+    <div class="space-y-3">
+      <%= fx_text_field(
+        name: "normal_field",
+        label: "Normal Field",
+        value: "This field is editable",
+        placeholder: "Enter text"
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Disabled Fields</h4>
+    <div class="space-y-3">
+      <%= fx_text_field(
+        name: "disabled_field",
+        label: "Disabled Field",
+        value: "This field is disabled",
+        disabled: true,
+        help_text: "This field cannot be edited"
+      ) %>
+
+      <%= fx_text_field(
+        name: "disabled_password",
+        label: "Disabled Password",
+        type: :password,
+        value: "secretpassword",
+        disabled: true,
+        icon: "heroicons_solid:lock-closed"
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Readonly Fields</h4>
+    <div class="space-y-3">
+      <%= fx_text_field(
+        name: "readonly_field",
+        label: "Readonly Field",
+        value: "This field is readonly",
+        readonly: true,
+        help_text: "This field can be selected but not modified"
+      ) %>
+
+      <%= fx_text_field(
+        name: "readonly_email",
+        label: "Account Email",
+        type: :email,
+        value: "user@example.com",
+        readonly: true,
+        icon: "heroicons_solid:envelope",
+        help_text: "Contact support to change your email address"
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Mixed States with Validation</h4>
+    <div class="space-y-3">
+      <%= fx_text_field(
+        name: "disabled_success",
+        label: "Disabled Success State",
+        value: "Verified email",
+        disabled: true,
+        color: :success,
+        icon: "heroicons_solid:check-circle"
+      ) %>
+
+      <%= fx_text_field(
+        name: "readonly_warning",
+        label: "Readonly Warning State",
+        value: "Legacy format",
+        readonly: true,
+        color: :warning,
+        icon: "heroicons_solid:exclamation-triangle",
+        help_text: "This field uses a legacy format"
+      ) %>
+    </div>
+  </div>
+</div>

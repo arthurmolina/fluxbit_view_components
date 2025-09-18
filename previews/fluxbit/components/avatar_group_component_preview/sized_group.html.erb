@@ -1,0 +1,33 @@
+<div class="p-8 space-y-6">
+  <div class="flex justify-center">
+    <%= fx_heading(size: 4) do %>Small Avatars<% end %>
+  </div>
+  <div class="flex justify-center">
+    <%= fx_avatar_group do |group| %>
+      <%= group.with_avatar(size: :xs, placeholder_initials: "XS") %>
+      <%= group.with_avatar(size: :xs, placeholder_initials: "SM") %>
+      <%= group.with_avatar(size: :xs, placeholder_initials: "MD") %>
+    <% end %>
+  </div>
+
+  <div class="flex justify-center">
+    <%= fx_heading(size: 4) do %>Medium Avatars<% end %>
+  </div>
+  <div class="flex justify-center">
+    <%= fx_avatar_group do |group| %>
+      <%= group.with_avatar(size: :md, placeholder_initials: "AM") %>
+      <%= group.with_avatar(size: :md, placeholder_initials: "FX") %>
+      <%= group.with_avatar(size: :md, placeholder_initials: "BG") %>
+    <% end %>
+  </div>
+
+  <div class="flex justify-center">
+    <%= fx_heading(size: 4) do %>Large Avatars<% end %>
+  </div>
+  <div class="flex justify-center">
+    <%= fx_avatar_group do |group| %>
+      <%= group.with_avatar(size: :lg, placeholder_initials: "LG") %>
+      <%= group.with_avatar(size: :lg, placeholder_initials: "XL") %>
+    <% end %>
+  </div>
+</div>

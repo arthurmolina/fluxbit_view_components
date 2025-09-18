@@ -1,0 +1,193 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 3) do %>Data Attributes Example<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Adding data attributes for JavaScript interaction and analytics tracking.</p>
+    
+    <%= fx_tab(variant: :default, color: :blue, 
+               data: { 
+                 testid: "main-navigation", 
+                 analytics: "tab-interaction",
+                 controller: "tab-tracker"
+               }) do |tabs| %>
+      <%= tabs.with_tab title: "Analytics Tab", active: true, 
+                        data: { track: "overview-tab", section: "main" } do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4) do %>Tab with Data Attributes<% end %>
+          <p class="text-gray-600 mt-2">This tab has data attributes for analytics tracking and testing.</p>
+          <%= fx_button(color: :blue, class: "mt-4", data: { action: "click-tracked" }) do %>
+            Tracked Button
+          <% end %>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "Second Tab", data: { track: "second-tab", section: "main" } do %>
+        <div class="p-4">
+          <p class="text-gray-600">Another tab with tracking attributes.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>ARIA Accessibility Properties<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Enhanced accessibility with ARIA attributes.</p>
+    
+    <%= fx_tab(variant: :pills, color: :green, 
+               role: "navigation",
+               aria: { label: "Main navigation tabs" }) do |tabs| %>
+      <%= tabs.with_tab title: "Accessible Tab", active: true,
+                        aria: { describedby: "tab-help-text" } do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4) do %>Accessibility Enhanced<% end %>
+          <p class="text-gray-600 mt-2" id="tab-help-text">
+            This tab includes proper ARIA attributes for screen readers and assistive technologies.
+          </p>
+          <%= fx_button(color: :green, class: "mt-4", 
+                        aria: { describedby: "button-help" }) do %>
+            Accessible Button
+          <% end %>
+          <div id="button-help" class="sr-only">
+            This button performs the main action for this tab
+          </div>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "Help Content",
+                        aria: { describedby: "help-description" } do %>
+        <div class="p-4" id="help-description">
+          <p class="text-gray-600">Help and support information with proper labeling.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Custom ID and Name Attributes<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Using custom IDs and names for form integration.</p>
+    
+    <%= fx_tab(variant: :underline, color: :purple, 
+               id: "settings-tabs",
+               name: "settings_navigation") do |tabs| %>
+      <%= tabs.with_tab title: "Form Settings", active: true, id: "form-tab" do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4) do %>Form Integration<% end %>
+          <div class="mt-4 space-y-4">
+            <%= fx_text_field(:setting_name, label: "Setting Name", 
+                              id: "setting-name-input",
+                              name: "settings[name]") %>
+            <%= fx_toggle(:enabled, label: "Enable Setting",
+                         id: "setting-enabled",
+                         name: "settings[enabled]") %>
+          </div>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "Advanced", id: "advanced-tab" do %>
+        <div class="p-4">
+          <p class="text-gray-600">Advanced settings with custom identifiers.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Event Handler Attributes<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Adding event handlers and JavaScript interactions.</p>
+    
+    <%= fx_tab(variant: :default, color: :red,
+               onclick: "console.log('Tab container clicked')",
+               onmouseover: "this.style.transform = 'scale(1.02)'",
+               onmouseleave: "this.style.transform = 'scale(1)'",
+               style: "transition: transform 0.2s ease;") do |tabs| %>
+      <%= tabs.with_tab title: "Interactive", active: true,
+                        onclick: "alert('Tab clicked!')" do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4) do %>JavaScript Events<% end %>
+          <p class="text-gray-600 mt-2">This tab has click handlers and hover effects.</p>
+          <%= fx_button(color: :red, class: "mt-4",
+                        onclick: "this.textContent = 'Clicked!'; setTimeout(() => this.textContent = 'Event Button', 2000)") do %>
+            Event Button
+          <% end %>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "Hover Effects",
+                        onmouseenter: "this.style.backgroundColor = '#fee2e2'",
+                        onmouseleave: "this.style.backgroundColor = ''",
+                        style: "transition: background-color 0.2s ease;" do %>
+        <div class="p-4">
+          <p class="text-gray-600">This tab changes background on hover.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>CSS Custom Properties<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Using CSS custom properties for dynamic styling.</p>
+    
+    <%= fx_tab(variant: :pills, color: :indigo,
+               style: "--tab-spacing: 1rem; --tab-radius: 0.75rem;",
+               class: "space-x-[var(--tab-spacing)]") do |tabs| %>
+      <%= tabs.with_tab title: "CSS Variables", active: true do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4) do %>Dynamic Styling<% end %>
+          <p class="text-gray-600 mt-2">This tab uses CSS custom properties for dynamic values.</p>
+          <div class="mt-4 p-4 rounded-[var(--tab-radius)] bg-indigo-50">
+            <p class="text-indigo-800">Content with matching border radius.</p>
+          </div>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "Consistent Theme" do %>
+        <div class="p-4">
+          <p class="text-gray-600">All elements use the same CSS variables.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Form Integration Properties<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Integrating tabs with form submissions and validation.</p>
+    
+    <%= form_with url: "#", local: true do |form| %>
+      <%= fx_tab(variant: :underline, color: :emerald,
+                 name: "wizard_step",
+                 data: { form_section: "wizard" }) do |tabs| %>
+        <%= tabs.with_tab title: "Step 1", active: true, value: "personal_info" do %>
+          <div class="p-4">
+            <%= fx_heading(size: 4) do %>Personal Information<% end %>
+            <div class="mt-4 space-y-4">
+              <%= form.text_field :first_name, placeholder: "First Name", 
+                                  class: "w-full px-3 py-2 border rounded-lg" %>
+              <%= form.text_field :last_name, placeholder: "Last Name",
+                                  class: "w-full px-3 py-2 border rounded-lg" %>
+            </div>
+          </div>
+        <% end %>
+        
+        <%= tabs.with_tab title: "Step 2", value: "contact_info" do %>
+          <div class="p-4">
+            <%= fx_heading(size: 4) do %>Contact Information<% end %>
+            <div class="mt-4 space-y-4">
+              <%= form.email_field :email, placeholder: "Email Address",
+                                   class: "w-full px-3 py-2 border rounded-lg" %>
+              <%= form.text_field :phone, placeholder: "Phone Number",
+                                  class: "w-full px-3 py-2 border rounded-lg" %>
+            </div>
+          </div>
+        <% end %>
+        
+        <%= tabs.with_tab title: "Review", value: "review" do %>
+          <div class="p-4">
+            <%= fx_heading(size: 4) do %>Review & Submit<% end %>
+            <p class="text-gray-600 mt-2">Review your information before submitting.</p>
+            <%= form.submit "Submit Form", 
+                           class: "mt-4 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700" %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="space-y-6">
+  <%= fx_range(
+    name: "volume_with_help",
+    label: "Volume Level",
+    value: 50,
+    min: 0,
+    max: 100,
+    help_text: "Adjust the audio volume. Values above 80 may cause distortion."
+  ) %>
+
+  <%= fx_range(
+    name: "quality_with_help",
+    label: "Image Quality",
+    value: 8,
+    min: 1,
+    max: 10,
+    help_text: "Higher quality settings result in larger file sizes but better image clarity."
+  ) %>
+
+  <%= fx_range(
+    name: "sensitivity_with_help",
+    label: "Mouse Sensitivity",
+    value: 3,
+    min: 1,
+    max: 10,
+    step: 1,
+    help_text: "1 = Very slow, 5 = Normal, 10 = Very fast"
+  ) %>
+
+  <%= fx_range(
+    name: "budget_with_help",
+    label: "Budget Range",
+    value: 500,
+    min: 100,
+    max: 2000,
+    step: 100,
+    help_text: "Set your maximum budget in USD. This will filter available options."
+  ) %>
+</div>

@@ -1,0 +1,16 @@
+<div class="space-y-4">
+  <%= fx_help_text do %>
+    Your password must meet the following requirements:
+    • At least 8 characters long
+    • Include uppercase and lowercase letters
+    • Include at least one number
+    • Include at least one special character (!@#$%^&*)
+  <% end %>
+
+  <%= fx_help_text(color: :info) do %>
+    File upload guidelines:
+    - Maximum file size: 10MB
+    - Accepted formats: PDF, DOC, DOCX, JPG, PNG
+    - Files will be automatically scanned for viruses
+  <% end %>
+</div>

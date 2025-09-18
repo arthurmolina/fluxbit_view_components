@@ -1,0 +1,161 @@
+<div class="space-y-8">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Primary navigation</h3>
+    <nav class="flex space-x-6">
+      <%= fx_link(href: "/", color: :primary, class: "font-medium") do %>
+        Home
+      <% end %>
+      <%= fx_link(href: "/products", color: :primary, class: "font-medium") do %>
+        Products
+      <% end %>
+      <%= fx_link(href: "/services", color: :primary, class: "font-medium") do %>
+        Services
+      <% end %>
+      <%= fx_link(href: "/about", color: :primary, class: "font-medium") do %>
+        About
+      <% end %>
+      <%= fx_link(href: "/contact", color: :primary, class: "font-medium") do %>
+        Contact
+      <% end %>
+    </nav>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Secondary navigation</h3>
+    <nav class="flex space-x-4 text-sm">
+      <%= fx_link(href: "/help", color: :secondary) do %>
+        Help Center
+      <% end %>
+      <%= fx_link(href: "/docs", color: :secondary) do %>
+        Documentation
+      <% end %>
+      <%= fx_link(href: "/api", color: :secondary) do %>
+        API Reference
+      <% end %>
+      <%= fx_link(href: "/status", color: :secondary) do %>
+        System Status
+      <% end %>
+    </nav>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Breadcrumb navigation</h3>
+    <nav class="flex items-center space-x-2 text-sm">
+      <%= fx_link(href: "/", color: :secondary) do %>
+        Home
+      <% end %>
+      <span class="text-gray-400">/</span>
+      <%= fx_link(href: "/products", color: :secondary) do %>
+        Products
+      <% end %>
+      <span class="text-gray-400">/</span>
+      <%= fx_link(href: "/products/laptops", color: :secondary) do %>
+        Laptops
+      <% end %>
+      <span class="text-gray-400">/</span>
+      <span class="text-gray-600 dark:text-gray-300">MacBook Pro</span>
+    </nav>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Footer navigation</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+      <div>
+        <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Company</h4>
+        <div class="space-y-2">
+          <%= fx_link(href: "/about", color: :secondary, class: "block") do %>
+            About Us
+          <% end %>
+          <%= fx_link(href: "/careers", color: :secondary, class: "block") do %>
+            Careers
+          <% end %>
+          <%= fx_link(href: "/press", color: :secondary, class: "block") do %>
+            Press
+          <% end %>
+          <%= fx_link(href: "/blog", color: :secondary, class: "block") do %>
+            Blog
+          <% end %>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Support</h4>
+        <div class="space-y-2">
+          <%= fx_link(href: "/help", color: :secondary, class: "block") do %>
+            Help Center
+          <% end %>
+          <%= fx_link(href: "/contact", color: :secondary, class: "block") do %>
+            Contact Us
+          <% end %>
+          <%= fx_link(href: "/community", color: :secondary, class: "block") do %>
+            Community
+          <% end %>
+          <%= fx_link(href: "/tutorials", color: :secondary, class: "block") do %>
+            Tutorials
+          <% end %>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Legal</h4>
+        <div class="space-y-2">
+          <%= fx_link(href: "/privacy", color: :secondary, class: "block") do %>
+            Privacy Policy
+          <% end %>
+          <%= fx_link(href: "/terms", color: :secondary, class: "block") do %>
+            Terms of Service
+          <% end %>
+          <%= fx_link(href: "/cookies", color: :secondary, class: "block") do %>
+            Cookie Policy
+          <% end %>
+          <%= fx_link(href: "/licenses", color: :secondary, class: "block") do %>
+            Licenses
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Sidebar navigation</h3>
+    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 max-w-xs">
+      <nav class="space-y-1">
+        <%= fx_link(
+          href: "/dashboard",
+          color: :primary,
+          class: "block px-3 py-2 rounded-md bg-blue-100 dark:bg-blue-900 font-medium"
+        ) do %>
+          Dashboard
+        <% end %>
+        <%= fx_link(
+          href: "/projects",
+          color: :secondary,
+          class: "block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+        ) do %>
+          Projects
+        <% end %>
+        <%= fx_link(
+          href: "/tasks",
+          color: :secondary,
+          class: "block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+        ) do %>
+          Tasks
+        <% end %>
+        <%= fx_link(
+          href: "/team",
+          color: :secondary,
+          class: "block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+        ) do %>
+          Team
+        <% end %>
+        <%= fx_link(
+          href: "/settings",
+          color: :secondary,
+          class: "block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+        ) do %>
+          Settings
+        <% end %>
+      </nav>
+    </div>
+  </div>
+</div>

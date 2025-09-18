@@ -1,0 +1,161 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 3) do %>Action Hierarchy<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Primary, secondary, and tertiary actions grouped together</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :success) do %>Save Changes<% end %>
+      <%= group.with_button(color: :light) do %>Save Draft<% end %>
+      <%= group.with_button(color: :light_outline) do %>Cancel<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Approval Workflow<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Different states for approval processes</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :success) do %>
+        <%= anyicon("heroicons_solid:check", class: "w-4 h-4 mr-1") %>
+        Approve
+      <% end %>
+      <%= group.with_button(color: :warning) do %>
+        <%= anyicon("heroicons_solid:clock", class: "w-4 h-4 mr-1") %>
+        Pending
+      <% end %>
+      <%= group.with_button(color: :danger_outline) do %>
+        <%= anyicon("heroicons_solid:x-mark", class: "w-4 h-4 mr-1") %>
+        Reject
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>File Operations<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Mix of solid and outlined buttons for file operations</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :default) do %>
+        <%= anyicon("heroicons_solid:arrow-down-tray", class: "w-4 h-4 mr-1") %>
+        Download
+      <% end %>
+      <%= group.with_button(color: :info_outline) do %>
+        <%= anyicon("heroicons_solid:share", class: "w-4 h-4 mr-1") %>
+        Share
+      <% end %>
+      <%= group.with_button(color: :light_outline) do %>
+        <%= anyicon("heroicons_solid:ellipsis-horizontal", class: "w-4 h-4") %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Content Management<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Different button styles for content actions</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :success) do %>Publish<% end %>
+      <%= group.with_button(color: :warning_outline) do %>Draft<% end %>
+      <%= group.with_button(color: :light) do %>Preview<% end %>
+      <%= group.with_button(color: :danger_outline) do %>Delete<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Social Actions<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Social media style actions with different emphasis</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :success) do %>
+        <%= anyicon("heroicons_solid:heart", class: "w-4 h-4 mr-1") %>
+        Like
+      <% end %>
+      <%= group.with_button(color: :info_outline) do %>
+        <%= anyicon("heroicons_solid:chat-bubble-oval-left", class: "w-4 h-4 mr-1") %>
+        Comment
+      <% end %>
+      <%= group.with_button(color: :light_outline) do %>
+        <%= anyicon("heroicons_solid:share", class: "w-4 h-4 mr-1") %>
+        Share
+      <% end %>
+      <%= group.with_button(color: :light_outline) do %>
+        <%= anyicon("heroicons_solid:bookmark", class: "w-4 h-4 mr-1") %>
+        Save
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>E-commerce Actions<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Shopping cart and product actions</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :success) do %>
+        <%= anyicon("heroicons_solid:shopping-cart", class: "w-4 h-4 mr-2") %>
+        Add to Cart
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:heart", class: "w-4 h-4 mr-2") %>
+        Wishlist
+      <% end %>
+      <%= group.with_button(color: :info_outline) do %>
+        <%= anyicon("heroicons_solid:eye", class: "w-4 h-4 mr-2") %>
+        Quick View
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Form Actions<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Form submission with different button priorities</p>
+    <div class="p-6 border rounded-lg bg-gray-50">
+      <div class="mb-4">
+        <%= fx_text_field(:name, label: "Your Name", placeholder: "Enter your name") %>
+      </div>
+      <div class="mb-6">
+        <%= fx_text_area(:message, label: "Message", placeholder: "Enter your message", rows: 3) %>
+      </div>
+      <div class="flex justify-between">
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :light_outline) do %>Clear Form<% end %>
+          <%= group.with_button(color: :light) do %>Save Draft<% end %>
+          <%= group.with_button(color: :default) do %>Send Message<% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Gradient Combinations<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Mixing gradient and solid buttons</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :purple_gradient) do %>Premium<% end %>
+      <%= group.with_button(color: :default) do %>Standard<% end %>
+      <%= group.with_button(color: :light_outline) do %>Basic<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Status Indicators<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Different button styles to indicate status</p>
+    <div class="space-y-3">
+      <div class="flex items-center justify-between p-3 border rounded-lg">
+        <div>
+          <h5 class="font-medium">Server Status</h5>
+          <p class="text-sm text-gray-600">Main application server</p>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :success, size: 1) do %>Online<% end %>
+          <%= group.with_button(color: :light_outline, size: 1) do %>Restart<% end %>
+          <%= group.with_button(color: :danger_outline, size: 1) do %>Stop<% end %>
+        <% end %>
+      </div>
+      
+      <div class="flex items-center justify-between p-3 border rounded-lg">
+        <div>
+          <h5 class="font-medium">Database</h5>
+          <p class="text-sm text-gray-600">Primary database connection</p>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :warning, size: 1) do %>Maintenance<% end %>
+          <%= group.with_button(color: :info_outline, size: 1) do %>Monitor<% end %>
+          <%= group.with_button(color: :light_outline, size: 1) do %>Logs<% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

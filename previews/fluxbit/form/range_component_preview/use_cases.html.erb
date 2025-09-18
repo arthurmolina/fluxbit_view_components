@@ -1,0 +1,92 @@
+<div class="space-y-8">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Audio Controls</h3>
+    <div class="grid grid-cols-2 gap-4">
+      <%= fx_range(
+        name: "master_volume",
+        label: "Master Volume",
+        value: 75,
+        min: 0,
+        max: 100
+      ) %>
+
+      <%= fx_range(
+        name: "bass_boost",
+        label: "Bass Boost",
+        value: 2,
+        min: 0,
+        max: 10
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">E-commerce Filters</h3>
+    <div class="grid grid-cols-2 gap-4">
+      <%= fx_range(
+        name: "min_price",
+        label: "Maximum Price",
+        value: 500,
+        min: 0,
+        max: 2000,
+        step: 50,
+        help_text: "Filter products by price range"
+      ) %>
+
+      <%= fx_range(
+        name: "min_rating",
+        label: "Minimum Rating",
+        value: 4,
+        min: 1,
+        max: 5,
+        help_text: "Show products with this rating or higher"
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">User Preferences</h3>
+    <div class="grid grid-cols-2 gap-4">
+      <%= fx_range(
+        name: "notification_frequency",
+        label: "Notification Frequency",
+        value: 3,
+        min: 1,
+        max: 5,
+        help_text: "1 = Minimal, 5 = All notifications"
+      ) %>
+
+      <%= fx_range(
+        name: "privacy_level",
+        label: "Privacy Level",
+        value: 7,
+        min: 1,
+        max: 10,
+        help_text: "Higher values mean more privacy protection"
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Image Processing</h3>
+    <div class="grid grid-cols-2 gap-4">
+      <%= fx_range(
+        name: "image_brightness",
+        label: "Brightness",
+        value: 50,
+        min: -100,
+        max: 100,
+        help_text: "Adjust image brightness (-100 to +100)"
+      ) %>
+
+      <%= fx_range(
+        name: "image_contrast",
+        label: "Contrast",
+        value: 0,
+        min: -50,
+        max: 50,
+        help_text: "Adjust image contrast"
+      ) %>
+    </div>
+  </div>
+</div>

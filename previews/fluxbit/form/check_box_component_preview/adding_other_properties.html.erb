@@ -1,0 +1,20 @@
+<div class="space-y-4">
+  <%= fx_check_box(
+    name: "with_data_attributes",
+    label: "Checkbox with data attributes",
+    value: "1",
+    id: "custom-checkbox-id",
+    data: { analytics: "checkbox_click", testid: "accept-terms" },
+    title: "Click to accept terms"
+  ) %>
+  <%= fx_check_box(
+    name: "with_aria",
+    label: "Checkbox with ARIA attributes",
+    value: "1",
+    aria: { describedby: "checkbox-description" },
+    required: true
+  ) %>
+  <p id="checkbox-description" class="text-sm text-gray-500">
+    This checkbox demonstrates ARIA attributes for accessibility.
+  </p>
+</div>

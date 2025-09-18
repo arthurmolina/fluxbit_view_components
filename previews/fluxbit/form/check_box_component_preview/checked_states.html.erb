@@ -1,0 +1,37 @@
+<div class="space-y-4">
+  <div>
+    <h4 class="text-sm font-medium text-gray-700 mb-2">Checkboxes</h4>
+    <div class="space-y-2">
+      <%= fx_check_box(
+        name: "unchecked_checkbox",
+        label: "Unchecked checkbox",
+        value: "1"
+      ) %>
+      <%= fx_check_box(
+        name: "checked_checkbox",
+        label: "Checked checkbox",
+        value: "1",
+        checked: true
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-700 mb-2">Radio buttons</h4>
+    <div class="space-y-2">
+      <%= fx_check_box(
+        type: :radio_button,
+        name: "radio_example",
+        value: "option1",
+        label: "Unchecked radio"
+      ) %>
+      <%= fx_check_box(
+        type: :radio_button,
+        name: "radio_example",
+        value: "option2",
+        label: "Checked radio",
+        checked: true
+      ) %>
+    </div>
+  </div>
+</div>

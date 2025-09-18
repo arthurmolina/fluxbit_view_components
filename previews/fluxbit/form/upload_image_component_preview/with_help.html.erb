@@ -1,0 +1,52 @@
+<div class="space-y-8">
+  <div>
+    <h4 class="font-semibold mb-4">With Helper Text</h4>
+    <div class="space-y-6">
+      <%= fx_upload_image(
+        name: "profile_with_help",
+        label: "Profile Photo",
+        title: "Upload Photo",
+        help_text: "Upload a clear, professional photo. Recommended size: 160x160 pixels."
+      ) %>
+
+      <%= fx_upload_image(
+        name: "logo_with_help",
+        label: "Company Logo",
+        title: "Upload Logo",
+        help_text: "Accepted formats: PNG, JPG, SVG. Maximum file size: 2MB."
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Helper Popover</h4>
+    <div class="space-y-6">
+      <%= fx_upload_image(
+        name: "avatar_with_popover",
+        label: "Avatar Image",
+        title: "Change Avatar",
+        helper_popover: "Choose a clear, professional photo that represents you well. The image will be automatically cropped to a circle and resized to 160x160 pixels for optimal display."
+      ) %>
+
+      <%= fx_upload_image(
+        name: "document_with_popover",
+        label: "Identity Document",
+        title: "Upload Document",
+        helper_popover: "Upload a clear photo or scan of your government-issued ID. Ensure all text is readable and the document is fully visible within the frame.",
+        helper_popover_placement: "top"
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Both Helper Text and Popover</h4>
+    <%= fx_upload_image(
+      name: "complex_upload",
+      label: "Product Photo",
+      title: "Add Photo",
+      help_text: "High-quality photos get more attention. Upload multiple angles if available.",
+      helper_popover: "Product photos should be well-lit, in focus, and show the item clearly. Avoid backgrounds that distract from the product. The first photo will be used as the main product image.",
+      helper_popover_placement: "left"
+    ) %>
+  </div>
+</div>

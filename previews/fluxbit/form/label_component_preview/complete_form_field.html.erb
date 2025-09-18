@@ -1,0 +1,65 @@
+<div class="space-y-6 max-w-md">
+  <div>
+    <%= fx_label(
+      with_content: "Full Name",
+      help_text: "Enter your full name as it appears on official documents",
+      for: "full_name"
+    ) %>
+    <input
+      type="text"
+      id="full_name"
+      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+      placeholder="John Doe"
+    />
+  </div>
+
+  <div>
+    <%= fx_label(
+      with_content: "Email Address",
+      color: :success,
+      help_text: "✓ This email address is available",
+      for: "email_address"
+    ) %>
+    <input
+      type="email"
+      id="email_address"
+      class="mt-1 block w-full px-3 py-2 border border-green-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+      placeholder="john@example.com"
+      value="john@example.com"
+    />
+  </div>
+
+  <div>
+    <%= fx_label(
+      with_content: "Password",
+      color: :danger,
+      help_text: "Password must be at least 8 characters long",
+      helper_popover: "Use a strong password with uppercase, lowercase, numbers, and symbols for better security",
+      for: "password_field"
+    ) %>
+    <input
+      type="password"
+      id="password_field"
+      class="mt-1 block w-full px-3 py-2 border border-red-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"
+    />
+  </div>
+
+  <div>
+    <%= fx_label(
+      with_content: "Account Type",
+      color: :info,
+      help_text: "Choose the type of account you want to create",
+      helper_popover: "Personal accounts are for individual use, while business accounts include team collaboration features",
+      helper_popover_placement: "top",
+      for: "account_type"
+    ) %>
+    <select
+      id="account_type"
+      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+    >
+      <option>Personal</option>
+      <option>Business</option>
+      <option>Enterprise</option>
+    </select>
+  </div>
+</div>

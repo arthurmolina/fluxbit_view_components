@@ -1,0 +1,22 @@
+<%= fx_card(
+  color: color,
+  shadow: shadow,
+  border: border,
+  rounded: rounded,
+  hoverable: hoverable,
+  image: image.present? ? image : nil,
+  image_position: image_position,
+  href: href.present? ? href : nil
+) do |card| %>
+  <% card.with_header do %>
+    <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+  <% end %>
+  <% card.with_section do %>
+    <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+  <% end %>
+  <% card.with_footer do %>
+    <small class="text-gray-500 dark:text-gray-400">Last updated 3 mins ago</small>
+  <% end %>
+<% end %>
+
+

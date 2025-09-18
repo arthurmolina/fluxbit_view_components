@@ -1,0 +1,113 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-2">With Custom ID and Data Attributes:</h4>
+    <%= fx_text_field(
+      name: "tracked_field",
+      label: "Tracked Input",
+      placeholder: "Analytics tracked",
+      id: "analytics-field",
+      data: {
+        testid: "username-input",
+        controller: "form-validation",
+        target: "field",
+        action: "input->form-validation#validate"
+      }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With ARIA Attributes:</h4>
+    <%= fx_text_field(
+      name: "accessible_field",
+      label: "Accessible Field",
+      placeholder: "Screen reader friendly",
+      aria: {
+        describedby: "field-help",
+        required: "true",
+        invalid: "false"
+      },
+      role: "textbox"
+    ) %>
+    <p id="field-help" class="text-sm text-gray-600 mt-1">This field has enhanced accessibility</p>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Event Handlers:</h4>
+    <%= fx_text_field(
+      name: "interactive_field",
+      label: "Interactive Field",
+      placeholder: "Event handling",
+      oninput: "console.log('Input changed:', this.value)",
+      onfocus: "console.log('Field focused')",
+      onblur: "console.log('Field blurred')",
+      onchange: "console.log('Field changed:', this.value)"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Custom Styling Properties:</h4>
+    <%= fx_text_field(
+      name: "styled_field",
+      label: "Custom Styled Field",
+      placeholder: "Inline styles",
+      style: "text-shadow: 1px 1px 2px rgba(0,0,0,0.1); font-family: 'Courier New', monospace;",
+      title: "This field has custom inline styles"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Form Association and Validation:</h4>
+    <%= fx_text_field(
+      name: "form_field",
+      label: "Form Associated Field",
+      placeholder: "Required field",
+      form: "main-form",
+      required: true,
+      minlength: 3,
+      maxlength: 50,
+      pattern: "[A-Za-z0-9]+",
+      autocomplete: "username",
+      spellcheck: false
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Container and Icon HTML Attributes:</h4>
+    <%= fx_text_field(
+      name: "container_field",
+      label: "Custom Container Field",
+      placeholder: "Custom containers",
+      icon: "heroicons_solid:user",
+      right_icon: "heroicons_solid:check",
+      div_html: {
+        id: "custom-container",
+        data: { controller: "container-handler" },
+        style: "transition: all 0.3s ease;"
+      },
+      icon_html: {
+        title: "User icon",
+        onclick: "console.log('Icon clicked')"
+      },
+      right_icon_html: {
+        title: "Validation icon",
+        class: "text-green-500 cursor-pointer"
+      }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Complex Validation Attributes:</h4>
+    <%= fx_text_field(
+      name: "validation_field",
+      label: "Password Field",
+      type: :password,
+      placeholder: "Strong password",
+      required: true,
+      minlength: 8,
+      pattern: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
+      title: "Must contain at least one number, one uppercase and lowercase letter, and at least 8 characters",
+      autocomplete: "new-password",
+      help_text: "Password must meet complexity requirements"
+    ) %>
+  </div>
+</div>

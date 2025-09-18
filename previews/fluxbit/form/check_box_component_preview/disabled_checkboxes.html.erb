@@ -1,0 +1,22 @@
+<div class="space-y-2">
+  <%= fx_check_box(
+    name: "disabled_unchecked",
+    label: "Disabled unchecked",
+    value: "1",
+    disabled: true
+  ) %>
+  <%= fx_check_box(
+    name: "disabled_checked",
+    label: "Disabled checked",
+    value: "1",
+    disabled: true,
+    checked: true
+  ) %>
+  <%= fx_check_box(
+    type: :radio_button,
+    name: "disabled_radio",
+    value: "option1",
+    label: "Disabled radio",
+    disabled: true
+  ) %>
+</div>

@@ -1,0 +1,18 @@
+<div class="p-8 flex justify-center">
+  <%= fx_button(
+    class: 'relative inline-flex',
+    with_content: "Rich content tooltip",
+    data: {
+      tooltip_target: "tooltip-rich",
+      tooltip_placement: "top"
+    }
+  ) %>
+  
+  <%= fx_tooltip(id: "tooltip-rich") do %>
+    <div class="p-1">
+      <strong class="font-bold">Rich Content</strong><br>
+      <em class="text-gray-300">This tooltip contains HTML</em><br>
+      <%= fx_badge(with_content: "New", color: :success, class: "text-xs mt-1") %>
+    </div>
+  <% end %>
+</div>

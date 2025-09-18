@@ -1,0 +1,32 @@
+<div class="space-y-4">
+  <div>
+    <h4 class="font-semibold mb-2">Default help text:</h4>
+    <%= fx_help_text do %>
+      Standard help text with default styling.
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With custom classes added:</h4>
+    <%= fx_help_text(class: "font-medium uppercase tracking-wide") do %>
+      Help text with added font-medium, uppercase, and tracking-wide classes.
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With base classes removed:</h4>
+    <%= fx_help_text(remove_class: "text-sm", class: "text-xs italic") do %>
+      Help text with text-sm removed and text-xs italic added.
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">Custom styled error message:</h4>
+    <%= fx_help_text(
+      color: :danger,
+      class: "font-bold border-l-4 border-red-500 pl-3 bg-red-50 dark:bg-red-900/20 py-2"
+    ) do %>
+      Custom styled error message with border and background.
+    <% end %>
+  </div>
+</div>

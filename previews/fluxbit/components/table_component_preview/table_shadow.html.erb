@@ -1,0 +1,35 @@
+<%= fx_table(shadow: true) do |table| %>
+  <% table.with_header do |header| %>
+    <% header.with_cell { "Project" } %>
+    <% header.with_cell { "Status" } %>
+    <% header.with_cell { "Progress" } %>
+    <% header.with_cell { "Due Date" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Website Redesign" } %>
+    <% row.with_cell do %>
+      <%= fx_badge(color: :info, with_content: "In Progress") %>
+    <% end %>
+    <% row.with_cell { "75%" } %>
+    <% row.with_cell { "2024-12-31" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Mobile App" } %>
+    <% row.with_cell do %>
+      <%= fx_badge(color: :success, with_content: "Completed") %>
+    <% end %>
+    <% row.with_cell { "100%" } %>
+    <% row.with_cell { "2024-11-15" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "API Integration" } %>
+    <% row.with_cell do %>
+      <%= fx_badge(color: :warning, with_content: "Planning") %>
+    <% end %>
+    <% row.with_cell { "15%" } %>
+    <% row.with_cell { "2025-02-28" } %>
+  <% end %>
+<% end %>

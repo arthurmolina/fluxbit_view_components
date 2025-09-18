@@ -1,0 +1,19 @@
+<div class="space-y-6">
+  <%= fx_dropzone(
+    name: "with_help",
+    label: "Profile Picture",
+    title: "Upload Your Avatar",
+    subtitle: "JPG, PNG or GIF (max 2MB)",
+    help_text: "This image will be displayed on your public profile. Choose a clear, professional photo.",
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "with_warning",
+    label: "Document Upload",
+    title: "Upload Contract",
+    subtitle: "PDF files only",
+    help_text: "⚠️ Please ensure the document is signed before uploading.",
+    height: 2
+  ) %>
+</div>

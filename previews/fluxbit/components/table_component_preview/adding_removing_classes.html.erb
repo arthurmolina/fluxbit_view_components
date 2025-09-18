@@ -1,0 +1,23 @@
+<%= fx_table(
+  class: "rounded-lg border-2 border-blue-200",
+  remove_class: "text-gray-500",
+  wrapper_html: { class: "bg-blue-50 p-4 rounded-lg" }
+) do |table| %>
+  <% table.with_header do |header| %>
+    <% header.with_cell { "Custom Styled Header" } %>
+    <% header.with_cell { "With Blue Theme" } %>
+    <% header.with_cell { "Modified Classes" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Custom border" } %>
+    <% row.with_cell { "Blue background wrapper" } %>
+    <% row.with_cell { "Removed gray text" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Rounded corners" } %>
+    <% row.with_cell { "Padding on wrapper" } %>
+    <% row.with_cell { "Custom styling" } %>
+  <% end %>
+<% end %>

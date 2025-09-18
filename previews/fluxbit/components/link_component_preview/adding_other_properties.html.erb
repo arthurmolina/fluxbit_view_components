@@ -1,0 +1,136 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with click tracking</h3>
+    <%= fx_link(
+      href: "#",
+      onclick: "alert('Link clicked! This could track analytics.'); return false;",
+      data: { category: "navigation", action: "click", label: "header-link" }
+    ) do %>
+      Click to trigger tracking event
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with hover effects via JavaScript</h3>
+    <%= fx_link(
+      href: "#",
+      onmouseenter: "this.style.transform = 'scale(1.1)'; this.style.transition = 'transform 0.2s';",
+      onmouseleave: "this.style.transform = 'scale(1)';",
+      style: "display: inline-block;"
+    ) do %>
+      Hover for scale effect
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with custom data attributes</h3>
+    <%= fx_link(
+      href: "#",
+      data: {
+        testid: "important-link",
+        turbo_method: "post",
+        turbo_confirm: "Are you sure you want to proceed?",
+        analytics_event: "cta_click",
+        user_id: "12345"
+      }
+    ) do %>
+      Link with Turbo and analytics data
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Accessible link with ARIA attributes</h3>
+    <%= fx_link(
+      href: "#",
+      aria: {
+        label: "Download the latest product catalog (PDF, 2.3MB)",
+        describedby: "download-description"
+      },
+      role: "button",
+      tabindex: "0"
+    ) do %>
+      Download Catalog
+    <% end %>
+    <p id="download-description" class="text-sm text-gray-500 mt-1">
+      This will download a comprehensive catalog with all our products and pricing information.
+    </p>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with form integration</h3>
+    <%= fx_link(
+      href: "#",
+      onclick: "document.getElementById('hidden-form').submit(); return false;",
+      class: "inline-block px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+    ) do %>
+      Submit Form via Link
+    <% end %>
+    <form id="hidden-form" method="post" action="/submit" style="display: none;">
+      <input type="hidden" name="action" value="quick_submit">
+    </form>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with keyboard navigation</h3>
+    <%= fx_link(
+      href: "#",
+      onkeydown: "if(event.key === 'Enter' || event.key === ' ') { alert('Activated via keyboard!'); event.preventDefault(); }",
+      tabindex: "0",
+      class: "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-2 py-1"
+    ) do %>
+      Keyboard accessible link (press Enter or Space)
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with loading state</h3>
+    <%= fx_link(
+      href: "#",
+      onclick: "this.innerHTML = 'Loading...'; this.style.pointerEvents = 'none'; setTimeout(() => { this.innerHTML = 'Loaded!'; this.style.pointerEvents = 'auto'; }, 2000); return false;",
+      class: "inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+    ) do %>
+      Click for loading state
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with custom tooltip</h3>
+    <%= fx_link(
+      href: "#",
+      title: "This is a custom tooltip that provides additional context about this link",
+      data: { tooltip: "custom" }
+    ) do %>
+      Hover for custom tooltip
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with download attributes</h3>
+    <%= fx_link(
+      href: "/files/sample.pdf",
+      download: "sample-document.pdf",
+      type: "application/pdf",
+      class: "inline-flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+    ) do %>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6-6H6v16h12V6z"></path>
+      </svg>
+      <span>Download PDF</span>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with Stimulus controller</h3>
+    <%= fx_link(
+      href: "#",
+      data: {
+        controller: "analytics",
+        action: "click->analytics#track",
+        analytics_event_value: "special_link_click",
+        analytics_category_value: "user_interaction"
+      }
+    ) do %>
+      Link with Stimulus controller (data-controller="analytics")
+    <% end %>
+  </div>
+</div>

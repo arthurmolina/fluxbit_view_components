@@ -1,0 +1,46 @@
+<div class="space-y-4">
+  <%= fx_text_field(
+    name: "username",
+    label: "Username",
+    icon: "heroicons_solid:user",
+    placeholder: "Enter username"
+  ) %>
+
+  <%= fx_text_field(
+    name: "email",
+    label: "Email Address",
+    icon: "heroicons_solid:envelope",
+    placeholder: "user@example.com"
+  ) %>
+
+  <%= fx_text_field(
+    name: "phone",
+    label: "Phone Number",
+    icon: "heroicons_solid:phone",
+    type: :tel,
+    placeholder: "(555) 123-4567"
+  ) %>
+
+  <%= fx_text_field(
+    name: "search",
+    label: "Search",
+    icon: "heroicons_solid:magnifying-glass",
+    right_icon: "heroicons_solid:x-mark",
+    type: :search,
+    placeholder: "Search products..."
+  ) %>
+
+  <%= fx_text_field(
+    name: "credit_card",
+    label: "Credit Card",
+    icon: "heroicons_solid:credit-card",
+    placeholder: "1234 5678 9012 3456"
+  ) %>
+
+  <%= fx_text_field(
+    name: "calendar_event",
+    label: "Event Date",
+    right_icon: "heroicons_solid:calendar",
+    type: :date
+  ) %>
+</div>

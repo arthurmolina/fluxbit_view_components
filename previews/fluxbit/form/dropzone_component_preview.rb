@@ -1,37 +1,169 @@
 # frozen_string_literal: true
 
+# Fake Product model for form builder demonstrations
+class Product
+  include ActiveModel::Model
+  include ActiveModel::Attributes
+  include ActiveModel::Validations
+
+  attribute :name, :string
+  attribute :description, :string
+  attribute :image, :string
+  attribute :gallery, :string
+  attribute :documents, :string
+  attribute :brochure, :string
+  attribute :template, :string
+
+  validates :name, presence: true, length: { minimum: 2, maximum: 100 }
+
+  # Simulate persisted state
+  def persisted?
+    false
+  end
+
+  def id
+    nil
+  end
+
+  def to_param
+    nil
+  end
+
+  # Add methods to make it behave like a hash when needed
+  def merge(other)
+    self
+  end
+
+  def to_h
+    attributes
+  end
+
+  def to_hash
+    attributes
+  end
+
+  # Make it respond to common Rails model methods
+  def model_name
+    @model_name ||= ActiveModel::Name.new(self.class)
+  end
+
+  def self.model_name
+    @model_name ||= ActiveModel::Name.new(self)
+  end
+
+  # Form routing helpers
+  def new_record?
+    !persisted?
+  end
+
+  def destroyed?
+    false
+  end
+
+  # Required for form_with
+  def to_key
+    persisted? ? [id] : nil
+  end
+
+  def to_model
+    self
+  end
+
+  # Human attribute names for I18n
+  def self.human_attribute_name(attr, options = {})
+    case attr.to_s
+    when 'name' then 'Product Name'
+    when 'image' then 'Product Image'
+    when 'gallery' then 'Gallery Images'
+    when 'documents' then 'Product Documents'
+    when 'brochure' then 'Product Brochure'
+    else
+      attr.to_s.humanize
+    end
+  end
+end
+
 class Fluxbit::Form::DropzoneComponentPreview < ViewComponent::Preview
-  # Fluxbit::DropzoneComponent
-  # ------------------------
+  # Fluxbit::Form::DropzoneComponent
+  # --------------------------------
+  # You can use this component to create drag-and-drop file upload areas with various customization options
   #
-  # @param id [String] "The id of the input element (optional)"
-  # @param label [String] "The label for the input field (optional)"
-  # @param help_text [String] "Additional help text for the input field (optional)"
   # @param name [String] "Name of the field (required, unless using form builder)"
-  # @param title [String] "Title text above the dropzone (true for default, false to hide, or custom string)"
-  # @param subtitle [String] "Subtitle text above the dropzone (true for default, false to hide, or custom string)"
-  # @param height [Integer] "Height of the dropzone"
+  # @param label [String] "The label for the input field (optional)"
+  # @param title [String] "Title text inside dropzone (true for default, false to hide, or custom string)"
+  # @param subtitle [String] "Subtitle text below title (true for default, false to hide, or custom string)"
   # @param icon select "Icon to display in the dropzone" :icon_options
+  # @param height select "Height preset" :height_options
+  # @param help_text [String] "Additional help text for the input field (optional)"
+  # @param multiple [Boolean] toggle "Allow multiple file selection"
+  # @param accept [String] "Comma-separated list of accepted file types (optional)"
+  # @param disabled [Boolean] toggle "Disables the input if true"
   def playground(
-    id: 'dropzone_playground', label: "Full Name",
-    help_text: "Help text",
-    name: "dropzone", title: "Upload Files", subtitle: "Drag and drop files here or click to select",
-    height: 0, icon: 'heroicons_solid:upload')
+    name: "file_upload",
+    label: "",
+    title: "Upload Files",
+    subtitle: "Drag and drop files here or click to select",
+    icon: "heroicons_solid:cloud_arrow_up",
+    height: 0,
+    help_text: "",
+    multiple: false,
+    accept: "",
+    disabled: false)
     render Fluxbit::Form::DropzoneComponent.new(
-      id: id,
-      label: label,
-      help_text: help_text,
       name: name,
+      label: label == "" ? nil : label,
       title: title.presence,
       subtitle: subtitle.presence,
+      icon: icon.presence,
       height: height,
-      icon: icon.presence
+      help_text: help_text == "" ? nil : help_text,
+      multiple: multiple,
+      accept: accept == "" ? nil : accept,
+      disabled: disabled
     )
   end
+
+  def basic_dropzone; end
+  def different_heights; end
+  def custom_title_subtitle; end
+  def different_icons; end
+  def multiple_files; end
+  def file_restrictions; end
+  def with_helper_text; end
+  def disabled_dropzone; end
+  def custom_content; end
+  def with_form_builder
+    @product ||= Product.new(
+      name: "Sample Product"
+    )
+
+    # Ensure the product is valid and ready for form display
+    @product.valid? if @product
+    @product
+  end
+
+  def adding_removing_classes; end
+  def adding_other_properties; end
 
   private
 
   def icon_options
-    [ nil ] + %w[heroicons_solid:upload heroicons_solid:eye heroicons_solid:user heroicons_solid:check heroicons_solid:pencil heroicons_solid:x-mark]
+    %w[
+      heroicons_solid:cloud_arrow_up
+      heroicons_solid:photo
+      heroicons_solid:document_plus
+      heroicons_solid:archive_box
+      heroicons_solid:folder_open
+      heroicons_solid:paper_clip
+    ]
+  end
+
+  def height_options
+    {
+      "Auto (default)" => 0,
+      "Small (h-32)" => 1,
+      "Medium (h-64)" => 2,
+      "Large (h-96)" => 3
+    }
   end
 end

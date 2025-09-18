@@ -4,11 +4,6 @@ class Fluxbit::Components::AvatarComponentPreview < ViewComponent::Preview
   # Fluxbit::AvatarComponent
   # ------------------------
   # You can use this component to display a message to the user
-  def presentation; end
-
-  # Fluxbit::AvatarComponent
-  # ------------------------
-  # You can use this component to display a message to the user
   #
   # @param color select "Color" :color_options
   # @param rounded [Boolean] toggle "Rounded?"
@@ -35,7 +30,16 @@ class Fluxbit::Components::AvatarComponentPreview < ViewComponent::Preview
     )
   end
 
-  def avatar_group; end
+  def with_images; end
+  def with_initials; end
+  def placeholder_icons; end
+  def avatar_sizes; end
+  def with_status; end
+  def with_borders; end
+  def square_avatars; end
+  def status_positions; end
+  def adding_removing_classes; end
+  def adding_other_properties; end
 
   # Fluxbit::GravatarComponent
   # ------------------------

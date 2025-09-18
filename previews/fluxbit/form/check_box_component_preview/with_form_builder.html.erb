@@ -1,0 +1,90 @@
+<%# Real form builder usage with Product model %>
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Real Form Builder Integration with Product Model</h4>
+
+    <%= form_with(model: (@product || CheckBoxProduct.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
+      <%= fx_check_box(
+        form: form,
+        attribute: :available,
+        help_text: "Check if this product is available for purchase"
+      ) %>
+
+      <%= fx_check_box(
+        form: form,
+        attribute: :featured,
+        help_text: "Feature this product on the homepage"
+      ) %>
+
+      <%= fx_check_box(
+        form: form,
+        attribute: :accept_terms,
+        help_text: "Required for product listing"
+      ) %>
+
+      <%= fx_check_box(
+        form: form,
+        attribute: :newsletter_signup,
+        help_text: "Subscribe to product updates"
+      ) %>
+
+      <div class="pt-4">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg">
+          Save Product
+        </button>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Form Builder with Validation Errors</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      This example shows how validation errors are automatically displayed when using the form builder pattern.
+    </p>
+
+    <%
+      # Create a product with validation errors for demonstration
+      begin
+        invalid_product = CheckBoxProduct.new(name: "", accept_terms: false)
+        invalid_product.valid? # Trigger validation
+      rescue => e
+        invalid_product = CheckBoxProduct.new
+      end
+    %>
+
+    <%= form_with model: invalid_product, local: true, class: "space-y-4" do |form| %>
+      <%= fx_check_box(
+        form: form,
+        attribute: :accept_terms,
+        help_text: "This field will show validation errors"
+      ) %>
+
+      <%= fx_check_box(
+        form: form,
+        attribute: :available,
+        help_text: "Product availability setting"
+      ) %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Standalone Checkboxes (without form builder)</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      When not using a form builder, you can still create checkboxes by providing name and checked manually.
+    </p>
+
+    <%= fx_check_box(
+      name: "product[available]",
+      label: "Available for Purchase",
+      checked: true,
+      help_text: "Standalone checkbox without form builder"
+    ) %>
+
+    <%= fx_check_box(
+      name: "product[featured]",
+      label: "Featured Product",
+      checked: false,
+      help_text: "Display on homepage"
+    ) %>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="p-8 flex justify-center">
+  <%= fx_button(
+    class: 'relative inline-flex',
+    with_content: "Default tooltip",
+    data: {
+      tooltip_target: "tooltip-default",
+      tooltip_placement: "top"
+    }
+  ) %>
+  
+  <%= fx_tooltip(id: "tooltip-default") do %>
+    Tooltip content
+  <% end %>
+</div>

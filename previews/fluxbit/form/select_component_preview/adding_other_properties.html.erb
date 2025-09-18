@@ -1,0 +1,10 @@
+<%= fx_select(
+  label: "Select with Custom Attributes",
+  name: "custom_attrs",
+  options: [["Option 1", "1"], ["Option 2", "2"], ["Option 3", "3"]],
+  "data-controller": "custom-select",
+  "data-action": "change->custom-select#handleChange",
+  "aria-describedby": "custom-help",
+  title: "Custom tooltip text",
+  help_text: "This select has custom data attributes and ARIA properties"
+) %>

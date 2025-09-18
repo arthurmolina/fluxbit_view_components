@@ -1,0 +1,131 @@
+<%= fx_tab(variant: :default, color: :slate, vertical: true) do |tabs| %>
+  <%= tabs.with_tab title: "Account", active: true, icon: anyicon("heroicons_solid:user") do %>
+    <div class="p-6">
+      <%= fx_heading(size: 2) do %>Account Information<% end %>
+      <div class="mt-6 space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <%= fx_text_field(:first_name, label: "First Name", value: "John") %>
+          <%= fx_text_field(:last_name, label: "Last Name", value: "Doe") %>
+        </div>
+        <%= fx_text_field(:email, label: "Email Address", type: :email, value: "john.doe@example.com") %>
+        <%= fx_text_field(:phone, label: "Phone Number", value: "+1 (555) 123-4567") %>
+        <div class="pt-4">
+          <%= fx_button(color: :primary) do %>Update Account<% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Billing", icon: anyicon("heroicons_solid:credit-card") do %>
+    <div class="p-6">
+      <%= fx_heading(size: 2) do %>Billing Information<% end %>
+      <div class="mt-6">
+        <%= fx_card(class: "mb-4") do %>
+          <div class="p-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="font-semibold">Current Plan</h4>
+                <p class="text-gray-600">Professional Plan</p>
+              </div>
+              <%= fx_badge(color: :success, with_content: "Active") %>
+            </div>
+            <div class="mt-3">
+              <p class="text-2xl font-bold">$29/month</p>
+            </div>
+          </div>
+        <% end %>
+        
+        <div class="space-y-4">
+          <h4 class="font-semibold">Payment Methods</h4>
+          <div class="space-y-2">
+            <%= fx_card(class: "p-3") do %>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">
+                    VISA
+                  </div>
+                  <span>•••• •••• •••• 1234</span>
+                </div>
+                <%= fx_badge(color: :primary, with_content: "Default") %>
+              </div>
+            <% end %>
+          </div>
+          <%= fx_button(color: :secondary) do %>Add Payment Method<% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Security", icon: anyicon("heroicons_solid:shield-check") do %>
+    <div class="p-6">
+      <%= fx_heading(size: 2) do %>Security Settings<% end %>
+      <div class="mt-6 space-y-6">
+        <div>
+          <h4 class="font-semibold mb-3">Password</h4>
+          <%= fx_button(color: :secondary) do %>Change Password<% end %>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-3">Two-Factor Authentication</h4>
+          <div class="flex items-center justify-between p-4 border rounded-lg">
+            <div>
+              <h5 class="font-medium">Authenticator App</h5>
+              <p class="text-sm text-gray-600">Use an authenticator app for secure login</p>
+            </div>
+            <%= fx_toggle(:two_factor_auth, checked: true) %>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-3">Active Sessions</h4>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 border rounded-lg">
+              <div>
+                <h5 class="font-medium">Current Session</h5>
+                <p class="text-sm text-gray-600">Chrome on macOS • Active now</p>
+              </div>
+              <%= fx_badge(color: :success, with_content: "Current") %>
+            </div>
+            <div class="flex items-center justify-between p-3 border rounded-lg">
+              <div>
+                <h5 class="font-medium">Mobile Device</h5>
+                <p class="text-sm text-gray-600">Safari on iOS • 2 hours ago</p>
+              </div>
+              <%= fx_button(color: :danger, size: :sm) do %>Revoke<% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Notifications", icon: anyicon("heroicons_solid:bell") do %>
+    <div class="p-6">
+      <%= fx_heading(size: 2) do %>Notification Preferences<% end %>
+      <div class="mt-6 space-y-6">
+        <div>
+          <h4 class="font-semibold mb-3">Email Notifications</h4>
+          <div class="space-y-3">
+            <%= fx_checkbox(:account_updates, label: "Account updates", checked: true) %>
+            <%= fx_checkbox(:billing_updates, label: "Billing updates", checked: true) %>
+            <%= fx_checkbox(:security_alerts, label: "Security alerts", checked: true) %>
+            <%= fx_checkbox(:product_news, label: "Product news and updates") %>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-3">Push Notifications</h4>
+          <div class="space-y-3">
+            <%= fx_checkbox(:push_messages, label: "New messages", checked: true) %>
+            <%= fx_checkbox(:push_mentions, label: "Mentions", checked: true) %>
+            <%= fx_checkbox(:push_comments, label: "Comments on your posts") %>
+          </div>
+        </div>
+        
+        <div class="pt-4">
+          <%= fx_button(color: :primary) do %>Save Preferences<% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

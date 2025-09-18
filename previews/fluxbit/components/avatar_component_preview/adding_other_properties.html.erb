@@ -1,0 +1,4 @@
+<div class="flex gap-4">
+  <%= render(Fluxbit::AvatarComponent.new(placeholder_initials: "JD", size: :md, id: "user-avatar", "data-user-id": "123", title: "John Doe's Avatar")) %>
+  <%= render(Fluxbit::AvatarComponent.new(placeholder_initials: "AB", size: :md, onclick: "alert('Avatar clicked!')", class: "cursor-pointer hover:scale-110 transition-transform")) %>
+</div>

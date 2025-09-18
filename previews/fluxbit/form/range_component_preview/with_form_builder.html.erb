@@ -1,0 +1,85 @@
+<%# Real form builder usage with Product model %>
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Real Form Builder Integration with Product Model</h4>
+
+    <%= form_with(model: (@product || Product.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
+      <%= fx_range(
+        form: form,
+        attribute: :rating,
+        min: 1,
+        max: 5,
+        step: 1,
+        help_text: "Rate the product from 1 to 5 stars"
+      ) %>
+
+      <%= fx_range(
+        form: form,
+        attribute: :volume,
+        min: 0,
+        max: 100,
+        step: 5,
+        help_text: "Volume level percentage"
+      ) %>
+
+      <%= fx_range(
+        form: form,
+        attribute: :brightness,
+        min: 0,
+        max: 100,
+        step: 10,
+        help_text: "Display brightness percentage"
+      ) %>
+
+      <%= fx_range(
+        form: form,
+        attribute: :size,
+        min: 0,
+        max: 4,
+        step: 1,
+        help_text: "Size setting (0=XS, 1=S, 2=M, 3=L, 4=XL)"
+      ) %>
+
+      <div class="pt-4">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg">
+          Save Product
+        </button>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Standalone Range Sliders (without form builder)</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      When not using a form builder, you can still create range sliders by providing name and value manually.
+    </p>
+
+    <%= fx_range(
+      name: "product[rating]",
+      label: "Product Rating",
+      value: 4,
+      min: 1,
+      max: 5,
+      help_text: "Standalone range slider without form builder"
+    ) %>
+
+    <%= fx_range(
+      name: "product[volume]",
+      label: "Volume Level",
+      value: 75,
+      min: 0,
+      max: 100,
+      step: 5,
+      help_text: "Audio volume percentage"
+    ) %>
+
+    <%= fx_range(
+      name: "product[quality]",
+      label: "Quality Score",
+      value: 8,
+      min: 1,
+      max: 10,
+      help_text: "Quality rating from 1 to 10"
+    ) %>
+  </div>
+</div>

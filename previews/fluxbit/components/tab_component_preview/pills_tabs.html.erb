@@ -1,0 +1,64 @@
+<%= fx_tab(variant: :pills, color: :green) do |tabs| %>
+  <%= tabs.with_tab title: "All", active: true do %>
+    <div class="p-4">
+      <%= fx_heading(size: 3) do %>All Items<% end %>
+      <div class="mt-4 space-y-3">
+        <% 5.times do |i| %>
+          <div class="flex items-center justify-between p-3 border rounded-lg">
+            <div>
+              <h5 class="font-medium">Item <%= i + 1 %></h5>
+              <p class="text-sm text-gray-600">Description for item <%= i + 1 %></p>
+            </div>
+            <%= fx_badge(color: :success, with_content: "Active") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Active" do %>
+    <div class="p-4">
+      <%= fx_heading(size: 3) do %>Active Items<% end %>
+      <div class="mt-4 space-y-3">
+        <% 3.times do |i| %>
+          <div class="flex items-center justify-between p-3 border rounded-lg bg-green-50">
+            <div>
+              <h5 class="font-medium">Active Item <%= i + 1 %></h5>
+              <p class="text-sm text-gray-600">Currently running item <%= i + 1 %></p>
+            </div>
+            <%= fx_badge(color: :success, with_content: "Running") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Pending" do %>
+    <div class="p-4">
+      <%= fx_heading(size: 3) do %>Pending Items<% end %>
+      <div class="mt-4 space-y-3">
+        <% 2.times do |i| %>
+          <div class="flex items-center justify-between p-3 border rounded-lg bg-yellow-50">
+            <div>
+              <h5 class="font-medium">Pending Item <%= i + 1 %></h5>
+              <p class="text-sm text-gray-600">Waiting for approval</p>
+            </div>
+            <%= fx_badge(color: :warning, with_content: "Pending") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Archive" do %>
+    <div class="p-4">
+      <%= fx_heading(size: 3) do %>Archived Items<% end %>
+      <p class="text-gray-600 dark:text-gray-400 mt-2">
+        Items that have been archived and are no longer active.
+      </p>
+      <div class="mt-4">
+        <%= fx_button(color: :secondary) do %>View Archive<% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

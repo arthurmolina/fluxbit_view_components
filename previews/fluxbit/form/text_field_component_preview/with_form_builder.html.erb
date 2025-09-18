@@ -1,0 +1,173 @@
+<%# Real form builder usage with Product model %>
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Real Form Builder Integration with Product Model</h4>
+
+    <%= form_with(model: (@product || Product.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :name,
+        icon: "heroicons_solid:cube",
+        help_text: "Enter the product name (2-100 characters)"
+      ) %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :description,
+        type: :textarea,
+        help_text: "Detailed description of the product (minimum 10 characters)",
+        rows: 3
+      ) %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :price,
+        type: :number,
+        addon: "$",
+        step: 0.01,
+        help_text: "Product price in USD"
+      ) %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :category,
+        icon: "heroicons_solid:tag",
+        help_text: "Product category"
+      ) %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :sku,
+        icon: "heroicons_solid:identification",
+        help_text: "Stock Keeping Unit (uppercase letters, numbers, and hyphens only)"
+      ) %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :stock_quantity,
+        type: :number,
+        icon: "heroicons_solid:cube",
+        help_text: "Number of items in stock"
+      ) %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :email,
+        type: :email,
+        icon: "heroicons_solid:envelope",
+        help_text: "Contact email for this product (optional)"
+      ) %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :website,
+        type: :url,
+        icon: "heroicons_solid:globe-alt",
+        addon: "https://",
+        help_text: "Product website URL (optional)"
+      ) %>
+
+      <div class="pt-4">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg">
+          Save Product
+        </button>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Form Builder with Validation Errors</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      This example shows how validation errors are automatically displayed when using the form builder pattern.
+    </p>
+
+    <%
+      # Create a product with validation errors for demonstration
+      begin
+        invalid_product = Product.new(name: "", description: "short", price: -10, sku: "invalid sku")
+        invalid_product.valid? # Trigger validation
+      rescue => e
+        invalid_product = Product.new
+      end
+    %>
+
+    <%= form_with model: invalid_product, local: true, class: "space-y-4" do |form| %>
+      <%= fx_text_field(
+        form: form,
+        attribute: :name,
+        icon: "heroicons_solid:cube",
+        help_text: "Product name is required"
+      ) %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :description,
+        type: :textarea,
+        help_text: "Description must be at least 10 characters",
+        rows: 2
+      ) %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :price,
+        type: :number,
+        addon: "$",
+        step: 0.01,
+        help_text: "Price must be greater than 0"
+      ) %>
+
+      <%= fx_text_field(
+        form: form,
+        attribute: :sku,
+        help_text: "SKU format: uppercase letters, numbers, and hyphens only"
+      ) %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Code Example</h4>
+    <div class="border border-gray-200 rounded-lg p-4 bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
+      <code class="text-sm text-gray-800 dark:text-gray-200">
+        <span class="text-blue-600 dark:text-blue-400">&lt;%= form_with model: @product do |form| %&gt;</span><br>
+        &nbsp;&nbsp;<span class="text-green-600 dark:text-green-400">&lt;%= fx_text_field(</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-600 dark:text-purple-400">form:</span> form,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-600 dark:text-purple-400">attribute:</span> :name,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-600 dark:text-purple-400">icon:</span> <span class="text-orange-600 dark:text-orange-400">"heroicons_solid:cube"</span><br>
+        &nbsp;&nbsp;<span class="text-green-600 dark:text-green-400">)%&gt;</span><br>
+        <span class="text-blue-600 dark:text-blue-400">&lt;% end %&gt;</span>
+      </code>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Standalone Text Fields (without form builder)</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      When not using a form builder, you can still create text fields by providing name and value manually.
+    </p>
+
+    <%= fx_text_field(
+      name: "product[name]",
+      label: "Product Name",
+      placeholder: "Enter product name",
+      help_text: "Standalone field without form builder"
+    ) %>
+
+    <%= fx_text_field(
+      name: "product[email]",
+      label: "Contact Email",
+      type: :email,
+      icon: "heroicons_solid:envelope",
+      placeholder: "contact@example.com",
+      help_text: "Optional contact email"
+    ) %>
+
+    <%= fx_text_field(
+      name: "product[website]",
+      label: "Website",
+      type: :url,
+      addon: "https://",
+      placeholder: "example.com"
+    ) %>
+  </div>
+</div>

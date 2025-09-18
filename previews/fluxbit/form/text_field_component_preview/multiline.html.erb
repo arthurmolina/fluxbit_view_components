@@ -1,0 +1,36 @@
+<div class="space-y-4">
+  <%= fx_text_field(
+    name: "description",
+    label: "Description",
+    type: :textarea,
+    placeholder: "Enter a detailed description...",
+    rows: 3
+  ) %>
+
+  <%= fx_text_field(
+    name: "bio",
+    label: "Biography",
+    multiline: true,
+    placeholder: "Tell us about yourself...",
+    rows: 4,
+    help_text: "Maximum 500 characters"
+  ) %>
+
+  <%= fx_text_field(
+    name: "message",
+    label: "Message",
+    type: :textarea,
+    placeholder: "Type your message here...",
+    rows: 5,
+    maxlength: 1000
+  ) %>
+
+  <%= fx_text_field(
+    name: "feedback",
+    label: "Feedback",
+    multiline: true,
+    placeholder: "Share your feedback with us...",
+    help_text: "Your feedback helps us improve our services",
+    rows: 6
+  ) %>
+</div>

@@ -1,0 +1,37 @@
+<div class="space-y-4">
+  <%= fx_heading(size: 3) do %>Full Table<% end %>
+  <%= fx_table do |table| %>
+    <% table.with_header do |header| %>
+      <% header.with_cell { "Name" } %>
+      <% header.with_cell { "Department" } %>
+    <% end %>
+
+    <% table.with_row do |row| %>
+      <% row.with_cell { "Alice Johnson" } %>
+      <% row.with_cell { "Engineering" } %>
+    <% end %>
+  <% end %>
+
+  <%= fx_heading(size: 3) do %>Only Rows (for partials)<% end %>
+  <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th class="px-6 py-3">Name</th>
+        <th class="px-6 py-3">Department</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= fx_table(only_rows: true) do |table| %>
+        <% table.with_row do |row| %>
+          <% row.with_cell { "Bob Smith" } %>
+          <% row.with_cell { "Marketing" } %>
+        <% end %>
+
+        <% table.with_row do |row| %>
+          <% row.with_cell { "Carol Davis" } %>
+          <% row.with_cell { "Sales" } %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

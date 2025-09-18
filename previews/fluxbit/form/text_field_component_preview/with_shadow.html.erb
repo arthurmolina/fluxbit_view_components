@@ -1,0 +1,80 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Without Shadow (Default)</h4>
+    <%= fx_text_field(
+      name: "no_shadow",
+      label: "Standard Field",
+      placeholder: "No shadow effect",
+      shadow: false
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">With Shadow</h4>
+    <%= fx_text_field(
+      name: "with_shadow",
+      label: "Shadow Field",
+      placeholder: "Has shadow effect",
+      shadow: true
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Shadow with Icons</h4>
+    <div class="space-y-3">
+      <%= fx_text_field(
+        name: "shadow_icon",
+        label: "Email with Shadow",
+        type: :email,
+        icon: "heroicons_solid:envelope",
+        placeholder: "user@example.com",
+        shadow: true
+      ) %>
+
+      <%= fx_text_field(
+        name: "shadow_both_icons",
+        label: "Search with Shadow",
+        type: :search,
+        icon: "heroicons_solid:magnifying-glass",
+        right_icon: "heroicons_solid:x-mark",
+        placeholder: "Search with shadow...",
+        shadow: true
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Shadow with Validation States</h4>
+    <div class="space-y-3">
+      <%= fx_text_field(
+        name: "shadow_success",
+        label: "Success with Shadow",
+        color: :success,
+        value: "Valid input",
+        shadow: true,
+        help_text: "✓ This field has a shadow and success state"
+      ) %>
+
+      <%= fx_text_field(
+        name: "shadow_error",
+        label: "Error with Shadow",
+        color: :danger,
+        shadow: true,
+        help_text: "This field has a shadow and error state"
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Shadow with Addon</h4>
+    <%= fx_text_field(
+      name: "shadow_addon",
+      label: "Price with Shadow",
+      addon: "$",
+      type: :number,
+      placeholder: "0.00",
+      shadow: true,
+      step: 0.01
+    ) %>
+  </div>
+</div>

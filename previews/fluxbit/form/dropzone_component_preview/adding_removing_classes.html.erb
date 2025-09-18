@@ -1,0 +1,18 @@
+<div class="space-y-6">
+  <%= fx_dropzone(
+    name: "custom_border",
+    title: "Custom Border Style",
+    subtitle: "Solid blue border instead of dashed",
+    class: "border-solid border-blue-500 bg-blue-50",
+    remove_class: "border-dashed border-gray-300",
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "rounded_style",
+    title: "Extra Rounded",
+    subtitle: "Custom border radius",
+    class: "rounded-3xl shadow-lg",
+    height: 2
+  ) %>
+</div>

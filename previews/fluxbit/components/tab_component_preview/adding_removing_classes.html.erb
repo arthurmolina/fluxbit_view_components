@@ -1,0 +1,141 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 3) do %>Custom Classes Example<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Adding custom CSS classes to modify appearance.</p>
+    
+    <%= fx_tab(variant: :default, color: :blue, class: "border-2 border-blue-200 rounded-lg") do |tabs| %>
+      <%= tabs.with_tab title: "Custom Border", active: true do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4) do %>Custom Styled Tab<% end %>
+          <p class="text-gray-600 mt-2">This tab container has custom border and rounded corners.</p>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "Normal Tab" do %>
+        <div class="p-4">
+          <p class="text-gray-600">Regular tab content.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Shadow and Spacing<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Adding shadow effects and custom spacing.</p>
+    
+    <%= fx_tab(variant: :pills, color: :green, class: "shadow-lg bg-white p-6 rounded-xl") do |tabs| %>
+      <%= tabs.with_tab title: "Elevated Design", active: true do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4) do %>Elevated Tab Design<% end %>
+          <p class="text-gray-600 mt-2">This tab has shadow and elevated appearance with extra padding.</p>
+          <%= fx_card(class: "mt-4 p-4 bg-green-50") do %>
+            <p class="text-green-800">Content with matching theme.</p>
+          <% end %>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "Another Tab" do %>
+        <div class="p-4">
+          <p class="text-gray-600">More content here.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Background Colors<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Custom background colors for different themes.</p>
+    
+    <%= fx_tab(variant: :underline, color: :purple, class: "bg-purple-50 p-6 rounded-lg") do |tabs| %>
+      <%= tabs.with_tab title: "Purple Theme", active: true do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4) do %>Purple Themed Tab<% end %>
+          <p class="text-gray-600 mt-2">Tab with purple background theme.</p>
+          <%= fx_button(color: :purple, class: "mt-4") do %>Themed Button<% end %>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "Consistent Theme" do %>
+        <div class="p-4">
+          <p class="text-gray-600">All elements follow the purple theme.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Responsive Classes<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Using responsive classes for different screen sizes.</p>
+    
+    <%= fx_tab(variant: :default, color: :indigo, class: "md:p-6 p-2 md:rounded-xl rounded") do |tabs| %>
+      <%= tabs.with_tab title: "Responsive", active: true do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4) do %>Responsive Design<% end %>
+          <p class="text-gray-600 mt-2">This tab adapts to different screen sizes with responsive padding and border radius.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <%= fx_card(class: "p-4") do %>
+              <h5 class="font-semibold">Mobile</h5>
+              <p class="text-sm text-gray-600">Compact layout</p>
+            <% end %>
+            <%= fx_card(class: "p-4") do %>
+              <h5 class="font-semibold">Desktop</h5>
+              <p class="text-sm text-gray-600">Expanded layout</p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "More Content" do %>
+        <div class="p-4">
+          <p class="text-gray-600">Additional responsive content.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Custom Animation Classes<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Adding transition and animation effects.</p>
+    
+    <%= fx_tab(variant: :pills, color: :emerald, class: "transition-all duration-300 hover:shadow-md") do |tabs| %>
+      <%= tabs.with_tab title: "Animated", active: true do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4) do %>Smooth Animations<% end %>
+          <p class="text-gray-600 mt-2">This tab has smooth transitions and hover effects.</p>
+          <%= fx_button(color: :emerald, class: "mt-4 transition-all duration-200 hover:scale-105") do %>
+            Animated Button
+          <% end %>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "Smooth Transitions" do %>
+        <div class="p-4">
+          <p class="text-gray-600">All interactions have smooth transitions.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Dark Theme Classes<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Custom dark theme styling.</p>
+    
+    <%= fx_tab(variant: :default, color: :slate, class: "bg-gray-900 text-white border border-gray-700 rounded-lg") do |tabs| %>
+      <%= tabs.with_tab title: "Dark Mode", active: true do %>
+        <div class="p-4">
+          <%= fx_heading(size: 4, class: "text-white") do %>Dark Theme Tab<% end %>
+          <p class="text-gray-300 mt-2">Custom dark theme with matching text colors.</p>
+          <div class="mt-4 p-4 bg-gray-800 rounded border border-gray-600">
+            <p class="text-gray-200">Dark themed content area.</p>
+          </div>
+        </div>
+      <% end %>
+      
+      <%= tabs.with_tab title: "Consistent Dark" do %>
+        <div class="p-4">
+          <p class="text-gray-300">All content follows dark theme.</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

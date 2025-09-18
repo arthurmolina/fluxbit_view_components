@@ -1,0 +1,22 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="text-sm font-medium text-gray-700 mb-2">Normal dropzone</h4>
+    <%= fx_dropzone(
+      name: "normal_dropzone",
+      title: "Active Dropzone",
+      subtitle: "Ready to accept files",
+      height: 2
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-700 mb-2">Disabled dropzone</h4>
+    <%= fx_dropzone(
+      name: "disabled_dropzone",
+      title: "Disabled Dropzone",
+      subtitle: "File upload is currently disabled",
+      disabled: true,
+      height: 2
+    ) %>
+  </div>
+</div>

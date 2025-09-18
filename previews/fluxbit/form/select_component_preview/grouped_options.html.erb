@@ -1,0 +1,9 @@
+<%= fx_select(
+  label: "Subscription Plan",
+  name: "plan",
+  grouped: true,
+  options: {
+    "Free Plans" => [["Basic", "basic"], ["Trial", "trial"]],
+    "Paid Plans" => [["Pro", "pro"], ["Enterprise", "enterprise"]]
+  }
+) %>

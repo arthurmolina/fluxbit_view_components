@@ -1,0 +1,48 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Horizontal card with left image</h3>
+    <%= fx_card(
+      image: 'https://flowbite.com/docs/images/blog/image-4.jpg',
+      image_position: :left
+    ) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Horizontal Card Layout</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card demonstrates the horizontal layout with an image positioned on the left side and content on the right.</p>
+      <% end %>
+      <% card.with_footer do %>
+        <small class="text-gray-500 dark:text-gray-400">Published on March 15, 2024</small>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Horizontal card with colored background</h3>
+    <%= fx_card(
+      image: 'https://flowbite.com/docs/images/blog/image-3.jpg',
+      image_position: :left,
+      color: :primary
+    ) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-xl font-bold">Colored Horizontal Card</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p>This horizontal card combines the left image layout with colored background styling.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Horizontal card without header/footer</h3>
+    <%= fx_card(
+      image: 'https://flowbite.com/docs/images/blog/image-2.jpg',
+      image_position: :left
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Simple horizontal layout</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Sometimes you just need a simple horizontal card without separate header and footer sections.</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

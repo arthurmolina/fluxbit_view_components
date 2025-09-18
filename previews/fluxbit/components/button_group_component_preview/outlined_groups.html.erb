@@ -1,0 +1,56 @@
+<div class="space-y-6">
+  <div>
+    <%= fx_heading(size: 3) do %>Default Outlined Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :default_outline) do %>First<% end %>
+      <%= group.with_button(color: :default_outline) do %>Second<% end %>
+      <%= group.with_button(color: :default_outline) do %>Third<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Success Outlined Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :success_outline) do %>Add<% end %>
+      <%= group.with_button(color: :success_outline) do %>Save<% end %>
+      <%= group.with_button(color: :success_outline) do %>Submit<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Danger Outlined Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :danger_outline) do %>Delete<% end %>
+      <%= group.with_button(color: :danger_outline) do %>Remove<% end %>
+      <%= group.with_button(color: :danger_outline) do %>Clear<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Info Outlined Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :info_outline) do %>Learn More<% end %>
+      <%= group.with_button(color: :info_outline) do %>Documentation<% end %>
+      <%= group.with_button(color: :info_outline) do %>Help<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Purple Outlined Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :purple_outline) do %>Premium<% end %>
+      <%= group.with_button(color: :purple_outline) do %>Pro<% end %>
+      <%= group.with_button(color: :purple_outline) do %>Enterprise<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Mixed Outlined Styles<% end %>
+    <p class="text-gray-600 text-sm mb-2">Different outlined colors in one group</p>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :success_outline) do %>Accept<% end %>
+      <%= group.with_button(color: :light_outline) do %>Maybe<% end %>
+      <%= group.with_button(color: :danger_outline) do %>Decline<% end %>
+    <% end %>
+  </div>
+</div>

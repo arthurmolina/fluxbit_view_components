@@ -1,0 +1,46 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Clickable card (entire card is a link)</h3>
+    <%= fx_card(
+      href: '#',
+      color: :default
+    ) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Clickable Card</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This entire card is clickable. When you provide an href attribute, the card becomes an anchor element with hover effects.</p>
+      <% end %>
+      <% card.with_footer do %>
+        <small class="text-gray-500 dark:text-gray-400">Click anywhere on this card</small>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Clickable card with primary color</h3>
+    <%= fx_card(
+      href: '#',
+      color: :primary
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-2xl font-bold">Primary Clickable Card</h5>
+        <p>Clickable cards with colored backgrounds will have matching hover effects.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Clickable card with image</h3>
+    <%= fx_card(
+      href: '#',
+      image: 'https://flowbite.com/docs/images/blog/image-1.jpg',
+      image_position: :top
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Clickable Card with Image</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card combines an image with clickable functionality - the entire card acts as a link.</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

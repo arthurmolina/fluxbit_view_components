@@ -1,0 +1,49 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Default</h4>
+    <%= fx_card(color: :default) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-lg font-bold">Default Card</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p>This is a default colored card with standard gray styling.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Primary</h4>
+    <%= fx_card(color: :primary) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-lg font-bold">Primary Card</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p>This is a primary colored card with blue accent styling.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Success</h4>
+    <%= fx_card(color: :success) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-lg font-bold">Success Card</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p>This is a success colored card with green accent styling.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Danger</h4>
+    <%= fx_card(color: :danger) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-lg font-bold">Danger Card</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p>This is a danger colored card with red accent styling.</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

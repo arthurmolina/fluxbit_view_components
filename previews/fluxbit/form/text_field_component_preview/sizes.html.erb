@@ -1,0 +1,60 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Small Size (sizing: 2)</h4>
+    <%= fx_text_field(
+      name: "small_field",
+      label: "Small Text Field",
+      sizing: 2,
+      placeholder: "Small input field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Medium Size (sizing: 0) - Default</h4>
+    <%= fx_text_field(
+      name: "medium_field",
+      label: "Medium Text Field",
+      sizing: 0,
+      placeholder: "Medium input field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Large Size (sizing: 1)</h4>
+    <%= fx_text_field(
+      name: "large_field",
+      label: "Large Text Field",
+      sizing: 1,
+      placeholder: "Large input field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Sizes with Icons</h4>
+    <div class="space-y-3">
+      <%= fx_text_field(
+        name: "small_icon",
+        label: "Small with Icon",
+        sizing: 2,
+        icon: "heroicons_solid:user",
+        placeholder: "Small with icon"
+      ) %>
+
+      <%= fx_text_field(
+        name: "medium_icon",
+        label: "Medium with Icon",
+        sizing: 0,
+        icon: "heroicons_solid:envelope",
+        placeholder: "Medium with icon"
+      ) %>
+
+      <%= fx_text_field(
+        name: "large_icon",
+        label: "Large with Icon",
+        sizing: 1,
+        icon: "heroicons_solid:phone",
+        placeholder: "Large with icon"
+      ) %>
+    </div>
+  </div>
+</div>

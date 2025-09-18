@@ -1,37 +1,33 @@
 ---
 label: Alert
-title: Fluxbit::Components::AlertComponent or fx_alert
+title: Fluxbit::AlertComponent or fx_alert
 ---
 
-The `Fluxbit::Components::AlertComponent` is a customizable alert component that extends `Fluxbit::Component`.
+The `Fluxbit::AlertComponent` is a customizable alert component that extends `Fluxbit::Component`.
 It provides various options to display alert messages with different styles, icons, and behaviors such as close functionality and animations.
 
-To start using the alert box you can you the default way to call the component:
+To start using the alert box you can use the default way to call the component:
 
 ```html
-
 &lt;%= render Fluxbit::AlertComponent.new(color: :danger).with_content('Alert') %&gt;
 
-or
+&lt;!-- or --&gt;
 
 &lt;%= render Fluxbit::AlertComponent.new(color: :danger) do %&gt;
     Alert
 &lt;% end %&gt;
-
 ```
 
 or you can use the alias (from the helpers):
 
 ```html
-
 &lt;%= fx_alert(color: :danger).with_content('Alert') %&gt;
 
-or
+&lt;!-- or --&gt;
 
 &lt;%= fx_alert(color: :danger) do %&gt;
     Alert
 &lt;% end %&gt;
-
 ```
 
 The result is:

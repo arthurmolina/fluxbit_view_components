@@ -1,0 +1,37 @@
+<%= fx_table do |table| %>
+  <% table.with_header do |header| %>
+    <% header.with_cell { "Name" } %>
+    <% header.with_cell { "Position" } %>
+    <% header.with_cell { "Office" } %>
+    <% header.with_cell { "Age" } %>
+    <% header.with_cell { "Start date" } %>
+    <% header.with_cell { "Salary" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Tiger Nixon" } %>
+    <% row.with_cell { "System Architect" } %>
+    <% row.with_cell { "Edinburgh" } %>
+    <% row.with_cell { "61" } %>
+    <% row.with_cell { "2011/04/25" } %>
+    <% row.with_cell { "$320,800" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Garrett Winters" } %>
+    <% row.with_cell { "Accountant" } %>
+    <% row.with_cell { "Tokyo" } %>
+    <% row.with_cell { "63" } %>
+    <% row.with_cell { "2011/07/25" } %>
+    <% row.with_cell { "$170,750" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Ashton Cox" } %>
+    <% row.with_cell { "Junior Technical Author" } %>
+    <% row.with_cell { "San Francisco" } %>
+    <% row.with_cell { "66" } %>
+    <% row.with_cell { "2009/01/12" } %>
+    <% row.with_cell { "$86,000" } %>
+  <% end %>
+<% end %>

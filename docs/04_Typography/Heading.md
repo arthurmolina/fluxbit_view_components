@@ -3,12 +3,12 @@ label: Heading
 title: Fluxbit::HeadingComponent or fx_heading
 ---
 
-The **Fluxbit::HeadingComponent** is a customizable heading component that extends **Fluxbit::Component**. 
+The `Fluxbit::HeadingComponent` is a customizable heading component that extends `Fluxbit::Component`. 
 It provides a straightforward way to generate heading elements (`<h1>` through `<h6>`) with configurable sizes, 
 letter spacing, and line heights. Additional HTML attributes can be passed to further control the component’s 
 behavior and styling.
 
-To start using the heading you can you the default way to call the component:
+To start using the heading you can use the default way to call the component:
 
 ```html
 &lt;%= render Fluxbit::HeadingComponent.new(size: 2, spacing: :wider, line_height: :relaxed) do %&gt;

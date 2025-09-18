@@ -1,0 +1,24 @@
+<div class="p-8 flex justify-center">
+  <%= fx_avatar_group do |group| %>
+    <%= group.with_avatar(
+      placeholder_initials: "ON",
+      status: :online,
+      status_position: :bottom_right
+    ) %>
+    <%= group.with_avatar(
+      placeholder_initials: "BS",
+      status: :busy,
+      status_position: :bottom_right
+    ) %>
+    <%= group.with_avatar(
+      placeholder_initials: "AW",
+      status: :away,
+      status_position: :bottom_right
+    ) %>
+    <%= group.with_avatar(
+      placeholder_initials: "OF",
+      status: :offline,
+      status_position: :bottom_right
+    ) %>
+  <% end %>
+</div>

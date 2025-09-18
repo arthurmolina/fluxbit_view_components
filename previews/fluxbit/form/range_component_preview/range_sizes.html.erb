@@ -1,0 +1,37 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Small Range (sizing: 0)</h4>
+    <%= fx_range(
+      name: "small_range",
+      label: "Small Slider",
+      value: 25,
+      sizing: 0,
+      min: 0,
+      max: 100
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Medium Range (sizing: 1) - Default</h4>
+    <%= fx_range(
+      name: "medium_range",
+      label: "Medium Slider",
+      value: 50,
+      sizing: 1,
+      min: 0,
+      max: 100
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Large Range (sizing: 2)</h4>
+    <%= fx_range(
+      name: "large_range",
+      label: "Large Slider",
+      value: 75,
+      sizing: 2,
+      min: 0,
+      max: 100
+    ) %>
+  </div>
+</div>

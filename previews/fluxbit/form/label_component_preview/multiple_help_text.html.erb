@@ -1,0 +1,34 @@
+<div class="space-y-6">
+  <%= fx_label(
+    with_content: "Password",
+    help_text: [
+      "Password must be at least 8 characters long",
+      "Include at least one uppercase letter",
+      "Include at least one number",
+      "Include at least one special character"
+    ],
+    for: "password"
+  ) %>
+
+  <%= fx_label(
+    with_content: "Upload Requirements",
+    color: :info,
+    help_text: [
+      "Maximum file size: 10MB",
+      "Accepted formats: PDF, DOC, DOCX, JPG, PNG",
+      "Files will be scanned for viruses automatically"
+    ],
+    for: "file_upload"
+  ) %>
+
+  <%= fx_label(
+    with_content: "Credit Card",
+    color: :warning,
+    help_text: [
+      "We use secure encryption to protect your payment information",
+      "Your card will be charged immediately upon submission",
+      "Refunds typically take 3-5 business days to process"
+    ],
+    for: "credit_card"
+  ) %>
+</div>

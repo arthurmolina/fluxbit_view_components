@@ -1,0 +1,97 @@
+<div class="space-y-8">
+  <!-- Blue Tabs -->
+  <%= fx_tab(variant: :default, color: :blue) do |tabs| %>
+    <%= tabs.with_tab title: "Blue Active", active: true do %>
+      <div class="p-4">
+        <%= fx_heading(size: 3, color: :blue) do %>Blue Theme Tab<% end %>
+        <p class="text-gray-600 mt-2">This tab uses the blue color scheme for active states and highlights.</p>
+        <%= fx_button(color: :blue, class: "mt-4") do %>Blue Button<% end %>
+      </div>
+    <% end %>
+    <%= tabs.with_tab title: "Inactive" do %>
+      <div class="p-4">
+        <p class="text-gray-600">This is the inactive tab content.</p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <!-- Green Tabs -->
+  <%= fx_tab(variant: :pills, color: :green) do |tabs| %>
+    <%= tabs.with_tab title: "Green Active", active: true do %>
+      <div class="p-4">
+        <%= fx_heading(size: 3, color: :green) do %>Green Theme Tab<% end %>
+        <p class="text-gray-600 mt-2">This tab uses the green color scheme with pills variant.</p>
+        <%= fx_button(color: :green, class: "mt-4") do %>Green Button<% end %>
+      </div>
+    <% end %>
+    <%= tabs.with_tab title: "Inactive" do %>
+      <div class="p-4">
+        <p class="text-gray-600">This is the inactive tab content.</p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <!-- Purple Tabs -->
+  <%= fx_tab(variant: :underline, color: :purple) do |tabs| %>
+    <%= tabs.with_tab title: "Purple Active", active: true do %>
+      <div class="p-4">
+        <%= fx_heading(size: 3, color: :purple) do %>Purple Theme Tab<% end %>
+        <p class="text-gray-600 mt-2">This tab uses the purple color scheme with underline variant.</p>
+        <%= fx_button(color: :purple, class: "mt-4") do %>Purple Button<% end %>
+      </div>
+    <% end %>
+    <%= tabs.with_tab title: "Inactive" do %>
+      <div class="p-4">
+        <p class="text-gray-600">This is the inactive tab content.</p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <!-- Red Tabs -->
+  <%= fx_tab(variant: :default, color: :red) do |tabs| %>
+    <%= tabs.with_tab title: "Red Active", active: true do %>
+      <div class="p-4">
+        <%= fx_heading(size: 3, color: :red) do %>Red Theme Tab<% end %>
+        <p class="text-gray-600 mt-2">This tab uses the red color scheme for error states and warnings.</p>
+        <%= fx_button(color: :red, class: "mt-4") do %>Red Button<% end %>
+      </div>
+    <% end %>
+    <%= tabs.with_tab title: "Inactive" do %>
+      <div class="p-4">
+        <p class="text-gray-600">This is the inactive tab content.</p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <!-- Yellow Tabs -->
+  <%= fx_tab(variant: :pills, color: :yellow) do |tabs| %>
+    <%= tabs.with_tab title: "Yellow Active", active: true do %>
+      <div class="p-4">
+        <%= fx_heading(size: 3, color: :yellow) do %>Yellow Theme Tab<% end %>
+        <p class="text-gray-600 mt-2">This tab uses the yellow color scheme for warning states.</p>
+        <%= fx_button(color: :yellow, class: "mt-4") do %>Yellow Button<% end %>
+      </div>
+    <% end %>
+    <%= tabs.with_tab title: "Inactive" do %>
+      <div class="p-4">
+        <p class="text-gray-600">This is the inactive tab content.</p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <!-- Indigo Tabs -->
+  <%= fx_tab(variant: :underline, color: :indigo) do |tabs| %>
+    <%= tabs.with_tab title: "Indigo Active", active: true do %>
+      <div class="p-4">
+        <%= fx_heading(size: 3, color: :indigo) do %>Indigo Theme Tab<% end %>
+        <p class="text-gray-600 mt-2">This tab uses the indigo color scheme with a modern look.</p>
+        <%= fx_button(color: :indigo, class: "mt-4") do %>Indigo Button<% end %>
+      </div>
+    <% end %>
+    <%= tabs.with_tab title: "Inactive" do %>
+      <div class="p-4">
+        <p class="text-gray-600">This is the inactive tab content.</p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

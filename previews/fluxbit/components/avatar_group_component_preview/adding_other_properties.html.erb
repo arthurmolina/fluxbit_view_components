@@ -1,0 +1,14 @@
+<div class="p-8 flex justify-center">
+  <%= fx_avatar_group(
+    id: "custom-avatar-group",
+    data: {
+      testid: "avatar-group",
+      count: "3"
+    },
+    "aria-label": "Team members"
+  ) do |group| %>
+    <%= group.with_avatar(placeholder_initials: "T1") %>
+    <%= group.with_avatar(placeholder_initials: "M2") %>
+    <%= group.with_avatar(placeholder_initials: "G3") %>
+  <% end %>
+</div>

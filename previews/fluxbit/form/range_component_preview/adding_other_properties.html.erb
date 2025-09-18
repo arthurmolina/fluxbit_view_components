@@ -1,0 +1,97 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-2">With Custom ID and Data Attributes:</h4>
+    <%= fx_range(
+      name: "tracked_range",
+      label: "Progress Tracker",
+      value: 65,
+      min: 0,
+      max: 100,
+      id: "progress-tracker",
+      data: {
+        testid: "progress-range",
+        controller: "range-tracker",
+        target: "slider",
+        action: "input->range-tracker#updateValue"
+      }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With ARIA Attributes:</h4>
+    <%= fx_range(
+      name: "accessible_range",
+      label: "Volume Control",
+      value: 50,
+      min: 0,
+      max: 100,
+      aria: {
+        describedby: "volume-help",
+        valuetext: "50 percent volume",
+        label: "Audio volume control"
+      },
+      role: "slider"
+    ) %>
+    <p id="volume-help" class="text-sm text-gray-600 mt-1">Use arrow keys to adjust volume</p>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Event Handlers:</h4>
+    <%= fx_range(
+      name: "interactive_range",
+      label: "Interactive Range",
+      value: 30,
+      min: 0,
+      max: 100,
+      oninput: "console.log('Range value:', this.value)",
+      onchange: "console.log('Range changed to:', this.value)",
+      onfocus: "console.log('Range focused')",
+      onblur: "console.log('Range blurred')"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Custom Styling Properties:</h4>
+    <%= fx_range(
+      name: "styled_range",
+      label: "Custom Styled Range",
+      value: 40,
+      min: 0,
+      max: 100,
+      style: "filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)); transform: scale(1.1);",
+      title: "Custom styled range slider with shadow and scale"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Form Association:</h4>
+    <%= fx_range(
+      name: "form_range",
+      label: "Form Associated Range",
+      value: 55,
+      min: 0,
+      max: 100,
+      form: "settings-form",
+      required: true,
+      tabindex: "0",
+      accesskey: "r"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Wrapper HTML Attributes:</h4>
+    <%= fx_range(
+      name: "wrapper_range",
+      label: "Range with Custom Wrapper",
+      value: 70,
+      min: 0,
+      max: 100,
+      wrapper_html: {
+        id: "custom-wrapper",
+        class: "bg-blue-50 dark:bg-blue-900/20 border border-blue-200 rounded-lg p-4",
+        data: { controller: "wrapper-handler" },
+        style: "transition: all 0.3s ease;"
+      }
+    ) %>
+  </div>
+</div>

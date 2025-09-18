@@ -1,0 +1,56 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Card without border</h3>
+    <%= fx_card(
+      border: false
+    ) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Borderless Card</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card has no border, creating a cleaner, more minimal appearance.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Card without shadow</h3>
+    <%= fx_card(
+      shadow: false
+    ) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">No Shadow Card</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card has no drop shadow, making it appear flat against the background.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Card without border or shadow</h3>
+    <%= fx_card(
+      border: false,
+      shadow: false
+    ) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Minimal Card</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This is the most minimal card styling with no border and no shadow.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Card without rounded corners</h3>
+    <%= fx_card(
+      rounded: false
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Square Corners</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card has square corners instead of the default rounded corners.</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

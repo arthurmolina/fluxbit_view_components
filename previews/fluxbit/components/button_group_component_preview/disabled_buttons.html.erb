@@ -1,0 +1,227 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 3) do %>Partially Disabled Groups<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Some buttons disabled based on context or permissions</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :success) do %>Save<% end %>
+      <%= group.with_button(color: :light) do %>Preview<% end %>
+      <%= group.with_button(color: :light, disabled: true) do %>Publish<% end %>
+    <% end %>
+    <p class="text-xs text-gray-500 mt-2">Publish is disabled - requires admin permissions</p>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Workflow States<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Actions disabled based on current workflow state</p>
+    <div class="space-y-4">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium">Document Status: Draft</span>
+          <%= fx_badge(color: :warning, with_content: "Draft") %>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :success) do %>Submit for Review<% end %>
+          <%= group.with_button(color: :light) do %>Edit<% end %>
+          <%= group.with_button(color: :light, disabled: true) do %>Approve<% end %>
+          <%= group.with_button(color: :light, disabled: true) do %>Publish<% end %>
+        <% end %>
+        <p class="text-xs text-gray-500 mt-1">Approve and Publish require review completion</p>
+      </div>
+      
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium">Document Status: Under Review</span>
+          <%= fx_badge(color: :info, with_content: "Under Review") %>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :light, disabled: true) do %>Submit for Review<% end %>
+          <%= group.with_button(color: :light, disabled: true) do %>Edit<% end %>
+          <%= group.with_button(color: :success) do %>Approve<% end %>
+          <%= group.with_button(color: :danger_outline) do %>Reject<% end %>
+        <% end %>
+        <p class="text-xs text-gray-500 mt-1">Submit and Edit are locked during review</p>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Form Validation States<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Submit actions disabled until form is valid</p>
+    <div class="p-4 border rounded-lg bg-red-50">
+      <div class="mb-4">
+        <%= fx_text_field(:email, label: "Email", value: "invalid-email", class: "border-red-300") %>
+        <p class="text-red-600 text-xs mt-1">Please enter a valid email address</p>
+      </div>
+      <div class="mb-4">
+        <%= fx_text_field(:password, label: "Password", type: :password, class: "border-red-300") %>
+        <p class="text-red-600 text-xs mt-1">Password must be at least 8 characters</p>
+      </div>
+      <div class="flex justify-between">
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :light_outline) do %>Clear<% end %>
+          <%= group.with_button(color: :light, disabled: true) do %>Save Draft<% end %>
+          <%= group.with_button(color: :success, disabled: true) do %>Submit<% end %>
+        <% end %>
+      </div>
+      <p class="text-xs text-red-600 mt-2">Fix validation errors to enable submit actions</p>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Permission-Based Disabling<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Actions disabled based on user role and permissions</p>
+    <div class="space-y-3">
+      <div class="flex items-center justify-between p-3 border rounded-lg">
+        <div>
+          <h5 class="font-medium">User Management</h5>
+          <p class="text-sm text-gray-600">Current role: Editor</p>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :info, size: 1) do %>View<% end %>
+          <%= group.with_button(color: :light, size: 1) do %>Edit<% end %>
+          <%= group.with_button(color: :light, size: 1, disabled: true) do %>Delete<% end %>
+        <% end %>
+      </div>
+      
+      <div class="flex items-center justify-between p-3 border rounded-lg">
+        <div>
+          <h5 class="font-medium">System Settings</h5>
+          <p class="text-sm text-gray-600">Requires Admin access</p>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :light, size: 1, disabled: true) do %>Configure<% end %>
+          <%= group.with_button(color: :light, size: 1, disabled: true) do %>Backup<% end %>
+          <%= group.with_button(color: :light, size: 1, disabled: true) do %>Reset<% end %>
+        <% end %>
+      </div>
+      
+      <div class="flex items-center justify-between p-3 border rounded-lg">
+        <div>
+          <h5 class="font-medium">Content Publishing</h5>
+          <p class="text-sm text-gray-600">Available actions</p>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :success, size: 1) do %>Create<% end %>
+          <%= group.with_button(color: :info, size: 1) do %>Edit<% end %>
+          <%= group.with_button(color: :light, size: 1, disabled: true) do %>Publish<% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Loading States<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Buttons disabled during processing</p>
+    <div class="p-4 border rounded-lg">
+      <div class="mb-4">
+        <div class="flex items-center space-x-2 mb-2">
+          <%= anyicon("heroicons_solid:arrow-path", class: "w-4 h-4 text-blue-500 animate-spin") %>
+          <span class="text-sm">Processing payment...</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="bg-blue-600 h-2 rounded-full animate-pulse" style="width: 60%"></div>
+        </div>
+      </div>
+      <%= fx_button_group do |group| %>
+        <%= group.with_button(color: :light_outline, disabled: true) do %>Cancel<% end %>
+        <%= group.with_button(color: :light, disabled: true) do %>Retry<% end %>
+        <%= group.with_button(color: :success, disabled: true) do %>
+          <%= anyicon("heroicons_solid:arrow-path", class: "w-4 h-4 mr-1 animate-spin") %>
+          Processing...
+        <% end %>
+      <% end %>
+      <p class="text-xs text-gray-500 mt-2">All actions disabled during payment processing</p>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Quota and Limits<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Actions disabled when limits are reached</p>
+    <div class="space-y-3">
+      <div class="p-3 border rounded-lg bg-orange-50">
+        <div class="flex items-center justify-between mb-2">
+          <h5 class="font-medium">Storage Usage</h5>
+          <span class="text-sm text-orange-600">4.8GB / 5GB</span>
+        </div>
+        <div class="mb-3">
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div class="bg-orange-500 h-2 rounded-full" style="width: 96%"></div>
+          </div>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :light) do %>View Files<% end %>
+          <%= group.with_button(color: :light, disabled: true) do %>Upload<% end %>
+          <%= group.with_button(color: :warning_outline) do %>Upgrade<% end %>
+        <% end %>
+        <p class="text-xs text-orange-600 mt-2">Upload disabled - storage limit nearly reached</p>
+      </div>
+      
+      <div class="p-3 border rounded-lg bg-red-50">
+        <div class="flex items-center justify-between mb-2">
+          <h5 class="font-medium">API Requests</h5>
+          <span class="text-sm text-red-600">1000 / 1000</span>
+        </div>
+        <div class="mb-3">
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div class="bg-red-500 h-2 rounded-full" style="width: 100%"></div>
+          </div>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :light) do %>View Usage<% end %>
+          <%= group.with_button(color: :light, disabled: true) do %>Test API<% end %>
+          <%= group.with_button(color: :danger_outline) do %>Upgrade Plan<% end %>
+        <% end %>
+        <p class="text-xs text-red-600 mt-2">API limit reached - upgrade to continue</p>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Time-Based Disabling<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Actions disabled based on time or schedule</p>
+    <div class="space-y-3">
+      <div class="p-3 border rounded-lg">
+        <div class="flex items-center justify-between mb-2">
+          <h5 class="font-medium">Scheduled Maintenance</h5>
+          <span class="text-sm text-orange-600">Starts in 30 minutes</span>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :info) do %>View Details<% end %>
+          <%= group.with_button(color: :light, disabled: true) do %>Deploy<% end %>
+          <%= group.with_button(color: :light, disabled: true) do %>Backup<% end %>
+        <% end %>
+        <p class="text-xs text-gray-500 mt-2">Deployment actions disabled during maintenance window</p>
+      </div>
+      
+      <div class="p-3 border rounded-lg">
+        <div class="flex items-center justify-between mb-2">
+          <h5 class="font-medium">Campaign Settings</h5>
+          <span class="text-sm text-gray-600">Campaign ended</span>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :light) do %>View Results<% end %>
+          <%= group.with_button(color: :light, disabled: true) do %>Edit<% end %>
+          <%= group.with_button(color: :light, disabled: true) do %>Extend<% end %>
+        <% end %>
+        <p class="text-xs text-gray-500 mt-2">Campaign ended - editing no longer available</p>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Completely Disabled Group<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Entire button group disabled for system maintenance</p>
+    <div class="p-4 border rounded-lg bg-gray-100">
+      <div class="flex items-center space-x-2 mb-3">
+        <%= anyicon("heroicons_solid:wrench-screwdriver", class: "w-4 h-4 text-gray-500") %>
+        <span class="text-sm text-gray-600">System maintenance in progress</span>
+      </div>
+      <%= fx_button_group do |group| %>
+        <%= group.with_button(color: :light, disabled: true) do %>Create Report<% end %>
+        <%= group.with_button(color: :light, disabled: true) do %>Export Data<% end %>
+        <%= group.with_button(color: :light, disabled: true) do %>Send Email<% end %>
+      <% end %>
+      <p class="text-xs text-gray-500 mt-2">All features temporarily disabled - estimated completion: 2 hours</p>
+    </div>
+  </div>
+</div>

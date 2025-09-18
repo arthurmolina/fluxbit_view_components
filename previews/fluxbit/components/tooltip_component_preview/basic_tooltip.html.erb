@@ -1,0 +1,16 @@
+<div class="flex flex-wrap justify-center gap-4 p-8">
+  <% %i[top bottom left right].each do |placement| %>
+    <%= fx_button(
+      class: 'relative inline-flex w-32',
+      with_content: "Hover #{placement}",
+      data: {
+        tooltip_target: "tooltip-#{placement}",
+        tooltip_placement: placement.to_s
+      }
+    ) %>
+    
+    <%= fx_tooltip(id: "tooltip-#{placement}") do %>
+      Tooltip on <%= placement %>
+    <% end %>
+  <% end %>
+</div>

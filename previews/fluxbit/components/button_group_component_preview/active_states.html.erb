@@ -1,0 +1,219 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 3) do %>Toggle Buttons<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Buttons that show selected/active states</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :default) do %>
+        <%= anyicon("heroicons_solid:bold", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:italic", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :default) do %>
+        <%= anyicon("heroicons_solid:underline", class: "w-4 h-4") %>
+      <% end %>
+    <% end %>
+    <p class="text-xs text-gray-500 mt-2">Bold and Underline are currently active</p>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>View Mode Selection<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Select between different view modes</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:list-bullet", class: "w-4 h-4 mr-2") %>
+        List
+      <% end %>
+      <%= group.with_button(color: :default) do %>
+        <%= anyicon("heroicons_solid:squares-2x2", class: "w-4 h-4 mr-2") %>
+        Grid
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:table-cells", class: "w-4 h-4 mr-2") %>
+        Table
+      <% end %>
+    <% end %>
+    <p class="text-xs text-gray-500 mt-2">Grid view is currently selected</p>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Filter States<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Active filters in a data view</p>
+    <div class="space-y-3">
+      <div>
+        <span class="text-sm font-medium text-gray-700 mr-3">Status:</span>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :light) do %>All<% end %>
+          <%= group.with_button(color: :success) do %>Active<% end %>
+          <%= group.with_button(color: :light) do %>Inactive<% end %>
+          <%= group.with_button(color: :light) do %>Pending<% end %>
+        <% end %>
+      </div>
+      
+      <div>
+        <span class="text-sm font-medium text-gray-700 mr-3">Type:</span>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :default) do %>Users<% end %>
+          <%= group.with_button(color: :default) do %>Admins<% end %>
+          <%= group.with_button(color: :light) do %>Guests<% end %>
+        <% end %>
+      </div>
+      
+      <p class="text-xs text-gray-500">Active filters: Status = Active, Type = Users + Admins</p>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Tab Navigation Active States<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Navigation tabs with clear active indication</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :light) do %>Overview<% end %>
+      <%= group.with_button(color: :default) do %>Details<% end %>
+      <%= group.with_button(color: :light) do %>Reviews<% end %>
+      <%= group.with_button(color: :light) do %>Specifications<% end %>
+    <% end %>
+    
+    <div class="mt-4 p-4 border rounded-lg bg-blue-50">
+      <%= fx_heading(size: 4) do %>Details Content<% end %>
+      <p class="text-gray-600 mt-2">This is the content for the Details tab, which is currently active as indicated by the darker button above.</p>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Multiple Selection<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Multiple items can be active simultaneously</p>
+    <div class="space-y-3">
+      <div>
+        <span class="text-sm font-medium text-gray-700 mr-3">Permissions:</span>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :success) do %>Read<% end %>
+          <%= group.with_button(color: :success) do %>Write<% end %>
+          <%= group.with_button(color: :light) do %>Delete<% end %>
+          <%= group.with_button(color: :light) do %>Admin<% end %>
+        <% end %>
+      </div>
+      
+      <div>
+        <span class="text-sm font-medium text-gray-700 mr-3">Features:</span>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :info) do %>Analytics<% end %>
+          <%= group.with_button(color: :light) do %>Reporting<% end %>
+          <%= group.with_button(color: :info) do %>API Access<% end %>
+          <%= group.with_button(color: :info) do %>Exports<% end %>
+        <% end %>
+      </div>
+      
+      <p class="text-xs text-gray-500">Selected: Read, Write permissions and Analytics, API Access, Exports features</p>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Priority Selection<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Single selection with different priority levels</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:chevron-down", class: "w-4 h-4 mr-1") %>
+        Low
+      <% end %>
+      <%= group.with_button(color: :warning) do %>
+        <%= anyicon("heroicons_solid:minus", class: "w-4 h-4 mr-1") %>
+        Medium
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:chevron-up", class: "w-4 h-4 mr-1") %>
+        High
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:exclamation-triangle", class: "w-4 h-4 mr-1") %>
+        Urgent
+      <% end %>
+    <% end %>
+    <p class="text-xs text-gray-500 mt-2">Medium priority is currently selected</p>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Sorting Direction<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Sort controls with active state indication</p>
+    <div class="flex items-center space-x-4">
+      <span class="text-sm font-medium text-gray-700">Sort by Date:</span>
+      <%= fx_button_group do |group| %>
+        <%= group.with_button(color: :default) do %>
+          <%= anyicon("heroicons_solid:arrow-up", class: "w-4 h-4 mr-1") %>
+          Newest
+        <% end %>
+        <%= group.with_button(color: :light) do %>
+          <%= anyicon("heroicons_solid:arrow-down", class: "w-4 h-4 mr-1") %>
+          Oldest
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Content Type Filter<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Filter content by type with visual feedback</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :default) do %>
+        <%= anyicon("heroicons_solid:document-text", class: "w-4 h-4 mr-1") %>
+        Articles
+        <%= fx_badge(color: :blue, with_content: "12", size: :sm, class: "ml-2") %>
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:photo", class: "w-4 h-4 mr-1") %>
+        Images
+        <%= fx_badge(color: :gray, with_content: "8", size: :sm, class: "ml-2") %>
+      <% end %>
+      <%= group.with_button(color: :default) do %>
+        <%= anyicon("heroicons_solid:video-camera", class: "w-4 h-4 mr-1") %>
+        Videos
+        <%= fx_badge(color: :blue, with_content: "3", size: :sm, class: "ml-2") %>
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:musical-note", class: "w-4 h-4 mr-1") %>
+        Audio
+        <%= fx_badge(color: :gray, with_content: "5", size: :sm, class: "ml-2") %>
+      <% end %>
+    <% end %>
+    <p class="text-xs text-gray-500 mt-2">Showing: Articles and Videos (15 items total)</p>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Notification Settings<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Toggle different notification types</p>
+    <div class="space-y-3">
+      <div class="flex items-center justify-between p-3 border rounded-lg">
+        <div>
+          <h5 class="font-medium">Email Notifications</h5>
+          <p class="text-sm text-gray-600">Receive updates via email</p>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :success, size: 1) do %>On<% end %>
+          <%= group.with_button(color: :light, size: 1) do %>Off<% end %>
+        <% end %>
+      </div>
+      
+      <div class="flex items-center justify-between p-3 border rounded-lg">
+        <div>
+          <h5 class="font-medium">Push Notifications</h5>
+          <p class="text-sm text-gray-600">Browser and mobile notifications</p>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :light, size: 1) do %>On<% end %>
+          <%= group.with_button(color: :danger, size: 1) do %>Off<% end %>
+        <% end %>
+      </div>
+      
+      <div class="flex items-center justify-between p-3 border rounded-lg">
+        <div>
+          <h5 class="font-medium">SMS Notifications</h5>
+          <p class="text-sm text-gray-600">Text message alerts</p>
+        </div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :warning, size: 1) do %>Important Only<% end %>
+          <%= group.with_button(color: :light, size: 1) do %>All<% end %>
+          <%= group.with_button(color: :light, size: 1) do %>Off<% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

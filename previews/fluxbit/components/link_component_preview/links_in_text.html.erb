@@ -1,0 +1,84 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Links within paragraphs</h3>
+    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+      This is a paragraph with multiple links embedded within the text. You can
+      <%= fx_link(href: "/learn", color: :primary) do %>learn more about our services<% end %>
+      by visiting our documentation, or
+      <%= fx_link(href: "/contact", color: :success) do %>contact our support team<% end %>
+      if you need immediate assistance. For urgent matters, please
+      <%= fx_link(href: "tel:+1234567890", color: :danger) do %>call us directly<% end %>
+      or
+      <%= fx_link(href: "mailto:support@example.com", color: :info) do %>send an email<% end %>.
+    </p>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Links in lists</h3>
+    <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+      <li>
+        Check out our
+        <%= fx_link(href: "/products", color: :primary) do %>product catalog<% end %>
+        for the latest offerings
+      </li>
+      <li>
+        Read our
+        <%= fx_link(href: "/blog", color: :secondary) do %>blog posts<% end %>
+        for industry insights
+      </li>
+      <li>
+        Follow us on
+        <%= fx_link(href: "https://twitter.com", target: "_blank", color: :info) do %>Twitter<% end %>
+        for updates
+      </li>
+      <li>
+        Download our
+        <%= fx_link(href: "/downloads/guide.pdf", color: :success) do %>user guide<% end %>
+        (PDF format)
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Inline links with different styling</h3>
+    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+      Sometimes you need
+      <%= fx_link(href: "#", color: :primary, class: "font-bold") do %>bold links<% end %>,
+      other times you might want
+      <%= fx_link(href: "#", color: :secondary, class: "italic") do %>italic links<% end %>,
+      or even
+      <%= fx_link(href: "#", color: :danger, class: "underline decoration-2") do %>heavily underlined links<% end %>
+      for emphasis.
+    </p>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Links in blockquote</h3>
+    <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-600 dark:text-gray-400">
+      "The best way to learn about our platform is to
+      <%= fx_link(href: "/demo", color: :primary) do %>try our interactive demo<% end %>
+      and see how it can transform your workflow. You can also
+      <%= fx_link(href: "/testimonials", color: :secondary) do %>read what our customers say<% end %>
+      about their experience."
+    </blockquote>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Call-to-action within text</h3>
+    <div class="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg">
+      <p class="text-blue-900 dark:text-blue-100">
+        Ready to get started?
+        <%= fx_link(
+          href: "/signup",
+          color: :primary,
+          class: "font-semibold text-lg"
+        ) do %>
+          Create your free account today
+        <% end %>
+        and unlock all features, or
+        <%= fx_link(href: "/pricing", color: :secondary) do %>view our pricing plans<% end %>
+        to find the perfect fit for your needs.
+      </p>
+    </div>
+  </div>
+</div>

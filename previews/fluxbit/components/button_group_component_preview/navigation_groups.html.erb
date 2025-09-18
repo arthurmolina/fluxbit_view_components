@@ -1,0 +1,175 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 3) do %>Page Navigation<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Navigate between different pages or sections</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :default, href: "#home") do %>
+        <%= anyicon("heroicons_solid:home", class: "w-4 h-4 mr-2") %>
+        Home
+      <% end %>
+      <%= group.with_button(color: :light, href: "#about") do %>
+        <%= anyicon("heroicons_solid:information-circle", class: "w-4 h-4 mr-2") %>
+        About
+      <% end %>
+      <%= group.with_button(color: :light, href: "#contact") do %>
+        <%= anyicon("heroicons_solid:envelope", class: "w-4 h-4 mr-2") %>
+        Contact
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Pagination Navigation<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Navigate through pages of results</p>
+    <div class="flex items-center space-x-4">
+      <%= fx_button_group do |group| %>
+        <%= group.with_button(color: :light_outline, disabled: true) do %>
+          <%= anyicon("heroicons_solid:chevron-left", class: "w-4 h-4") %>
+        <% end %>
+        <%= group.with_button(color: :default) do %>1<% end %>
+        <%= group.with_button(color: :light_outline) do %>2<% end %>
+        <%= group.with_button(color: :light_outline) do %>3<% end %>
+        <%= group.with_button(color: :light_outline) do %>
+          <%= anyicon("heroicons_solid:chevron-right", class: "w-4 h-4") %>
+        <% end %>
+      <% end %>
+      
+      <span class="text-sm text-gray-600">Page 1 of 3</span>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Tab-Style Navigation<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Navigate between different content sections</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :default) do %>Overview<% end %>
+      <%= group.with_button(color: :light) do %>Features<% end %>
+      <%= group.with_button(color: :light) do %>Pricing<% end %>
+      <%= group.with_button(color: :light) do %>Support<% end %>
+    <% end %>
+    
+    <div class="mt-4 p-4 border rounded-lg">
+      <h4 class="font-semibold mb-2">Overview Content</h4>
+      <p class="text-gray-600">This is the overview section content. The active navigation button shows which section is currently displayed.</p>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Breadcrumb Navigation<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Show the current page location in the site hierarchy</p>
+    <%= fx_button_group do |group| %>
+      <%= group.with_button(color: :light_outline, href: "#") do %>Home<% end %>
+      <%= group.with_button(color: :light_outline, href: "#") do %>Products<% end %>
+      <%= group.with_button(color: :light_outline, href: "#") do %>Laptops<% end %>
+      <%= group.with_button(color: :default, disabled: true) do %>MacBook Pro<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Filter Navigation<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Filter and sort content with navigation buttons</p>
+    <div class="space-y-3">
+      <div>
+        <span class="text-sm font-medium text-gray-700 mr-3">Category:</span>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :default) do %>All<% end %>
+          <%= group.with_button(color: :light) do %>Electronics<% end %>
+          <%= group.with_button(color: :light) do %>Clothing<% end %>
+          <%= group.with_button(color: :light) do %>Books<% end %>
+        <% end %>
+      </div>
+      
+      <div>
+        <span class="text-sm font-medium text-gray-700 mr-3">Sort by:</span>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :default) do %>
+            <%= anyicon("heroicons_solid:calendar-days", class: "w-4 h-4 mr-1") %>
+            Date
+          <% end %>
+          <%= group.with_button(color: :light) do %>
+            <%= anyicon("heroicons_solid:currency-dollar", class: "w-4 h-4 mr-1") %>
+            Price
+          <% end %>
+          <%= group.with_button(color: :light) do %>
+            <%= anyicon("heroicons_solid:star", class: "w-4 h-4 mr-1") %>
+            Rating
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Dashboard Navigation<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Navigate between different dashboard views</p>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <div class="flex-1">
+        <%= fx_button_group(class: "w-full") do |group| %>
+          <%= group.with_button(color: :success) do %>
+            <%= anyicon("heroicons_solid:chart-bar", class: "w-4 h-4 mr-2") %>
+            Analytics
+          <% end %>
+          <%= group.with_button(color: :light) do %>
+            <%= anyicon("heroicons_solid:users", class: "w-4 h-4 mr-2") %>
+            Users
+          <% end %>
+          <%= group.with_button(color: :light) do %>
+            <%= anyicon("heroicons_solid:cog-6-tooth", class: "w-4 h-4 mr-2") %>
+            Settings
+          <% end %>
+        <% end %>
+      </div>
+      
+      <div>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :light_outline) do %>
+            <%= anyicon("heroicons_solid:arrow-down-tray", class: "w-4 h-4 mr-1") %>
+            Export
+          <% end %>
+          <%= group.with_button(color: :light_outline) do %>
+            <%= anyicon("heroicons_solid:arrow-path", class: "w-4 h-4 mr-1") %>
+            Refresh
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Mobile-Friendly Navigation<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Responsive navigation that works well on mobile devices</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <p class="text-sm font-medium text-gray-700 mb-2">Main Navigation</p>
+        <%= fx_button_group(class: "w-full") do |group| %>
+          <%= group.with_button(color: :default, class: "flex-1") do %>
+            <%= anyicon("heroicons_solid:home", class: "w-4 h-4 sm:mr-2") %>
+            <span class="hidden sm:inline">Home</span>
+          <% end %>
+          <%= group.with_button(color: :light, class: "flex-1") do %>
+            <%= anyicon("heroicons_solid:shopping-bag", class: "w-4 h-4 sm:mr-2") %>
+            <span class="hidden sm:inline">Shop</span>
+          <% end %>
+          <%= group.with_button(color: :light, class: "flex-1") do %>
+            <%= anyicon("heroicons_solid:user", class: "w-4 h-4 sm:mr-2") %>
+            <span class="hidden sm:inline">Account</span>
+          <% end %>
+        <% end %>
+      </div>
+      
+      <div>
+        <p class="text-sm font-medium text-gray-700 mb-2">Quick Actions</p>
+        <%= fx_button_group(class: "w-full") do |group| %>
+          <%= group.with_button(color: :success, class: "flex-1") do %>
+            <%= anyicon("heroicons_solid:plus", class: "w-4 h-4 sm:mr-2") %>
+            <span class="hidden sm:inline">Add</span>
+          <% end %>
+          <%= group.with_button(color: :info, class: "flex-1") do %>
+            <%= anyicon("heroicons_solid:magnifying-glass", class: "w-4 h-4 sm:mr-2") %>
+            <span class="hidden sm:inline">Search</span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

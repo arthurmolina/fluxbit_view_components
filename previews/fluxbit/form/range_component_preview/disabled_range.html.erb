@@ -1,0 +1,38 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Enabled Range</h4>
+    <%= fx_range(
+      name: "enabled_range",
+      label: "Enabled Slider",
+      value: 50,
+      min: 0,
+      max: 100
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Disabled Range</h4>
+    <%= fx_range(
+      name: "disabled_range",
+      label: "Disabled Slider",
+      value: 30,
+      min: 0,
+      max: 100,
+      disabled: true,
+      help_text: "This slider is disabled and cannot be adjusted"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Readonly-style Range</h4>
+    <%= fx_range(
+      name: "readonly_range",
+      label: "Current System Load",
+      value: 78,
+      min: 0,
+      max: 100,
+      disabled: true,
+      help_text: "This shows the current system load (read-only)"
+    ) %>
+  </div>
+</div>

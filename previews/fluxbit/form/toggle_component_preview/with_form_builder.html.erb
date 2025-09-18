@@ -1,0 +1,112 @@
+<%# Real form builder usage with Product model %>
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Real Form Builder Integration with Product Model</h4>
+
+    <%= form_with(model: (@product || Product.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
+      <%= fx_toggle(
+        form: form,
+        attribute: :available,
+        help_text: "Toggle product availability for purchase"
+      ) %>
+
+      <%= fx_toggle(
+        form: form,
+        attribute: :featured,
+        color: :success,
+        help_text: "Feature this product on the homepage"
+      ) %>
+
+      <%= fx_toggle(
+        form: form,
+        attribute: :notifications_enabled,
+        color: :info,
+        help_text: "Enable email notifications for this product"
+      ) %>
+
+      <%= fx_toggle(
+        form: form,
+        attribute: :auto_publish,
+        color: :warning,
+        help_text: "Automatically publish product updates"
+      ) %>
+
+      <%= fx_toggle(
+        form: form,
+        attribute: :public_listing,
+        sizing: 2,
+        help_text: "Allow this product to appear in public listings"
+      ) %>
+
+      <div class="pt-4">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg">
+          Save Product
+        </button>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Different Toggle Styles</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      Examples showing different colors and sizes available for toggles.
+    </p>
+
+    <%= form_with(model: (@product || Product.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
+      <%= fx_toggle(
+        form: form,
+        attribute: :available,
+        color: :success,
+        sizing: 0,
+        help_text: "Small green toggle"
+      ) %>
+
+      <%= fx_toggle(
+        form: form,
+        attribute: :featured,
+        color: :danger,
+        sizing: 1,
+        help_text: "Medium red toggle"
+      ) %>
+
+      <%= fx_toggle(
+        form: form,
+        attribute: :notifications_enabled,
+        color: :primary,
+        sizing: 2,
+        help_text: "Large blue toggle"
+      ) %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Standalone Toggle Switches (without form builder)</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      When not using a form builder, you can still create toggle switches by providing name and checked manually.
+    </p>
+
+    <%= fx_toggle(
+      name: "product[available]",
+      label: "Available for Purchase",
+      checked: true,
+      help_text: "Standalone toggle without form builder"
+    ) %>
+
+    <%= fx_toggle(
+      name: "product[featured]",
+      label: "Featured Product",
+      checked: false,
+      color: :success,
+      help_text: "Display prominently on the site"
+    ) %>
+
+    <%= fx_toggle(
+      name: "product[notifications]",
+      label: "Email Notifications",
+      checked: true,
+      color: :info,
+      sizing: 2,
+      help_text: "Send notifications about this product"
+    ) %>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-2">Default Range Slider:</h4>
+    <%= fx_range(
+      name: "default_range",
+      label: "Default Styling",
+      value: 50,
+      min: 0,
+      max: 100
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Custom Classes Added:</h4>
+    <%= fx_range(
+      name: "custom_range",
+      label: "Custom Styled Range",
+      value: 60,
+      min: 0,
+      max: 100,
+      class: "shadow-lg border-2 border-blue-300 focus:border-blue-500"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Base Classes Removed:</h4>
+    <%= fx_range(
+      name: "modified_range",
+      label: "Modified Base Styling",
+      value: 40,
+      min: 0,
+      max: 100,
+      remove_class: "bg-slate-200 dark:bg-slate-700",
+      class: "bg-gradient-to-r from-green-200 to-blue-200 dark:from-green-800 dark:to-blue-800"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">Custom Color Theme:</h4>
+    <%= fx_range(
+      name: "themed_range",
+      label: "Themed Range Slider",
+      value: 75,
+      min: 0,
+      max: 100,
+      class: "bg-purple-200 dark:bg-purple-800 accent-purple-600",
+      wrapper_html: { class: "bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200" }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">High Contrast Accessibility:</h4>
+    <%= fx_range(
+      name: "accessible_range",
+      label: "High Contrast Range",
+      value: 80,
+      min: 0,
+      max: 100,
+      remove_class: "bg-slate-200",
+      class: "bg-yellow-100 border-2 border-black accent-black",
+      help_text: "High contrast version for better accessibility"
+    ) %>
+  </div>
+</div>

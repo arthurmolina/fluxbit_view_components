@@ -1,0 +1,46 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Hoverable card (enhanced shadow on hover)</h3>
+    <%= fx_card(
+      hoverable: true
+    ) do |card| %>
+      <% card.with_header do %>
+        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Hoverable Card</h5>
+      <% end %>
+      <% card.with_section do %>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card has a hoverable effect that enhances the shadow when you hover over it. Try hovering over this card to see the effect.</p>
+      <% end %>
+      <% card.with_footer do %>
+        <small class="text-gray-500 dark:text-gray-400">Hover over me!</small>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Hoverable card with image</h3>
+    <%= fx_card(
+      hoverable: true,
+      image: 'https://flowbite.com/docs/images/blog/image-2.jpg',
+      image_position: :top
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Hoverable with Image</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card combines an image with hover effects for a more interactive feel.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Hoverable + Clickable card</h3>
+    <%= fx_card(
+      hoverable: true,
+      href: '#',
+      color: :success
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-2xl font-bold">Interactive Card</h5>
+        <p>This card is both hoverable (enhanced shadow) and clickable (entire card is a link), with a success color theme.</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

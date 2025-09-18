@@ -1,0 +1,40 @@
+<div class="space-y-4">
+  <%= fx_select(
+    label: "Default State",
+    name: "default",
+    options: [["Option 1", "1"], ["Option 2", "2"]],
+    color: :default
+  ) %>
+
+  <%= fx_select(
+    label: "Success State",
+    name: "success",
+    options: [["Option 1", "1"], ["Option 2", "2"]],
+    color: :success,
+    help_text: "Great choice!"
+  ) %>
+
+  <%= fx_select(
+    label: "Warning State",
+    name: "warning",
+    options: [["Option 1", "1"], ["Option 2", "2"]],
+    color: :warning,
+    help_text: "Please review your selection"
+  ) %>
+
+  <%= fx_select(
+    label: "Error State",
+    name: "error",
+    options: [["Option 1", "1"], ["Option 2", "2"]],
+    color: :danger,
+    help_text: "This field is required"
+  ) %>
+
+  <%= fx_select(
+    label: "Info State",
+    name: "info",
+    options: [["Option 1", "1"], ["Option 2", "2"]],
+    color: :info,
+    help_text: "Additional information about this field"
+  ) %>
+</div>

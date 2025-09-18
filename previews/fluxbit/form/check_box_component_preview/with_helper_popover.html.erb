@@ -1,0 +1,15 @@
+<div class="space-y-4">
+  <%= fx_check_box(
+    name: "marketing_emails",
+    label: "Marketing emails",
+    value: "1",
+    helper_popover: "Receive promotional offers, product updates, and marketing communications from us."
+  ) %>
+  <%= fx_check_box(
+    name: "data_processing",
+    label: "Data processing consent",
+    value: "1",
+    helper_popover: "Allow us to process your personal data according to our privacy policy for service improvement.",
+    helper_popover_placement: :top
+  ) %>
+</div>

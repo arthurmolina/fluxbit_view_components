@@ -1,0 +1,118 @@
+<%# Real form builder usage with Product model %>
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Real Form Builder Integration with Product Model</h4>
+
+    <%= form_with(model: (@product || Product.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
+      <%= fx_upload_image(
+        form: form,
+        attribute: :avatar,
+        title: "Change Avatar",
+        image_placeholder: "https://via.placeholder.com/160x160?text=Avatar",
+        help_text: "Upload a profile avatar (160x160 recommended)"
+      ) %>
+
+      <%= fx_upload_image(
+        form: form,
+        attribute: :main_image,
+        title: "Upload Main Image",
+        image_placeholder: "https://via.placeholder.com/400x300?text=Main+Image",
+        help_text: "Primary product image for display"
+      ) %>
+
+      <%= fx_upload_image(
+        form: form,
+        attribute: :thumbnail,
+        title: "Upload Thumbnail",
+        image_placeholder: "https://via.placeholder.com/100x100?text=Thumbnail",
+        help_text: "Small thumbnail image (100x100 recommended)"
+      ) %>
+
+      <%= fx_upload_image(
+        form: form,
+        attribute: :banner,
+        title: "Upload Banner",
+        image_placeholder: "https://via.placeholder.com/800x200?text=Banner",
+        help_text: "Wide banner image for headers"
+      ) %>
+
+      <%= fx_upload_image(
+        form: form,
+        attribute: :logo,
+        title: "Upload Logo",
+        image_placeholder: "https://via.placeholder.com/200x80?text=Logo",
+        help_text: "Company or brand logo"
+      ) %>
+
+      <div class="pt-4">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg">
+          Save Product
+        </button>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">With Existing Images</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      Examples showing how the component displays when there are existing images.
+    </p>
+
+    <%
+      product_with_images = Product.new(
+        name: "Product with Images",
+        avatar: "https://picsum.photos/160/160?random=1",
+        main_image: "https://picsum.photos/400/300?random=2",
+        thumbnail: "https://picsum.photos/100/100?random=3"
+      )
+    %>
+
+    <%= form_with(model: product_with_images, local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
+      <%= fx_upload_image(
+        form: form,
+        attribute: :avatar,
+        title: "Change Avatar",
+        help_text: "Current avatar will be replaced"
+      ) %>
+
+      <%= fx_upload_image(
+        form: form,
+        attribute: :main_image,
+        title: "Change Main Image",
+        help_text: "Update the main product image"
+      ) %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Standalone Upload Image (without form builder)</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      When not using a form builder, you can still create image upload fields by providing name manually.
+    </p>
+
+    <%= fx_upload_image(
+      name: "product[avatar]",
+      label: "Profile Avatar",
+      title: "Upload Avatar",
+      image_placeholder: "https://via.placeholder.com/160x160?text=Upload",
+      help_text: "Standalone image upload without form builder"
+    ) %>
+
+    <%= fx_upload_image(
+      name: "product[main_image]",
+      label: "Main Product Image",
+      title: "Upload Image",
+      image_path: "https://picsum.photos/300/200?random=4",
+      help_text: "Replace existing product image"
+    ) %>
+
+    <%= fx_upload_image(
+      name: "product[gallery]",
+      label: "Gallery Images",
+      title: "Upload Multiple",
+      multiple: true,
+      accept: "image/jpeg,image/png,image/gif",
+      help_text: "Upload multiple images for gallery"
+    ) %>
+  </div>
+</div>

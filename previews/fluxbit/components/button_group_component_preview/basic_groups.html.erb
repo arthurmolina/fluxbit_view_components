@@ -1,0 +1,55 @@
+<div class="space-y-6">
+  <div>
+    <%= fx_heading(size: 3) do %>Default Color Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :default) do %>Save<% end %>
+      <%= group.with_button(color: :default) do %>Edit<% end %>
+      <%= group.with_button(color: :default) do %>Delete<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Success Color Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :success) do %>Approve<% end %>
+      <%= group.with_button(color: :success) do %>Accept<% end %>
+      <%= group.with_button(color: :success) do %>Confirm<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Danger Color Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :danger) do %>Delete<% end %>
+      <%= group.with_button(color: :danger) do %>Remove<% end %>
+      <%= group.with_button(color: :danger) do %>Clear<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Info Color Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :info) do %>Details<% end %>
+      <%= group.with_button(color: :info) do %>Info<% end %>
+      <%= group.with_button(color: :info) do %>Help<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Warning Color Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :warning) do %>Caution<% end %>
+      <%= group.with_button(color: :warning) do %>Alert<% end %>
+      <%= group.with_button(color: :warning) do %>Warning<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Light Color Group<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :light) do %>Cancel<% end %>
+      <%= group.with_button(color: :light) do %>Back<% end %>
+      <%= group.with_button(color: :light) do %>Close<% end %>
+    <% end %>
+  </div>
+</div>

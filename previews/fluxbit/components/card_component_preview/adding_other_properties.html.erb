@@ -1,0 +1,100 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Card with tooltip</h3>
+    <%= fx_card(
+      tooltip_text: "This is a helpful tooltip that appears when you hover over the card",
+      tooltip_placement: "top"
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Card with Tooltip</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Hover over this card to see the tooltip in action.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Card with popover</h3>
+    <%= fx_card(
+      popover_text: "This is a popover with more detailed information about the card content.",
+      popover_placement: "right",
+      popover_trigger: "click"
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Card with Popover</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Click on this card to trigger the popover with additional information.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Card with custom HTML attributes</h3>
+    <%= fx_card(
+      id: "special-card",
+      role: "article",
+      aria: {
+        label: "Product information card",
+        describedby: "card-description"
+      },
+      data: {
+        product_id: "123",
+        category: "electronics",
+        price: "299.99"
+      }
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Accessible Card</h5>
+        <p id="card-description" class="font-normal text-gray-700 dark:text-gray-400">This card includes proper ARIA attributes and custom data attributes for accessibility and JavaScript functionality.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Card with inline styles</h3>
+    <%= fx_card(
+      style: "background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 200px;",
+      class: "text-white",
+      border: false,
+      shadow: false
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold">Inline Styled Card</h5>
+        <p>This card uses inline styles for a custom gradient background and minimum height.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Card with complex image attributes</h3>
+    <%= fx_card(
+      image: "https://flowbite.com/docs/images/blog/image-1.jpg",
+      image_position: :top,
+      image_html: {
+        alt: "Beautiful landscape photograph",
+        loading: "lazy",
+        class: "object-cover transition-transform duration-300 hover:scale-110",
+        data: { lightbox: "gallery" },
+        style: "height: 200px;"
+      }
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Enhanced Image Card</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card demonstrates advanced image configuration with lazy loading, hover effects, and custom data attributes.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Card with event handlers</h3>
+    <%= fx_card(
+      onclick: "alert('Card clicked!')",
+      onmouseenter: "this.style.transform = 'translateY(-2px)'",
+      onmouseleave: "this.style.transform = 'translateY(0px)'",
+      class: "transition-transform duration-200 cursor-pointer"
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Interactive Card</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card has JavaScript event handlers for click and hover interactions.</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

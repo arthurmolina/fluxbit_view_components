@@ -1,0 +1,80 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Default</h4>
+    <%= fx_link(color: :default, href: "#") do %>
+      Default link
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Primary</h4>
+    <%= fx_link(color: :primary, href: "#") do %>
+      Primary link
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Secondary</h4>
+    <%= fx_link(color: :secondary, href: "#") do %>
+      Secondary link
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Success</h4>
+    <%= fx_link(color: :success, href: "#") do %>
+      Success link
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Danger</h4>
+    <%= fx_link(color: :danger, href: "#") do %>
+      Danger link
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Warning</h4>
+    <%= fx_link(color: :warning, href: "#") do %>
+      Warning link
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Info</h4>
+    <%= fx_link(color: :info, href: "#") do %>
+      Info link
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Light</h4>
+    <%= fx_link(color: :light, href: "#") do %>
+      Light link
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Dark</h4>
+    <%= fx_link(color: :dark, href: "#") do %>
+      Dark link
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-8">
+  <h3 class="text-lg font-semibold mb-4">Links in context</h3>
+  <p class="text-gray-700 dark:text-gray-300">
+    Here's an example of how different colored links look in a paragraph context.
+    You can use
+    <%= fx_link(color: :primary, href: "#") do %>primary links<% end %>
+    for main actions,
+    <%= fx_link(color: :success, href: "#") do %>success links<% end %>
+    for positive actions,
+    <%= fx_link(color: :danger, href: "#") do %>danger links<% end %>
+    for destructive actions, and
+    <%= fx_link(color: :secondary, href: "#") do %>secondary links<% end %>
+    for less important information.
+  </p>
+</div>

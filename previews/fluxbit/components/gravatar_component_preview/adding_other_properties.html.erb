@@ -1,0 +1,15 @@
+<div class="flex gap-4 items-center">
+  <%= fx_gravatar(
+    email: "user@example.com",
+    size: :md,
+    title: "User Avatar",
+    id: "gravatar-example",
+    data: { tooltip: "This is a Gravatar" }
+  ) %>
+  <%= fx_gravatar(
+    email: "user@example.com",
+    size: :md,
+    style: "transform: rotate(5deg);",
+    alt: "Rotated Gravatar"
+  ) %>
+</div>

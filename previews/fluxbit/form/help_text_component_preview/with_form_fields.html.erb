@@ -1,0 +1,46 @@
+<div class="space-y-6">
+  <div>
+    <%= fx_text_field(
+      name: "email",
+      label: "Email Address",
+      type: :email,
+      placeholder: "john@example.com"
+    ) %>
+    <%= fx_help_text do %>
+      We'll use this email to send you important account updates.
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_text_field(
+      name: "password",
+      label: "Password",
+      type: :password
+    ) %>
+    <%= fx_help_text(color: :info) do %>
+      Must be at least 8 characters with uppercase, lowercase, and numbers.
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_text_field(
+      name: "phone",
+      label: "Phone Number",
+      placeholder: "(555) 123-4567"
+    ) %>
+    <%= fx_help_text(color: :warning) do %>
+      We may use this number for account verification.
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_text_field(
+      name: "username",
+      label: "Username",
+      placeholder: "johndoe"
+    ) %>
+    <%= fx_help_text(color: :success) do %>
+      ✓ This username is available!
+    <% end %>
+  </div>
+</div>

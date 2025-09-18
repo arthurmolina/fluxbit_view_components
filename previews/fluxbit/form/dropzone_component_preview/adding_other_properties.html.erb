@@ -1,0 +1,32 @@
+<div class="space-y-6">
+  <%= fx_dropzone(
+    name: "with_data_attributes",
+    title: "File Upload with Analytics",
+    subtitle: "Tracked for analytics",
+    data: { analytics: "file_upload", testid: "main-upload-zone" },
+    id: "tracked-dropzone",
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "with_aria",
+    title: "Accessible Upload",
+    subtitle: "Enhanced accessibility",
+    aria: { describedby: "upload-description" },
+    role: "button",
+    tabindex: "0",
+    height: 2
+  ) %>
+  <p id="upload-description" class="text-sm text-gray-500">
+    This upload area accepts multiple file types and provides drag-and-drop functionality.
+  </p>
+
+  <%= fx_dropzone(
+    name: "with_validation",
+    title: "File Size Validation",
+    subtitle: "Max 5MB per file",
+    required: true,
+    data: { max_size: "5242880" },
+    height: 2
+  ) %>
+</div>

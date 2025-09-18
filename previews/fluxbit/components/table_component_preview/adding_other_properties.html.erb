@@ -1,0 +1,28 @@
+<%= fx_table(
+  id: "custom-data-table",
+  data: {
+    testid: "employee-table",
+    sortable: "true",
+    filterable: "true"
+  },
+  "aria-label": "Employee data table with custom attributes",
+  role: "grid"
+) do |table| %>
+  <% table.with_header do |header| %>
+    <% header.with_cell(data: { sort: "name" }) { "Name" } %>
+    <% header.with_cell(data: { sort: "position" }) { "Position" } %>
+    <% header.with_cell(data: { sort: "salary" }) { "Salary" } %>
+  <% end %>
+
+  <% table.with_row(data: { employee_id: "001" }) do |row| %>
+    <% row.with_cell(data: { field: "name" }) { "John Doe" } %>
+    <% row.with_cell(data: { field: "position" }) { "Software Engineer" } %>
+    <% row.with_cell(data: { field: "salary" }) { "$95,000" } %>
+  <% end %>
+
+  <% table.with_row(data: { employee_id: "002" }) do |row| %>
+    <% row.with_cell(data: { field: "name" }) { "Jane Smith" } %>
+    <% row.with_cell(data: { field: "position" }) { "Product Manager" } %>
+    <% row.with_cell(data: { field: "salary" }) { "$110,000" } %>
+  <% end %>
+<% end %>

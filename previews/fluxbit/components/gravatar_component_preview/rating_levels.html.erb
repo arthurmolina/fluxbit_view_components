@@ -1,0 +1,18 @@
+<div class="flex gap-4 items-center">
+  <div class="text-center">
+    <%= fx_gravatar(email: "user@example.com", rating: :g, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">G (General)</p>
+  </div>
+  <div class="text-center">
+    <%= fx_gravatar(email: "user@example.com", rating: :pg, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">PG (Parental Guidance)</p>
+  </div>
+  <div class="text-center">
+    <%= fx_gravatar(email: "user@example.com", rating: :r, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">R (Restricted)</p>
+  </div>
+  <div class="text-center">
+    <%= fx_gravatar(email: "user@example.com", rating: :x, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">X (Adult)</p>
+  </div>
+</div>

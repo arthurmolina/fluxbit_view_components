@@ -1,0 +1,21 @@
+<div class="space-y-4">
+  <%= fx_help_text(color: :default) do %>
+    Default: Enter your email address to receive notifications.
+  <% end %>
+
+  <%= fx_help_text(color: :success) do %>
+    Success: Email address is valid and available.
+  <% end %>
+
+  <%= fx_help_text(color: :danger) do %>
+    Error: Please enter a valid email address.
+  <% end %>
+
+  <%= fx_help_text(color: :warning) do %>
+    Warning: This email domain is not commonly used.
+  <% end %>
+
+  <%= fx_help_text(color: :info) do %>
+    Info: We'll never share your email with third parties.
+  <% end %>
+</div>

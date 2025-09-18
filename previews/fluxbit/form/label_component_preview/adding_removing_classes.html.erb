@@ -1,0 +1,45 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-2">Default Label:</h4>
+    <%= fx_label(with_content: "Standard Label", for: "standard_field") %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Custom Classes Added:</h4>
+    <%= fx_label(
+      with_content: "Custom Styled Label",
+      class: "uppercase tracking-wide border-b-2 border-blue-500 pb-1",
+      for: "custom_field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Base Classes Removed:</h4>
+    <%= fx_label(
+      with_content: "Modified Base Label",
+      remove_class: "font-medium",
+      class: "font-light italic text-slate-600",
+      for: "modified_field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">Custom Success Styling:</h4>
+    <%= fx_label(
+      with_content: "Success Label with Custom Style",
+      color: :success,
+      class: "bg-green-50 dark:bg-green-900/20 px-3 py-1 rounded-lg border border-green-200",
+      for: "success_custom_field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">Custom Error Styling:</h4>
+    <%= fx_label(
+      with_content: "Error Label with Custom Style",
+      color: :danger,
+      class: "bg-red-50 dark:bg-red-900/20 px-3 py-1 rounded-lg border border-red-200 animate-pulse",
+      for: "error_custom_field"
+    ) %>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<%= fx_tab(variant: :full_width, color: :indigo) do |tabs| %>
+  <%= tabs.with_tab title: "Overview", active: true do %>
+    <div class="p-6">
+      <%= fx_heading(size: 2) do %>Project Overview<% end %>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-lg mb-3">Project Status</h4>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span>Progress</span>
+              <div class="flex items-center space-x-2">
+                <div class="w-32 bg-gray-200 rounded-full h-2">
+                  <div class="bg-indigo-600 h-2 rounded-full" style="width: 75%"></div>
+                </div>
+                <span class="text-sm font-medium">75%</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span>Tasks Completed</span>
+              <span class="font-medium">24/32</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span>Team Members</span>
+              <span class="font-medium">8</span>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold text-lg mb-3">Recent Activity</h4>
+          <div class="space-y-2">
+            <div class="text-sm">
+              <span class="font-medium">Alice</span> completed task "Design Review"
+              <span class="text-gray-500">2h ago</span>
+            </div>
+            <div class="text-sm">
+              <span class="font-medium">Bob</span> updated project timeline
+              <span class="text-gray-500">4h ago</span>
+            </div>
+            <div class="text-sm">
+              <span class="font-medium">Carol</span> added new milestone
+              <span class="text-gray-500">1d ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Tasks" do %>
+    <div class="p-6">
+      <%= fx_heading(size: 2) do %>Task Management<% end %>
+      <div class="mt-6">
+        <%= fx_button(color: :indigo, class: "mb-4") do %>+ Add New Task<% end %>
+        <div class="space-y-3">
+          <% ["Design Homepage", "Implement Authentication", "Write Documentation", "Setup CI/CD"].each_with_index do |task, i| %>
+            <div class="flex items-center space-x-3 p-3 border rounded-lg">
+              <%= fx_checkbox(:"task_#{i}") %>
+              <span class="flex-1"><%= task %></span>
+              <%= fx_badge(color: i.even? ? :success : :warning, 
+                          with_content: i.even? ? "Done" : "In Progress") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Team" do %>
+    <div class="p-6">
+      <%= fx_heading(size: 2) do %>Team Members<% end %>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <% [
+          {name: "Alice Johnson", role: "Project Manager", avatar: "AJ"},
+          {name: "Bob Smith", role: "Lead Developer", avatar: "BS"},
+          {name: "Carol Davis", role: "Designer", avatar: "CD"},
+          {name: "David Wilson", role: "QA Engineer", avatar: "DW"}
+        ].each do |member| %>
+          <div class="flex items-center space-x-3 p-4 border rounded-lg">
+            <%= fx_avatar(placeholder_initials: member[:avatar]) %>
+            <div>
+              <h5 class="font-medium"><%= member[:name] %></h5>
+              <p class="text-sm text-gray-600"><%= member[:role] %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Settings" do %>
+    <div class="p-6">
+      <%= fx_heading(size: 2) do %>Project Settings<% end %>
+      <div class="mt-6 space-y-6">
+        <div>
+          <h4 class="font-semibold mb-3">General Settings</h4>
+          <div class="space-y-3">
+            <%= fx_text_field(:project_name, label: "Project Name", value: "My Awesome Project") %>
+            <%= fx_text_area(:description, label: "Description", rows: 3, 
+                            value: "A comprehensive project management solution") %>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-3">Permissions</h4>
+          <div class="space-y-2">
+            <%= fx_checkbox(:public_visibility, label: "Make project public") %>
+            <%= fx_checkbox(:allow_comments, label: "Allow team comments", checked: true) %>
+            <%= fx_checkbox(:email_notifications, label: "Email notifications", checked: true) %>
+          </div>
+        </div>
+        
+        <div class="pt-4 border-t">
+          <%= fx_button(color: :indigo) do %>Save Settings<% end %>
+          <%= fx_button(color: :danger, class: "ml-2") do %>Delete Project<% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

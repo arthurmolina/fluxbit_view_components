@@ -1,0 +1,96 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Default link styling</h3>
+    <%= fx_link(href: "#") do %>
+      Default link with base styling
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Adding custom classes</h3>
+    <%= fx_link(
+      href: "#",
+      class: "font-bold text-xl border-b-2 border-blue-500 pb-1"
+    ) do %>
+      Link with custom border and large text
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Removing default classes</h3>
+    <%= fx_link(
+      href: "#",
+      remove_class: "font-medium hover:underline",
+      class: "font-light no-underline border border-gray-300 px-3 py-1 rounded"
+    ) do %>
+      Link with removed default styling and custom border
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Custom button-like styling</h3>
+    <%= fx_link(
+      href: "#",
+      remove_class: "font-medium text-blue-600 dark:text-blue-500 hover:underline",
+      class: "inline-block px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200"
+    ) do %>
+      Button-styled Link
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Custom gradient styling</h3>
+    <%= fx_link(
+      href: "#",
+      remove_class: "font-medium text-blue-600 dark:text-blue-500 hover:underline",
+      class: "inline-block px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full hover:from-purple-600 hover:to-pink-600 transform hover:scale-105 transition-all duration-200"
+    ) do %>
+      Gradient Link
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Outlined link styling</h3>
+    <%= fx_link(
+      href: "#",
+      remove_class: "text-blue-600 dark:text-blue-500",
+      class: "inline-block px-4 py-2 border-2 border-blue-600 text-blue-600 font-semibold rounded hover:bg-blue-600 hover:text-white transition-all duration-200"
+    ) do %>
+      Outlined Link
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with icon and custom spacing</h3>
+    <%= fx_link(
+      href: "#",
+      class: "inline-flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+    ) do %>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <span>Link with Icon</span>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Responsive link styling</h3>
+    <%= fx_link(
+      href: "#",
+      class: "block w-full sm:inline-block sm:w-auto text-center sm:text-left px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+    ) do %>
+      Responsive Link (full width on mobile)
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Link with animation effects</h3>
+    <%= fx_link(
+      href: "#",
+      class: "relative inline-block font-semibold text-gray-900 dark:text-white group"
+    ) do %>
+      <span class="relative z-10">Animated Underline Link</span>
+      <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+    <% end %>
+  </div>
+</div>

@@ -640,6 +640,79 @@ end
 
 ## Styling and CSS Classes
 
+### Tailwind CSS Style Organization
+
+**RULE: All Tailwind CSS classes MUST be defined in the component's configuration module, never inline in the component class.**
+
+```ruby
+# ❌ BAD - Inline Tailwind classes in component
+class Fluxbit::BannerComponent < Fluxbit::Component
+  def banner_content
+    # Never hardcode Tailwind classes in component methods
+    content_wrapper_class = "flex items-center justify-between w-full p-4"
+    tag.div(class: content_wrapper_class) do
+      # ...
+    end
+  end
+
+  def dismiss_button
+    # Avoid inline classes in props
+    button_props = {
+      class: "flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400"
+    }
+    # ...
+  end
+end
+```
+
+```ruby
+# ✅ GOOD - All styles in configuration module
+module Fluxbit::Config::BannerComponent
+  mattr_accessor :styles do
+    {
+      content_wrapper: {
+        full_width: "flex items-center justify-between w-full p-4",
+        constrained: "flex items-center justify-between max-w-screen-xl mx-auto p-4"
+      },
+      dismiss_button: {
+        base: "flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white",
+        with_cta: "ml-3"
+      },
+      left_content: "flex items-center",
+      right_content: "flex items-center"
+    }
+  end
+end
+
+# Component uses configuration styles
+class Fluxbit::BannerComponent < Fluxbit::Component
+  include Fluxbit::Config::BannerComponent
+
+  def banner_content
+    content_wrapper_class = @full_width ? styles[:content_wrapper][:full_width] : styles[:content_wrapper][:constrained]
+    tag.div(class: content_wrapper_class) do
+      # ...
+    end
+  end
+
+  def dismiss_button
+    button_props = {
+      class: styles[:dismiss_button][:base]
+    }
+    add(to: button_props, class: styles[:dismiss_button][:with_cta]) if cta_button?
+    # ...
+  end
+end
+```
+
+**Benefits of Configuration-Based Styling:**
+- **Centralized Management**: All styling is in one place for easy maintenance
+- **Design System Consistency**: Ensures all components follow the same patterns
+- **Easy Customization**: Users can override styles by modifying configuration
+- **Better Testing**: Styles can be tested independently from component logic
+- **Theme Support**: Easier to implement theme switching and customization
+- **Documentation**: Clear separation between logic and presentation
+
 ### CSS Class Management Patterns
 
 #### 1. The `add` Helper Method

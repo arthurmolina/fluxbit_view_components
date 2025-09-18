@@ -1,0 +1,59 @@
+<div class="space-y-8">
+  <div>
+    <h4 class="font-semibold mb-4">Different Title Options</h4>
+    <div class="space-y-6">
+      <%= fx_upload_image(
+        name: "default_title",
+        label: "Default Title",
+        title: "Change"
+      ) %>
+
+      <%= fx_upload_image(
+        name: "custom_title",
+        label: "Custom Title",
+        title: "Select Photo"
+      ) %>
+
+      <%= fx_upload_image(
+        name: "upload_title",
+        label: "Upload Title",
+        title: "Upload Image"
+      ) %>
+
+      <%= fx_upload_image(
+        name: "browse_title",
+        label: "Browse Title",
+        title: "Browse Files"
+      ) %>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Action-Specific Titles</h4>
+    <div class="space-y-6">
+      <%= fx_upload_image(
+        name: "profile_update",
+        label: "Profile Picture",
+        title: "Update Photo"
+      ) %>
+
+      <%= fx_upload_image(
+        name: "product_image",
+        label: "Product Image",
+        title: "Add Image"
+      ) %>
+
+      <%= fx_upload_image(
+        name: "gallery_photo",
+        label: "Gallery Photo",
+        title: "Choose Photo"
+      ) %>
+
+      <%= fx_upload_image(
+        name: "logo_upload",
+        label: "Company Logo",
+        title: "Upload Logo"
+      ) %>
+    </div>
+  </div>
+</div>

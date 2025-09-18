@@ -1,0 +1,39 @@
+<div class="space-y-4">
+  <%= fx_text_field(
+    name: "website",
+    label: "Website URL",
+    addon: "https://",
+    placeholder: "example.com"
+  ) %>
+
+  <%= fx_text_field(
+    name: "email_domain",
+    label: "Email Address",
+    addon: "@company.com",
+    placeholder: "username"
+  ) %>
+
+  <%= fx_text_field(
+    name: "price",
+    label: "Price",
+    addon: "$",
+    type: :number,
+    placeholder: "0.00",
+    step: 0.01
+  ) %>
+
+  <%= fx_text_field(
+    name: "phone_extension",
+    label: "Phone Number",
+    addon: "+1",
+    type: :tel,
+    placeholder: "(555) 123-4567"
+  ) %>
+
+  <%= fx_text_field(
+    name: "social_handle",
+    label: "Twitter Handle",
+    addon: "@",
+    placeholder: "username"
+  ) %>
+</div>

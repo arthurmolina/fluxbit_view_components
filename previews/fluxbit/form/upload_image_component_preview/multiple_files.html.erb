@@ -1,0 +1,60 @@
+<div class="space-y-8">
+  <div>
+    <h4 class="font-semibold mb-4">Single File Upload (Default)</h4>
+    <%= fx_upload_image(
+      name: "single_file",
+      label: "Profile Photo",
+      title: "Upload Photo",
+      multiple: false,
+      help_text: "Select one profile photo"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Multiple File Upload</h4>
+    <%= fx_upload_image(
+      name: "multiple_files",
+      label: "Gallery Photos",
+      title: "Upload Photos",
+      multiple: true,
+      help_text: "Select multiple photos for your gallery"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Multiple Product Images</h4>
+    <%= fx_upload_image(
+      name: "product_images",
+      label: "Product Images",
+      title: "Add Images",
+      multiple: true,
+      accept: "image/*",
+      help_text: "Upload multiple product photos. First image will be the main photo."
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Document Batch Upload</h4>
+    <%= fx_upload_image(
+      name: "document_batch",
+      label: "Document Upload",
+      title: "Upload Documents",
+      multiple: true,
+      accept: ".pdf,.jpg,.jpeg,.png",
+      help_text: "Upload multiple documents at once. Supported: PDF, JPG, PNG"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Team Photos</h4>
+    <%= fx_upload_image(
+      name: "team_photos",
+      label: "Team Member Photos",
+      title: "Upload Photos",
+      multiple: true,
+      accept: "image/*",
+      helper_popover: "Upload photos of all team members. Each photo should be a clear headshot with good lighting.",
+      help_text: "Select multiple team member photos"
+    ) %>
+  </div>
+</div>

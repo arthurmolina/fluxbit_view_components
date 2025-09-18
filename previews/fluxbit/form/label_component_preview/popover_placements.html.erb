@@ -1,0 +1,45 @@
+<div class="grid grid-cols-2 gap-8 p-8">
+  <div class="space-y-6">
+    <div>
+      <h4 class="font-semibold mb-2">Top Placement</h4>
+      <%= fx_label(
+        with_content: "Account Type",
+        helper_popover: "Choose the account type that best fits your needs. You can change this later in settings.",
+        helper_popover_placement: "top",
+        for: "account_type_top"
+      ) %>
+    </div>
+
+    <div>
+      <h4 class="font-semibold mb-2">Right Placement (Default)</h4>
+      <%= fx_label(
+        with_content: "Billing Cycle",
+        helper_popover: "Select how often you want to be billed. Annual billing includes a discount.",
+        helper_popover_placement: "right",
+        for: "billing_cycle_right"
+      ) %>
+    </div>
+  </div>
+
+  <div class="space-y-6">
+    <div>
+      <h4 class="font-semibold mb-2">Bottom Placement</h4>
+      <%= fx_label(
+        with_content: "Department",
+        helper_popover: "Choose your department to help us route your requests to the right team.",
+        helper_popover_placement: "bottom",
+        for: "department_bottom"
+      ) %>
+    </div>
+
+    <div>
+      <h4 class="font-semibold mb-2">Left Placement</h4>
+      <%= fx_label(
+        with_content: "Priority Level",
+        helper_popover: "Select the priority level for your support requests. Higher priority requests are handled first.",
+        helper_popover_placement: "left",
+        for: "priority_left"
+      ) %>
+    </div>
+  </div>
+</div>

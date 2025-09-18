@@ -1,0 +1,29 @@
+<%= fx_table do |table| %>
+  <% table.with_header do |header| %>
+    <% header.with_cell { "Product" } %>
+    <% header.with_cell { "Specifications" } %>
+    <% header.with_cell { "Price" } %>
+    <% header.with_cell { "Rating" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell(selected: true) { "iPhone 14 Pro" } %>
+    <% row.with_cell { "6.1-inch Super Retina XDR display" } %>
+    <% row.with_cell { "$999" } %>
+    <% row.with_cell { "4.8/5" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Samsung Galaxy S23" } %>
+    <% row.with_cell(selected: true) { "6.1-inch Dynamic AMOLED 2X" } %>
+    <% row.with_cell { "$899" } %>
+    <% row.with_cell { "4.7/5" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Google Pixel 7" } %>
+    <% row.with_cell { "6.3-inch OLED display" } %>
+    <% row.with_cell(selected: true) { "$699" } %>
+    <% row.with_cell { "4.6/5" } %>
+  <% end %>
+<% end %>

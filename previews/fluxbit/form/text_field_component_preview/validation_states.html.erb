@@ -1,0 +1,60 @@
+<div class="space-y-4">
+  <div>
+    <h4 class="font-semibold mb-3">Default State</h4>
+    <%= fx_text_field(
+      name: "default_field",
+      label: "Username",
+      color: :default,
+      placeholder: "Enter username",
+      help_text: "Choose a unique username"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Success State</h4>
+    <%= fx_text_field(
+      name: "success_field",
+      label: "Email Address",
+      color: :success,
+      icon: "heroicons_solid:check-circle",
+      value: "john@example.com",
+      help_text: "✓ Email address is valid and available"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Error State</h4>
+    <%= fx_text_field(
+      name: "error_field",
+      label: "Password",
+      color: :danger,
+      type: :password,
+      icon: "heroicons_solid:x-circle",
+      help_text: "Password must be at least 8 characters long"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Warning State</h4>
+    <%= fx_text_field(
+      name: "warning_field",
+      label: "Phone Number",
+      color: :warning,
+      icon: "heroicons_solid:exclamation-triangle",
+      value: "555-1234",
+      help_text: "This phone number format is unusual"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Info State</h4>
+    <%= fx_text_field(
+      name: "info_field",
+      label: "Date of Birth",
+      color: :info,
+      type: :date,
+      icon: "heroicons_solid:information-circle",
+      help_text: "This information is used for age verification"
+    ) %>
+  </div>
+</div>

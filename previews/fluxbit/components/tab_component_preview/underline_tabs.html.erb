@@ -1,0 +1,58 @@
+<%= fx_tab(variant: :underline, color: :purple) do |tabs| %>
+  <%= tabs.with_tab title: "Profile", active: true do %>
+    <div class="p-4">
+      <%= fx_heading(size: 3) do %>User Profile<% end %>
+      <div class="mt-4 space-y-4">
+        <div class="flex items-center space-x-4">
+          <%= fx_avatar(placeholder_initials: "JD", size: :lg) %>
+          <div>
+            <h4 class="font-semibold text-lg">John Doe</h4>
+            <p class="text-gray-600">Software Engineer</p>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Email</label>
+            <p class="mt-1">john.doe@example.com</p>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Phone</label>
+            <p class="mt-1">+1 (555) 123-4567</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Security" do %>
+    <div class="p-4">
+      <%= fx_heading(size: 3) do %>Security Settings<% end %>
+      <div class="mt-4 space-y-4">
+        <div>
+          <h5 class="font-medium">Two-Factor Authentication</h5>
+          <%= fx_toggle(:two_factor, label: "Enable 2FA") %>
+        </div>
+        <div>
+          <h5 class="font-medium">Login Sessions</h5>
+          <p class="text-sm text-gray-600">Manage your active login sessions</p>
+          <%= fx_button(color: :danger, size: :sm, class: "mt-2") do %>
+            Revoke All Sessions
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= tabs.with_tab title: "Notifications" do %>
+    <div class="p-4">
+      <%= fx_heading(size: 3) do %>Notification Preferences<% end %>
+      <div class="mt-4 space-y-3">
+        <%= fx_checkbox(:email_notifications, label: "Email notifications") %>
+        <%= fx_checkbox(:push_notifications, label: "Push notifications") %>
+        <%= fx_checkbox(:marketing_emails, label: "Marketing emails") %>
+        <%= fx_checkbox(:security_alerts, label: "Security alerts", checked: true) %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

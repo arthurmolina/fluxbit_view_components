@@ -1,0 +1,76 @@
+<div class="space-y-8">
+  <div>
+    <h4 class="font-semibold mb-4">Default Upload Image:</h4>
+    <%= fx_upload_image(
+      name: "default_upload",
+      label: "Default Styling",
+      title: "Upload Image"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Custom Wrapper Classes:</h4>
+    <%= fx_upload_image(
+      name: "custom_wrapper",
+      label: "Custom Wrapper",
+      title: "Upload Image",
+      wrapper_html: { class: "bg-blue-50 dark:bg-blue-900/20 border border-blue-200 rounded-lg p-6" }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">With Custom Input Classes:</h4>
+    <%= fx_upload_image(
+      name: "custom_input",
+      label: "Custom Input Styling",
+      title: "Upload Image",
+      class: "border-2 border-dashed border-purple-300 hover:border-purple-500 transition-colors duration-200"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Themed Upload (Purple):</h4>
+    <%= fx_upload_image(
+      name: "purple_theme",
+      label: "Purple Theme Upload",
+      title: "Upload Image",
+      wrapper_html: {
+        class: "bg-purple-50 dark:bg-purple-900/20 border border-purple-200 rounded-xl p-4",
+        style: "background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);"
+      }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">High Contrast Upload:</h4>
+    <%= fx_upload_image(
+      name: "high_contrast",
+      label: "High Contrast Upload",
+      title: "Upload Image",
+      wrapper_html: { class: "bg-yellow-100 border-2 border-black rounded-lg p-4" },
+      help_text: "High contrast version for better accessibility"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Compact Layout:</h4>
+    <%= fx_upload_image(
+      name: "compact_layout",
+      label: "Compact Upload",
+      title: "Add",
+      wrapper_html: { class: "bg-gray-50 rounded-md p-3 max-w-sm" }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-4">Bordered Upload:</h4>
+    <%= fx_upload_image(
+      name: "bordered_upload",
+      label: "Bordered Upload",
+      title: "Upload Image",
+      wrapper_html: {
+        class: "border-4 border-dashed border-gray-300 hover:border-gray-400 rounded-2xl p-8 transition-all duration-300 transform hover:scale-105"
+      }
+    ) %>
+  </div>
+</div>

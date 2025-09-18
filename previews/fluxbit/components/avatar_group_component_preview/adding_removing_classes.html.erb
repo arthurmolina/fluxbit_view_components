@@ -1,0 +1,10 @@
+<div class="p-8 flex justify-center">
+  <%= fx_avatar_group(
+    class: "space-x-2 p-4 bg-gray-100 rounded-lg",
+    remove_class: "-space-x-4"
+  ) do |group| %>
+    <%= group.with_avatar(placeholder_initials: "A1") %>
+    <%= group.with_avatar(placeholder_initials: "B2") %>
+    <%= group.with_avatar(placeholder_initials: "C3") %>
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+<div class="flex gap-4 items-center">
+  <div class="text-center">
+    <%= fx_gravatar(email: "user@example.com", secure: true, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">Secure (HTTPS)</p>
+  </div>
+  <div class="text-center">
+    <%= fx_gravatar(email: "user@example.com", secure: false, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">Non-secure (HTTP)</p>
+  </div>
+</div>

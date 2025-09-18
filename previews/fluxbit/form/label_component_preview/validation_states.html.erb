@@ -1,0 +1,51 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Default State</h4>
+    <%= fx_label(
+      with_content: "Username",
+      color: :default,
+      help_text: "Choose a unique username",
+      for: "username_default"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Success State</h4>
+    <%= fx_label(
+      with_content: "Email Address",
+      color: :success,
+      help_text: "✓ Email address is valid and available",
+      for: "email_success"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Error State</h4>
+    <%= fx_label(
+      with_content: "Password",
+      color: :danger,
+      help_text: "Password must be at least 8 characters long",
+      for: "password_error"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Warning State</h4>
+    <%= fx_label(
+      with_content: "Phone Number",
+      color: :warning,
+      help_text: "This phone number format is not commonly used",
+      for: "phone_warning"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Info State</h4>
+    <%= fx_label(
+      with_content: "Date of Birth",
+      color: :info,
+      help_text: "This information is used for age verification",
+      for: "dob_info"
+    ) %>
+  </div>
+</div>

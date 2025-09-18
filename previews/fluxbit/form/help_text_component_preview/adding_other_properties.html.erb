@@ -1,0 +1,42 @@
+<div class="space-y-4">
+  <div>
+    <h4 class="font-semibold mb-2">With custom ID and data attributes:</h4>
+    <%= fx_help_text(
+      id: "username-help",
+      data: { testid: "username-helper", controller: "tooltip" }
+    ) do %>
+      Help text with custom ID and data attributes for testing and JavaScript.
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With ARIA attributes:</h4>
+    <%= fx_help_text(
+      aria: { live: "polite", describedby: "password-field" },
+      role: "status"
+    ) do %>
+      Help text with ARIA attributes for better accessibility.
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With custom styling properties:</h4>
+    <%= fx_help_text(
+      style: "margin-top: 0.75rem; font-family: monospace;",
+      title: "Additional tooltip information"
+    ) do %>
+      Help text with inline styles and title attribute.
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With language and direction attributes:</h4>
+    <%= fx_help_text(
+      lang: "en",
+      dir: "ltr",
+      translate: "yes"
+    ) do %>
+      Help text with language and translation attributes.
+    <% end %>
+  </div>
+</div>

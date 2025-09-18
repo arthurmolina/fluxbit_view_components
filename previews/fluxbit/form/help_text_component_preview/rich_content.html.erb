@@ -1,0 +1,17 @@
+<div class="space-y-4">
+  <%= fx_help_text do %>
+    By creating an account, you agree to our <a href="#" class="underline text-blue-600 hover:text-blue-800">Terms of Service</a> and <a href="#" class="underline text-blue-600 hover:text-blue-800">Privacy Policy</a>.
+  <% end %>
+
+  <%= fx_help_text(color: :info) do %>
+    Need help? Visit our <a href="#" class="underline text-cyan-600 hover:text-cyan-800">Help Center</a> or <a href="#" class="underline text-cyan-600 hover:text-cyan-800">contact support</a>.
+  <% end %>
+
+  <%= fx_help_text(color: :success) do %>
+    <strong>Pro tip:</strong> Enable two-factor authentication for enhanced security.
+  <% end %>
+
+  <%= fx_help_text(color: :warning) do %>
+    <em>Important:</em> This information will be visible to other users in your organization.
+  <% end %>
+</div>

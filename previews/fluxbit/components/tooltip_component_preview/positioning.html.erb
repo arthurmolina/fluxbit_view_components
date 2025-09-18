@@ -1,0 +1,106 @@
+<div class="grid grid-cols-3 gap-8 p-16">
+  <!-- Top row -->
+  <div class="flex justify-center">
+    <%= fx_button(
+      class: 'relative',
+      with_content: "Top Left",
+      data: {
+        tooltip_target: "tooltip-top-start",
+        tooltip_placement: "top-start"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-top-start") do %>Top Start<% end %>
+  </div>
+  
+  <div class="flex justify-center">
+    <%= fx_button(
+      class: 'relative',
+      with_content: "Top",
+      data: {
+        tooltip_target: "tooltip-top",
+        tooltip_placement: "top"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-top") do %>Top<% end %>
+  </div>
+  
+  <div class="flex justify-center">
+    <%= fx_button(
+      class: 'relative',
+      with_content: "Top Right",
+      data: {
+        tooltip_target: "tooltip-top-end",
+        tooltip_placement: "top-end"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-top-end") do %>Top End<% end %>
+  </div>
+  
+  <!-- Middle row -->
+  <div class="flex justify-center">
+    <%= fx_button(
+      class: 'relative',
+      with_content: "Left",
+      data: {
+        tooltip_target: "tooltip-left",
+        tooltip_placement: "left"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-left") do %>Left<% end %>
+  </div>
+  
+  <div class="flex justify-center items-center">
+    <%= fx_heading(size: 4, class: "text-gray-500") do %>
+      Hover buttons
+    <% end %>
+  </div>
+  
+  <div class="flex justify-center">
+    <%= fx_button(
+      class: 'relative',
+      with_content: "Right",
+      data: {
+        tooltip_target: "tooltip-right",
+        tooltip_placement: "right"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-right") do %>Right<% end %>
+  </div>
+  
+  <!-- Bottom row -->
+  <div class="flex justify-center">
+    <%= fx_button(
+      class: 'relative',
+      with_content: "Bottom Left",
+      data: {
+        tooltip_target: "tooltip-bottom-start",
+        tooltip_placement: "bottom-start"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-bottom-start") do %>Bottom Start<% end %>
+  </div>
+  
+  <div class="flex justify-center">
+    <%= fx_button(
+      class: 'relative',
+      with_content: "Bottom",
+      data: {
+        tooltip_target: "tooltip-bottom",
+        tooltip_placement: "bottom"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-bottom") do %>Bottom<% end %>
+  </div>
+  
+  <div class="flex justify-center">
+    <%= fx_button(
+      class: 'relative',
+      with_content: "Bottom Right",
+      data: {
+        tooltip_target: "tooltip-bottom-end",
+        tooltip_placement: "bottom-end"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-bottom-end") do %>Bottom End<% end %>
+  </div>
+</div>

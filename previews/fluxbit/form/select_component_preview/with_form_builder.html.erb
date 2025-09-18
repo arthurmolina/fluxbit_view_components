@@ -1,0 +1,134 @@
+<%# Real form builder usage with Product model %>
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Real Form Builder Integration with Product Model</h4>
+
+    <%= form_with(model: (@product || Product.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
+      <%= fx_select(
+        form: form,
+        attribute: :category,
+        options: [
+          ["Electronics", "electronics"],
+          ["Clothing", "clothing"],
+          ["Books", "books"],
+          ["Home & Garden", "home_garden"],
+          ["Sports", "sports"]
+        ],
+        help_text: "Choose the product category"
+      ) %>
+
+      <%= fx_select(
+        form: form,
+        attribute: :status,
+        options: [
+          ["Active", "active"],
+          ["Inactive", "inactive"],
+          ["Draft", "draft"],
+          ["Archived", "archived"]
+        ],
+        help_text: "Current product status"
+      ) %>
+
+      <%= fx_select(
+        form: form,
+        attribute: :priority,
+        options: [
+          ["High", "high"],
+          ["Medium", "medium"],
+          ["Low", "low"]
+        ],
+        help_text: "Product priority level"
+      ) %>
+
+      <%= fx_select(
+        form: form,
+        attribute: :country,
+        options: [
+          ["United States", "US"],
+          ["Canada", "CA"],
+          ["United Kingdom", "UK"],
+          ["Germany", "DE"],
+          ["France", "FR"]
+        ],
+        help_text: "Country of origin"
+      ) %>
+
+      <div class="pt-4">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg">
+          Save Product
+        </button>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Form Builder with Validation Errors</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      This example shows how validation errors are automatically displayed when using the form builder pattern.
+    </p>
+
+    <%
+      # Create a product with validation errors for demonstration
+      begin
+        invalid_product = Product.new(name: "", category: "")
+        invalid_product.valid? # Trigger validation
+      rescue => e
+        invalid_product = Product.new
+      end
+    %>
+
+    <%= form_with model: invalid_product, local: true, class: "space-y-4" do |form| %>
+      <%= fx_select(
+        form: form,
+        attribute: :category,
+        options: [
+          ["Electronics", "electronics"],
+          ["Clothing", "clothing"],
+          ["Books", "books"]
+        ],
+        help_text: "This field will show validation errors"
+      ) %>
+
+      <%= fx_select(
+        form: form,
+        attribute: :status,
+        options: [
+          ["Active", "active"],
+          ["Inactive", "inactive"],
+          ["Draft", "draft"]
+        ],
+        help_text: "Product status selection"
+      ) %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Standalone Select Fields (without form builder)</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      When not using a form builder, you can still create select fields by providing name and options manually.
+    </p>
+
+    <%= fx_select(
+      name: "product[category]",
+      label: "Product Category",
+      options: [
+        ["Electronics", "electronics"],
+        ["Clothing", "clothing"],
+        ["Books", "books"]
+      ],
+      value: "electronics",
+      help_text: "Standalone select field without form builder"
+    ) %>
+
+    <%= fx_select(
+      name: "product[status]",
+      label: "Product Status",
+      options: [
+        ["Active", "active"],
+        ["Inactive", "inactive"],
+        ["Draft", "draft"]
+      ],
+      help_text: "Current status of the product"
+    ) %>
+  </div>
+</div>

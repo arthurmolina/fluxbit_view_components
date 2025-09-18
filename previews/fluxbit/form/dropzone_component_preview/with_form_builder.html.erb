@@ -1,0 +1,81 @@
+<%# Real form builder usage with Product model %>
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Real Form Builder Integration with Product Model</h4>
+
+    <%= form_with(model: (@product || Product.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
+      <%= fx_dropzone(
+        form: form,
+        attribute: :image,
+        title: "Upload Product Image",
+        subtitle: "JPG, PNG or GIF (max 5MB)",
+        accept: "image/*",
+        help_text: "Main product image for display"
+      ) %>
+
+      <%= fx_dropzone(
+        form: form,
+        attribute: :gallery,
+        title: "Upload Gallery Images",
+        subtitle: "Multiple images for product gallery",
+        accept: "image/*",
+        multiple: true,
+        height: 2,
+        help_text: "Additional product images"
+      ) %>
+
+      <%= fx_dropzone(
+        form: form,
+        attribute: :documents,
+        title: "Upload Product Documents",
+        subtitle: "PDF, DOC, DOCX files",
+        accept: ".pdf,.doc,.docx",
+        multiple: true,
+        icon: "heroicons_solid:document_plus",
+        help_text: "Specifications, manuals, or certificates"
+      ) %>
+
+      <%= fx_dropzone(
+        form: form,
+        attribute: :brochure,
+        title: "Upload Product Brochure",
+        subtitle: "Marketing materials (PDF)",
+        accept: ".pdf",
+        icon: "heroicons_solid:archive_box",
+        help_text: "Product brochure or catalog"
+      ) %>
+
+      <div class="pt-4">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg">
+          Save Product
+        </button>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Standalone Dropzones (without form builder)</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      When not using a form builder, you can still create dropzones by providing name manually.
+    </p>
+
+    <%= fx_dropzone(
+      name: "product[image]",
+      label: "Product Image",
+      title: "Upload Image",
+      subtitle: "Drag and drop or click to select",
+      accept: "image/*",
+      help_text: "Standalone dropzone without form builder"
+    ) %>
+
+    <%= fx_dropzone(
+      name: "product[attachments]",
+      label: "Additional Files",
+      title: "Upload Files",
+      subtitle: "Multiple files allowed",
+      multiple: true,
+      height: 1,
+      help_text: "Any additional files"
+    ) %>
+  </div>
+</div>

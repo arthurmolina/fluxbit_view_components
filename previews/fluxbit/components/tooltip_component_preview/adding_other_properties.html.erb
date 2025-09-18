@@ -1,0 +1,21 @@
+<div class="p-8 flex justify-center">
+  <%= fx_button(
+    class: 'relative',
+    with_content: "Tooltip with custom attributes",
+    data: {
+      tooltip_target: "tooltip-attrs",
+      tooltip_placement: "top"
+    }
+  ) %>
+  
+  <%= fx_tooltip(
+    id: "tooltip-attrs",
+    data: {
+      testid: "custom-tooltip",
+      custom: "attribute"
+    },
+    "aria-label": "Custom tooltip with additional attributes"
+  ) do %>
+    Tooltip with custom data and ARIA attributes
+  <% end %>
+</div>

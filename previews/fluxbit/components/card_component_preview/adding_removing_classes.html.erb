@@ -1,0 +1,61 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Default card styling</h3>
+    <%= fx_card do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Default Styling</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card uses the default styling without any class modifications.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Adding custom classes</h3>
+    <%= fx_card(class: "max-w-md mx-auto transform hover:scale-105 transition-transform duration-200") do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">With Custom Classes</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card has additional classes for max width, centering, and a hover scale effect.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Removing default classes</h3>
+    <%= fx_card(
+      remove_class: "border shadow-sm",
+      class: "bg-gradient-to-r from-purple-500 to-pink-500 text-white"
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold">Custom Gradient Background</h5>
+        <p>This card removes the default border and shadow, then adds a gradient background.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Custom styling with data attributes</h3>
+    <%= fx_card(
+      class: "ring-2 ring-blue-500 ring-offset-2",
+      data: { testid: "custom-card", action: "click->analytics#track" }
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">With Data Attributes</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card includes custom data attributes and a blue ring effect.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Responsive class modifications</h3>
+    <%= fx_card(
+      class: "w-full sm:max-w-sm md:max-w-md lg:max-w-lg",
+      remove_class: "rounded-lg",
+      rounded: false
+    ) do |card| %>
+      <% card.with_section do %>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Responsive Width</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">This card has responsive width classes and removes rounded corners.</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

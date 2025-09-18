@@ -21,7 +21,7 @@ or you can use the alias (from the helpers):
 &lt;% end %&gt;
 ```
 
-The result look like this:
+The result is:
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Components::ModalComponentPreview" scenario="playground" panels="params,source"></lookbook-embed>
 

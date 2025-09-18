@@ -1,0 +1,15 @@
+<div class="space-y-4">
+  <%= fx_check_box(
+    name: "custom_styles",
+    label: "Checkbox with custom ring color",
+    value: "1",
+    class: "text-purple-600 focus:ring-purple-500"
+  ) %>
+  <%= fx_check_box(
+    name: "removed_classes",
+    label: "Checkbox with removed default classes",
+    value: "1",
+    remove_class: "rounded",
+    class: "rounded-full"
+  ) %>
+</div>

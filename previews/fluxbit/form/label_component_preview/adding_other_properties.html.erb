@@ -1,0 +1,68 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-2">With Custom ID and Data Attributes:</h4>
+    <%= fx_label(
+      with_content: "Custom Attributes Label",
+      id: "custom-label",
+      data: { testid: "username-label", controller: "form-validation", target: "label" },
+      for: "custom_attributes_field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With ARIA Attributes:</h4>
+    <%= fx_label(
+      with_content: "Accessible Label",
+      aria: { describedby: "help-text", required: "true" },
+      role: "label",
+      for: "accessible_field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Custom Styling Properties:</h4>
+    <%= fx_label(
+      with_content: "Styled Label",
+      style: "text-shadow: 1px 1px 2px rgba(0,0,0,0.1); letter-spacing: 0.05em;",
+      title: "This label has custom inline styles",
+      for: "styled_field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Language and Direction Attributes:</h4>
+    <%= fx_label(
+      with_content: "اسم المستخدم",
+      lang: "ar",
+      dir: "rtl",
+      translate: "no",
+      for: "rtl_field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">With Event Handlers and Custom Properties:</h4>
+    <%= fx_label(
+      with_content: "Interactive Label",
+      onclick: "console.log('Label clicked')",
+      tabindex: "0",
+      role: "button",
+      data: {
+        tooltip: "Click for more information",
+        placement: "top"
+      },
+      for: "interactive_field"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-2">Form Association with Additional Attributes:</h4>
+    <%= fx_label(
+      with_content: "Required Field",
+      for: "required_field",
+      form: "main-form",
+      accesskey: "r",
+      title: "Required field - use Alt+R to focus"
+    ) %>
+  </div>
+</div>

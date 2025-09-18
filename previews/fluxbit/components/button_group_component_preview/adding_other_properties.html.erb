@@ -1,0 +1,313 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 3) do %>Data Attributes for Analytics<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Button groups with data attributes for tracking and analytics</p>
+    <%= fx_button_group(data: { 
+      testid: "primary-actions", 
+      analytics_group: "document-management",
+      component: "button-group"
+    }) do |group| %>
+      <%= group.with_button(color: :success, 
+                           data: { 
+                             action: "save", 
+                             track: "document-save-click",
+                             testid: "save-button"
+                           }) do %>
+        Save Document
+      <% end %>
+      <%= group.with_button(color: :info, 
+                           data: { 
+                             action: "preview", 
+                             track: "document-preview-click",
+                             testid: "preview-button" 
+                           }) do %>
+        Preview
+      <% end %>
+      <%= group.with_button(color: :light_outline, 
+                           data: { 
+                             action: "cancel", 
+                             track: "document-cancel-click",
+                             testid: "cancel-button" 
+                           }) do %>
+        Cancel
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>ARIA Accessibility Properties<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Enhanced accessibility with ARIA attributes</p>
+    <%= fx_button_group(role: "group", 
+                        aria: { 
+                          label: "Text formatting options",
+                          describedby: "formatting-help"
+                        }) do |group| %>
+      <%= group.with_button(color: :light,
+                           aria: { 
+                             label: "Bold text",
+                             pressed: "true",
+                             describedby: "bold-help"
+                           }) do %>
+        <%= anyicon("heroicons_solid:bold", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :light,
+                           aria: { 
+                             label: "Italic text",
+                             pressed: "false",
+                             describedby: "italic-help"
+                           }) do %>
+        <%= anyicon("heroicons_solid:italic", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :light,
+                           aria: { 
+                             label: "Underline text",
+                             pressed: "false",
+                             describedby: "underline-help"
+                           }) do %>
+        <%= anyicon("heroicons_solid:underline", class: "w-4 h-4") %>
+      <% end %>
+    <% end %>
+    
+    <div class="hidden">
+      <div id="formatting-help">Use these buttons to format selected text</div>
+      <div id="bold-help">Makes text bold and emphasized</div>
+      <div id="italic-help">Makes text italic and slanted</div>
+      <div id="underline-help">Adds underline decoration to text</div>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Form Integration Properties<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Button groups integrated with form elements</p>
+    <%= form_with url: "#", local: true, data: { controller: "form-validation" } do |form| %>
+      <div class="p-4 border rounded-lg bg-gray-50">
+        <div class="mb-4">
+          <%= form.text_field :title, placeholder: "Document Title", 
+                              class: "w-full px-3 py-2 border rounded-lg",
+                              data: { target: "form-validation.title" } %>
+        </div>
+        
+        <div class="mb-4">
+          <%= form.text_area :content, placeholder: "Document Content", 
+                             rows: 4,
+                             class: "w-full px-3 py-2 border rounded-lg",
+                             data: { target: "form-validation.content" } %>
+        </div>
+        
+        <%= fx_button_group(data: { 
+          target: "form-validation.actions",
+          form_section: "document-actions"
+        }) do |group| %>
+          <%= group.with_button(color: :light_outline,
+                               type: "button",
+                               data: { action: "click->form-validation#clear" },
+                               name: "action",
+                               value: "clear") do %>
+            Clear Form
+          <% end %>
+          <%= group.with_button(color: :light,
+                               type: "submit",
+                               name: "action",
+                               value: "draft",
+                               data: { action: "click->form-validation#saveDraft" }) do %>
+            Save Draft
+          <% end %>
+          <%= group.with_button(color: :success,
+                               type: "submit",
+                               name: "action", 
+                               value: "publish",
+                               data: { action: "click->form-validation#publish" }) do %>
+            Publish
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>JavaScript Event Handlers<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Button groups with JavaScript event handling</p>
+    <%= fx_button_group(onclick: "console.log('Button group clicked')",
+                        onmouseenter: "this.style.transform = 'scale(1.02)'",
+                        onmouseleave: "this.style.transform = 'scale(1)'",
+                        style: "transition: transform 0.2s ease;") do |group| %>
+      <%= group.with_button(color: :success,
+                           onclick: "alert('Success action clicked!')",
+                           onmouseenter: "this.style.backgroundColor = '#16a34a'",
+                           onmouseleave: "this.style.backgroundColor = ''") do %>
+        Success Action
+      <% end %>
+      <%= group.with_button(color: :warning,
+                           onclick: "confirm('Are you sure?') && alert('Warning action confirmed')",
+                           ondblclick: "alert('Double clicked!')") do %>
+        Warning Action
+      <% end %>
+      <%= group.with_button(color: :light,
+                           onclick: "this.textContent = this.textContent === 'Click Me' ? 'Clicked!' : 'Click Me'") do %>
+        Click Me
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Custom ID and Name Attributes<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Button groups with specific identification</p>
+    <%= fx_button_group(id: "priority-selector",
+                        name: "priority_group") do |group| %>
+      <%= group.with_button(color: :light,
+                           id: "priority-low",
+                           name: "priority",
+                           value: "low") do %>
+        <%= anyicon("heroicons_solid:chevron-down", class: "w-4 h-4 mr-1") %>
+        Low
+      <% end %>
+      <%= group.with_button(color: :warning,
+                           id: "priority-medium", 
+                           name: "priority",
+                           value: "medium") do %>
+        <%= anyicon("heroicons_solid:minus", class: "w-4 h-4 mr-1") %>
+        Medium
+      <% end %>
+      <%= group.with_button(color: :light,
+                           id: "priority-high",
+                           name: "priority", 
+                           value: "high") do %>
+        <%= anyicon("heroicons_solid:chevron-up", class: "w-4 h-4 mr-1") %>
+        High
+      <% end %>
+      <%= group.with_button(color: :light,
+                           id: "priority-urgent",
+                           name: "priority",
+                           value: "urgent") do %>
+        <%= anyicon("heroicons_solid:exclamation-triangle", class: "w-4 h-4 mr-1") %>
+        Urgent
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Tooltip and Title Attributes<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Button groups with hover tooltips and help text</p>
+    <%= fx_button_group(title: "Media playback controls") do |group| %>
+      <%= group.with_button(color: :light,
+                           title: "Previous track - Go to the previous media file") do %>
+        <%= anyicon("heroicons_solid:backward", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :success,
+                           title: "Play/Pause - Toggle media playback") do %>
+        <%= anyicon("heroicons_solid:play", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :light,
+                           title: "Next track - Go to the next media file") do %>
+        <%= anyicon("heroicons_solid:forward", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :light,
+                           title: "Volume control - Adjust playback volume") do %>
+        <%= anyicon("heroicons_solid:speaker-wave", class: "w-4 h-4") %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>CSS Custom Properties<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Button groups using CSS custom properties for theming</p>
+    <%= fx_button_group(style: "--btn-spacing: 0.5rem; --btn-radius: 1rem; --btn-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);",
+                        class: "gap-[var(--btn-spacing)] shadow-[var(--btn-shadow)]") do |group| %>
+      <%= group.with_button(color: :default,
+                           style: "border-radius: var(--btn-radius);") do %>
+        Custom Radius
+      <% end %>
+      <%= group.with_button(color: :info, 
+                           style: "border-radius: var(--btn-radius);") do %>
+        Themed Button
+      <% end %>
+      <%= group.with_button(color: :light,
+                           style: "border-radius: var(--btn-radius);") do %>
+        Consistent Style
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Keyboard Navigation Properties<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Enhanced keyboard navigation and shortcuts</p>
+    <%= fx_button_group(role: "group",
+                        aria: { label: "Document actions with keyboard shortcuts" }) do |group| %>
+      <%= group.with_button(color: :success,
+                           accesskey: "s",
+                           title: "Save (Alt+S)",
+                           aria: { keyshortcuts: "Alt+S" }) do %>
+        <u>S</u>ave
+      <% end %>
+      <%= group.with_button(color: :info,
+                           accesskey: "p", 
+                           title: "Preview (Alt+P)",
+                           aria: { keyshortcuts: "Alt+P" }) do %>
+        <u>P</u>review
+      <% end %>
+      <%= group.with_button(color: :light,
+                           accesskey: "c",
+                           title: "Cancel (Alt+C)",
+                           aria: { keyshortcuts: "Alt+C" }) do %>
+        <u>C</u>ancel
+      <% end %>
+    <% end %>
+    <p class="text-xs text-gray-500 mt-2">Use Alt+S, Alt+P, or Alt+C to activate buttons via keyboard</p>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Advanced State Management<% end %>
+    <p class="text-gray-600 text-sm mt-1 mb-4">Complex state management with multiple properties</p>
+    <%= fx_button_group(data: {
+      controller: "toggle-group",
+      toggle_group_multiple_value: "true",
+      toggle_group_selected_value: "read,write"
+    }) do |group| %>
+      <%= group.with_button(color: :success,
+                           data: {
+                             toggle_group_target: "button",
+                             action: "click->toggle-group#toggle",
+                             value: "read",
+                             state: "active"
+                           },
+                           aria: { pressed: "true" }) do %>
+        <%= anyicon("heroicons_solid:eye", class: "w-4 h-4 mr-1") %>
+        Read
+      <% end %>
+      <%= group.with_button(color: :success,
+                           data: {
+                             toggle_group_target: "button", 
+                             action: "click->toggle-group#toggle",
+                             value: "write",
+                             state: "active"
+                           },
+                           aria: { pressed: "true" }) do %>
+        <%= anyicon("heroicons_solid:pencil", class: "w-4 h-4 mr-1") %>
+        Write
+      <% end %>
+      <%= group.with_button(color: :light,
+                           data: {
+                             toggle_group_target: "button",
+                             action: "click->toggle-group#toggle", 
+                             value: "execute",
+                             state: "inactive"
+                           },
+                           aria: { pressed: "false" }) do %>
+        <%= anyicon("heroicons_solid:play", class: "w-4 h-4 mr-1") %>
+        Execute
+      <% end %>
+      <%= group.with_button(color: :light,
+                           data: {
+                             toggle_group_target: "button",
+                             action: "click->toggle-group#toggle",
+                             value: "admin", 
+                             state: "inactive"
+                           },
+                           aria: { pressed: "false" }) do %>
+        <%= anyicon("heroicons_solid:shield-check", class: "w-4 h-4 mr-1") %>
+        Admin
+      <% end %>
+    <% end %>
+    <p class="text-xs text-gray-500 mt-2">Multiple selection enabled - Read and Write permissions currently active</p>
+  </div>
+</div>

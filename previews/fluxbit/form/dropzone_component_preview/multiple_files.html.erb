@@ -1,0 +1,22 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="text-sm font-medium text-gray-700 mb-2">Single file upload (default)</h4>
+    <%= fx_dropzone(
+      name: "single_file",
+      title: "Upload One File",
+      subtitle: "Select a single file",
+      height: 2
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="text-sm font-medium text-gray-700 mb-2">Multiple files upload</h4>
+    <%= fx_dropzone(
+      name: "multiple_files",
+      title: "Upload Multiple Files",
+      subtitle: "Select one or more files",
+      multiple: true,
+      height: 2
+    ) %>
+  </div>
+</div>

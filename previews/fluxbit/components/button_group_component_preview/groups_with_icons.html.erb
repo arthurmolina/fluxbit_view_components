@@ -1,0 +1,103 @@
+<div class="space-y-6">
+  <div>
+    <%= fx_heading(size: 3) do %>Text Formatting Toolbar<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:bold", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:italic", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:underline", class: "w-4 h-4") %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Media Controls<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :default) do %>
+        <%= anyicon("heroicons_solid:backward", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :default) do %>
+        <%= anyicon("heroicons_solid:play", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :default) do %>
+        <%= anyicon("heroicons_solid:forward", class: "w-4 h-4") %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>File Operations<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :success) do %>
+        <%= anyicon("heroicons_solid:document-plus", class: "w-4 h-4 mr-2") %>
+        New
+      <% end %>
+      <%= group.with_button(color: :info) do %>
+        <%= anyicon("heroicons_solid:folder-open", class: "w-4 h-4 mr-2") %>
+        Open
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:archive-box", class: "w-4 h-4 mr-2") %>
+        Save
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>View Toggle<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :default) do %>
+        <%= anyicon("heroicons_solid:list-bullet", class: "w-4 h-4 mr-2") %>
+        List
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:squares-2x2", class: "w-4 h-4 mr-2") %>
+        Grid
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:table-cells", class: "w-4 h-4 mr-2") %>
+        Table
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Social Actions<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :success_outline) do %>
+        <%= anyicon("heroicons_solid:hand-thumb-up", class: "w-4 h-4 mr-1") %>
+        Like
+      <% end %>
+      <%= group.with_button(color: :info_outline) do %>
+        <%= anyicon("heroicons_solid:share", class: "w-4 h-4 mr-1") %>
+        Share
+      <% end %>
+      <%= group.with_button(color: :light_outline) do %>
+        <%= anyicon("heroicons_solid:bookmark", class: "w-4 h-4 mr-1") %>
+        Save
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Alignment Tools<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:bars-3-bottom-left", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:bars-3", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:bars-3-bottom-right", class: "w-4 h-4") %>
+      <% end %>
+      <%= group.with_button(color: :light) do %>
+        <%= anyicon("heroicons_solid:bars-4", class: "w-4 h-4") %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

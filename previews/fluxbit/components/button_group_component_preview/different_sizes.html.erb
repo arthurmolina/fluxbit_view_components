@@ -1,0 +1,94 @@
+<div class="space-y-6">
+  <div>
+    <%= fx_heading(size: 3) do %>Extra Small (Size 0)<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :default, size: 0) do %>XS<% end %>
+      <%= group.with_button(color: :default, size: 0) do %>Small<% end %>
+      <%= group.with_button(color: :default, size: 0) do %>Tiny<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Small (Size 1)<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :success, size: 1) do %>Small<% end %>
+      <%= group.with_button(color: :success, size: 1) do %>Button<% end %>
+      <%= group.with_button(color: :success, size: 1) do %>Group<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Medium (Size 2)<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :info, size: 2) do %>Medium<% end %>
+      <%= group.with_button(color: :info, size: 2) do %>Button<% end %>
+      <%= group.with_button(color: :info, size: 2) do %>Group<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Large (Size 3)<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :warning, size: 3) do %>Large<% end %>
+      <%= group.with_button(color: :warning, size: 3) do %>Button<% end %>
+      <%= group.with_button(color: :warning, size: 3) do %>Group<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Extra Large (Size 4)<% end %>
+    <%= fx_button_group(class: "mt-2") do |group| %>
+      <%= group.with_button(color: :purple, size: 4) do %>Extra Large<% end %>
+      <%= group.with_button(color: :purple, size: 4) do %>Button Group<% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Size Comparison<% end %>
+    <p class="text-gray-600 text-sm mb-4">All sizes displayed together for comparison</p>
+    <div class="space-y-3">
+      <%= fx_button_group do |group| %>
+        <%= group.with_button(color: :light, size: 0) do %>XS<% end %>
+        <%= group.with_button(color: :light, size: 1) do %>SM<% end %>
+        <%= group.with_button(color: :light, size: 2) do %>MD<% end %>
+        <%= group.with_button(color: :light, size: 3) do %>LG<% end %>
+        <%= group.with_button(color: :light, size: 4) do %>XL<% end %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Icons with Different Sizes<% end %>
+    <div class="space-y-3">
+      <div>
+        <p class="text-sm text-gray-600 mb-2">Small icons</p>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :default, size: 1) do %>
+            <%= anyicon("heroicons_solid:heart", class: "w-4 h-4") %>
+          <% end %>
+          <%= group.with_button(color: :default, size: 1) do %>
+            <%= anyicon("heroicons_solid:star", class: "w-4 h-4") %>
+          <% end %>
+          <%= group.with_button(color: :default, size: 1) do %>
+            <%= anyicon("heroicons_solid:bookmark", class: "w-4 h-4") %>
+          <% end %>
+        <% end %>
+      </div>
+      
+      <div>
+        <p class="text-sm text-gray-600 mb-2">Large icons</p>
+        <%= fx_button_group do |group| %>
+          <%= group.with_button(color: :success, size: 3) do %>
+            <%= anyicon("heroicons_solid:heart", class: "w-5 h-5") %>
+          <% end %>
+          <%= group.with_button(color: :success, size: 3) do %>
+            <%= anyicon("heroicons_solid:star", class: "w-5 h-5") %>
+          <% end %>
+          <%= group.with_button(color: :success, size: 3) do %>
+            <%= anyicon("heroicons_solid:bookmark", class: "w-5 h-5") %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

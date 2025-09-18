@@ -1,0 +1,12 @@
+<div class="p-8 flex justify-center">
+  <%= fx_avatar_group do |group| %>
+    <%= group.with_avatar(
+      src: "https://flowbite.com/docs/images/people/profile-picture-1.jpg",
+      alt: "Profile Image"
+    ) %>
+    <%= group.with_avatar(color: :success, placeholder_initials: "AM") %>
+    <%= group.with_gravatar(default: "retro", email: "user@example.com") %>
+    <%= group.with_avatar(color: :purple, placeholder_initials: "FX") %>
+    <%= group.with_gravatar(default: "robohash") %>
+  <% end %>
+</div>

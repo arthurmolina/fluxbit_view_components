@@ -1,0 +1,35 @@
+<%= fx_table(hover: true) do |table| %>
+  <% table.with_header do |header| %>
+    <% header.with_cell { "User" } %>
+    <% header.with_cell { "Email" } %>
+    <% header.with_cell { "Role" } %>
+    <% header.with_cell { "Status" } %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "John Doe" } %>
+    <% row.with_cell { "john@example.com" } %>
+    <% row.with_cell { "Admin" } %>
+    <% row.with_cell do %>
+      <%= fx_badge(color: :success, with_content: "Active") %>
+    <% end %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Jane Smith" } %>
+    <% row.with_cell { "jane@example.com" } %>
+    <% row.with_cell { "Editor" } %>
+    <% row.with_cell do %>
+      <%= fx_badge(color: :warning, with_content: "Pending") %>
+    <% end %>
+  <% end %>
+
+  <% table.with_row do |row| %>
+    <% row.with_cell { "Mike Johnson" } %>
+    <% row.with_cell { "mike@example.com" } %>
+    <% row.with_cell { "Viewer" } %>
+    <% row.with_cell do %>
+      <%= fx_badge(color: :danger, with_content: "Inactive") %>
+    <% end %>
+  <% end %>
+<% end %>

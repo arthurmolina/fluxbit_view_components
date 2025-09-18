@@ -1,0 +1,12 @@
+<div class="p-8 flex justify-center">
+  <%= fx_avatar_group do |group| %>
+    <% avatar_count.times do |i| %>
+      <% initials = ["AM", "FX", "BG", "JS", "RB", "PY", "GO", "TS"][i] || "#{i+1}" %>
+      <%= group.with_avatar(
+        placeholder_initials: initials,
+        size: size,
+        status: show_status ? [:online, :busy, :offline, :away].sample : false
+      ) %>
+    <% end %>
+  <% end %>
+</div>

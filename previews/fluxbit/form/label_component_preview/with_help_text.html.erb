@@ -1,0 +1,28 @@
+<div class="space-y-6">
+  <%= fx_label(
+    with_content: "Username",
+    help_text: "Must be 3-20 characters long and contain only letters, numbers, and underscores.",
+    for: "username"
+  ) %>
+
+  <%= fx_label(
+    with_content: "Password",
+    color: :info,
+    help_text: "Use a strong password with at least 8 characters, including uppercase, lowercase, numbers, and symbols.",
+    for: "password"
+  ) %>
+
+  <%= fx_label(
+    with_content: "Email Address",
+    color: :success,
+    help_text: "✓ This email address is valid and available.",
+    for: "email"
+  ) %>
+
+  <%= fx_label(
+    with_content: "Phone Number",
+    color: :danger,
+    help_text: "Please enter a valid phone number in the format (555) 123-4567.",
+    for: "phone"
+  ) %>
+</div>

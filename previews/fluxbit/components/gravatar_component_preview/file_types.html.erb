@@ -1,0 +1,14 @@
+<div class="flex gap-4 items-center">
+  <div class="text-center">
+    <%= fx_gravatar(email: "user@example.com", filetype: :png, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">PNG</p>
+  </div>
+  <div class="text-center">
+    <%= fx_gravatar(email: "user@example.com", filetype: :jpg, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">JPG</p>
+  </div>
+  <div class="text-center">
+    <%= fx_gravatar(email: "user@example.com", filetype: :gif, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">GIF</p>
+  </div>
+</div>

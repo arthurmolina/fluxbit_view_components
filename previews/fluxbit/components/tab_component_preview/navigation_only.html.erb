@@ -1,0 +1,62 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 3) do %>Navigation Only Tabs<% end %>
+    <p class="text-gray-600 mt-2 mb-4">These tabs show only the navigation without content panels.</p>
+    
+    <%= fx_tab(variant: :default, color: :blue, tab_panel: :none) do |tabs| %>
+      <%= tabs.with_tab title: "Overview", active: true, href: "#overview" %>
+      <%= tabs.with_tab title: "Analytics", href: "#analytics" %>
+      <%= tabs.with_tab title: "Reports", href: "#reports" %>
+      <%= tabs.with_tab title: "Settings", href: "#settings" %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Pills Navigation<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Pills variant for navigation-only tabs.</p>
+    
+    <%= fx_tab(variant: :pills, color: :green, tab_panel: :none) do |tabs| %>
+      <%= tabs.with_tab title: "All Items", active: true, href: "#all" %>
+      <%= tabs.with_tab title: "Active", href: "#active" %>
+      <%= tabs.with_tab title: "Pending", href: "#pending" %>
+      <%= tabs.with_tab title: "Archive", href: "#archive" %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Underline Navigation<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Underline variant for subtle navigation.</p>
+    
+    <%= fx_tab(variant: :underline, color: :purple, tab_panel: :none) do |tabs| %>
+      <%= tabs.with_tab title: "Profile", active: true, href: "#profile" %>
+      <%= tabs.with_tab title: "Security", href: "#security" %>
+      <%= tabs.with_tab title: "Notifications", href: "#notifications" %>
+      <%= tabs.with_tab title: "Billing", href: "#billing" %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Navigation with Icons<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Navigation tabs with icons for better visual hierarchy.</p>
+    
+    <%= fx_tab(variant: :default, color: :indigo, tab_panel: :none) do |tabs| %>
+      <%= tabs.with_tab title: "Dashboard", active: true, icon: anyicon("heroicons_solid:home"), href: "#dashboard" %>
+      <%= tabs.with_tab title: "Projects", icon: anyicon("heroicons_solid:folder"), href: "#projects" %>
+      <%= tabs.with_tab title: "Team", icon: anyicon("heroicons_solid:users"), href: "#team" %>
+      <%= tabs.with_tab title: "Calendar", icon: anyicon("heroicons_solid:calendar"), href: "#calendar" %>
+      <%= tabs.with_tab title: "Settings", icon: anyicon("heroicons_solid:cog-6-tooth"), href: "#settings" %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= fx_heading(size: 3) do %>Full Width Navigation<% end %>
+    <p class="text-gray-600 mt-2 mb-4">Full width navigation tabs for mobile-friendly interfaces.</p>
+    
+    <%= fx_tab(variant: :full_width, color: :emerald, tab_panel: :none) do |tabs| %>
+      <%= tabs.with_tab title: "Home", active: true, href: "#home" %>
+      <%= tabs.with_tab title: "Browse", href: "#browse" %>
+      <%= tabs.with_tab title: "Favorites", href: "#favorites" %>
+      <%= tabs.with_tab title: "Account", href: "#account" %>
+    <% end %>
+  </div>
+</div>

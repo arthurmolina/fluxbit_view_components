@@ -1,0 +1,29 @@
+<div class="space-y-6">
+  <%= fx_dropzone(
+    name: "custom_text",
+    title: "Upload Your Documents",
+    subtitle: "PDF, DOC, or DOCX files only",
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "no_subtitle",
+    title: "Images Only",
+    subtitle: false,
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "no_title",
+    title: false,
+    subtitle: "Drop files here",
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "minimal",
+    title: false,
+    subtitle: false,
+    height: 2
+  ) %>
+</div>

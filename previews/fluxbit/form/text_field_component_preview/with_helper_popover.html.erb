@@ -1,0 +1,33 @@
+<div class="space-y-4">
+  <%= fx_text_field(
+    name: "api_key",
+    label: "API Key",
+    placeholder: "sk-...",
+    helper_popover: "Your API key is used to authenticate requests to our service. Keep it secure and don't share it publicly."
+  ) %>
+
+  <%= fx_text_field(
+    name: "webhook_url",
+    label: "Webhook URL",
+    type: :url,
+    placeholder: "https://example.com/webhook",
+    helper_popover: "This is the endpoint where we'll send notifications about account events. It must be a valid HTTPS URL that can receive POST requests.",
+    helper_popover_placement: "top"
+  ) %>
+
+  <%= fx_text_field(
+    name: "regex_pattern",
+    label: "Regular Expression",
+    placeholder: "^[a-zA-Z0-9]+$",
+    helper_popover: "Enter a regular expression pattern. Use ^ for start of string, $ for end of string, + for one or more, * for zero or more.",
+    helper_popover_placement: "bottom"
+  ) %>
+
+  <%= fx_text_field(
+    name: "cron_schedule",
+    label: "Cron Schedule",
+    placeholder: "0 */6 * * *",
+    helper_popover: "Cron format: minute hour day month weekday. Examples: '0 0 * * *' (daily at midnight), '0 */6 * * *' (every 6 hours)",
+    helper_popover_placement: "left"
+  ) %>
+</div>

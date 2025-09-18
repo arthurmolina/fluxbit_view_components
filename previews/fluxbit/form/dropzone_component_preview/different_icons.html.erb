@@ -1,0 +1,33 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <%= fx_dropzone(
+    name: "photo_upload",
+    title: "Upload Photos",
+    subtitle: "JPG, PNG, GIF",
+    icon: "heroicons_solid:photo",
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "document_upload",
+    title: "Upload Documents",
+    subtitle: "PDF, DOC, TXT",
+    icon: "heroicons_solid:document_plus",
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "archive_upload",
+    title: "Upload Archives",
+    subtitle: "ZIP, RAR, TAR",
+    icon: "heroicons_solid:archive_box",
+    height: 2
+  ) %>
+
+  <%= fx_dropzone(
+    name: "attachment_upload",
+    title: "Add Attachments",
+    subtitle: "Any file type",
+    icon: "heroicons_solid:paper_clip",
+    height: 2
+  ) %>
+</div>

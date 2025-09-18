@@ -29,10 +29,17 @@ class Fluxbit::Components::TabComponentPreview < ViewComponent::Preview
   end
 
   def default; end
-  def underline; end
-  def pills; end
-  def full_width; end
-  def all_colors; end
+  def basic_tabs; end
+  def underline_tabs; end
+  def pills_tabs; end
+  def full_width_tabs; end
+  def vertical_tabs; end
+  def tabs_with_icons; end
+  def colored_tabs; end
+  def navigation_only; end
+  def disabled_tabs; end
+  def adding_removing_classes; end
+  def adding_other_properties; end
 
   private
 

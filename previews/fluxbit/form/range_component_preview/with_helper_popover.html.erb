@@ -1,0 +1,39 @@
+<div class="space-y-6">
+  <%= fx_range(
+    name: "compression_level",
+    label: "Compression Level",
+    value: 5,
+    min: 1,
+    max: 10,
+    helper_popover: "Higher compression levels reduce file size but may affect quality. Level 5 provides a good balance between size and quality."
+  ) %>
+
+  <%= fx_range(
+    name: "security_level",
+    label: "Security Level",
+    value: 3,
+    min: 1,
+    max: 5,
+    helper_popover: "Security levels: 1 = Basic (fast), 2 = Standard, 3 = Enhanced (recommended), 4 = High, 5 = Maximum (slowest)"
+  ) %>
+
+  <%= fx_range(
+    name: "auto_save_interval",
+    label: "Auto-save Interval",
+    value: 300,
+    min: 60,
+    max: 1800,
+    step: 60,
+    helper_popover: "How often your work is automatically saved, in seconds. Shorter intervals provide better protection against data loss but may impact performance."
+  ) %>
+
+  <%= fx_range(
+    name: "cache_size",
+    label: "Cache Size (MB)",
+    value: 256,
+    min: 64,
+    max: 1024,
+    step: 64,
+    helper_popover: "Amount of memory allocated for caching. Larger cache sizes improve performance but use more system memory. Recommended: 256-512 MB."
+  ) %>
+</div>

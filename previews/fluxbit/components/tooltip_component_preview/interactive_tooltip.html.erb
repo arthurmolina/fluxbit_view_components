@@ -1,0 +1,51 @@
+<div class="p-8 space-y-6">
+  <%= fx_heading(size: 3, class: "text-center mb-6") do %>
+    Interactive Elements with Tooltips
+  <% end %>
+  
+  <div class="flex justify-center gap-4">
+    <!-- Button with tooltip -->
+    <%= fx_button(
+      color: :success,
+      class: 'relative',
+      with_content: "Save",
+      data: {
+        tooltip_target: "tooltip-save",
+        tooltip_placement: "top"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-save") do %>
+      Save your changes
+    <% end %>
+    
+    <!-- Badge with tooltip -->
+    <%= fx_badge(
+      color: :warning,
+      class: 'relative cursor-help',
+      with_content: "Beta",
+      data: {
+        tooltip_target: "tooltip-beta",
+        tooltip_placement: "top"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-beta") do %>
+      This feature is in beta
+    <% end %>
+    
+    <!-- Link with tooltip -->
+    <%= fx_button(
+      as: :a,
+      href: "#",
+      color: :info,
+      class: 'relative',
+      with_content: "Help",
+      data: {
+        tooltip_target: "tooltip-help",
+        tooltip_placement: "top"
+      }
+    ) %>
+    <%= fx_tooltip(id: "tooltip-help") do %>
+      Get help and support
+    <% end %>
+  </div>
+</div>
