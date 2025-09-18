@@ -10,6 +10,7 @@
 
 # demo app
 /demo/tmp/
+/demo/app/assets/images/icons/
 /demo/node_modules/
 /demo/config/master.key
 /demo/public/packs/
