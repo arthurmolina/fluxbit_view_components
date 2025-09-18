@@ -18,9 +18,11 @@ module Fluxbit
       require "fluxbit/config/form/toggle_component"
     end
 
+    require "fluxbit/config/accordion_component"
     require "fluxbit/config/alert_component"
     require "fluxbit/config/avatar_component"
     require "fluxbit/config/badge_component"
+    require "fluxbit/config/banner_component"
     require "fluxbit/config/breadcrumb_component"
     require "fluxbit/config/button_component"
     require "fluxbit/config/card_component"

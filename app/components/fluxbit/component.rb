@@ -30,7 +30,7 @@ class Fluxbit::Component < ViewComponent::Base
     return "" if from.blank?
     return from if elements.blank?
 
-    from.split.reject { |c| c.in?( (elements || "").split) }.join(" ")
+    from.split.reject { |c| c.in?((elements || "").split) }.join(" ")
   end
 
   def remove_class_from_props(props)

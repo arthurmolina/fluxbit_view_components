@@ -22,8 +22,8 @@ module Fluxbit::Config::PaginationComponent
       only_text: "",
       only_icon: "sr-only",
       sizes: [
-        {root: "text-sm", page_link: "px-3 h-8"},
-        {root: "text-base h-10", page_link: "px-4 h-10"}
+        { root: "text-sm", page_link: "px-3 h-8" },
+        { root: "text-base h-10", page_link: "px-4 h-10" }
       ]
     }
   end

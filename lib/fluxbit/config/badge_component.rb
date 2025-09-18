@@ -15,7 +15,7 @@ module Fluxbit::Config::BadgeComponent
       base: "inline-flex items-center gap-1 font-medium me-2",
       pill: {
         off: "rounded-sm",
-        on: "rounded-full",
+        on: "rounded-full"
       },
       colors: {
         info: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",

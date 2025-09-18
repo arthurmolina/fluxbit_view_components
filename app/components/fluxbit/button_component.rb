@@ -104,7 +104,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
   private
 
   def render_button
-    button_content = @content || content
+    button_content = @content || content || ""
 
     if @form.nil?
       button_content += dropdown? && !@remove_dropdown_arrow ? chevron_down(class: "ms-3") : ""

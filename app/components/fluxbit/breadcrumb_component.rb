@@ -15,7 +15,7 @@ class Fluxbit::BreadcrumbComponent < Fluxbit::Component
   # Initialize with any HTML attributes (e.g., custom class or aria-label for the <nav>)
   def initialize(**props)
     super
-    @props = props 
+    @props = props
     @props["aria-label"] ||= "Breadcrumb"
   end
 

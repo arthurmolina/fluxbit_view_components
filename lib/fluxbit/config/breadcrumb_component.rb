@@ -4,9 +4,9 @@ module Fluxbit::Config::BreadcrumbComponent
   # rubocop: disable Layout/LineLength, Metrics/BlockLength
   mattr_accessor :styles do
     {
-      root: { 
-        base: "", 
-        list: "inline-flex items-center" 
+      root: {
+        base: "",
+        list: "inline-flex items-center"
       },
       item: {
         base: "group flex items-center",

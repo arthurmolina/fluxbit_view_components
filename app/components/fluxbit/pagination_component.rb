@@ -43,9 +43,9 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
     @aria_label = @props.delete(:aria_label) || translate("aria_label.nav", count: @last)
     @show_texts = true if !@show_icons && !@show_texts
 
-    add(class: [styles[:root], styles[:sizes][@sizing][:root]], to: @props)
-    @page_link_style = [styles[:page_link], styles[:sizes][@sizing][:page_link]].join(" ")
-    @current_style = [styles[:current], styles[:sizes][@sizing][:page_link]].join(" ")
+    add(class: [ styles[:root], styles[:sizes][@sizing][:root] ], to: @props)
+    @page_link_style = [ styles[:page_link], styles[:sizes][@sizing][:page_link] ].join(" ")
+    @current_style = [ styles[:current], styles[:sizes][@sizing][:page_link] ].join(" ")
     @props[:aria] ||= {}
     @props[:aria][:label] = @aria_label unless @props[:aria][:label]
   end
@@ -76,7 +76,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
   private
 
   def translate(key, options = {})
-    I18n.t(key, **options.merge(scope: "fluxbit.pagination")) #, default: Fluxbit::DEFAULT_TRANSLATIONS["fluxbit.pagination.#{key}"]))
+    I18n.t(key, **options.merge(scope: "fluxbit.pagination")) # , default: Fluxbit::DEFAULT_TRANSLATIONS["fluxbit.pagination.#{key}"]))
   end
 
   def first_button
@@ -167,11 +167,11 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
         left  = ((@size - 1) / 2.0).floor            # left half might be 1 page shorter for even size
         start = if @page <= left                     # beginning pages
                   1
-                elsif @page > (@last - @size + left) # end pages
+        elsif @page > (@last - @size + left) # end pages
                   @last - @size + 1
-                else                                 # intermediate pages
+        else                                 # intermediate pages
                   @page - left
-                end
+        end
         series.push(*start...start + @size)
         # Set first and last pages plus gaps when needed, respecting the size
         if @ends && @size >= 7

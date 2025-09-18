@@ -15,7 +15,7 @@ class Fluxbit::Form::Component < Fluxbit::Component
     if help_text.nil? && !object.nil? && !attribute.nil?
       help_text = I18n.t(
         attribute,
-        scope: [ :activerecord, :help_text, object.class.name.underscore.to_sym ],
+        scope: [ object.class.name.pluralize.underscore.to_sym, :help_text ],
         default: nil
       )
     end
@@ -26,12 +26,14 @@ class Fluxbit::Form::Component < Fluxbit::Component
   def define_helper_popover(helper_popover, object, attribute)
     return helper_popover if (helper_popover != false && !helper_popover.nil?) || object.nil?
 
-    object_name = object.class.name.underscore.to_sym
-    I18n.t(attribute, scope: [ :activerecord, :helper_popover, object_name ], default: nil)
+    I18n.t(attribute, scope: [ object.class.name.pluralize.underscore.to_sym, :helper_popover ], default: nil)
   end
 
   def label_value(label, object, attribute, id)
-    return object.class.human_attribute_name(attribute) if label.nil? && !object.nil? && !attribute.nil?
+    if label.nil? && !object.nil? && !attribute.nil?
+      key = [ object.class.name.pluralize.underscore.to_sym, :fields, attribute ]
+      return I18n.exists?(key) ? I18n.t(attribute, scope: key[0..-2]) : object.class.human_attribute_name(attribute)
+    end
     return attribute.to_s.humanize if label.nil? && object.nil?
     return id.to_s.humanize if label.nil? && !id.nil?
     return label unless label.nil?

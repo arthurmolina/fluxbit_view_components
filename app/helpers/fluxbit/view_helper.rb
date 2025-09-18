@@ -22,7 +22,7 @@ module Fluxbit
           fx_sort_up_down
         end
 
-        safe_join([h(label_text), icon], " ")
+        safe_join([ h(label_text), icon ], " ")
       end
     end
 
