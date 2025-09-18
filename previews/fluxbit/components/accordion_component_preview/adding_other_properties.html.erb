@@ -1,0 +1,63 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Accordion with HTML attributes</h3>
+  <%= fx_accordion(id: "custom-accordion", "data-test" => "accordion-component") do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "Custom attributes" } %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          This accordion has custom HTML attributes like id and data attributes for testing or JavaScript integration.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "Testable component" } %>
+      <% panel.with_body { "The data-test attribute makes it easy to target this component in automated tests." } %>
+    <% end %>
+  <% end %>
+
+  <h3 class="text-lg font-semibold mb-4">Accordion with ARIA attributes</h3>
+  <%= fx_accordion("aria-label" => "FAQ Accordion", role: "region") do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "Accessible accordion" } %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          This accordion includes ARIA attributes for better accessibility support.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "Screen reader friendly" } %>
+      <% panel.with_body { "The aria-label and role attributes help screen readers understand the component structure." } %>
+    <% end %>
+  <% end %>
+
+  <h3 class="text-lg font-semibold mb-4">Accordion with all options combined</h3>
+  <%= fx_accordion(
+    flush: true,
+    collapse_all: true,
+    class: "border-l-4 border-blue-500",
+    id: "feature-accordion",
+    "data-category" => "features"
+  ) do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "Combined features" } %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          This accordion combines flush styling, collapse-all behavior, custom classes, and additional HTML attributes.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "Full configuration" } %>
+      <% panel.with_body { "All available options are demonstrated in this example." } %>
+    <% end %>
+
+    <% accordion.with_panel(index: 2) do |panel| %>
+      <% panel.with_header { "Flexible component" } %>
+      <% panel.with_body { "The accordion component is highly configurable to meet different design needs." } %>
+    <% end %>
+  <% end %>
+</div>

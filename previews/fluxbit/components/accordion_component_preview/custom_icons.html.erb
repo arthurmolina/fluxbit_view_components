@@ -1,0 +1,171 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Accordion with custom icons and styling</h3>
+  <p class="text-gray-600 dark:text-gray-400 mb-4">
+    While the accordion component uses chevron icons by default, you can customize the appearance through CSS classes and content.
+  </p>
+
+  <h4 class="text-md font-medium mb-3">Standard accordion with default chevron icons</h4>
+  <%= fx_accordion do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "📊 Dashboard Overview" } %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          This panel uses the default chevron icon behavior. The icon rotates when the panel is opened or closed.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "⚙️ Settings & Configuration" } %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          You can add emoji or icons directly in the header text as shown here.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 2) do |panel| %>
+      <% panel.with_header { "🔒 Security & Privacy" } %>
+      <% panel.with_body do %>
+        <div class="space-y-3">
+          <p class="text-gray-500 dark:text-gray-400">
+            Security settings and privacy controls for your account.
+          </p>
+          <div class="bg-yellow-50 dark:bg-yellow-900 border border-yellow-200 dark:border-yellow-700 rounded p-3">
+            <p class="text-yellow-800 dark:text-yellow-200 text-sm">
+              ⚠️ <strong>Note:</strong> Always keep your security settings up to date.
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <h4 class="text-md font-medium mb-3 mt-8">Accordion with rich header content</h4>
+  <%= fx_accordion do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header do %>
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-sm font-medium text-gray-900 dark:text-white">Completed Tasks</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400">5 tasks completed today</p>
+          </div>
+        </div>
+      <% end %>
+      <% panel.with_body do %>
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300">Review quarterly reports</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300">Update team documentation</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300">Schedule client meetings</span>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header do %>
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-orange-600 dark:text-orange-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-sm font-medium text-gray-900 dark:text-white">Pending Tasks</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400">3 tasks due this week</p>
+          </div>
+        </div>
+      <% end %>
+      <% panel.with_body do %>
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300">Prepare presentation slides</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300">Review code submissions</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300">Plan team retrospective</span>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <h4 class="text-md font-medium mb-3 mt-8">Accordion with badge indicators</h4>
+  <%= fx_accordion do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header do %>
+        <div class="flex items-center justify-between w-full">
+          <span>Notifications</span>
+          <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">5 new</span>
+        </div>
+      <% end %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          You have 5 new notifications waiting for your attention.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header do %>
+        <div class="flex items-center justify-between w-full">
+          <span>Messages</span>
+          <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">12</span>
+        </div>
+      <% end %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          You have 12 unread messages in your inbox.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 2) do |panel| %>
+      <% panel.with_header do %>
+        <div class="flex items-center justify-between w-full">
+          <span>Updates</span>
+          <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Latest</span>
+        </div>
+      <% end %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          Your system is up to date with the latest version.
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

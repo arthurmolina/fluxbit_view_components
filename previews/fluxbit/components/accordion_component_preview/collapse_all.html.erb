@@ -1,0 +1,58 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Collapse all accordion (only one panel open at a time)</h3>
+  <%= fx_accordion(collapse_all: true) do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "First Section" } %>
+      <% panel.with_body do %>
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+          Notice that when you open another panel, this one will automatically close because collapse_all is set to true.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "Second Section" } %>
+      <% panel.with_body do %>
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+          This panel will close the previous one when opened due to the collapse_all behavior.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 2) do |panel| %>
+      <% panel.with_header { "Third Section" } %>
+      <% panel.with_body do %>
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <h3 class="text-lg font-semibold mb-4">Always open accordion (multiple panels can be open)</h3>
+  <%= fx_accordion(collapse_all: false) do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "First panel" } %>
+      <% panel.with_body { "This panel can stay open while others are also open because collapse_all is false." } %>
+    <% end %>
+
+    <% accordion.with_panel(open: true, index: 1) do |panel| %>
+      <% panel.with_header { "Second panel" } %>
+      <% panel.with_body { "Notice how both panels can be open simultaneously." } %>
+    <% end %>
+
+    <% accordion.with_panel(index: 2) do |panel| %>
+      <% panel.with_header { "Third panel" } %>
+      <% panel.with_body { "You can open this one too without closing the others." } %>
+    <% end %>
+  <% end %>
+</div>

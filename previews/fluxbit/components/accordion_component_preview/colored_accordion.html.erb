@@ -1,0 +1,196 @@
+<div class="space-y-8">
+  <h3 class="text-lg font-semibold mb-4">All available accordion colors</h3>
+  <p class="text-gray-600 dark:text-gray-400 mb-6">
+    Explore different color variations and themes available for the accordion component to enhance your interface design.
+  </p>
+
+  <div class="space-y-6">
+    <div>
+      <h4 class="text-md font-medium mb-3">Default</h4>
+      <%= fx_accordion(color: :default) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Sample Header" } %>
+          <% panel.with_body { "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at eros." } %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <h4 class="text-md font-medium mb-3">Light</h4>
+      <%= fx_accordion(color: :light) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Content Example" } %>
+          <% panel.with_body { "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." } %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <h4 class="text-md font-medium mb-3">Primary</h4>
+      <%= fx_accordion(color: :primary) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Important Information" } %>
+          <% panel.with_body { "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." } %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <h4 class="text-md font-medium mb-3">Secondary</h4>
+      <%= fx_accordion(color: :secondary) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Additional Details" } %>
+          <% panel.with_body { "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum." } %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <h4 class="text-md font-medium mb-3">Success</h4>
+      <%= fx_accordion(color: :success) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Completed Tasks" } %>
+          <% panel.with_body { "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia." } %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <h4 class="text-md font-medium mb-3">Danger</h4>
+      <%= fx_accordion(color: :danger) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Critical Notices" } %>
+          <% panel.with_body { "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit." } %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <h4 class="text-md font-medium mb-3">Warning</h4>
+      <%= fx_accordion(color: :warning) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Important Notices" } %>
+          <% panel.with_body { "Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi." } %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <h4 class="text-md font-medium mb-3">Info</h4>
+      <%= fx_accordion(color: :info) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Helpful Information" } %>
+          <% panel.with_body { "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet." } %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <h4 class="text-md font-medium mb-3">Dark</h4>
+      <%= fx_accordion(color: :dark) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Extended Content" } %>
+          <% panel.with_body { "Consectetur, adipisci velit, sed quia non numquam eius modi tempora." } %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <h3 class="text-lg font-semibold mb-4 mt-12">Color comparison grid</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% [:default, :light, :primary, :secondary, :success, :danger, :warning, :info, :dark].each do |color| %>
+      <div>
+        <h5 class="text-sm font-medium mb-2 capitalize"><%= color %></h5>
+        <%= fx_accordion(color: color) do |accordion| %>
+          <% accordion.with_panel(open: true, index: 0) do |panel| %>
+            <% panel.with_header { "#{color.to_s.capitalize} Header" } %>
+            <% panel.with_body { "Sample content for #{color} color scheme." } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <h3 class="text-lg font-semibold mb-4 mt-12">Semantic usage examples</h3>
+  <div class="space-y-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div>
+        <h4 class="text-md font-medium mb-3">Success Example</h4>
+        <%= fx_accordion(color: :success) do |accordion| %>
+          <% accordion.with_panel(open: true, index: 0) do |panel| %>
+            <% panel.with_header { "✅ Task Completed" } %>
+            <% panel.with_body do %>
+              <div class="space-y-2">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <ul class="list-disc list-inside text-sm">
+                  <li>Sed do eiusmod tempor incididunt</li>
+                  <li>Ut labore et dolore magna aliqua</li>
+                  <li>Ut enim ad minim veniam</li>
+                </ul>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div>
+        <h4 class="text-md font-medium mb-3">Critical Example</h4>
+        <%= fx_accordion(color: :danger) do |accordion| %>
+          <% accordion.with_panel(open: true, index: 0) do |panel| %>
+            <% panel.with_header { "🚨 Important Notice" } %>
+            <% panel.with_body do %>
+              <div class="space-y-2">
+                <p>Duis aute irure dolor in reprehenderit in voluptate:</p>
+                <ul class="list-disc list-inside text-sm">
+                  <li>Excepteur sint occaecat cupidatat</li>
+                  <li>Non proident sunt in culpa</li>
+                  <li>Qui officia deserunt mollit</li>
+                </ul>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div>
+        <h4 class="text-md font-medium mb-3">Informational Example</h4>
+        <%= fx_accordion(color: :info) do |accordion| %>
+          <% accordion.with_panel(open: true, index: 0) do |panel| %>
+            <% panel.with_header { "ℹ️ Latest Updates" } %>
+            <% panel.with_body do %>
+              <div class="space-y-2">
+                <p>Sed ut perspiciatis unde omnis iste natus:</p>
+                <ul class="list-disc list-inside text-sm">
+                  <li>Error sit voluptatem accusantium</li>
+                  <li>Doloremque laudantium totam</li>
+                  <li>Rem aperiam eaque ipsa</li>
+                </ul>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div>
+        <h4 class="text-md font-medium mb-3">Warning Example</h4>
+        <%= fx_accordion(color: :warning) do |accordion| %>
+          <% accordion.with_panel(open: true, index: 0) do |panel| %>
+            <% panel.with_header { "⚠️ Attention Required" } %>
+            <% panel.with_body do %>
+              <div class="space-y-2">
+                <p>Nemo enim ipsam voluptatem quia voluptas:</p>
+                <ul class="list-disc list-inside text-sm">
+                  <li>Sit aspernatur aut odit aut fugit</li>
+                  <li>Sed quia consequuntur magni</li>
+                  <li>Dolores eos qui ratione</li>
+                </ul>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Accordion with custom classes</h3>
+  <%= fx_accordion(class: "my-custom-accordion border-2 border-blue-500") do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "Custom styled accordion" } %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          This accordion has custom classes applied to change its appearance with a blue border.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "Second panel" } %>
+      <% panel.with_body { "The custom styling affects the entire accordion container." } %>
+    <% end %>
+  <% end %>
+
+  <h3 class="text-lg font-semibold mb-4">Accordion with removed default classes</h3>
+  <%= fx_accordion(remove_class: "space-y-2") do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "No spacing between panels" } %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          The default spacing between panels has been removed using the remove_class parameter.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "Connected panels" } %>
+      <% panel.with_body { "Notice how the panels are now connected without gaps." } %>
+    <% end %>
+  <% end %>
+
+  <h3 class="text-lg font-semibold mb-4">Accordion with additional styling</h3>
+  <%= fx_accordion(class: "bg-gray-50 dark:bg-gray-900 p-4 rounded-xl") do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "Styled container" } %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          This accordion is wrapped in a styled container with background color and padding.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "Enhanced appearance" } %>
+      <% panel.with_body { "The additional styling creates a more prominent accordion design." } %>
+    <% end %>
+  <% end %>
+</div>

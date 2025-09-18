@@ -1,0 +1,53 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Simple accordion with three panels</h3>
+  <%= fx_accordion do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "What is Lorem Ipsum?" } %>
+      <% panel.with_body do %>
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Learn more</a> about the benefits of using this component.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "How do I customize the styling?" } %>
+      <% panel.with_body do %>
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Check out the <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">documentation</a> for more details.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 2) do |panel| %>
+      <% panel.with_header { "Can I add custom content?" } %>
+      <% panel.with_body do %>
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+          Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <h3 class="text-lg font-semibold mb-4">Accordion with only content (no header)</h3>
+  <%= fx_accordion do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "Simple Header" } %>
+      <% panel.with_body { "This is a simple accordion panel with just text content." } %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "Second Panel" } %>
+      <% panel.with_body { "This panel contains different content to demonstrate the accordion functionality." } %>
+    <% end %>
+  <% end %>
+</div>

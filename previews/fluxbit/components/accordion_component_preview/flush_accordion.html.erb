@@ -1,0 +1,47 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Flush accordion (no outer border/spacing)</h3>
+  <%= fx_accordion(flush: true) do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "Getting Started" } %>
+      <% panel.with_body do %>
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Learn more</a> about this component and its features.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "Configuration Options" } %>
+      <% panel.with_body do %>
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 2) do |panel| %>
+      <% panel.with_header { "Advanced Features" } %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <h3 class="text-lg font-semibold mb-4">Regular accordion for comparison</h3>
+  <%= fx_accordion do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "Regular accordion" } %>
+      <% panel.with_body { "This is a regular accordion with borders and rounded corners for comparison." } %>
+    <% end %>
+
+    <% accordion.with_panel(index: 1) do |panel| %>
+      <% panel.with_header { "Second panel" } %>
+      <% panel.with_body { "Notice the difference in styling between flush and regular accordions." } %>
+    <% end %>
+  <% end %>
+</div>

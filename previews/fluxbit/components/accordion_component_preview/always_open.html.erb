@@ -1,0 +1,95 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Always open accordion (multiple panels can be open)</h3>
+  <p class="text-gray-600 dark:text-gray-400 mb-4">
+    When <code>collapse_all</code> is set to <code>false</code>, multiple panels can remain open simultaneously.
+  </p>
+
+  <%= fx_accordion(collapse_all: false) do |accordion| %>
+    <% accordion.with_panel(open: true, index: 0) do |panel| %>
+      <% panel.with_header { "First Panel - Initially Open" } %>
+      <% panel.with_body do %>
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          This panel starts open and will remain open even when other panels are opened.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+          You can have multiple panels open at the same time in this mode.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(open: true, index: 1) do |panel| %>
+      <% panel.with_header { "Second Panel - Also Initially Open" } %>
+      <% panel.with_body do %>
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          This panel is also open by default, demonstrating that multiple panels can be open simultaneously.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+          Notice how both panels remain open without affecting each other.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 2) do |panel| %>
+      <% panel.with_header { "Third Panel - Initially Closed" } %>
+      <% panel.with_body do %>
+        <p class="text-gray-500 dark:text-gray-400">
+          This panel starts closed but can be opened without closing the other panels.
+          This provides maximum flexibility for users to view multiple sections at once.
+        </p>
+      <% end %>
+    <% end %>
+
+    <% accordion.with_panel(index: 3) do |panel| %>
+      <% panel.with_header { "Fourth Panel - With Rich Content" } %>
+      <% panel.with_body do %>
+        <div class="space-y-3">
+          <p class="text-gray-500 dark:text-gray-400">
+            This panel demonstrates rich content with multiple elements.
+          </p>
+          <ul class="list-disc list-inside text-gray-500 dark:text-gray-400 space-y-1">
+            <li>Multiple panels can be open</li>
+            <li>Users can compare content side by side</li>
+            <li>Great for FAQ sections</li>
+            <li>Ideal for documentation</li>
+          </ul>
+          <div class="bg-blue-50 dark:bg-blue-900 p-3 rounded">
+            <p class="text-blue-800 dark:text-blue-200 text-sm">
+              💡 <strong>Tip:</strong> Always open mode is perfect for content that users might want to reference while reading other sections.
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <h3 class="text-lg font-semibold mb-4 mt-8">Comparison: Collapse All vs Always Open</h3>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div>
+      <h4 class="text-md font-medium mb-2">Collapse All (Single Panel Open)</h4>
+      <%= fx_accordion(collapse_all: true) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Only one can be open" } %>
+          <% panel.with_body { "Opening another panel will close this one automatically." } %>
+        <% end %>
+        <% accordion.with_panel(index: 1) do |panel| %>
+          <% panel.with_header { "Click to close the above" } %>
+          <% panel.with_body { "This will close the first panel when opened." } %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <h4 class="text-md font-medium mb-2">Always Open (Multiple Panels)</h4>
+      <%= fx_accordion(collapse_all: false) do |accordion| %>
+        <% accordion.with_panel(open: true, index: 0) do |panel| %>
+          <% panel.with_header { "Multiple can be open" } %>
+          <% panel.with_body { "This stays open when others are opened." } %>
+        <% end %>
+        <% accordion.with_panel(index: 1) do |panel| %>
+          <% panel.with_header { "Independent operation" } %>
+          <% panel.with_body { "This opens without affecting other panels." } %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
