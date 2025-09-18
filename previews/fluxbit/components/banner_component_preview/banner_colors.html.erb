@@ -1,0 +1,7 @@
+<% %i{info success warning danger dark light primary secondary}.each do |color| %>
+  <%= fx_banner(
+    color: color,
+    with_content: "This is a #{color} banner with sample content."
+  ) %>
+  <div class="mb-4"></div>
+<% end %>

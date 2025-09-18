@@ -1,0 +1,9 @@
+<%= fx_banner(color: :warning, icon: "heroicons_solid:exclamation-triangle") do |banner| %>
+  <div>
+    <h3 class="font-medium mb-1">System Maintenance Scheduled</h3>
+    <p class="text-sm opacity-90">Our platform will be undergoing scheduled maintenance on Sunday from 2:00 AM to 4:00 AM UTC.</p>
+  </div>
+  <% banner.with_cta_button(href: "#", variant: :outline, color: :warning, size: 1, class: "ml-3") do %>
+    Learn More
+  <% end %>
+<% end %>
