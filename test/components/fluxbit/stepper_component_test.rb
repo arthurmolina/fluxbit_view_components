@@ -133,7 +133,7 @@ class Fluxbit::StepperComponentTest < ViewComponent::TestCase
     end
 
     # The main div should not contain the removed class
-    assert_no_selector "div.flex.w-full.items-center", text: "", exact: false
+    assert_no_selector "div.items-center", text: "", exact: false
   end
 
   def test_applies_custom_html_attributes
