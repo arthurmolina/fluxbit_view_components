@@ -1,0 +1,5 @@
+<%= fx_stepper do |stepper| %>
+  <% stepper.with_step(title: "Personal Info", state: :completed, number: "1") %>
+  <% stepper.with_step(title: "Account Info", state: :active, number: "2") %>
+  <% stepper.with_step(title: "Confirmation", state: :pending, number: "3") %>
+<% end %>

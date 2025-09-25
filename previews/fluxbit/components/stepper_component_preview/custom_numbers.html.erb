@@ -1,0 +1,14 @@
+<%= fx_stepper do |stepper| %>
+  <% stepper.with_step(title: "Start", state: :completed, number: "A") %>
+  <% stepper.with_step(title: "Process", state: :active, number: "B") %>
+  <% stepper.with_step(title: "End", state: :pending, number: "C") %>
+<% end %>
+
+<div class="mt-8">
+  <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Icon Numbers</h4>
+  <%= fx_stepper do |stepper| %>
+    <% stepper.with_step(title: "Plan", state: :completed, number: "📋") %>
+    <% stepper.with_step(title: "Build", state: :active, number: "🔨") %>
+    <% stepper.with_step(title: "Deploy", state: :pending, number: "🚀") %>
+  <% end %>
+</div>

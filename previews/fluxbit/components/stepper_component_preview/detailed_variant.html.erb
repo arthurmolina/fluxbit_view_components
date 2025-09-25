@@ -1,0 +1,26 @@
+<%= fx_stepper(variant: :detailed, orientation: :vertical) do |stepper| %>
+  <% stepper.with_step(
+       title: "Order Details",
+       description: "Review your items and quantities",
+       state: :completed,
+       number: "1"
+     ) %>
+  <% stepper.with_step(
+       title: "Shipping Information",
+       description: "Enter delivery address",
+       state: :active,
+       number: "2"
+     ) %>
+  <% stepper.with_step(
+       title: "Payment Method",
+       description: "Choose payment option",
+       state: :pending,
+       number: "3"
+     ) %>
+  <% stepper.with_step(
+       title: "Order Confirmation",
+       description: "Finalize your purchase",
+       state: :pending,
+       number: "4"
+     ) %>
+<% end %>

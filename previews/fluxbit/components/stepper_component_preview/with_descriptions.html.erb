@@ -1,0 +1,26 @@
+<%= fx_stepper(orientation: :vertical) do |stepper| %>
+  <% stepper.with_step(
+       title: "Personal Information",
+       description: "Please provide your full name, email address, and phone number to create your account.",
+       state: :completed,
+       number: "1"
+     ) %>
+  <% stepper.with_step(
+       title: "Account Setup",
+       description: "Choose a secure password and set up your account preferences.",
+       state: :active,
+       number: "2"
+     ) %>
+  <% stepper.with_step(
+       title: "Email Verification",
+       description: "We'll send you an email to verify your account.",
+       state: :pending,
+       number: "3"
+     ) %>
+  <% stepper.with_step(
+       title: "Profile Complete",
+       description: "Your account is now ready to use!",
+       state: :pending,
+       number: "4"
+     ) %>
+<% end %>

@@ -1,0 +1,5 @@
+<%= fx_stepper(orientation: :vertical) do |stepper| %>
+  <% stepper.with_step(title: "Personal Info", description: "Provide your personal details", state: :completed, number: "1") %>
+  <% stepper.with_step(title: "Account Info", description: "Create your account", state: :active, number: "2") %>
+  <% stepper.with_step(title: "Confirmation", description: "Review and confirm", state: :pending, number: "3") %>
+<% end %>
