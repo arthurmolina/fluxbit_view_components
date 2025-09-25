@@ -4,7 +4,7 @@ module Fluxbit
   module ComponentsHelper
     # Components
     [ :accordion, :avatar, :avatar_group, :banner, :breadcrumb, :gravatar, :alert, :button, :button_group, :link,
-      :badge, :drawer, :dropdown, :card, :modal, :pagination, :popover, :tooltip, :flex, :tab, :table, :stepper ].each do |component|
+      :badge, :drawer, :dropdown, :card, :modal, :pagination, :popover, :tooltip, :flex, :tab, :table, :skeleton, :stepper ].each do |component|
       define_method("fx_#{component}") do |*args, **kwargs, &block|
         fluxbit_method(component.to_s.camelize, *args, **kwargs, &block)
       end

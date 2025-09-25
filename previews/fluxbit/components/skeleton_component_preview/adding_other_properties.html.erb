@@ -1,0 +1,38 @@
+<div class="space-y-8">
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">With Data Attributes</h4>
+    <%= fx_skeleton(
+          variant: :card,
+          data: { controller: "skeleton", skeleton_loading_value: "true" },
+          class: "max-w-sm"
+        ) %>
+  </div>
+
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">With ID and ARIA Labels</h4>
+    <%= fx_skeleton(
+          id: "loading-content",
+          aria: { label: "Content is loading", live: "polite" },
+          variant: :text,
+          rows: 4
+        ) %>
+  </div>
+
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">With Custom Styling</h4>
+    <%= fx_skeleton(
+          style: "border: 2px solid #e5e7eb; padding: 1rem; border-radius: 0.5rem; background: linear-gradient(90deg, #f3f4f6 25%, transparent 50%, #f3f4f6 75%);",
+          variant: :list
+        ) %>
+  </div>
+
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">With Custom Role</h4>
+    <%= fx_skeleton(
+          role: "progressbar",
+          aria: { valuemin: "0", valuemax: "100", valuenow: "loading" },
+          variant: :widget,
+          class: "max-w-sm"
+        ) %>
+  </div>
+</div>

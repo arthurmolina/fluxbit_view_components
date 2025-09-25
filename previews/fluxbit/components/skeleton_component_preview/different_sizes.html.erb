@@ -1,0 +1,28 @@
+<div class="space-y-8">
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Avatar Sizes</h4>
+    <div class="flex items-center space-x-4">
+      <%= fx_skeleton(variant: :avatar, size: :small) %>
+      <%= fx_skeleton(variant: :avatar, size: :medium) %>
+      <%= fx_skeleton(variant: :avatar, size: :large) %>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Image Sizes</h4>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div>
+        <p class="mb-2 text-sm font-medium text-gray-500">Small</p>
+        <%= fx_skeleton(variant: :image, size: :small) %>
+      </div>
+      <div>
+        <p class="mb-2 text-sm font-medium text-gray-500">Medium</p>
+        <%= fx_skeleton(variant: :image, size: :medium) %>
+      </div>
+      <div>
+        <p class="mb-2 text-sm font-medium text-gray-500">Large</p>
+        <%= fx_skeleton(variant: :image, size: :large) %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="space-y-8">
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Default Skeleton</h4>
+    <%= fx_skeleton %>
+  </div>
+
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">With Custom Background</h4>
+    <%= fx_skeleton(class: "bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border") %>
+  </div>
+
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Remove Animation Class</h4>
+    <%= fx_skeleton(remove_class: "animate-pulse", class: "border-2 border-dashed border-gray-300 p-4 rounded") %>
+  </div>
+
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Custom Width Card</h4>
+    <%= fx_skeleton(variant: :card, class: "max-w-xs") %>
+  </div>
+</div>

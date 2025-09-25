@@ -1,0 +1,22 @@
+<div class="space-y-6">
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">With Animation (Default)</h4>
+    <%= fx_skeleton(variant: :text, rows: 3, animation: true) %>
+  </div>
+
+  <div>
+    <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Without Animation</h4>
+    <%= fx_skeleton(variant: :text, rows: 3, animation: false) %>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h5 class="mb-2 text-sm font-medium text-gray-500">Card - Animated</h5>
+      <%= fx_skeleton(variant: :card, animation: true) %>
+    </div>
+    <div>
+      <h5 class="mb-2 text-sm font-medium text-gray-500">Card - Static</h5>
+      <%= fx_skeleton(variant: :card, animation: false) %>
+    </div>
+  </div>
+</div>

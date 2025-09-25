@@ -1,0 +1,8 @@
+<div class="space-y-6">
+  <% [1, 2, 3, 4, 5].each do |row_count| %>
+    <div>
+      <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white"><%= row_count %> <%= row_count == 1 ? 'Row' : 'Rows' %></h4>
+      <%= fx_skeleton(variant: :text, rows: row_count) %>
+    </div>
+  <% end %>
+</div>
