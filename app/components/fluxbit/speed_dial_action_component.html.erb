@@ -1,0 +1,30 @@
+<% if @text_outside && @text %>
+  <div class="<%= styles[:action][:text][:base] %>">
+    <span class="<%= text_classes %>"><%= @text %></span>
+    <% if @href %>
+      <%= link_to @href, **@props do %>
+        <%= icon @icon, class: icon_classes if @icon %>
+        <%= content if content.present? %>
+      <% end %>
+    <% else %>
+      <%= tag.button **@props do %>
+        <%= icon @icon, class: icon_classes if @icon %>
+        <%= content if content.present? %>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <% if @href %>
+    <%= link_to @href, **@props do %>
+      <%= icon @icon, class: icon_classes if @icon %>
+      <%= content if content.present? %>
+    <% end %>
+  <% else %>
+    <%= tag.button **@props do %>
+      <%= icon @icon, class: icon_classes if @icon %>
+      <%= content if content.present? %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render_popover_or_tooltip %>

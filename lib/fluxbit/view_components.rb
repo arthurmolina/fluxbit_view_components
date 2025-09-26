@@ -37,6 +37,7 @@ module Fluxbit
     require "fluxbit/config/paragraph_component"
     require "fluxbit/config/popover_component"
     require "fluxbit/config/skeleton_component"
+    require "fluxbit/config/speed_dial_component"
     require "fluxbit/config/stepper_component"
     require "fluxbit/config/tab_component"
     require "fluxbit/config/table_component"

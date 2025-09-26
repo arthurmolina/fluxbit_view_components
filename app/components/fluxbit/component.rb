@@ -52,6 +52,14 @@ class Fluxbit::Component < ViewComponent::Base
     ]
   end
 
+  def popover?
+    false # Override in components that support popovers via renders_one :popover
+  end
+
+  def tooltip?
+    false # Override in components that support tooltips via renders_one :tooltip
+  end
+
   def add_popover_or_tooltip
     if popover? || @popover_text.present?
       @props["data-popover-placement"] = @popover_placement
@@ -75,6 +83,10 @@ class Fluxbit::Component < ViewComponent::Base
 
   def anyicon(icon, **props)
     Anyicon::Icon.render(icon, **props)
+  end
+
+  def icon(icon_name, **props)
+    anyicon(icon_name, **props)
   end
 
   def random_id
