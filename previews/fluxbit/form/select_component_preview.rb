@@ -1,89 +1,6 @@
 # frozen_string_literal: true
 
-# Fake Product model for form builder demonstrations
-class Product
-  include ActiveModel::Model
-  include ActiveModel::Attributes
-  include ActiveModel::Validations
-
-  attribute :name, :string
-  attribute :category, :string
-  attribute :status, :string
-  attribute :priority, :string
-  attribute :country, :string
-  attribute :time_zone, :string
-  attribute :template, :string
-
-  validates :name, presence: true, length: { minimum: 2, maximum: 100 }
-  validates :category, presence: true
-
-  # Simulate persisted state
-  def persisted?
-    false
-  end
-
-  def id
-    nil
-  end
-
-  def to_param
-    nil
-  end
-
-  # Add methods to make it behave like a hash when needed
-  def merge(other)
-    self
-  end
-
-  def to_h
-    attributes
-  end
-
-  def to_hash
-    attributes
-  end
-
-  # Make it respond to common Rails model methods
-  def model_name
-    @model_name ||= ActiveModel::Name.new(self.class)
-  end
-
-  def self.model_name
-    @model_name ||= ActiveModel::Name.new(self)
-  end
-
-  # Form routing helpers
-  def new_record?
-    !persisted?
-  end
-
-  def destroyed?
-    false
-  end
-
-  # Required for form_with
-  def to_key
-    persisted? ? [id] : nil
-  end
-
-  def to_model
-    self
-  end
-
-  # Human attribute names for I18n
-  def self.human_attribute_name(attr, options = {})
-    case attr.to_s
-    when 'name' then 'Product Name'
-    when 'category' then 'Product Category'
-    when 'status' then 'Product Status'
-    when 'priority' then 'Priority Level'
-    when 'country' then 'Country'
-    when 'time_zone' then 'Time Zone'
-    else
-      attr.to_s.humanize
-    end
-  end
-end
+require_relative "shared/base_product_model"
 
 class Fluxbit::Form::SelectComponentPreview < ViewComponent::Preview
   # Fluxbit::Form::SelectComponent
@@ -139,7 +56,7 @@ class Fluxbit::Form::SelectComponentPreview < ViewComponent::Preview
   def disabled; end
   def with_helper_text; end
   def with_form_builder
-    @product ||= Product.new(
+    @product ||= ::BaseProductModel.new(
       name: "Sample Product",
       category: "electronics",
       status: "active",

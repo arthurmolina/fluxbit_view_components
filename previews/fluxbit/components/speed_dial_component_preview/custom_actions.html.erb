@@ -1,0 +1,9 @@
+<div class="relative h-80 border rounded-lg border-gray-300 dark:border-gray-600">
+  <%= fx_speed_dial trigger_icon: "heroicons_solid:cog-6-tooth" do |speed_dial| %>
+    <% speed_dial.with_action icon: "heroicons_solid:document-plus", tooltip: "Create document", href: "#" %>
+    <% speed_dial.with_action icon: "heroicons_solid:photo", tooltip: "Upload image", data: { action: "upload" } %>
+    <% speed_dial.with_action icon: "heroicons_solid:user-plus", tooltip: "Add user", class: "text-green-600" %>
+    <% speed_dial.with_action icon: "heroicons_solid:share", tooltip: "Share", data: { modal: "share-modal" } %>
+    <% speed_dial.with_action icon: "heroicons_solid:archive-box", tooltip: "Archive", class: "text-yellow-600" %>
+  <% end %>
+</div>

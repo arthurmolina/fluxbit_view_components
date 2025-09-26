@@ -1,0 +1,55 @@
+<%= fx_card class: "mb-4" do %>
+  <div class="p-4">
+    <h3 class="text-lg font-semibold mb-2">Comprehensive Speed Dial</h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      Features: Custom position, square buttons, text outside, custom trigger icon, and mixed action types.
+    </p>
+
+    <!-- Feature list -->
+    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+      <li>✅ Position: Top Right</li>
+      <li>✅ Square buttons</li>
+      <li>✅ Text displayed outside</li>
+      <li>✅ Custom trigger icon (ellipsis-vertical)</li>
+      <li>✅ Links and buttons</li>
+      <li>✅ Custom tooltips</li>
+      <li>✅ Custom styling</li>
+    </ul>
+  </div>
+<% end %>
+<%= fx_speed_dial(
+  position: :top_right,
+  square: true,
+  text_outside: true,
+  trigger_icon: "heroicons_solid:ellipsis-vertical",
+  class: "z-50"
+) do |speed_dial| %>
+  <% speed_dial.with_action(
+    icon: "heroicons_solid:document-plus",
+    text: "New",
+    tooltip: "Create new document",
+    href: "#new-document",
+    class: "ring-2 ring-blue-300"
+  ) %>
+  <% speed_dial.with_action(
+    icon: "heroicons_solid:pencil-square",
+    text: "Edit",
+    tooltip: "Edit current item",
+    data: { action: "edit-item" },
+    class: "ring-2 ring-green-300"
+  ) %>
+  <% speed_dial.with_action(
+    icon: "heroicons_solid:share",
+    text: "Share",
+    tooltip: "Share with others",
+    data: { modal: "share-modal" },
+    class: "ring-2 ring-purple-300"
+  ) %>
+  <% speed_dial.with_action(
+    icon: "heroicons_solid:trash",
+    text: "Delete",
+    tooltip: "Delete item permanently",
+    data: { action: "delete-item", confirm: "Are you sure?" },
+    class: "ring-2 ring-red-300 hover:bg-red-50"
+  ) %>
+<% end %>

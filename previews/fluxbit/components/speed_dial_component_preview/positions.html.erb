@@ -1,0 +1,37 @@
+<div class="grid grid-cols-2 gap-4">
+  <!-- Top Left -->
+  <div class="relative h-40 border rounded-lg border-gray-300 dark:border-gray-600">
+    <h3 class="text-sm font-medium text-center p-2">Top Left</h3>
+    <%= fx_speed_dial position: :top_left do |speed_dial| %>
+      <% speed_dial.with_action icon: "heroicons_solid:plus", tooltip: "Add" %>
+      <% speed_dial.with_action icon: "heroicons_solid:pencil", tooltip: "Edit" %>
+    <% end %>
+  </div>
+
+  <!-- Top Right -->
+  <div class="relative h-40 border rounded-lg border-gray-300 dark:border-gray-600">
+    <h3 class="text-sm font-medium text-center p-2">Top Right</h3>
+    <%= fx_speed_dial position: :top_right do |speed_dial| %>
+      <% speed_dial.with_action icon: "heroicons_solid:plus", tooltip: "Add" %>
+      <% speed_dial.with_action icon: "heroicons_solid:pencil", tooltip: "Edit" %>
+    <% end %>
+  </div>
+
+  <!-- Bottom Left -->
+  <div class="relative h-40 border rounded-lg border-gray-300 dark:border-gray-600">
+    <h3 class="text-sm font-medium text-center p-2">Bottom Left</h3>
+    <%= fx_speed_dial position: :bottom_left do |speed_dial| %>
+      <% speed_dial.with_action icon: "heroicons_solid:plus", tooltip: "Add" %>
+      <% speed_dial.with_action icon: "heroicons_solid:pencil", tooltip: "Edit" %>
+    <% end %>
+  </div>
+
+  <!-- Bottom Right -->
+  <div class="relative h-40 border rounded-lg border-gray-300 dark:border-gray-600">
+    <h3 class="text-sm font-medium text-center p-2">Bottom Right (Default)</h3>
+    <%= fx_speed_dial position: :bottom_right do |speed_dial| %>
+      <% speed_dial.with_action icon: "heroicons_solid:plus", tooltip: "Add" %>
+      <% speed_dial.with_action icon: "heroicons_solid:pencil", tooltip: "Edit" %>
+    <% end %>
+  </div>
+</div>

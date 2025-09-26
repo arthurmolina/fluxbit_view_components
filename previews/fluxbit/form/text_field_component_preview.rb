@@ -1,101 +1,6 @@
 # frozen_string_literal: true
 
-# Fake Product model for form builder demonstrations
-class Product
-  include ActiveModel::Model
-  include ActiveModel::Attributes
-  include ActiveModel::Validations
-
-  attribute :name, :string
-  attribute :description, :string
-  attribute :price, :decimal
-  attribute :category, :string
-  attribute :sku, :string
-  attribute :stock_quantity, :integer
-  attribute :email, :string
-  attribute :website, :string
-  attribute :available, :boolean
-  attribute :template, :string
-
-  validates :name, presence: true, length: { minimum: 2, maximum: 100 }
-  validates :description, presence: true, length: { minimum: 10 }
-  validates :price, presence: true, numericality: { greater_than: 0 }
-  validates :category, presence: true
-  validates :sku, presence: true, format: { with: /\A[A-Z0-9-]+\z/, message: "must contain only uppercase letters, numbers, and hyphens" }
-  validates :stock_quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
-  validates :website, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]) }, allow_blank: true
-
-  # Simulate persisted state
-  def persisted?
-    false
-  end
-
-  def id
-    nil
-  end
-
-  def to_param
-    nil
-  end
-
-  # Add methods to make it behave like a hash when needed
-  def merge(other)
-    self
-  end
-
-  def to_h
-    attributes
-  end
-
-  def to_hash
-    attributes
-  end
-
-  # Make it respond to common Rails model methods
-  def model_name
-    @model_name ||= ActiveModel::Name.new(self.class)
-  end
-
-  def self.model_name
-    @model_name ||= ActiveModel::Name.new(self)
-  end
-
-  # Form routing helpers
-  def new_record?
-    !persisted?
-  end
-
-  def destroyed?
-    false
-  end
-
-  # Required for form_with
-  def to_key
-    persisted? ? [id] : nil
-  end
-
-  def to_model
-    self
-  end
-
-  # Human attribute names for I18n
-  def self.human_attribute_name(attr, options = {})
-    case attr.to_s
-    when 'name' then 'Product Name'
-    when 'description' then 'Product Description'
-    when 'price' then 'Price ($)'
-    when 'category' then 'Category'
-    when 'sku' then 'SKU'
-    when 'stock_quantity' then 'Stock Quantity'
-    when 'email' then 'Contact Email'
-    when 'website' then 'Product Website'
-    when 'available' then 'Available'
-    else
-      attr.to_s.humanize
-    end
-  end
-end
+require_relative "shared/base_product_model"
 
 class Fluxbit::Form::TextFieldComponentPreview < ViewComponent::Preview
   # Fluxbit::Form::TextFieldComponent
@@ -168,7 +73,7 @@ class Fluxbit::Form::TextFieldComponentPreview < ViewComponent::Preview
   def disabled_readonly; end
   def with_shadow; end
   def with_form_builder
-    @product ||= Product.new(
+    @product ||= ::BaseProductModel.new(
       name: "Sample Product",
       description: "This is a sample product description for demonstration purposes.",
       price: 29.99,

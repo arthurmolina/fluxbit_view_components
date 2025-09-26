@@ -1,153 +1,6 @@
 # frozen_string_literal: true
 
-# Fake Product model for form builder demonstrations
-class CheckBoxProduct
-  include ActiveModel::Model
-  include ActiveModel::Attributes
-  include ActiveModel::Validations
-
-  attribute :name, :string
-  attribute :description, :string
-  attribute :price, :decimal
-  attribute :category, :string
-  attribute :sku, :string
-  attribute :stock_quantity, :integer
-  attribute :email, :string
-  attribute :website, :string
-  attribute :available, :boolean
-  attribute :featured, :boolean
-  attribute :accept_terms, :boolean
-  attribute :newsletter_signup, :boolean
-  attribute :template, :string
-
-  validates :name, presence: true, length: { minimum: 2, maximum: 100 }
-  validates :accept_terms, acceptance: { accept: [true, 1, '1'] }
-
-  # Simulate persisted state
-  def persisted?
-    false
-  end
-
-  def id
-    nil
-  end
-
-  def to_param
-    nil
-  end
-
-  # Add methods to make it behave like a hash when needed
-  def merge(other)
-    self
-  end
-
-  def [](key)
-    return nil if key.to_s == 'locals'
-    return nil unless has_attribute?(key)
-    public_send(key)
-  rescue NoMethodError
-    nil
-  end
-
-  def []=(key, value)
-    return nil if key.to_s == 'locals'
-    return nil unless has_attribute?(key)
-    public_send("#{key}=", value)
-  rescue NoMethodError
-    nil
-  end
-
-  # Handle ViewComponent-specific methods that might be called
-  def locals
-    {}
-  end
-
-
-  def to_h
-    attributes
-  end
-
-  def to_hash
-    attributes
-  end
-
-  # Make it respond to common Rails model methods
-  def model_name
-    @model_name ||= begin
-      model_name = ActiveModel::Name.new(CheckBoxProduct)
-      # Override route key to prevent Rails from looking for routes
-      def model_name.route_key
-        "products"
-      end
-      def model_name.param_key
-        "product"
-      end
-      model_name
-    end
-  end
-
-  def self.model_name
-    @model_name ||= begin
-      model_name = ActiveModel::Name.new(self)
-      # Override route key to prevent Rails from looking for routes
-      def model_name.route_key
-        "products"
-      end
-      def model_name.param_key
-        "product"
-      end
-      model_name
-    end
-  end
-
-  # Form routing helpers
-  def new_record?
-    !persisted?
-  end
-
-  def destroyed?
-    false
-  end
-
-  # Required for form_with
-  def to_key
-    persisted? ? [id] : nil
-  end
-
-  def to_model
-    self
-  end
-
-  # Additional methods for better Rails compatibility
-  def read_attribute_for_validation(attr)
-    public_send(attr)
-  end
-
-  def has_attribute?(attr)
-    self.class.attribute_types.key?(attr.to_s)
-  end
-
-  def attribute_names
-    self.class.attribute_names
-  end
-
-  def self.attribute_names
-    @attribute_names ||= attribute_types.keys
-  end
-
-  # Human attribute names for I18n
-  def self.human_attribute_name(attr, options = {})
-    case attr.to_s
-    when 'name' then 'Product Name'
-    when 'available' then 'Available for Purchase'
-    when 'featured' then 'Featured Product'
-    when 'accept_terms' then 'Accept Terms and Conditions'
-    when 'newsletter_signup' then 'Subscribe to Newsletter'
-    else
-      attr.to_s.humanize
-    end
-  end
-end
+require_relative "shared/base_product_model"
 
 class Fluxbit::Form::CheckBoxComponentPreview < ViewComponent::Preview
   # Fluxbit::Form::CheckBoxComponent
@@ -196,7 +49,7 @@ class Fluxbit::Form::CheckBoxComponentPreview < ViewComponent::Preview
   def inline_checkboxes; end
   def with_form_builder
     @product ||= begin
-      product = CheckBoxProduct.new
+      product = ::BaseProductModel.new
       product.name = "Sample Product"
       product.available = true
       product.featured = false
@@ -206,9 +59,9 @@ class Fluxbit::Form::CheckBoxComponentPreview < ViewComponent::Preview
       # Ensure the product is valid and ready for form display
       product.valid?
       product
-    rescue => e
+    rescue
       # Fallback if there are any issues
-      CheckBoxProduct.new(name: "Sample Product")
+      ::BaseProductModel.new(name: "Sample Product")
     end
     @product
   end

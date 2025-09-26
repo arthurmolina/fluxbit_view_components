@@ -1,0 +1,7 @@
+<div class="relative h-80 border rounded-lg border-gray-300 dark:border-gray-600">
+  <%= fx_speed_dial(icon: "heroicons_solid:plus") do |speed_dial| %>
+    <% speed_dial.with_action icon: "heroicons_solid:plus", tooltip: "Add new item" %>
+    <% speed_dial.with_action icon: "heroicons_solid:pencil", tooltip: "Edit item" %>
+    <% speed_dial.with_action icon: "heroicons_solid:trash", tooltip: "Delete item" %>
+  <% end %>
+</div>

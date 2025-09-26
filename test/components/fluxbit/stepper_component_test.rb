@@ -128,12 +128,13 @@ class Fluxbit::StepperComponentTest < ViewComponent::TestCase
   end
 
   def test_removes_custom_classes
-    render_inline(Fluxbit::StepperComponent.new(remove_class: "items-center")) do |stepper|
+    render_inline(Fluxbit::StepperComponent.new(remove_class: "w-full", class: "w-full custom-class")) do |stepper|
       stepper.with_step(title: "Step 1", number: "1")
     end
 
-    # The main div should not contain the removed class
-    assert_no_selector "div.items-center", text: "", exact: false
+    # The main div should not contain the removed class but should have the custom class
+    assert_selector "div.custom-class"
+    assert_no_selector "div.custom-class.w-full"
   end
 
   def test_applies_custom_html_attributes

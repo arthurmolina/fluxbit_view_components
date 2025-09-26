@@ -3,7 +3,7 @@
   <div>
     <h4 class="font-semibold mb-3">Real Form Builder Integration with Product Model</h4>
 
-    <%= form_with(model: (@product || CheckBoxProduct.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
+    <%= form_with(model: (@product || ::BaseProductModel.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
       <%= fx_check_box(
         form: form,
         attribute: :available,
@@ -45,10 +45,10 @@
     <%
       # Create a product with validation errors for demonstration
       begin
-        invalid_product = CheckBoxProduct.new(name: "", accept_terms: false)
+        invalid_product = ::BaseProductModel.new(name: "", accept_terms: false)
         invalid_product.valid? # Trigger validation
       rescue => e
-        invalid_product = CheckBoxProduct.new
+        invalid_product = ::BaseProductModel.new
       end
     %>
 

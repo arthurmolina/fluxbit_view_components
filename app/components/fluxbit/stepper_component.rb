@@ -37,12 +37,12 @@ class Fluxbit::StepperComponent < Fluxbit::Component
     super
     @props = props
 
-    @orientation = options(@props.delete(:orientation), collection: [:horizontal, :vertical], default: @@orientation)
-    @variant = options(@props.delete(:variant), collection: [:default, :progress, :detailed], default: @@variant)
-    @color = options(@props.delete(:color), collection: [:blue, :green, :red, :yellow, :indigo, :purple], default: @@color)
+    @orientation = options @props.delete(:orientation), collection: [:horizontal, :vertical], default: @@orientation
+    @variant = options @props.delete(:variant), collection: [:default, :progress, :detailed], default: @@variant
+    @color = options @props.delete(:color), collection: [:blue, :green, :red, :yellow, :indigo, :purple], default: @@color
 
-    declare_classes
-    @props[:class] = remove_class(@props.delete(:remove_class) || "", @props[:class])
+    add class: styles[:base][@orientation], to: @props, first_element: true
+    remove_class_from_props(@props)
   end
 
   def call
@@ -54,10 +54,6 @@ class Fluxbit::StepperComponent < Fluxbit::Component
   end
 
   private
-
-  def declare_classes
-    add(class: styles[:base][@orientation], to: @props, first_element: true)
-  end
 
   def render_step(step, index)
     last_step = index == steps.count - 1
@@ -216,8 +212,10 @@ class Fluxbit::StepperComponent < Fluxbit::Component
 
       @title = @props.delete(:title)
       @description = @props.delete(:description)
-      @state = options(@props.delete(:state), collection: [:pending, :active, :completed], default: :pending)
+      @state = options @props.delete(:state), collection: [:pending, :active, :completed], default: :pending
       @number = @props.delete(:number)
+
+      remove_class_from_props(@props)
     end
 
     def call
