@@ -1,0 +1,17 @@
+<%= fx_timeline position: :right do |timeline| %>
+  <%= timeline.with_item(
+    title: "Initial Release",
+    description: "First version released to production.",
+    date: "v1.0.0"
+  ) %>
+  <%= timeline.with_item(
+    title: "Bug Fixes",
+    description: "Critical bug fixes and stability improvements.",
+    date: "v1.0.1"
+  ) %>
+  <%= timeline.with_item(
+    title: "New Features",
+    description: "Added user-requested features and enhancements.",
+    date: "v1.1.0"
+  ) %>
+<% end %>

@@ -1,0 +1,27 @@
+<%= fx_timeline do |timeline| %>
+  <%= timeline.with_item(
+    title: "Information",
+    description: "General information item with blue theme.",
+    color: :blue,
+    icon: "heroicons_solid:information-circle"
+  ) %>
+  <%= timeline.with_item(
+    title: "Success",
+    description: "Successful completion with green theme.",
+    color: :green,
+    status: :completed,
+    icon: "heroicons_solid:check-circle"
+  ) %>
+  <%= timeline.with_item(
+    title: "Warning",
+    description: "Important warning with yellow theme.",
+    color: :yellow,
+    icon: "heroicons_solid:exclamation-triangle"
+  ) %>
+  <%= timeline.with_item(
+    title: "Error",
+    description: "Error or critical issue with red theme.",
+    color: :red,
+    icon: "heroicons_solid:x-circle"
+  ) %>
+<% end %>

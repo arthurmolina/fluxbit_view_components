@@ -1,0 +1,23 @@
+<%= fx_timeline do |timeline| %>
+  <%= timeline.with_item(
+    title: "View Project Details",
+    description: "Click to see the full project overview and specifications.",
+    date: "January 2024",
+    href: "#project-details",
+    icon: "heroicons_solid:document-text"
+  ) %>
+  <%= timeline.with_item(
+    title: "Download Resources",
+    description: "Access downloadable assets and documentation.",
+    date: "February 2024",
+    href: "#downloads",
+    icon: "heroicons_solid:arrow-down-tray"
+  ) %>
+  <%= timeline.with_item(
+    title: "Contact Support",
+    description: "Get in touch with our support team for assistance.",
+    date: "March 2024",
+    href: "#contact",
+    icon: "heroicons_solid:chat-bubble-left-right"
+  ) %>
+<% end %>

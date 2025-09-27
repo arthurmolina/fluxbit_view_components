@@ -1,0 +1,20 @@
+<%= fx_timeline variant: :activity do |timeline| %>
+  <%= timeline.with_item(
+    title: "Bonnie moved issue from \"To Do\" to \"In Progress\"",
+    date: "2 hours ago"
+  ) %>
+  <%= timeline.with_item(
+    title: "Thomas commented on PR #123",
+    description: "Looks good to me! Ready for merge.",
+    date: "4 hours ago"
+  ) %>
+  <%= timeline.with_item(
+    title: "Lana pushed 3 commits to main branch",
+    date: "6 hours ago"
+  ) %>
+  <%= timeline.with_item(
+    title: "Jese created a new issue",
+    description: "Bug report: Login form validation not working properly",
+    date: "1 day ago"
+  ) %>
+<% end %>

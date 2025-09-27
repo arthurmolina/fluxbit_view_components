@@ -1,0 +1,20 @@
+<%= fx_timeline do |timeline| %>
+  <%= timeline.with_item(
+    title: "Project Planning",
+    description: "Initial project planning and requirements gathering completed.",
+    status: :completed,
+    color: :green
+  ) %>
+  <%= timeline.with_item(
+    title: "Development Phase",
+    description: "Currently working on the core functionality and features.",
+    status: :current,
+    color: :blue
+  ) %>
+  <%= timeline.with_item(
+    title: "Testing & QA",
+    description: "Comprehensive testing and quality assurance pending.",
+    status: :pending,
+    color: :yellow
+  ) %>
+<% end %>

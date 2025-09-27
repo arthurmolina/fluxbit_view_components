@@ -1,0 +1,30 @@
+<%= fx_timeline do |timeline| %>
+  <%= timeline.with_item(
+    title: "No Ring",
+    description: "Clean minimal look without any ring around the indicator",
+    ring: :none,
+    icon: "heroicons_solid:check-circle",
+    color: :green
+  ) %>
+  <%= timeline.with_item(
+    title: "Small Ring",
+    description: "Subtle ring around the indicator for a clean look",
+    ring: :small,
+    icon: "heroicons_solid:information-circle",
+    color: :blue
+  ) %>
+  <%= timeline.with_item(
+    title: "Default Ring",
+    description: "Standard ring size that works well in most cases",
+    ring: :default,
+    icon: "heroicons_solid:exclamation-triangle",
+    color: :yellow
+  ) %>
+  <%= timeline.with_item(
+    title: "Large Ring",
+    description: "Prominent ring that creates more visual separation",
+    ring: :large,
+    icon: "heroicons_solid:x-circle",
+    color: :red
+  ) %>
+<% end %>

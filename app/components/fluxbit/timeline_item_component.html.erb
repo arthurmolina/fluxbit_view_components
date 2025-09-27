@@ -1,0 +1,70 @@
+<li <%= tag.attributes(**@props) %>>
+  <% if @variant == :activity %>
+    <div class="<%= styles[:activity][:indicator] %>"></div>
+    <div class="<%= styles[:activity][:base] %>">
+      <% if @date %>
+        <time class="<%= styles[:activity][:time] %>"><%= @date %></time>
+      <% end %>
+      <% if render_as_link? %>
+        <a href="<%= @href %>" class="<%= styles[:activity][:title] %>"><%= @title %></a>
+      <% else %>
+        <h3 class="<%= styles[:activity][:title] %>"><%= @title %></h3>
+      <% end %>
+      <% if @description %>
+        <p class="<%= styles[:activity][:description] %>"><%= @description %></p>
+      <% end %>
+    </div>
+  <% elsif @variant == :stepper %>
+    <div class="<%= styles[:stepper][:indicator_container] %>">
+      <div class="<%= stepper_indicator_classes %>">
+        <% if @icon %>
+          <%= icon(@icon, class: (@status == :completed || @status == :current) ? styles[:stepper][:icon_completed] : styles[:stepper][:icon]) %>
+        <% elsif @status == :completed %>
+          <%= icon("heroicons_solid:check", class: styles[:stepper][:icon_completed]) %>
+        <% else %>
+          <%= icon("heroicons_solid:calendar", class: styles[:stepper][:icon]) %>
+        <% end %>
+      </div>
+      <% unless is_last? %>
+        <div class="<%= styles[:stepper][:connector] %>"></div>
+      <% end %>
+    </div>
+    <div class="<%= styles[:stepper][:content] %>">
+      <% if @title %>
+        <h3 class="<%= styles[:stepper][:title] %>"><%= @title %></h3>
+      <% end %>
+      <% if @date %>
+        <time class="<%= styles[:stepper][:description] %>"><%= @date %></time>
+      <% end %>
+      <% if @description %>
+        <p class="text-base font-normal text-gray-500 dark:text-gray-400"><%= @description %></p>
+      <% end %>
+    </div>
+  <% else %>
+    <!-- Default and vertical variants -->
+    <div class="<%= indicator_classes %>">
+      <% if @icon %>
+        <%= icon(@icon, class: "w-3.5 h-3.5") %>
+      <% elsif @status == :completed %>
+        <%= icon("heroicons_solid:check", class: "w-3.5 h-3.5") %>
+      <% else %>
+        <div class="w-2.5 h-2.5 bg-current rounded-full"></div>
+      <% end %>
+    </div>
+    <div class="<%= content_classes %>">
+      <% if @date %>
+        <time class="<%= date_classes %>"><%= @date %></time>
+      <% end %>
+      <% if @title %>
+        <% if render_as_link? %>
+          <a href="<%= @href %>" class="<%= title_classes %>"><%= @title %></a>
+        <% else %>
+          <h3 class="<%= title_classes %>"><%= @title %></h3>
+        <% end %>
+      <% end %>
+      <% if @description %>
+        <p class="<%= description_classes %>"><%= @description %></p>
+      <% end %>
+    </div>
+  <% end %>
+</li>

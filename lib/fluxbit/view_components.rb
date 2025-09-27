@@ -40,6 +40,7 @@ module Fluxbit
     require "fluxbit/config/speed_dial_component"
     require "fluxbit/config/stepper_component"
     require "fluxbit/config/tab_component"
+    require "fluxbit/config/timeline_component"
     require "fluxbit/config/table_component"
     require "fluxbit/config/text_component"
     require "fluxbit/config/tooltip_component"
