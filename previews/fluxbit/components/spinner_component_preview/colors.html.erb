@@ -1,0 +1,8 @@
+<div class="flex flex-wrap gap-4 items-center">
+  <% [:default, :info, :success, :failure, :warning, :pink, :purple].each do |color| %>
+    <div class="flex flex-col items-center gap-2">
+      <%= render Fluxbit::SpinnerComponent.new(color: color) %>
+      <span class="text-sm text-gray-600"><%= color.to_s.humanize %></span>
+    </div>
+  <% end %>
+</div>

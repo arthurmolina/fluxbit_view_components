@@ -1,0 +1,15 @@
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <% [
+    { title: "Loading Data", color: :default, description: "Fetching user information..." },
+    { title: "Saving Changes", color: :success, description: "Your changes are being saved..." },
+    { title: "Processing", color: :info, description: "Please wait while we process..." }
+  ].each do |item| %>
+    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="flex items-center mb-4">
+        <%= render Fluxbit::SpinnerComponent.new(size: 2, color: item[:color]) %>
+        <h5 class="ml-3 text-lg font-bold tracking-tight text-gray-900 dark:text-white"><%= item[:title] %></h5>
+      </div>
+      <p class="font-normal text-gray-700 dark:text-gray-400"><%= item[:description] %></p>
+    </div>
+  <% end %>
+</div>

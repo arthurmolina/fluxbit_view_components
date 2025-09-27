@@ -1,0 +1,16 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <% [
+    { label: "Loading...", description: "Default loading text" },
+    { label: "Uploading file...", description: "File upload in progress" },
+    { label: "Connecting to server...", description: "Establishing connection" },
+    { label: "Processing payment...", description: "Payment being processed" }
+  ].each do |item| %>
+    <div class="flex items-center p-4 border border-gray-200 rounded-lg">
+      <%= render Fluxbit::SpinnerComponent.new(label: item[:label], color: :info) %>
+      <div class="ml-3">
+        <span class="font-medium text-gray-900 dark:text-white"><%= item[:label] %></span>
+        <p class="text-sm text-gray-500 dark:text-gray-400"><%= item[:description] %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

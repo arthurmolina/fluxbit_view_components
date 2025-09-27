@@ -1,0 +1,14 @@
+<div class="flex flex-wrap gap-4 items-center">
+  <% [
+    { size: 0, label: "XS" },
+    { size: 1, label: "SM" },
+    { size: 2, label: "MD" },
+    { size: 3, label: "LG" },
+    { size: 4, label: "XL" }
+  ].each do |item| %>
+    <div class="flex flex-col items-center gap-2">
+      <%= render Fluxbit::SpinnerComponent.new(size: item[:size]) %>
+      <span class="text-sm text-gray-600"><%= item[:label] %></span>
+    </div>
+  <% end %>
+</div>

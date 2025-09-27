@@ -1,0 +1,14 @@
+<div class="space-y-4">
+  <h3 class="text-lg font-semibold mb-2">HTML Attributes</h3>
+  <div class="space-y-2">
+    <div class="flex items-center gap-2">
+      <%= render Fluxbit::SpinnerComponent.new(id: "custom-spinner", data: { testid: "spinner" }) %>
+      <span class="text-sm">ID and data attributes</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <%= render Fluxbit::SpinnerComponent.new(title: "Loading spinner", style: "opacity: 0.8;") %>
+      <span class="text-sm">Title and inline styles</span>
+    </div>
+  </div>
+</div>
