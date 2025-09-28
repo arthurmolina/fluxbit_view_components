@@ -1,0 +1,16 @@
+<div class="space-y-4">
+  <h3 class="text-lg font-semibold mb-2">Custom Classes</h3>
+  <div class="flex gap-4 items-center">
+    <%= render Fluxbit::SpinnerPercentComponent.new(class: "mr-4", percent: 60) %>
+    <span class="text-sm">With custom margin</span>
+
+    <%= render Fluxbit::SpinnerPercentComponent.new(class: "border-2 border-dashed border-gray-300 p-2", percent: 40, color: :success) %>
+    <span class="text-sm ml-4">With border and padding</span>
+  </div>
+
+  <h3 class="text-lg font-semibold mb-2 mt-6">Removed Classes</h3>
+  <div class="flex gap-4 items-center">
+    <%= render Fluxbit::SpinnerPercentComponent.new(remove_class: "relative", percent: 75, color: :warning) %>
+    <span class="text-sm">Position removed (may affect layout)</span>
+  </div>
+</div>

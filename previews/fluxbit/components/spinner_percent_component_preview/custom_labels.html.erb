@@ -1,0 +1,21 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <% [
+    { percent: 25, label: "Loading data...", description: "Fetching user information" },
+    { percent: 50, label: "Processing payment...", description: "Secure transaction in progress" },
+    { percent: 75, label: "Uploading files...", description: "Transferring documents" },
+    { percent: 90, label: "Finalizing setup...", description: "Almost ready to begin" }
+  ].each do |item| %>
+    <div class="flex items-center p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+      <%= render Fluxbit::SpinnerPercentComponent.new(
+        percent: item[:percent],
+        label: item[:label],
+        color: :info,
+        size: 1
+      ) %>
+      <div class="ml-4">
+        <span class="font-medium text-gray-900 dark:text-white"><%= item[:label] %></span>
+        <p class="text-sm text-gray-500 dark:text-gray-400"><%= item[:description] %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

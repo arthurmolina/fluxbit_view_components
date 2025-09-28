@@ -1,0 +1,45 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+    <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">File Upload Progress</h3>
+    <div class="flex items-center gap-4">
+      <%= render Fluxbit::SpinnerPercentComponent.new(percent: 67, color: :info, size: 2, label: "Uploading files...") %>
+      <div>
+        <p class="text-sm font-medium text-gray-900 dark:text-white">document.pdf</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400">2.3 MB of 3.4 MB</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+    <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Processing Status</h3>
+    <div class="flex items-center gap-4">
+      <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :warning, size: 2, label: "Processing data...") %>
+      <div>
+        <p class="text-sm font-medium text-gray-900 dark:text-white">Data Analysis</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Step 1 of 4 complete</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+    <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Installation Progress</h3>
+    <div class="flex items-center gap-4">
+      <%= render Fluxbit::SpinnerPercentComponent.new(percent: 90, color: :success, size: 2, label: "Installing...") %>
+      <div>
+        <p class="text-sm font-medium text-gray-900 dark:text-white">Software Package</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Almost complete</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+    <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Failed Process</h3>
+    <div class="flex items-center gap-4">
+      <%= render Fluxbit::SpinnerPercentComponent.new(percent: 15, color: :failure, size: 2, label: "Process failed") %>
+      <div>
+        <p class="text-sm font-medium text-gray-900 dark:text-white">Backup Creation</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Process stopped unexpectedly</p>
+      </div>
+    </div>
+  </div>
+</div>

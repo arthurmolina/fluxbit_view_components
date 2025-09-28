@@ -1,0 +1,186 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">JavaScript Control Examples</h3>
+
+  <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+    <h4 class="font-medium mb-4">Manual Progress Update</h4>
+    <div class="flex items-center gap-4 mb-4">
+      <%= render Fluxbit::SpinnerPercentComponent.new(
+        id: "manual-spinner",
+        percent: 0,
+        color: :info,
+        size: 2
+      ) %>
+      <div class="flex gap-2">
+        <button onclick="updateProgress(25)" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">25%</button>
+        <button onclick="updateProgress(50)" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">50%</button>
+        <button onclick="updateProgress(75)" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">75%</button>
+        <button onclick="updateProgress(100)" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">100%</button>
+        <button onclick="updateProgress(0)" class="px-3 py-1 bg-gray-500 text-white rounded text-sm">Reset</button>
+      </div>
+    </div>
+    <p class="text-sm text-gray-600 dark:text-gray-400">Click buttons to update progress manually</p>
+  </div>
+
+  <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+    <h4 class="font-medium mb-4">Animated Progress</h4>
+    <div class="flex items-center gap-4 mb-4">
+      <%= render Fluxbit::SpinnerPercentComponent.new(
+        id: "animated-spinner",
+        percent: 0,
+        color: :success,
+        size: 2
+      ) %>
+      <div class="flex gap-2">
+        <button onclick="animateProgress()" class="px-3 py-1 bg-green-500 text-white rounded text-sm">Start Animation</button>
+        <button onclick="resetProgress()" class="px-3 py-1 bg-gray-500 text-white rounded text-sm">Reset</button>
+      </div>
+    </div>
+    <p class="text-sm text-gray-600 dark:text-gray-400">Smooth animation from 0% to 100%</p>
+  </div>
+
+  <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+    <h4 class="font-medium mb-4">Animation Speed Control</h4>
+    <div class="flex items-center gap-4 mb-4">
+      <%= render Fluxbit::SpinnerPercentComponent.new(
+        id: "speed-control-spinner",
+        percent: 60,
+        color: :purple,
+        animate: true,
+        speed: :normal,
+        size: 2
+      ) %>
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="setAnimationSpeed('slow')" class="px-3 py-1 bg-purple-500 text-white rounded text-sm">
+          Slow (3s)
+        </button>
+        <button onclick="setAnimationSpeed('normal')" class="px-3 py-1 bg-purple-500 text-white rounded text-sm">
+          Normal (1s)
+        </button>
+        <button onclick="setAnimationSpeed('fast')" class="px-3 py-1 bg-purple-500 text-white rounded text-sm">
+          Fast (0.5s)
+        </button>
+        <button onclick="setAnimationSpeed('very_fast')" class="px-3 py-1 bg-purple-500 text-white rounded text-sm">
+          Very Fast (0.3s)
+        </button>
+      </div>
+    </div>
+    <div class="flex gap-2 mb-4">
+      <button onclick="toggleSpinnerAnimation()" class="px-3 py-1 bg-green-500 text-white rounded text-sm">
+        Toggle Animation
+      </button>
+    </div>
+    <p class="text-sm text-gray-600 dark:text-gray-400">Control rotation speed and animation state</p>
+  </div>
+
+  <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+    <h4 class="font-medium mb-4">Code Examples</h4>
+    <div class="bg-gray-900 text-green-400 p-4 rounded text-sm font-mono">
+      <div>// Update progress instantly</div>
+      <div>spinner.setPercent(75);</div>
+      <br>
+      <div>// Animate to new percentage</div>
+      <div>spinner.animateToPercent(90, 2000); // 2 seconds</div>
+      <br>
+      <div>// Control animation speed</div>
+      <div>spinner.setSpeed('fast'); // slow, normal, fast, very_fast</div>
+      <br>
+      <div>// Start/stop animation</div>
+      <div>spinner.startAnimation();</div>
+      <div>spinner.stopAnimation();</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getSpinnerController(id) {
+    const element = document.getElementById(id);
+    if (!element) {
+      console.warn(`Element with id '${id}' not found`);
+      return null;
+    }
+
+    // Try multiple ways to access the Stimulus controller
+    if (element.controller) {
+      return element.controller;
+    }
+
+    // Try accessing via Stimulus application
+    const app = window.Stimulus || window.application;
+    if (app && app.getControllerForElementAndIdentifier) {
+      return app.getControllerForElementAndIdentifier(element, 'fx-spinner-percent');
+    }
+
+    // Fallback: look for controller in element's internal properties
+    if (element._stimulusControllers) {
+      return element._stimulusControllers['fx-spinner-percent'];
+    }
+
+    return null;
+  }
+
+  function updateProgress(percent) {
+    const controller = getSpinnerController('manual-spinner');
+    if (controller && typeof controller.setPercent === 'function') {
+      controller.setPercent(percent);
+    } else {
+      console.warn('SpinnerPercent controller not found or setPercent method unavailable');
+      // Fallback: try to update via data attribute
+      const element = document.getElementById('manual-spinner');
+      if (element) {
+        element.dataset.fxSpinnerPercentPercentValue = percent;
+      }
+    }
+  }
+
+  function animateProgress() {
+    const controller = getSpinnerController('animated-spinner');
+    if (controller && typeof controller.animateToPercent === 'function') {
+      controller.animateToPercent(100, 3000); // 3 seconds animation
+    } else {
+      console.warn('SpinnerPercent controller not found or animateToPercent method unavailable');
+    }
+  }
+
+  function resetProgress() {
+    const controller = getSpinnerController('animated-spinner');
+    if (controller && typeof controller.setPercent === 'function') {
+      controller.setPercent(0);
+    } else {
+      console.warn('SpinnerPercent controller not found or setPercent method unavailable');
+      // Fallback: try to update via data attribute
+      const element = document.getElementById('animated-spinner');
+      if (element) {
+        element.dataset.fxSpinnerPercentPercentValue = 0;
+      }
+    }
+  }
+
+  function setAnimationSpeed(speed) {
+    const controller = getSpinnerController('speed-control-spinner');
+    if (controller && typeof controller.setSpeed === 'function') {
+      controller.setSpeed(speed);
+    } else {
+      console.warn('SpinnerPercent controller not found or setSpeed method unavailable');
+      // Fallback: try to update via data attribute
+      const element = document.getElementById('speed-control-spinner');
+      if (element) {
+        element.dataset.fxSpinnerPercentSpeedValue = speed;
+      }
+    }
+  }
+
+  function toggleSpinnerAnimation() {
+    const controller = getSpinnerController('speed-control-spinner');
+    if (controller && typeof controller.setAnimate === 'function') {
+      controller.setAnimate(!controller.animateValue);
+    } else {
+      console.warn('SpinnerPercent controller not found or setAnimate method unavailable');
+      // Fallback: try to update via data attribute
+      const element = document.getElementById('speed-control-spinner');
+      if (element) {
+        const currentAnimate = element.dataset.fxSpinnerPercentAnimateValue === 'true';
+        element.dataset.fxSpinnerPercentAnimateValue = (!currentAnimate).toString();
+      }
+    }
+  }
+</script>

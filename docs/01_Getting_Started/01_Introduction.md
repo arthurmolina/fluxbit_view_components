@@ -24,73 +24,75 @@ This library is open source and is a work in progress. Below we have the situati
 
 | Element           | Code   | Tests | Previews | Documentation
 |:------------------|:-------|:------|:---------|:-------------
+| Accordion         | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Alert             | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Avatar            | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| AvatarGroup       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| AvatarGroup       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Badge             | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Button            | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| ButtonGroup       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Card              | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Drawer            | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Dropdowns         | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Flex              | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Gravatar          | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Modal             | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Popover           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Tab               | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Tooltip           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Accordion         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Banner            | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Banner            | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Bottom Navigation | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Breadcrumb        | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Button            | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| ButtonGroup       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Card              | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Carousel          | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Chat Bubble       | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Clipboard         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Device Mockups    | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Drawer            | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Dropdowns         | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Flex              | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Footer            | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Gallery           | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Gravatar          | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Indicators        | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Jumbotron         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | KBD               | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Link              | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | List Group        | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Mega Menu         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Modal             | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Navbar            | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Pagination        | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Popover           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Progress          | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Rating            | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Sidebar           | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Skeleton          | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Speed Dial        | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Spinner           | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Stepper           | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Tables            | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Timeline          | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Skeleton          | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Speed Dial        | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Spinner           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| SpinnerPercent    | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Stepper           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Tab               | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Table             | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Timeline          | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Toast             | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Tooltip           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 
 
 ### Form
 
 | Element            | Code   | Tests | Previews | Documentation
 |:-------------------|:-------|:------|:---------|:-------------
-| Checkbox Input     | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Checkbox Input     | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Datepicker         | <img src="/no.png" style="margin: 0;">  | <img src="/no.png" style="margin: 0;">  | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Dropzone           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Dropzone           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Form Builder       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| HelpText           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Label              | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Radio Input        | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Range Input        | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Select Input       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Text Input         | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Textarea Input     | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Toggle Input       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Upload Input       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Range Input        | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Select Input       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Text Input         | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Textarea Input     | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Toggle Input       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Upload Input       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 
 
 ### Typography
 
 | Element    | Code   | Tests | Previews | Documentation
 |:-----------|:-------|:------|:---------|:-------------
-| Heading    | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Text       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Blockquote | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Lists      | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Heading    | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | HR         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Lists      | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Text       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">

@@ -1,0 +1,23 @@
+<div class="space-y-4">
+  <h3 class="text-lg font-semibold mb-2">HTML Attributes</h3>
+  <div class="space-y-2">
+    <div class="flex items-center gap-2">
+      <%= render Fluxbit::SpinnerPercentComponent.new(
+        id: "custom-spinner-percent",
+        data: { testid: "progress-spinner" },
+        percent: 35
+      ) %>
+      <span class="text-sm">ID and data attributes</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <%= render Fluxbit::SpinnerPercentComponent.new(
+        title: "Progress spinner",
+        style: "opacity: 0.8;",
+        percent: 80,
+        color: :success
+      ) %>
+      <span class="text-sm">Title and inline styles</span>
+    </div>
+  </div>
+</div>

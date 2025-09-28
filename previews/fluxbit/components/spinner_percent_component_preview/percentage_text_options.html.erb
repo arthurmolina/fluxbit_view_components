@@ -1,0 +1,43 @@
+<div class="flex gap-8 items-center">
+  <div class="flex flex-col items-center gap-2">
+    <%= render Fluxbit::SpinnerPercentComponent.new(percent: 45, show_percent: true, color: :info) %>
+    <span class="text-sm text-gray-600 dark:text-gray-400">With percentage text</span>
+  </div>
+
+  <div class="flex flex-col items-center gap-2">
+    <%= render Fluxbit::SpinnerPercentComponent.new(percent: 45, show_percent: false, color: :info) %>
+    <span class="text-sm text-gray-600 dark:text-gray-400">Without percentage text</span>
+  </div>
+
+  <div class="flex flex-col items-center gap-2">
+    <%= render Fluxbit::SpinnerPercentComponent.new(percent: 75, text: "Loading...", color: :success) %>
+    <span class="text-sm text-gray-600 dark:text-gray-400">With custom text</span>
+  </div>
+
+  <div class="flex flex-col items-center gap-2">
+    <%= render Fluxbit::SpinnerPercentComponent.new(percent: 30, text: "Processing", color: :warning) %>
+    <span class="text-sm text-gray-600 dark:text-gray-400">Custom text (Processing)</span>
+  </div>
+
+  <div class="flex flex-col items-center gap-2">
+    <%= render Fluxbit::SpinnerPercentComponent.new(percent: 90, text: "Done!", color: :success, label_html: { class: "font-bold text-lg" }) %>
+    <span class="text-sm text-gray-600 dark:text-gray-400">Custom styling (font-bold text-lg)</span>
+  </div>
+
+  <div class="flex flex-col items-center gap-2">
+    <%= render Fluxbit::SpinnerPercentComponent.new(size: -1, percent: 60, color: :purple) %>
+    <span class="text-sm text-gray-600 dark:text-gray-400">Smallest size (-1)</span>
+  </div>
+
+  <div class="flex flex-col items-center gap-2">
+    <%= render Fluxbit::SpinnerPercentComponent.new(
+      percent: 85,
+      text: "85%",
+      label_html: {
+        class: "text-lg text-purple-600 font-bold",
+        remove_class: "text-sm"
+      }
+    ) %>
+    <span class="text-sm text-gray-600 dark:text-gray-400">Custom purple & bigger font (removed text-sm)</span>
+  </div>
+</div>

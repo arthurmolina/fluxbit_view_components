@@ -1,0 +1,8 @@
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+  <% [:default, :info, :success, :failure, :warning, :pink, :purple].each do |color| %>
+    <div class="flex flex-col items-center gap-2">
+      <%= render Fluxbit::SpinnerPercentComponent.new(color: color, percent: 65) %>
+      <span class="text-sm text-gray-600 dark:text-gray-400"><%= color.to_s.humanize %></span>
+    </div>
+  <% end %>
+</div>

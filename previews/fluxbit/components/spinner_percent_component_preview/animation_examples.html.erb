@@ -1,0 +1,174 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Rotation Animation Examples</h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Static vs Animated -->
+    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+      <h4 class="font-medium mb-4">Static vs Animated</h4>
+      <div class="flex items-center gap-6">
+        <div class="text-center">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 75, color: :info, animate: false) %>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Static</p>
+        </div>
+        <div class="text-center">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 75, color: :info, animate: true) %>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Animated</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Different States with Animation -->
+    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+      <h4 class="font-medium mb-4">Loading States</h4>
+      <div class="flex items-center gap-4">
+        <div class="text-center">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 0, color: :default, animate: true, show_percent: false) %>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Starting</p>
+        </div>
+        <div class="text-center">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 45, color: :warning, animate: true) %>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">In Progress</p>
+        </div>
+        <div class="text-center">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 100, color: :success, animate: false) %>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Complete</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation Speed Control -->
+    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+      <h4 class="font-medium mb-4">Animation Speeds</h4>
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="text-center">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :info, animate: true, speed: :slow, size: 1) %>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Slow (3s)</p>
+        </div>
+        <div class="text-center">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :success, animate: true, speed: :normal, size: 1) %>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Normal (1s)</p>
+        </div>
+        <div class="text-center">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :warning, animate: true, speed: :fast, size: 1) %>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Fast (0.5s)</p>
+        </div>
+        <div class="text-center">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :failure, animate: true, speed: :very_fast, size: 1) %>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Very Fast (0.3s)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Control -->
+    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+      <h4 class="font-medium mb-4">JavaScript Control</h4>
+      <div class="flex items-center gap-4 mb-4">
+        <%= render Fluxbit::SpinnerPercentComponent.new(
+          id: "animation-control-spinner",
+          percent: 60,
+          color: :purple,
+          animate: false,
+          size: 2
+        ) %>
+        <div class="flex flex-col gap-2">
+          <button onclick="toggleAnimation()" class="px-3 py-1 bg-purple-500 text-white rounded text-sm">
+            Toggle Animation
+          </button>
+          <button onclick="startAnimation()" class="px-3 py-1 bg-green-500 text-white rounded text-sm">
+            Start
+          </button>
+          <button onclick="stopAnimation()" class="px-3 py-1 bg-red-500 text-white rounded text-sm">
+            Stop
+          </button>
+        </div>
+      </div>
+      <div class="flex gap-2 mb-4">
+        <button onclick="setSpeed('slow')" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">
+          Slow
+        </button>
+        <button onclick="setSpeed('normal')" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">
+          Normal
+        </button>
+        <button onclick="setSpeed('fast')" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">
+          Fast
+        </button>
+        <button onclick="setSpeed('very_fast')" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">
+          Very Fast
+        </button>
+      </div>
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        Control rotation animation and speed via JavaScript
+      </p>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+      <h4 class="font-medium mb-4">Common Use Cases</h4>
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 0, color: :info, animate: true, show_percent: false, size: 0) %>
+          <span class="text-sm">Indeterminate loading</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 35, color: :warning, animate: true, size: 0) %>
+          <span class="text-sm">File upload progress</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 100, color: :success, animate: false, size: 0) %>
+          <span class="text-sm">Task completed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+    <h4 class="font-medium text-blue-900 dark:text-blue-100 mb-2">💡 Animation Tips</h4>
+    <ul class="text-sm text-blue-800 dark:text-blue-200 space-y-1">
+      <li>• Use <code>animate: true</code> for indeterminate loading states</li>
+      <li>• Combine with progress updates for dynamic feedback</li>
+      <li>• Stop animation when task completes for better UX</li>
+      <li>• Consider accessibility - some users prefer reduced motion</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  function getAnimationController() {
+    const element = document.getElementById('animation-control-spinner');
+    if (!element) return null;
+
+    const app = window.Stimulus || window.application;
+    if (app && app.getControllerForElementAndIdentifier) {
+      return app.getControllerForElementAndIdentifier(element, 'fx-spinner-percent');
+    }
+    return null;
+  }
+
+  function toggleAnimation() {
+    const controller = getAnimationController();
+    if (controller) {
+      controller.setAnimate(!controller.animateValue);
+    }
+  }
+
+  function startAnimation() {
+    const controller = getAnimationController();
+    if (controller) {
+      controller.startAnimation();
+    }
+  }
+
+  function stopAnimation() {
+    const controller = getAnimationController();
+    if (controller) {
+      controller.stopAnimation();
+    }
+  }
+
+  function setSpeed(speed) {
+    const controller = getAnimationController();
+    if (controller) {
+      controller.setSpeed(speed);
+    }
+  }
+</script>

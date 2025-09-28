@@ -1,0 +1,52 @@
+<div <%= tag.attributes(**@props) %>>
+  <svg class="transform -rotate-90 <%= svg_classes %>" viewBox="0 0 100 100">
+    <!-- Background circle -->
+    <circle
+      cx="50"
+      cy="50"
+      r="45"
+      stroke="currentColor"
+      stroke-width="8"
+      fill="transparent"
+      class="<%= background_circle_classes %>"
+    />
+    <!-- Progress circle -->
+    <circle
+      cx="50"
+      cy="50"
+      r="45"
+      stroke="currentColor"
+      stroke-width="8"
+      fill="transparent"
+      stroke-linecap="round"
+      stroke-dasharray="<%= stroke_dasharray %>"
+      stroke-dashoffset="<%= stroke_dashoffset %>"
+      class="<%= progress_circle_classes %> transition-all duration-300 ease-in-out"
+      data-fx-spinner-percent-target="progress"
+    />
+  </svg>
+
+  <% if @text %>
+    <% label_attrs = @label_html.dup %>
+    <% label_attrs.delete(:class) # Remove class from label_html as we handle it separately %>
+    <% label_attrs.delete(:remove_class) # Remove remove_class as it's used in label_text_classes %>
+    <% label_attrs.delete("remove_class") # Handle string key as well %>
+    <% label_attrs[:class] = label_text_classes %>
+    <% label_attrs[:"data-fx-spinner-percent-target"] = "text" %>
+    <div <%= tag.attributes(label_attrs) %>>
+      <%= @text %>
+    </div>
+  <% elsif @show_percent %>
+    <% label_attrs = @label_html.dup %>
+    <% label_attrs.delete(:class) # Remove class from label_html as we handle it separately %>
+    <% label_attrs.delete(:remove_class) # Remove remove_class as it's used in label_text_classes %>
+    <% label_attrs.delete("remove_class") # Handle string key as well %>
+    <% label_attrs[:class] = label_text_classes %>
+    <% label_attrs[:"data-fx-spinner-percent-target"] = "text" %>
+    <div <%= tag.attributes(label_attrs) %>>
+      <%= @percent %>%
+    </div>
+  <% end %>
+
+  <span class="<%= screen_reader_classes %>"><%= @label %></span>
+</div>

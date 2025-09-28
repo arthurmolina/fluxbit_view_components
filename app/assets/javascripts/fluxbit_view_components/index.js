@@ -5,6 +5,7 @@ import FxMethodLink from './method_link_controller'
 import FxModal from './modal_controller'
 import FxRowClick from './row_click_controller'
 import FxSelectAll from './select_all_controller'
+import FxSpinnerPercent from './spinner_percent_controller'
 
 export {
   FxAssigner,
@@ -13,7 +14,8 @@ export {
   FxMethodLink,
   FxModal,
   FxRowClick,
-  FxSelectAll
+  FxSelectAll,
+  FxSpinnerPercent
 }
 
 export function registerFluxbitControllers(application) {
@@ -24,4 +26,5 @@ export function registerFluxbitControllers(application) {
   application.register('fx-modal', FxModal)
   application.register('fx-row-click', FxRowClick)
   application.register('fx-select-all', FxSelectAll)
+  application.register('fx-spinner-percent', FxSpinnerPercent)
 }

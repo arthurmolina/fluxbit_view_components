@@ -509,6 +509,137 @@ class FxSelectAll extends Controller {
   }
 }
 
+class FxSpinnerPercent extends Controller {
+  static targets=[ "progress", "text" ];
+  static values={
+    percent: {
+      type: Number,
+      default: 0
+    },
+    animate: {
+      type: Boolean,
+      default: false
+    },
+    speed: {
+      type: String,
+      default: "normal"
+    },
+    hasCustomText: {
+      type: Boolean,
+      default: false
+    }
+  };
+  connect() {
+    this.circumference = 2 * Math.PI * 45;
+    this.updateProgress();
+    this.updateAnimation();
+  }
+  percentValueChanged() {
+    this.updateProgress();
+  }
+  animateValueChanged() {
+    this.updateAnimation();
+  }
+  speedValueChanged() {
+    this.updateAnimation();
+  }
+  updateProgress() {
+    const clampedPercent = Math.max(0, Math.min(100, this.percentValue));
+    const offset = this.circumference - clampedPercent / 100 * this.circumference;
+    if (this.hasProgressTarget) {
+      this.progressTarget.style.strokeDashoffset = offset;
+      this.progressTarget.setAttribute("aria-valuenow", clampedPercent);
+    }
+    if (this.hasTextTarget && !this.hasCustomTextValue) {
+      this.textTarget.textContent = `${clampedPercent}%`;
+    }
+    this.element.setAttribute("aria-valuenow", clampedPercent);
+  }
+  updateAnimation() {
+    const svg = this.element.querySelector("svg");
+    if (!svg) return;
+    if (this.animateValue) {
+      let duration;
+      switch (this.speedValue) {
+       case "slow":
+        duration = "3s";
+        break;
+
+       case "fast":
+        duration = "0.5s";
+        break;
+
+       case "very_fast":
+        duration = "0.3s";
+        break;
+
+       case "normal":
+       default:
+        duration = "1s";
+        break;
+      }
+      svg.style.animation = `spin ${duration} linear infinite`;
+    } else {
+      svg.style.animation = "";
+    }
+  }
+  setPercent(percent) {
+    this.percentValue = percent;
+  }
+  setAnimate(animate) {
+    this.animateValue = animate;
+  }
+  startAnimation() {
+    this.animateValue = true;
+  }
+  stopAnimation() {
+    this.animateValue = false;
+  }
+  setSpeed(speed) {
+    this.speedValue = speed;
+  }
+  animateToPercent(targetPercent, duration = 1e3) {
+    const startPercent = this.percentValue;
+    const difference = targetPercent - startPercent;
+    const startTime = performance.now();
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+    }
+    const animate = currentTime => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const currentPercent = startPercent + difference * easeOut;
+      this.updateProgressDirect(Math.round(currentPercent));
+      if (progress < 1) {
+        this.animationId = requestAnimationFrame(animate);
+      } else {
+        this.percentValue = targetPercent;
+        this.animationId = null;
+      }
+    };
+    this.animationId = requestAnimationFrame(animate);
+  }
+  updateProgressDirect(percent) {
+    const clampedPercent = Math.max(0, Math.min(100, percent));
+    const offset = this.circumference - clampedPercent / 100 * this.circumference;
+    if (this.hasProgressTarget) {
+      this.progressTarget.style.strokeDashoffset = offset;
+      this.progressTarget.setAttribute("aria-valuenow", clampedPercent);
+    }
+    if (this.hasTextTarget && !this.hasCustomTextValue) {
+      this.textTarget.textContent = `${clampedPercent}%`;
+    }
+    this.element.setAttribute("aria-valuenow", clampedPercent);
+  }
+  disconnect() {
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+      this.animationId = null;
+    }
+  }
+}
+
 function registerFluxbitControllers(application) {
   application.register("fx-assigner", FxAssigner);
   application.register("fx-auto-submit", FxAutoSubmit);
@@ -517,6 +648,7 @@ function registerFluxbitControllers(application) {
   application.register("fx-modal", FxModal);
   application.register("fx-row-click", FxRowClick);
   application.register("fx-select-all", FxSelectAll);
+  application.register("fx-spinner-percent", FxSpinnerPercent);
 }
 
-export { FxAssigner, FxAutoSubmit, FxDrawer, FxMethodLink, FxModal, FxRowClick, FxSelectAll, registerFluxbitControllers };
+export { FxAssigner, FxAutoSubmit, FxDrawer, FxMethodLink, FxModal, FxRowClick, FxSelectAll, FxSpinnerPercent, registerFluxbitControllers };

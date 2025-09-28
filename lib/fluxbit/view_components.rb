@@ -39,6 +39,7 @@ module Fluxbit
     require "fluxbit/config/skeleton_component"
     require "fluxbit/config/speed_dial_component"
     require "fluxbit/config/spinner_component"
+    require "fluxbit/config/spinner_percent_component"
     require "fluxbit/config/stepper_component"
     require "fluxbit/config/tab_component"
     require "fluxbit/config/timeline_component"
