@@ -1,4 +1,7 @@
-# Development Guide
+---
+label: Development Guide
+title: Development Guide
+---
 
 This guide covers how to develop, test, and contribute to the Fluxbit ViewComponents JavaScript package.
 
@@ -31,14 +34,15 @@ This starts the demo Rails application at `localhost:3000` with Lookbook compone
 ### JavaScript Source Files
 ```
 app/assets/javascripts/fluxbit_view_components/
-├── index.js                    # Main export file
-├── assigner_controller.js      # Dynamic assignment controller
-├── auto_submit_controller.js   # Auto-submit functionality
-├── drawer_controller.js        # Drawer/sidebar controller
-├── method_link_controller.js   # HTTP method link controller
-├── modal_controller.js         # Modal dialog controller
-├── row_click_controller.js     # Clickable rows controller
-└── select_all_controller.js    # Bulk selection controller
+├── index.js                     # Main export file
+├── assigner_controller.js       # Dynamic assignment controller
+├── auto_submit_controller.js    # Auto-submit functionality
+├── drawer_controller.js         # Drawer/sidebar controller
+├── method_link_controller.js    # HTTP method link controller
+├── modal_controller.js          # Modal dialog controller
+├── row_click_controller.js      # Clickable rows controller
+├── select_all_controller.js     # Bulk selection controller
+└── spinner_percent_controller.js # Circular progress indicators
 ```
 
 ### Build Configuration
@@ -138,12 +142,12 @@ Update `index.js` to export the new controller:
 import FxMy from './my_controller'
 
 export {
-  // ... existing exports
+  // ... existing exports like FxModal, FxDrawer, FxSpinnerPercent
   FxMy
 }
 
 export function registerFluxbitControllers(application) {
-  // ... existing registrations
+  // ... existing registrations like fx-modal, fx-drawer, fx-spinner-percent
   application.register('fx-my', FxMy)
 }
 ```

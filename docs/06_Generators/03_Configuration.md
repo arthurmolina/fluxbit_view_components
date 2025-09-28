@@ -1,4 +1,7 @@
-# Configuration Options
+---
+label: Configuration
+title: Configuration Options
+---
 
 This guide covers all configuration options available for Fluxbit generators, allowing you to customize the generated code to match your application's needs.
 
@@ -13,7 +16,7 @@ You can set default options for all generators by creating an initializer:
 Rails.application.config.generators do |g|
   g.fluxbit_ui = :modal           # Default UI interaction
   g.fluxbit_turbo = true          # Enable Turbo Streams
-  g.fluxbit_paginator = :pagy     # Default paginator
+  g.fluxbit_paginator = true      # Enable pagination
   g.fluxbit_pundit = true         # Enable Pundit authorization
 end
 ```
@@ -23,11 +26,11 @@ end
 Override defaults for specific commands:
 
 ```bash
-# Use drawer UI with Kaminari pagination
-rails generate fluxbit:scaffold Product name:string --ui=drawer --paginator=kaminari
+# Use drawer UI with pagination enabled
+rails generate fluxbit:scaffold Product name:string --ui=drawer --paginator
 
-# Disable Turbo and Pundit for simple CRUD
-rails generate fluxbit:scaffold Product name:string --no-turbo --no-pundit
+# Disable Turbo, pagination, and Pundit for simple CRUD
+rails generate fluxbit:scaffold Product name:string --no-turbo --no-paginator --no-pundit
 
 # Use traditional page-based forms
 rails generate fluxbit:scaffold Product name:string --ui=none
@@ -51,14 +54,14 @@ rails generate fluxbit:scaffold Product name:string --ui=modal
 **Generated code:**
 ```erb
 <!-- Trigger -->
-<%%= fx_button(data: { action: "fx-modal#show", target: "product-modal" }) do %>
+&lt;%= fx_button(data: { action: "fx-modal#show", target: "product-modal" }) do %>
   New Product
-<%% end %>
+&lt;% end %&gt;
 
 <!-- Modal -->
-<%%= fx_modal(id: "product-modal") do %>
+&lt;%= fx_modal(id: "product-modal") do %>
   <%%= render "form", product: @product %>
-<%% end %>
+&lt;% end %&gt;
 ```
 
 ### Drawer
@@ -75,14 +78,14 @@ rails generate fluxbit:scaffold Product name:string --ui=drawer
 **Generated code:**
 ```erb
 <!-- Trigger -->
-<%%= fx_button(data: { action: "fx-drawer#show", target: "product-drawer" }) do %>
+&lt;%= fx_button(data: { action: "fx-drawer#show", target: "product-drawer" }) do %>
   New Product
-<%% end %>
+&lt;% end %&gt;
 
 <!-- Drawer -->
-<%%= fx_drawer(id: "product-drawer", position: :right) do %>
+&lt;%= fx_drawer(id: "product-drawer", position: :right) do %>
   <%%= render "form", product: @product %>
-<%% end %>
+&lt;% end %&gt;
 ```
 
 ### None (Traditional Pages)
@@ -99,9 +102,9 @@ rails generate fluxbit:scaffold Product name:string --ui=none
 **Generated code:**
 ```erb
 <!-- Navigation -->
-<%%= fx_button(as: :a, href: new_product_path) do %>
+&lt;%= fx_button(as: :a, href: new_product_path) do %>
   New Product
-<%% end %>
+&lt;% end %&gt;
 
 <!-- Separate pages: new.html.erb, edit.html.erb -->
 ```
@@ -151,74 +154,52 @@ def create
 end
 ```
 
-## Paginator Configuration (`--paginator`)
+## Pagination Configuration (`--paginator`)
 
-Choose your preferred pagination library.
+Enable or disable pagination using Pagy.
 
-### Pagy (Default, Recommended)
+### With Pagination (Default)
 ```bash
-rails generate fluxbit:scaffold Product name:string --paginator=pagy
+rails generate fluxbit:scaffold Product name:string --paginator
 ```
 
-**Why Pagy:**
-- Fastest pagination gem
-- Smallest memory footprint
-- Highly customizable
-- I18n support
+**Features:**
+- Uses Pagy for fast, lightweight pagination
+- Configurable per-page limits
+- Responsive pagination controls
+- Search and filter integration
+- Per-page selector dropdown
 
 **Generated code:**
 ```ruby
 # Controller
 def index
   Pagy::DEFAULT[:limit] = (params[:per_page].presence || 5).to_i
-  @pagy, @products = pagy(policy_scope(Product).all)
+  @pagy, @products = pagy(@products)
 end
 ```
 
-```erb
-<!-- View -->
-<%%= fx_pagination(@pagy) if @pagy.pages > 1 %>
+```html
+&lt;!-- View --&gt;
+&lt;%= fx_pagination(@pagy) if @pagy.pages &gt; 1 %&gt;
 ```
 
-### Kaminari
+### Without Pagination
 ```bash
-rails generate fluxbit:scaffold Product name:string --paginator=kaminari
+rails generate fluxbit:scaffold Product name:string --no-paginator
 ```
 
-**Features:**
-- Popular and well-established
-- Rich feature set
-- Active Record integration
-- Customizable views
+**Use cases:**
+- Small datasets that don't need pagination
+- Custom pagination implementation
+- API-only applications
+- Simple list displays
 
 **Generated code:**
 ```ruby
-# Controller  
+# Controller (no pagination)
 def index
-  @products = policy_scope(Product).page(params[:page]).per(10)
-end
-```
-
-```erb
-<!-- View -->
-<%%= fx_pagination(@products) %>
-```
-
-### WillPaginate
-```bash
-rails generate fluxbit:scaffold Product name:string --paginator=will_paginate
-```
-
-**Features:**
-- Classic Rails pagination
-- Simple API
-- Stable and mature
-
-**Generated code:**
-```ruby
-# Controller
-def index
-  @products = policy_scope(Product).paginate(page: params[:page], per_page: 10)
+  @products = policy_scope(Product).all
 end
 ```
 
@@ -294,8 +275,8 @@ rails generate fluxbit:scaffold Product name:string description:text
 
 **Generated form:**
 ```erb
-<%%= fx_text_field(:name, form: f, required: true) %>
-<%%= fx_text_area(:description, form: f, rows: 3) %>
+&lt;%= fx_text_field(:name, form: f, required: true) %>
+&lt;%= fx_text_area(:description, form: f, rows: 3) %>
 ```
 
 **Search functionality:**
@@ -311,8 +292,8 @@ rails generate fluxbit:scaffold Product price:decimal stock:integer
 
 **Generated form:**
 ```erb
-<%%= fx_number_field(:price, form: f, step: 0.01) %>
-<%%= fx_number_field(:stock, form: f) %>
+&lt;%= fx_number_field(:price, form: f, step: 0.01) %>
+&lt;%= fx_number_field(:stock, form: f) %>
 ```
 
 **Range filtering:**
@@ -328,8 +309,8 @@ rails generate fluxbit:scaffold Product featured:boolean active:boolean
 
 **Generated form:**
 ```erb
-<%%= fx_checkbox(:featured, form: f) %>
-<%%= fx_toggle(:active, form: f) %>
+&lt;%= fx_checkbox(:featured, form: f) %>
+&lt;%= fx_toggle(:active, form: f) %>
 ```
 
 ### Date and DateTime Fields
@@ -339,8 +320,8 @@ rails generate fluxbit:scaffold Event start_date:date created_at:datetime
 
 **Generated form:**
 ```erb
-<%%= fx_date_field(:start_date, form: f) %>
-<%%= fx_datetime_local_field(:created_at, form: f) %>
+&lt;%= fx_date_field(:start_date, form: f) %>
+&lt;%= fx_datetime_local_field(:created_at, form: f) %>
 ```
 
 ## Advanced Configuration
@@ -406,7 +387,7 @@ cp $(bundle show fluxbit_view_components)/lib/generators/fluxbit/templates/i18n.
 config.generators do |g|
   g.fluxbit_ui = :modal
   g.fluxbit_turbo = true
-  g.fluxbit_paginator = :pagy
+  g.fluxbit_paginator = true
   g.fluxbit_pundit = false  # Disable for faster development
 end
 ```
@@ -417,7 +398,7 @@ end
 config.generators do |g|
   g.fluxbit_ui = :modal
   g.fluxbit_turbo = true
-  g.fluxbit_paginator = :pagy
+  g.fluxbit_paginator = true
   g.fluxbit_pundit = true   # Always enable in production
 end
 ```
@@ -460,7 +441,7 @@ Use initializers to maintain consistent options across your team:
 Rails.application.config.generators do |g|
   g.fluxbit_ui = :modal
   g.fluxbit_turbo = true
-  g.fluxbit_paginator = :pagy
+  g.fluxbit_paginator = true
   g.fluxbit_pundit = true
 end
 ```

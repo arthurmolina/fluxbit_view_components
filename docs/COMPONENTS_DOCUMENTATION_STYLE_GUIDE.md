@@ -396,16 +396,22 @@ The component uses Tailwind classes for base, border, focus ring, background, pl
 
 ### Preview File Structure
 
-**IMPORTANT**: Do NOT use `@!group` annotations in preview files as they affect Lookbook scenario naming and will cause documentation embeds to fail.
+**CRITICAL REQUIREMENTS**:
+
+1. **ERB Templates REQUIRED**: All preview methods (except `playground`) MUST use HTML ERB templates instead of Ruby code with `content_tag` or `safe_join`
+2. **No Groups**: Do NOT use `@!group` annotations in preview files as they affect Lookbook scenario naming and will cause documentation embeds to fail
 
 **Correct preview structure**:
 
 ```ruby
 class Fluxbit::Components::ComponentNamePreview < ViewComponent::Preview
+  # Interactive playground - ONLY method that uses Ruby code
+  # @param param [Symbol] select { choices: [option1, option2] }
   def playground(param: :default)
-    # Interactive playground
+    render ComponentName.new(param: param)
   end
 
+  # All other methods use ERB templates
   def default; end
   def example_1; end
   def example_2; end
@@ -413,6 +419,45 @@ class Fluxbit::Components::ComponentNamePreview < ViewComponent::Preview
   def adding_other_properties; end
 end
 ```
+
+**ERB Template Structure**:
+
+Create corresponding `.html.erb` files in `previews/fluxbit/components/component_name_preview/`:
+
+```
+previews/fluxbit/components/component_name_preview/
+├── default.html.erb
+├── example_1.html.erb
+├── example_2.html.erb
+├── adding_removing_classes.html.erb
+└── adding_other_properties.html.erb
+```
+
+**ERB Template Example**:
+
+```erb
+<!-- default.html.erb -->
+<%= render ComponentName.new %>
+
+<!-- example_1.html.erb -->
+<div class="flex gap-4">
+  <% [:option1, :option2, :option3].each do |option| %>
+    <div class="flex flex-col items-center gap-2">
+      <%= render ComponentName.new(param: option) %>
+      <span class="text-sm text-gray-600"><%= option.to_s.humanize %></span>
+    </div>
+  <% end %>
+</div>
+```
+
+**Why ERB Templates?**:
+
+1. **Cleaner Code**: ERB templates are much more readable than Ruby `content_tag` methods
+2. **Easier Maintenance**: HTML structure is immediately visible and editable
+3. **No String Concatenation Errors**: Avoids complex `safe_join` and `+` operator issues
+4. **Better Performance**: Templates are compiled and cached by Rails
+5. **Familiar Syntax**: Standard ERB syntax that all Rails developers understand
+6. **Proper HTML**: Real HTML structure instead of programmatic generation
 
 **Incorrect (avoid groups)**:
 

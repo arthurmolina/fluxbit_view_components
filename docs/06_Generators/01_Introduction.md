@@ -1,4 +1,7 @@
-# Introduction to Fluxbit Generators
+---
+label: Introduction
+title: Introduction to Fluxbit Generators
+---
 
 Fluxbit ViewComponents includes powerful Rails generators that help you quickly scaffold complete CRUD applications using Fluxbit components. These generators create production-ready code with modern Rails patterns including Turbo Streams, Hotwire, and authorization.
 
@@ -39,8 +42,9 @@ Generates Devise authentication views styled with Fluxbit components:
 - **Flexible Options**: Customizable generator options
 - **Bulk Operations**: Built-in support for batch actions
 - **Search & Filter**: Pre-built filtering and search functionality
-- **Pagination**: Multiple pagination library support
+- **Pagination**: Pagy pagination support
 - **Multi-language**: i18n support for English and Portuguese
+- **CSV Export**: Built-in CSV export functionality
 
 ## Quick Start
 
@@ -58,6 +62,7 @@ This single command creates:
 - Turbo Stream templates for dynamic updates
 - i18n files for multi-language support
 - JSON API endpoints
+- CSV export functionality
 
 ## Installation
 

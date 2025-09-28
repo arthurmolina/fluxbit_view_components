@@ -1,4 +1,7 @@
-# JavaScript and NPM Package
+---
+label: Stimulus Controllers 
+title: Stimulus Controllers (JS) and NPM Package
+---
 
 Fluxbit ViewComponents provides a comprehensive JavaScript package that includes Stimulus controllers and utilities to enhance your Rails application with interactive components.
 
@@ -33,6 +36,7 @@ The package includes the following Stimulus controllers:
 - **FxModal**: Modal dialog component behavior
 - **FxRowClick**: Clickable table rows functionality
 - **FxSelectAll**: Bulk selection functionality
+- **FxSpinnerPercent**: Circular progress indicators with animations
 
 ## Dependencies
 

@@ -1,4 +1,7 @@
-# Examples
+---
+label: Examples
+title: Examples
+---
 
 This guide provides real-world examples of using Fluxbit generators to create different types of applications and features.
 
@@ -18,7 +21,7 @@ rails generate fluxbit:scaffold Product \
   featured:boolean \
   published:boolean \
   --ui=modal \
-  --paginator=pagy
+  --paginator
 ```
 
 **Generated Features:**
@@ -44,7 +47,7 @@ rails generate fluxbit:scaffold Product \
   published:boolean \
   created_at:datetime \
   --ui=drawer \
-  --paginator=pagy
+  --paginator
 ```
 
 **Customization after generation:**
@@ -81,7 +84,7 @@ rails generate fluxbit:scaffold Post \
   featured:boolean \
   tags:text \
   --ui=none \
-  --paginator=pagy
+  --paginator
 ```
 
 **Why `--ui=none`:** Blog posts often require rich text editors and complex layouts, making full-page forms more suitable.
@@ -95,7 +98,7 @@ rails generate fluxbit:scaffold Category \
   color:string \
   posts_count:integer \
   --ui=modal \
-  --paginator=pagy
+  --paginator
 ```
 
 ### Comments (with Drawer UI)
@@ -109,7 +112,7 @@ rails generate fluxbit:scaffold Comment \
   status:string \
   created_at:datetime \
   --ui=drawer \
-  --paginator=pagy
+  --paginator
 ```
 
 ## User Management Dashboard
@@ -128,7 +131,7 @@ rails generate fluxbit:scaffold User \
   created_at:datetime \
   email_verified:boolean \
   --ui=drawer \
-  --paginator=pagy \
+  --paginator \
   --pundit
 ```
 
@@ -189,7 +192,7 @@ rails generate fluxbit:scaffold Project \
   progress:integer \
   manager:string \
   --ui=modal \
-  --paginator=pagy
+  --paginator
 ```
 
 ### Tasks
@@ -206,7 +209,7 @@ rails generate fluxbit:scaffold Task \
   estimated_hours:decimal \
   completed:boolean \
   --ui=drawer \
-  --paginator=pagy
+  --paginator
 ```
 
 **Custom Task Form Enhancement:**
@@ -259,7 +262,7 @@ rails generate fluxbit:scaffold InventoryItem \
   supplier:string \
   location:string \
   --ui=modal \
-  --paginator=pagy
+  --paginator
 ```
 
 ### Stock Movements
@@ -297,7 +300,7 @@ rails generate fluxbit:scaffold SupportTicket \
   created_at:datetime \
   resolved_at:datetime \
   --ui=none \
-  --paginator=pagy
+  --paginator
 ```
 
 ### Knowledge Base Articles
@@ -313,7 +316,7 @@ rails generate fluxbit:scaffold KnowledgeArticle \
   helpful_count:integer \
   author:string \
   --ui=drawer \
-  --paginator=pagy
+  --paginator
 ```
 
 ## Event Management
@@ -335,7 +338,7 @@ rails generate fluxbit:scaffold Event \
   status:string \
   featured:boolean \
   --ui=modal \
-  --paginator=pagy
+  --paginator
 ```
 
 ### Event Registrations
@@ -351,7 +354,7 @@ rails generate fluxbit:scaffold EventRegistration \
   payment_status:string \
   registered_at:datetime \
   --ui=drawer \
-  --paginator=pagy
+  --paginator
 ```
 
 ## Multi-tenant Application
@@ -370,7 +373,7 @@ rails generate fluxbit:scaffold Organization \
   created_at:datetime \
   subscription_ends_at:datetime \
   --ui=modal \
-  --paginator=pagy \
+  --paginator \
   --pundit
 ```
 
@@ -385,7 +388,7 @@ rails generate fluxbit:scaffold OrganizationUser \
   invited_at:datetime \
   joined_at:datetime \
   --ui=drawer \
-  --paginator=pagy
+  --paginator
 ```
 
 ## Advanced Customizations

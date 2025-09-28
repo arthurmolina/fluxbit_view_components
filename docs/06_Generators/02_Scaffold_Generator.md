@@ -1,4 +1,7 @@
-# Scaffold Generator
+---
+label: Scaffold Generator
+title: Scaffold Generator
+---
 
 The `fluxbit:scaffold` generator is the main generator in Fluxbit ViewComponents. It creates a complete CRUD application with modern Rails patterns, Fluxbit UI components, and production-ready features.
 
@@ -55,17 +58,14 @@ rails generate fluxbit:scaffold Product name:string --no-turbo
 ```
 
 ### Pagination (`--paginator`)
-Choose your pagination library.
+Enable or disable pagination using Pagy.
 
 ```bash
-# Pagy (default, fastest)
-rails generate fluxbit:scaffold Product name:string --paginator=pagy
+# With pagination (default)
+rails generate fluxbit:scaffold Product name:string --paginator
 
-# Kaminari (popular alternative)
-rails generate fluxbit:scaffold Product name:string --paginator=kaminari
-
-# WillPaginate (classic choice)
-rails generate fluxbit:scaffold Product name:string --paginator=will_paginate
+# Without pagination
+rails generate fluxbit:scaffold Product name:string --no-paginator
 ```
 
 ### Authorization (`--pundit`)
@@ -105,21 +105,39 @@ Features:
 ### Routes
 **Added to**: `config/routes.rb`
 
+```ruby
+resources :products do
+  collection do
+    put "update_all"
+    patch "update_all"
+    delete "destroy_all"
+  end
+end
+```
+
 ### Internationalization
-**Files**: 
+**Files**:
 - `config/locales/products.en.yml`
 - `config/locales/products.pt-BR.yml`
 
+### Shared Partials
+**Files**:
+- `app/views/shared/_alert.html.erb` - Alert component partial
+- `app/views/shared/_flash.html.erb` - Flash message partial
+
+These partials use Fluxbit components and are reusable across your application.
 
 ## Advanced Features
 
 ### Search and Filtering
-The generator creates intelligent search and filtering based on attribute types:
+The generator creates intelligent search and filtering based on attribute types with auto-submit functionality:
 
 - **String/Text fields**: LIKE queries for partial matching
 - **Numeric fields**: Range filtering (greater than or equal)
 - **Boolean fields**: Exact matching
 - **Date fields**: Date range filtering
+- **Auto-submit**: Form automatically submits when fields change (using fx-auto-submit controller)
+- **Clear filters**: One-click button to remove all active filters
 
 ### Sorting
 Click any column header to sort. Supports:
@@ -128,62 +146,75 @@ Click any column header to sort. Supports:
 - Persistent sort state in URL
 
 ### Bulk Actions
-Select multiple records and:
-- Update all selected records
-- Delete all selected records
+Select multiple records using the master checkbox or individual selections and:
+- Update all selected records (PATCH/PUT /products/update_all)
+- Delete all selected records (DELETE /products/destroy_all)
+- Bulk actions are disabled when no records are selected
+- Uses fx-select-all controller for selection management
 - Custom bulk operations (extensible)
 
+### CSV Export
+Built-in CSV export functionality:
+- **URL**: GET /products.csv
+- **Features**: Exports all products with applied filters
+- **Format**: Standard CSV with column headers
+- **Usage**: Automatic download when accessed
+
 ### Modal/Drawer Forms
-Depending on the `--ui` option:
+Depending on the `--ui` option, forms are displayed differently:
 
-#### Modal Forms
-```erb
-<!-- Trigger button -->
-<%%= fx_button(
-  data: { 
-    action: "fx-modal#show",
-    "fx-modal-target": "product-modal"
-  }
-) do %>
+#### Modal Forms (`--ui=modal`)
+Forms open in overlay modals using Turbo Frames:
+```html
+&lt;!-- Turbo frame for modal content --&gt;
+&lt;turbo-frame id="modal"&gt;&lt;/turbo-frame&gt;
+
+&lt;!-- New button with turbo_frame target --&gt;
+&lt;%= fx_button(
+  as: :a,
+  href: new_product_path,
+  data: { turbo_frame: "modal" }
+) do %&gt;
   New Product
-<%% end %>
-
-<!-- Modal -->
-<%%= fx_modal(id: "product-modal") do %>
-  <%%= render "form", product: @product %>
-<%% end %>
+&lt;% end %&gt;
 ```
 
-#### Drawer Forms
-```erb
-<!-- Trigger button -->
-<%%= fx_button(
-  data: {
-    action: "fx-drawer#show", 
-    "fx-drawer-target": "product-drawer"
-  }
-) do %>
-  New Product
-<%% end %>
+#### Drawer Forms (`--ui=drawer`)
+Forms slide in from the side using Turbo Frames:
+```html
+&lt;!-- Turbo frame for drawer content --&gt;
+&lt;turbo-frame id="drawer"&gt;&lt;/turbo-frame&gt;
 
-<!-- Drawer -->
-<%%= fx_drawer(id: "product-drawer", position: :right) do %>
-  <%%= render "form", product: @product %>
-<%% end %>
+&lt;!-- New button with turbo_frame target --&gt;
+&lt;%= fx_button(
+  as: :a,
+  href: new_product_path,
+  data: { turbo_frame: "drawer" }
+) do %&gt;
+  New Product
+&lt;% end %&gt;
 ```
 
-### JSON API
-Each scaffold includes JSON endpoints:
+#### Traditional Forms (`--ui=none`)
+Forms are displayed on separate pages without overlays.
+
+### JSON API and CSV Export
+Each scaffold includes JSON endpoints and CSV export:
 
 ```ruby
 # GET /products.json
 def index
-  # Returns paginated JSON
+  # Returns paginated JSON with filters applied
 end
 
-# GET /products/1.json  
+# GET /products/1.json
 def show
   # Returns single product JSON
+end
+
+# GET /products.csv
+def index
+  # Returns CSV export of filtered products
 end
 ```
 
@@ -270,8 +301,8 @@ bundle exec rails generate fluxbit:scaffold --help
 **Missing dependencies**
 ```bash
 # Install required gems
-bundle add pundit  # for authorization
-bundle add pagy    # for pagination (if using)
+bundle add pundit  # for authorization (if using --pundit)
+bundle add pagy    # for pagination (if using --paginator)
 ```
 
 **Turbo conflicts**

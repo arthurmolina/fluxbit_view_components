@@ -1,4 +1,7 @@
-# Devise Views Generator
+---
+label: Devise Views
+title: Devise Views Generator
+---
 
 The `fluxbit:devise_views` generator creates beautiful authentication views styled with Fluxbit components. It replaces the default Devise views with modern, responsive designs that match your application's aesthetic.
 

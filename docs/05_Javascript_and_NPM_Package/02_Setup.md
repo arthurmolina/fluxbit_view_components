@@ -1,4 +1,7 @@
-# Setup and Configuration
+---
+label: Setup
+title: Setup and Configuration
+---
 
 This guide covers how to set up and configure the Fluxbit ViewComponents JavaScript package in your Rails application.
 
@@ -49,10 +52,11 @@ export { application }
 ```javascript
 // app/javascript/controllers/application.js
 import { Application } from "@hotwired/stimulus"
-import { 
-  FxModal, 
-  FxDrawer, 
-  FxAutoSubmit 
+import {
+  FxModal,
+  FxDrawer,
+  FxAutoSubmit,
+  FxSpinnerPercent
 } from "fluxbit-view-components"
 
 const application = Application.start()
@@ -61,6 +65,7 @@ const application = Application.start()
 application.register("fx-modal", FxModal)
 application.register("fx-drawer", FxDrawer)
 application.register("fx-auto-submit", FxAutoSubmit)
+application.register("fx-spinner-percent", FxSpinnerPercent)
 
 export { application }
 ```
