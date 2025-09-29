@@ -37,9 +37,9 @@ class Fluxbit::StepperComponent < Fluxbit::Component
     super
     @props = props
 
-    @orientation = options @props.delete(:orientation), collection: [:horizontal, :vertical], default: @@orientation
-    @variant = options @props.delete(:variant), collection: [:default, :progress, :detailed], default: @@variant
-    @color = options @props.delete(:color), collection: [:blue, :green, :red, :yellow, :indigo, :purple], default: @@color
+    @orientation = options @props.delete(:orientation), collection: [ :horizontal, :vertical ], default: @@orientation
+    @variant = options @props.delete(:variant), collection: [ :default, :progress, :detailed ], default: @@variant
+    @color = options @props.delete(:color), collection: [ :blue, :green, :red, :yellow, :indigo, :purple ], default: @@color
 
     add class: styles[:base][@orientation], to: @props, first_element: true
     remove_class_from_props(@props)
@@ -120,11 +120,11 @@ class Fluxbit::StepperComponent < Fluxbit::Component
 
     connector_classes = if step.state == :completed
                           styles[:connector][:completed][@variant][@orientation]
-                        elsif step.state == :active
+    elsif step.state == :active
                           styles[:connector][:active][@color][@variant][@orientation]
-                        else
+    else
                           styles[:connector][@variant][@orientation]
-                        end
+    end
 
     tag.div(class: connector_classes)
   end
@@ -132,27 +132,27 @@ class Fluxbit::StepperComponent < Fluxbit::Component
   def render_vertical_connector(step)
     # Position based on variant (different circle sizes)
     left_position = case @variant
-                    when :progress then "left-4"  # w-8 circles
-                    when :detailed then "left-6"  # w-12 circles
-                    else "left-5"                  # w-10 circles (default)
-                    end
+    when :progress then "left-4"  # w-8 circles
+    when :detailed then "left-6"  # w-12 circles
+    else "left-5"                  # w-10 circles (default)
+    end
 
     connector_classes = if step.state == :completed
                           "absolute #{left_position} top-full w-0.5 h-6 bg-green-200 dark:bg-green-700"
-                        elsif step.state == :active
+    elsif step.state == :active
                           color_bg = case @color
-                                     when :blue then "bg-blue-200 dark:bg-blue-700"
-                                     when :green then "bg-green-200 dark:bg-green-700"
-                                     when :red then "bg-red-200 dark:bg-red-700"
-                                     when :yellow then "bg-yellow-200 dark:bg-yellow-700"
-                                     when :indigo then "bg-indigo-200 dark:bg-indigo-700"
-                                     when :purple then "bg-purple-200 dark:bg-purple-700"
-                                     else "bg-blue-200 dark:bg-blue-700"
-                                     end
+                          when :blue then "bg-blue-200 dark:bg-blue-700"
+                          when :green then "bg-green-200 dark:bg-green-700"
+                          when :red then "bg-red-200 dark:bg-red-700"
+                          when :yellow then "bg-yellow-200 dark:bg-yellow-700"
+                          when :indigo then "bg-indigo-200 dark:bg-indigo-700"
+                          when :purple then "bg-purple-200 dark:bg-purple-700"
+                          else "bg-blue-200 dark:bg-blue-700"
+                          end
                           "absolute #{left_position} top-full w-0.5 h-6 #{color_bg}"
-                        else
+    else
                           "absolute #{left_position} top-full w-0.5 h-6 bg-gray-200 dark:bg-gray-700"
-                        end
+    end
 
     tag.div(class: connector_classes)
   end
@@ -212,7 +212,7 @@ class Fluxbit::StepperComponent < Fluxbit::Component
 
       @title = @props.delete(:title)
       @description = @props.delete(:description)
-      @state = options @props.delete(:state), collection: [:pending, :active, :completed], default: :pending
+      @state = options @props.delete(:state), collection: [ :pending, :active, :completed ], default: :pending
       @number = @props.delete(:number)
 
       remove_class_from_props(@props)

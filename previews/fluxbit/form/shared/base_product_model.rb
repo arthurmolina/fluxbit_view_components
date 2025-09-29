@@ -144,7 +144,7 @@ class BaseProductModel
 
   # Required for form_with
   def to_key
-    persisted? ? [id] : nil
+    persisted? ? [ id ] : nil
   end
 
   def to_model

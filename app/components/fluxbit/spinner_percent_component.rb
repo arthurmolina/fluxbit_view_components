@@ -24,10 +24,10 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
     super
     @props = props
 
-    @color = options @props.delete(:color), collection: [:default, :info, :success, :failure, :warning, :pink, :purple], default: @@color
+    @color = options @props.delete(:color), collection: [ :default, :info, :success, :failure, :warning, :pink, :purple ], default: @@color
     @size = options @props.delete(:size), collection: (-1..4).to_a, default: @@size
-    @percent = [@props.delete(:percent) || @@percent, 0].max
-    @percent = [@percent, 100].min
+    @percent = [ @props.delete(:percent) || @@percent, 0 ].max
+    @percent = [ @percent, 100 ].min
     @label = @props.delete(:label) || @@label
     @show_percent = @props.delete(:show_percent)
     @show_percent = @@show_percent if @show_percent.nil?
@@ -35,7 +35,7 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
     @label_html = @props.delete(:label_html) || {}
     @animate = @props.delete(:animate)
     @animate = @@animate if @animate.nil?
-    @speed = options @props.delete(:speed), collection: [:slow, :normal, :fast, :very_fast], default: @@speed
+    @speed = options @props.delete(:speed), collection: [ :slow, :normal, :fast, :very_fast ], default: @@speed
 
     add class: [
       styles[:base],
@@ -78,7 +78,7 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
   end
 
   def svg_classes
-    classes = [styles[:sizes][@size]]
+    classes = [ styles[:sizes][@size] ]
     classes << styles[:speeds][@speed] if @animate
     classes.compact.join(" ")
   end

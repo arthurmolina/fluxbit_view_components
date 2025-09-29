@@ -38,7 +38,7 @@ class Fluxbit::SkeletonComponentTest < ViewComponent::TestCase
   end
 
   def test_renders_image_skeleton_with_sizes
-    [:small, :medium, :large].each do |size|
+    [ :small, :medium, :large ].each do |size|
       render_inline(Fluxbit::SkeletonComponent.new(variant: :image, size: size))
 
       case size
@@ -62,7 +62,7 @@ class Fluxbit::SkeletonComponentTest < ViewComponent::TestCase
   end
 
   def test_renders_avatar_skeleton_with_sizes
-    [:small, :medium, :large].each do |size|
+    [ :small, :medium, :large ].each do |size|
       render_inline(Fluxbit::SkeletonComponent.new(variant: :avatar, size: size))
 
       case size
@@ -183,7 +183,7 @@ class Fluxbit::SkeletonComponentTest < ViewComponent::TestCase
   end
 
   def test_all_variants_render_successfully
-    variants = [:default, :text, :image, :video, :avatar, :card, :widget, :list, :testimonial, :button]
+    variants = [ :default, :text, :image, :video, :avatar, :card, :widget, :list, :testimonial, :button ]
 
     variants.each do |variant|
       render_inline(Fluxbit::SkeletonComponent.new(variant: variant))
@@ -194,8 +194,8 @@ class Fluxbit::SkeletonComponentTest < ViewComponent::TestCase
   end
 
   def test_different_sizes_for_sizeable_variants
-    sizeable_variants = [:image, :video, :avatar]
-    sizes = [:small, :medium, :large]
+    sizeable_variants = [ :image, :video, :avatar ]
+    sizes = [ :small, :medium, :large ]
 
     sizeable_variants.each do |variant|
       sizes.each do |size|

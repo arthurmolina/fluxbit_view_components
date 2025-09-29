@@ -45,17 +45,17 @@ class Fluxbit::ProgressComponent < Fluxbit::Component
     @label_progress = options(@props.delete(:label_progress), default: @@label_progress)
     @label_text = options(@props.delete(:label_text), default: @@label_text)
     @progress_label_position = options(@props.delete(:progress_label_position),
-                                      collection: [:inside, :outside],
+                                      collection: [ :inside, :outside ],
                                       default: @@progress_label_position)
     @text_label_position = options(@props.delete(:text_label_position),
-                                  collection: [:inside, :outside],
+                                  collection: [ :inside, :outside ],
                                   default: @@text_label_position)
     @label_html = options(@props.delete(:label_html), default: @@label_html)
     @stimulus = options(@props.delete(:stimulus), default: @@stimulus)
 
     # Sanitize progress value
-    @progress = [@progress.to_i, 0].max
-    @progress = [@progress, 100].min
+    @progress = [ @progress.to_i, 0 ].max
+    @progress = [ @progress, 100 ].min
 
     # Apply styling
     declare_classes
@@ -81,7 +81,7 @@ class Fluxbit::ProgressComponent < Fluxbit::Component
 
     # Add Stimulus controller attributes if enabled
     if @stimulus
-      @props["data-controller"] = [@props["data-controller"], "fx-progress"].compact.join(" ")
+      @props["data-controller"] = [ @props["data-controller"], "fx-progress" ].compact.join(" ")
       @props["data-fx-progress-progress-value"] = @progress
       @props["data-fx-progress-animate-value"] = true
     end
@@ -133,7 +133,7 @@ class Fluxbit::ProgressComponent < Fluxbit::Component
   end
 
   def progress_bar_classes
-    classes = [styles[:bar][:base]]
+    classes = [ styles[:bar][:base] ]
     classes << styles[:bar][:colors][@color]
     classes << styles[:bar][:text_sizes][@size] if has_inside_labels?
     classes.join(" ")

@@ -194,7 +194,7 @@ class Fluxbit::TimelineComponentTest < ViewComponent::TestCase
   end
 
   def test_all_variants_render_successfully
-    variants = [:default, :vertical, :stepper, :activity]
+    variants = [ :default, :vertical, :stepper, :activity ]
 
     variants.each do |variant|
       render_inline(Fluxbit::TimelineComponent.new(variant: variant)) do |timeline|
@@ -206,7 +206,7 @@ class Fluxbit::TimelineComponentTest < ViewComponent::TestCase
   end
 
   def test_all_positions_render_successfully
-    positions = [:left, :center, :right]
+    positions = [ :left, :center, :right ]
 
     positions.each do |position|
       render_inline(Fluxbit::TimelineComponent.new(position: position)) do |timeline|
@@ -218,7 +218,7 @@ class Fluxbit::TimelineComponentTest < ViewComponent::TestCase
   end
 
   def test_all_statuses_render_successfully
-    statuses = [:default, :completed, :current, :pending]
+    statuses = [ :default, :completed, :current, :pending ]
 
     statuses.each do |status|
       render_inline(Fluxbit::TimelineComponent.new) do |timeline|

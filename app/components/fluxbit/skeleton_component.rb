@@ -32,11 +32,11 @@ class Fluxbit::SkeletonComponent < Fluxbit::Component
     @props = props
 
     @variant = options(@props.delete(:variant),
-                       collection: [:default, :text, :image, :video, :avatar, :card, :widget, :list, :testimonial, :button],
+                       collection: [ :default, :text, :image, :video, :avatar, :card, :widget, :list, :testimonial, :button ],
                        default: @@variant)
     @animation = options(@props.delete(:animation), default: @@animation)
     @rows = options(@props.delete(:rows), default: @@rows).to_i
-    @size = options(@props.delete(:size), collection: [:small, :medium, :large], default: :medium)
+    @size = options(@props.delete(:size), collection: [ :small, :medium, :large ], default: :medium)
     @lines = @props.delete(:lines)&.to_i
 
     declare_classes
@@ -86,10 +86,10 @@ class Fluxbit::SkeletonComponent < Fluxbit::Component
 
     lines_count.times do |index|
       width_class = case index
-                    when 0 then "w-48"
-                    when lines_count - 1 then "w-32"
-                    else "w-full"
-                    end
+      when 0 then "w-48"
+      when lines_count - 1 then "w-32"
+      else "w-full"
+      end
 
       content << tag.div(class: "#{styles[:text][:line]} #{width_class} #{styles[:spacing][:small]}")
     end

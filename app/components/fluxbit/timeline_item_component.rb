@@ -29,9 +29,9 @@ class Fluxbit::TimelineItemComponent < Fluxbit::Component
     @description = @props.delete(:description)
     @date = @props.delete(:date)
     @icon = @props.delete(:icon)
-    @status = options @props.delete(:status), collection: [:default, :completed, :current, :pending], default: :default
-    @color = options @props.delete(:color), collection: [:blue, :green, :red, :yellow, :purple, :indigo], default: :blue
-    @ring = options @props.delete(:ring), collection: [:none, :small, :default, :large], default: :default
+    @status = options @props.delete(:status), collection: [ :default, :completed, :current, :pending ], default: :default
+    @color = options @props.delete(:color), collection: [ :blue, :green, :red, :yellow, :purple, :indigo ], default: :blue
+    @ring = options @props.delete(:ring), collection: [ :none, :small, :default, :large ], default: :default
     @href = @props.delete(:href)
 
     if @variant != :stepper

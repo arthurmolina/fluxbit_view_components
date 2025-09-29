@@ -37,14 +37,14 @@ class Fluxbit::Components::SkeletonComponentPreview < ViewComponent::Preview
   private
 
   def variant_options
-    [:default, :text, :image, :video, :avatar, :card, :widget, :list, :testimonial, :button]
+    [ :default, :text, :image, :video, :avatar, :card, :widget, :list, :testimonial, :button ]
   end
 
   def rows_options
-    ["1", "2", "3", "4", "5"]
+    [ "1", "2", "3", "4", "5" ]
   end
 
   def size_options
-    [:small, :medium, :large]
+    [ :small, :medium, :large ]
   end
 end

@@ -115,7 +115,7 @@ class Fluxbit::AccordionComponent < Fluxbit::Component
           tag.div(
             body || "",
             id: content_id,
-            class: [@open ? "" : "hidden", content_classes].join(" "),
+            class: [ @open ? "" : "hidden", content_classes ].join(" "),
             "aria-labelledby" => header_id
           )
         )

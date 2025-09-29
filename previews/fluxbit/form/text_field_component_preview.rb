@@ -107,6 +107,6 @@ class Fluxbit::Form::TextFieldComponentPreview < ViewComponent::Preview
   end
 
   def icon_options
-    [nil, "heroicons_solid:user", "heroicons_solid:envelope", "heroicons_solid:eye", "heroicons_solid:lock-closed", "heroicons_solid:phone", "heroicons_solid:calendar", "heroicons_solid:magnifying-glass", "heroicons_solid:credit-card"]
+    [ nil, "heroicons_solid:user", "heroicons_solid:envelope", "heroicons_solid:eye", "heroicons_solid:lock-closed", "heroicons_solid:phone", "heroicons_solid:calendar", "heroicons_solid:magnifying-glass", "heroicons_solid:credit-card" ]
   end
 end

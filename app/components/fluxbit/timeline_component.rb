@@ -34,8 +34,8 @@ class Fluxbit::TimelineComponent < Fluxbit::Component
     super
     @props = props
 
-    @variant = options @props.delete(:variant), collection: [:default, :vertical, :stepper, :activity], default: @@variant
-    @position = options @props.delete(:position), collection: [:left, :center, :right], default: @@position
+    @variant = options @props.delete(:variant), collection: [ :default, :vertical, :stepper, :activity ], default: @@variant
+    @position = options @props.delete(:position), collection: [ :left, :center, :right ], default: @@position
 
     add class: [
       styles[:base],

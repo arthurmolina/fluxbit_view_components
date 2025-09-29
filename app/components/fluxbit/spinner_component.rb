@@ -18,7 +18,7 @@ class Fluxbit::SpinnerComponent < Fluxbit::Component
     super
     @props = props
 
-    @color = options @props.delete(:color), collection: [:default, :info, :success, :failure, :warning, :pink, :purple], default: @@color
+    @color = options @props.delete(:color), collection: [ :default, :info, :success, :failure, :warning, :pink, :purple ], default: @@color
     @size = options @props.delete(:size), collection: (0..4).to_a, default: @@size
     @label = @props.delete(:label) || @@label
 

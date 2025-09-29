@@ -28,7 +28,7 @@ class Fluxbit::SpeedDialComponent < Fluxbit::Component
     super
     @props = props
 
-    @position = options @props.delete(:position), collection: [:top_left, :top_right, :bottom_left, :bottom_right], default: @@position
+    @position = options @props.delete(:position), collection: [ :top_left, :top_right, :bottom_left, :bottom_right ], default: @@position
     @square = options @props.delete(:square), default: @@square
     @text_outside = options @props.delete(:text_outside), default: @@text_outside
     @trigger_icon = @props.delete(:trigger_icon) || "heroicons_solid:plus"
@@ -60,7 +60,7 @@ class Fluxbit::SpeedDialComponent < Fluxbit::Component
   end
 
   def top_position?
-    @position.in?([:top_left, :top_right])
+    @position.in?([ :top_left, :top_right ])
   end
 
   def menu_classes

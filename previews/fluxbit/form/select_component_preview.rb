@@ -75,7 +75,7 @@ class Fluxbit::Form::SelectComponentPreview < ViewComponent::Preview
   private
 
   def color_options
-    [:default, :success, :danger, :warning, :info]
+    [ :default, :success, :danger, :warning, :info ]
   end
 
   def helper_popover_placement_options
@@ -84,10 +84,10 @@ class Fluxbit::Form::SelectComponentPreview < ViewComponent::Preview
 
   def basic_options
     [
-      ["Administrator", "admin"],
-      ["Editor", "editor"],
-      ["Viewer", "viewer"],
-      ["Guest", "guest"]
+      [ "Administrator", "admin" ],
+      [ "Editor", "editor" ],
+      [ "Viewer", "viewer" ],
+      [ "Guest", "guest" ]
     ]
   end
 end

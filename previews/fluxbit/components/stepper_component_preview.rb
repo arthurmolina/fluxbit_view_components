@@ -50,14 +50,14 @@ class Fluxbit::Components::StepperComponentPreview < ViewComponent::Preview
   private
 
   def orientation_options
-    [:horizontal, :vertical]
+    [ :horizontal, :vertical ]
   end
 
   def variant_options
-    [:default, :progress, :detailed]
+    [ :default, :progress, :detailed ]
   end
 
   def color_options
-    [:blue, :green, :red, :yellow, :indigo, :purple]
+    [ :blue, :green, :red, :yellow, :indigo, :purple ]
   end
 end
