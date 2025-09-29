@@ -1,0 +1,38 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Text Label Inside</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 65,
+      text_label: "Loading",
+      label_text: true,
+      text_label_position: :inside,
+      size: 2
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Progress Label Inside</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 80,
+      label_progress: true,
+      progress_label_position: :inside,
+      color: :green,
+      size: 2
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Both Labels Inside and Custom Class</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 90,
+      text_label: "Almost Done",
+      label_text: true,
+      text_label_position: :inside,
+      label_progress: true,
+      progress_label_position: :inside,
+      label_html: {class: "font-bold text-yellow-200", remove_class: "font-medium text-xs"},
+      color: :indigo,
+      size: 3
+    ) %>
+  </div>
+</div>

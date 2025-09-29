@@ -14,6 +14,7 @@ All Fluxbit controllers follow the `fx-*` naming convention and are designed to 
 ### UI Components
 - **[FxModal](Controllers/FxModal.md)**: Modal dialog management with backdrop and event handling
 - **[FxDrawer](Controllers/FxDrawer.md)**: Sliding drawer/sidebar components with position control
+- **[FxProgress](Controllers/FxProgress.md)**: Progress bars with animations and multi-bar support
 - **[FxSpinnerPercent](Controllers/FxSpinnerPercent.md)**: Circular progress indicators with animations
 
 ### Form Enhancement
@@ -70,6 +71,62 @@ Controllers can work together for complex interactions:
 &lt;/div&gt;
 ```
 
+## Vanilla JavaScript Access
+
+All Fluxbit controllers are accessible from vanilla JavaScript through the global `FluxbitControllers` object:
+
+### Global Controller Access
+
+```javascript
+// Available after page load
+window.FluxbitControllers = {
+  FxProgress,
+  FxModal,
+  FxDrawer,
+  FxAssigner,
+  FxAutoSubmit,
+  FxMethodLink,
+  FxRowClick,
+  FxSelectAll,
+  FxSpinnerPercent
+}
+```
+
+### Static Helper Methods
+
+Many controllers provide static methods for common operations:
+
+```javascript
+// Progress control
+FluxbitControllers.FxProgress.updateProgress('[data-controller="fx-progress"]', 50);
+FluxbitControllers.FxProgress.animateProgress('[data-controller="fx-progress"]', 100, 2000);
+
+// Target specific elements by ID
+FluxbitControllers.FxProgress.updateProgressById('[data-controller="fx-progress"]', 'upload', (controller) => {
+  controller.incrementProgress(25);
+});
+```
+
+### Direct Controller Instance Access
+
+```javascript
+// Get controller instance
+const controller = FluxbitControllers.FxProgress.getController('[data-controller="fx-progress"]');
+
+// Call instance methods
+controller.setProgress(75);
+controller.animateToProgress(100, 1500);
+```
+
+### Traditional Stimulus Access
+
+```javascript
+// Standard Stimulus approach
+const element = document.querySelector('[data-controller="fx-progress"]');
+const controller = application.getControllerForElementAndIdentifier(element, 'fx-progress');
+controller.setProgress(50);
+```
+
 ## Best Practices
 
 1. **Performance**: Use appropriate debounce delays for auto-submit
@@ -77,6 +134,7 @@ Controllers can work together for complex interactions:
 3. **Error Handling**: Always check for element existence before manipulation
 4. **Event Cleanup**: Controllers properly clean up event listeners on disconnect
 5. **Integration**: Use custom events for loose coupling between controllers
+6. **Vanilla JS**: Use static methods for simple operations, direct access for complex interactions
 
 ## Quick Reference
 
@@ -89,4 +147,5 @@ Controllers can work together for complex interactions:
 | [FxSelectAll](Controllers/FxSelectAll.md) | Bulk selection | Master checkbox, count display, UI updates |
 | [FxMethodLink](Controllers/FxMethodLink.md) | HTTP methods | Form data collection, parameter handling |
 | [FxAssigner](Controllers/FxAssigner.md) | DOM manipulation | Dynamic attributes, element references |
+| [FxProgress](Controllers/FxProgress.md) | Progress bars | Multi-bar support, animations, vanilla JS API |
 | [FxSpinnerPercent](Controllers/FxSpinnerPercent.md) | Progress indicators | Animations, custom text, accessibility |

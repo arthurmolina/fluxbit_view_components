@@ -1,0 +1,8 @@
+<div class="space-y-4">
+  <% [:default, :dark, :blue, :red, :green, :yellow, :indigo, :purple, :cyan, :gray, :lime, :pink, :teal].each do |color| %>
+    <div>
+      <span class="text-sm text-gray-600 capitalize mb-1 block"><%= color %></span>
+      <%= render Fluxbit::ProgressComponent.new(progress: 65, color: color) %>
+    </div>
+  <% end %>
+</div>

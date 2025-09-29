@@ -1,0 +1,31 @@
+<div class="space-y-4">
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Adding Custom Classes</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 50,
+      class: "shadow-lg border border-gray-300",
+      color: :blue
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Removing Default Classes</h3>
+    <p class="text-sm text-gray-600 mb-2">Removed rounded corners and changed background</p>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 65,
+      remove_class: "rounded-full bg-gray-200",
+      class: "bg-gray-100 rounded-lg border",
+      color: :green
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Custom Styling</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 80,
+      class: "shadow-inner bg-gradient-to-r from-gray-100 to-gray-200",
+      color: :purple,
+      size: 2
+    ) %>
+  </div>
+</div>

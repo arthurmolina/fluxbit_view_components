@@ -1,0 +1,34 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Text Label Outside</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 45,
+      text_label: "Flowbite",
+      label_text: true,
+      text_label_position: :outside
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Progress Label Outside</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 70,
+      label_progress: true,
+      progress_label_position: :outside,
+      color: :green
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Both Labels Outside</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 85,
+      text_label: "Flowbite",
+      label_text: true,
+      text_label_position: :outside,
+      label_progress: true,
+      progress_label_position: :outside,
+      color: :purple
+    ) %>
+  </div>
+</div>

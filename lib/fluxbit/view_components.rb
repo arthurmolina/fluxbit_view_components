@@ -36,6 +36,7 @@ module Fluxbit
     require "fluxbit/config/pagination_component"
     require "fluxbit/config/paragraph_component"
     require "fluxbit/config/popover_component"
+    require "fluxbit/config/progress_component"
     require "fluxbit/config/skeleton_component"
     require "fluxbit/config/speed_dial_component"
     require "fluxbit/config/spinner_component"

@@ -1,0 +1,29 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Text Outside, Progress Inside</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 60,
+      text_label: "Processing",
+      label_text: true,
+      text_label_position: :outside,
+      label_progress: true,
+      progress_label_position: :inside,
+      color: :blue,
+      size: 2
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Text Inside, Progress Outside</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 75,
+      text_label: "Upload",
+      label_text: true,
+      text_label_position: :inside,
+      label_progress: true,
+      progress_label_position: :outside,
+      color: :green,
+      size: 2
+    ) %>
+  </div>
+</div>

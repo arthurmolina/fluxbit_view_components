@@ -1,0 +1,38 @@
+<div class="space-y-4">
+  <div>
+    <h3 class="text-lg font-semibold mb-2">With Custom ID and Data Attributes</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 40,
+      id: "custom-progress-bar",
+      "data-testid" => "main-progress",
+      "data-value" => "40",
+      color: :blue
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">With ARIA Attributes</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 75,
+      role: "progressbar",
+      "aria-valuenow" => "75",
+      "aria-valuemin" => "0",
+      "aria-valuemax" => "100",
+      "aria-label" => "File upload progress",
+      color: :green,
+      size: 2
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">With Event Handlers</h3>
+    <%= render Fluxbit::ProgressComponent.new(
+      progress: 90,
+      onclick: "alert('Progress clicked!')",
+      onmouseover: "this.style.opacity='0.8'",
+      onmouseout: "this.style.opacity='1'",
+      color: :purple,
+      style: "cursor: pointer; transition: opacity 0.2s"
+    ) %>
+  </div>
+</div>

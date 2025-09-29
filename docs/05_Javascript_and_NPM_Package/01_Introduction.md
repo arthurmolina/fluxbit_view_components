@@ -10,6 +10,7 @@ Fluxbit ViewComponents provides a comprehensive JavaScript package that includes
 The JavaScript package (`fluxbit-view-components`) is distributed via NPM and provides:
 
 - **Stimulus Controllers**: Pre-built controllers for interactive components
+- **Vanilla JavaScript API**: Global access methods for controller integration
 - **Flowbite Integration**: Leverages Flowbite components for enhanced UI
 - **Rails Integration**: Seamless integration with Rails applications using Turbo and Stimulus
 
@@ -34,6 +35,7 @@ The package includes the following Stimulus controllers:
 - **FxDrawer**: Sliding drawer/sidebar component behavior
 - **FxMethodLink**: Enhanced link handling with HTTP method support
 - **FxModal**: Modal dialog component behavior
+- **FxProgress**: Progress bars with animations and multi-bar support
 - **FxRowClick**: Clickable table rows functionality
 - **FxSelectAll**: Bulk selection functionality
 - **FxSpinnerPercent**: Circular progress indicators with animations

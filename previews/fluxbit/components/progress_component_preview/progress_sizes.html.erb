@@ -1,0 +1,10 @@
+<div class="space-y-4">
+  <% [0, 1, 2, 3].each_with_index do |size, index| %>
+    <div>
+      <span class="text-sm text-gray-600 mb-1 block">
+        Size <%= size %> - <%= %w[Small Medium Large Extra\ Large][index] %>
+      </span>
+      <%= render Fluxbit::ProgressComponent.new(progress: 60, size: size, color: :blue) %>
+    </div>
+  <% end %>
+</div>
