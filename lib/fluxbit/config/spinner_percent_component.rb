@@ -2,7 +2,7 @@
 
 module Fluxbit::Config::SpinnerPercentComponent
   mattr_accessor :color, default: :default
-  mattr_accessor :size, default: 1
+  mattr_accessor :size, default: 2
   mattr_accessor :percent, default: 10
   mattr_accessor :label, default: "Loading..."
   mattr_accessor :show_percent, default: true
@@ -13,14 +13,14 @@ module Fluxbit::Config::SpinnerPercentComponent
   mattr_accessor :styles do
     {
       base: "relative",
-      sizes: {
-        -1 => "w-12 h-12",    # -1 - xxs
-        0 => "w-16 h-16",     # 0 - xs
-        1 => "w-20 h-20",     # 1 - sm (default)
-        2 => "w-24 h-24",     # 2 - md
-        3 => "w-32 h-32",     # 3 - lg
-        4 => "w-40 h-40"      # 4 - xl
-      },
+      sizes: [
+        "w-12 h-12",    # 0 - xxs
+        "w-16 h-16",    # 1 - xs
+        "w-20 h-20",    # 2 - sm (default)
+        "w-24 h-24",    # 3 - md
+        "w-32 h-32",    # 4 - lg
+        "w-40 h-40"     # 5 - xl
+      ],
       colors: {
         default: "text-gray-200 stroke-blue-600",
         info: "text-gray-200 stroke-cyan-600",

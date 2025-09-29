@@ -26,25 +26,9 @@
     />
   </svg>
 
-  <% if @text %>
-    <% label_attrs = @label_html.dup %>
-    <% label_attrs.delete(:class) # Remove class from label_html as we handle it separately %>
-    <% label_attrs.delete(:remove_class) # Remove remove_class as it's used in label_text_classes %>
-    <% label_attrs.delete("remove_class") # Handle string key as well %>
-    <% label_attrs[:class] = label_text_classes %>
-    <% label_attrs[:"data-fx-spinner-percent-target"] = "text" %>
+  <% if @text || @show_percent %>
     <div <%= tag.attributes(label_attrs) %>>
-      <%= @text %>
-    </div>
-  <% elsif @show_percent %>
-    <% label_attrs = @label_html.dup %>
-    <% label_attrs.delete(:class) # Remove class from label_html as we handle it separately %>
-    <% label_attrs.delete(:remove_class) # Remove remove_class as it's used in label_text_classes %>
-    <% label_attrs.delete("remove_class") # Handle string key as well %>
-    <% label_attrs[:class] = label_text_classes %>
-    <% label_attrs[:"data-fx-spinner-percent-target"] = "text" %>
-    <div <%= tag.attributes(label_attrs) %>>
-      <%= @percent %>%
+      <%= @text || "#{@percent}%" %>
     </div>
   <% end %>
 

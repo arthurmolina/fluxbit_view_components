@@ -24,8 +24,8 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
     super
     @props = props
 
-    @color = options @props.delete(:color), collection: [ :default, :info, :success, :failure, :warning, :pink, :purple ], default: @@color
-    @size = options @props.delete(:size), collection: (-1..4).to_a, default: @@size
+    @color = options @props.delete(:color), collection: styles[:colors].keys, default: @@color
+    @size = options @props.delete(:size), collection: (0..styles[:sizes].count - 1).to_a, default: @@size
     @percent = [ @props.delete(:percent) || @@percent, 0 ].max
     @percent = [ @percent, 100 ].min
     @label = @props.delete(:label) || @@label
@@ -35,7 +35,7 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
     @label_html = @props.delete(:label_html) || {}
     @animate = @props.delete(:animate)
     @animate = @@animate if @animate.nil?
-    @speed = options @props.delete(:speed), collection: [ :slow, :normal, :fast, :very_fast ], default: @@speed
+    @speed = options @props.delete(:speed), collection: styles[:speeds].keys, default: @@speed
 
     add class: [
       styles[:base],
@@ -123,5 +123,16 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
 
     # Combine and join
     (default_classes + custom_classes).uniq.join(" ")
+  end
+
+  def label_attrs
+    label_attrs = @label_html.dup
+    label_attrs.delete(:class)
+    label_attrs.delete(:remove_class)
+    label_attrs.delete("remove_class")
+    label_attrs[:class] = label_text_classes
+    label_attrs[:"data-fx-spinner-percent-target"] = "text"
+
+    label_attrs
   end
 end

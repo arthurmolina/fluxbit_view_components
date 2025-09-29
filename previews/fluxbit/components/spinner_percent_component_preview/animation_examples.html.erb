@@ -37,23 +37,24 @@
     </div>
 
     <!-- Animation Speed Control -->
+
     <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
       <h4 class="font-medium mb-4">Animation Speeds</h4>
       <div class="grid grid-cols-2 gap-4 mb-4">
         <div class="text-center">
-          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :info, animate: true, speed: :slow, size: 1) %>
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :info, animate: true, speed: :slow, size: 3) %>
           <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Slow (3s)</p>
         </div>
         <div class="text-center">
-          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :success, animate: true, speed: :normal, size: 1) %>
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :success, animate: true, speed: :normal, size: 3) %>
           <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Normal (1s)</p>
         </div>
         <div class="text-center">
-          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :warning, animate: true, speed: :fast, size: 1) %>
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :warning, animate: true, speed: :fast, size: 3) %>
           <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Fast (0.5s)</p>
         </div>
         <div class="text-center">
-          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :failure, animate: true, speed: :very_fast, size: 1) %>
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 25, color: :failure, animate: true, speed: :very_fast, size: 3) %>
           <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Very Fast (0.3s)</p>
         </div>
       </div>
@@ -68,7 +69,7 @@
           percent: 60,
           color: :purple,
           animate: false,
-          size: 2
+          size: 4
         ) %>
         <div class="flex flex-col gap-2">
           <button onclick="toggleAnimation()" class="px-3 py-1 bg-purple-500 text-white rounded text-sm">
@@ -106,15 +107,15 @@
       <h4 class="font-medium mb-4">Common Use Cases</h4>
       <div class="space-y-3">
         <div class="flex items-center gap-3">
-          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 0, color: :info, animate: true, show_percent: false, size: 0) %>
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 0, color: :info, animate: true, show_percent: false, size: 1) %>
           <span class="text-sm">Indeterminate loading</span>
         </div>
         <div class="flex items-center gap-3">
-          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 35, color: :warning, animate: true, size: 0) %>
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 35, color: :warning, animate: true, size: 1) %>
           <span class="text-sm">File upload progress</span>
         </div>
         <div class="flex items-center gap-3">
-          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 100, color: :success, animate: false, size: 0) %>
+          <%= render Fluxbit::SpinnerPercentComponent.new(percent: 100, color: :success, animate: false, size: 1) %>
           <span class="text-sm">Task completed</span>
         </div>
       </div>
