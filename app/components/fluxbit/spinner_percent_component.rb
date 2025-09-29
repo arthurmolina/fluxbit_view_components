@@ -60,6 +60,14 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
     remove_class_from_props(@props)
   end
 
+  def call
+    content_tag(:div, **@props) do
+      concat svg_content
+      concat text_content
+      concat screen_reader_content
+    end
+  end
+
   private
 
   def container_classes
@@ -134,5 +142,33 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
     label_attrs[:"data-fx-spinner-percent-target"] = "text"
 
     label_attrs
+  end
+
+  def svg_content
+    tag.svg(class: "transform -rotate-90 #{svg_classes}", viewBox: "0 0 100 100") do
+      concat(
+        tag.circle(cx: "50", cy: "50", r: "45", stroke: "currentColor",
+          "stroke-width": "8", fill: "transparent", class: background_circle_classes)
+      )
+      concat(
+        tag.circle(cx: "50", cy: "50", r: "45", stroke: "currentColor",
+          "stroke-width": "8", fill: "transparent", "stroke-linecap": "round",
+          "stroke-dasharray": stroke_dasharray, "stroke-dashoffset": stroke_dashoffset,
+          class: "#{progress_circle_classes} transition-all duration-300 ease-in-out",
+          "data-fx-spinner-percent-target": "progress")
+      )
+    end
+  end
+
+  def text_content
+    return "".html_safe unless @text || @show_percent
+
+    tag.div(**label_attrs) do
+      @text || "#{@percent}%"
+    end
+  end
+
+  def screen_reader_content
+    tag.span(@label, class: screen_reader_classes)
   end
 end

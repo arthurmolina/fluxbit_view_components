@@ -73,30 +73,30 @@ class Fluxbit::SpinnerPercentComponentTest < ViewComponent::TestCase
   end
 
   def test_renders_spinner_percent_with_different_sizes
-    # Test xs size (0)
+    # Test xxs size (0)
     render_inline(Fluxbit::SpinnerPercentComponent.new(size: 0))
+    assert_selector "div.w-12.h-12"
+    assert_selector "svg.w-12.h-12"
+
+    # Test xs size (1)
+    render_inline(Fluxbit::SpinnerPercentComponent.new(size: 1))
     assert_selector "div.w-16.h-16"
     assert_selector "svg.w-16.h-16"
 
-    # Test sm size (1) - default
-    render_inline(Fluxbit::SpinnerPercentComponent.new(size: 1))
+    # Test sm size (2) - default
+    render_inline(Fluxbit::SpinnerPercentComponent.new(size: 2))
     assert_selector "div.w-20.h-20"
     assert_selector "svg.w-20.h-20"
 
-    # Test md size (2)
-    render_inline(Fluxbit::SpinnerPercentComponent.new(size: 2))
+    # Test md size (3)
+    render_inline(Fluxbit::SpinnerPercentComponent.new(size: 3))
     assert_selector "div.w-24.h-24"
     assert_selector "svg.w-24.h-24"
 
-    # Test lg size (3)
-    render_inline(Fluxbit::SpinnerPercentComponent.new(size: 3))
+    # Test lg size (4)
+    render_inline(Fluxbit::SpinnerPercentComponent.new(size: 4))
     assert_selector "div.w-32.h-32"
     assert_selector "svg.w-32.h-32"
-
-    # Test xl size (4)
-    render_inline(Fluxbit::SpinnerPercentComponent.new(size: 4))
-    assert_selector "div.w-40.h-40"
-    assert_selector "svg.w-40.h-40"
   end
 
   def test_renders_spinner_percent_with_custom_label
@@ -200,7 +200,7 @@ class Fluxbit::SpinnerPercentComponentTest < ViewComponent::TestCase
   def test_combines_multiple_options
     render_inline(Fluxbit::SpinnerPercentComponent.new(
       color: :success,
-      size: 3,
+      size: 4,
       percent: 85,
       label: "Uploading...",
       show_percent: true,
@@ -283,7 +283,7 @@ class Fluxbit::SpinnerPercentComponentTest < ViewComponent::TestCase
   end
 
   def test_renders_spinner_percent_with_smallest_size
-    render_inline(Fluxbit::SpinnerPercentComponent.new(size: -1, percent: 50))
+    render_inline(Fluxbit::SpinnerPercentComponent.new(size: 0, percent: 50))
 
     assert_selector "div.relative.w-12.h-12"
     assert_selector "svg.w-12.h-12"
