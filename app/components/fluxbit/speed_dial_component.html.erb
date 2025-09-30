@@ -1,8 +1,12 @@
 <div <%= tag.attributes(**@props) %> data-dial-init>
   <% if top_position? %>
     <button type="button" data-dial-toggle="<%= menu_id %>" aria-controls="<%= menu_id %>" aria-expanded="false" class="<%= classes trigger_classes %>">
-      <%= icon @trigger_icon, class: styles[:trigger][:icon] %>
-      <span class="sr-only">Open actions menu</span>
+      <% if @trigger_icon.nil? %>
+        <%= plus_icon(class: styles[:trigger][:icon]) %>
+      <% else %>
+        <%= icon @trigger_icon, class: styles[:trigger][:icon] %>
+      <% end %>
+      <span class="<%= styles[:screen_reader] %>"><%= t("fluxbit.speed_dial.open_actions_menu") %></span>
     </button>
 
     <div id="<%= menu_id %>" class="<%= classes menu_classes %>">
@@ -18,8 +22,12 @@
     </div>
 
     <button type="button" data-dial-toggle="<%= menu_id %>" aria-controls="<%= menu_id %>" aria-expanded="false" class="<%= classes trigger_classes %>">
-      <%= icon @trigger_icon, class: styles[:trigger][:icon] %>
-      <span class="sr-only">Open actions menu</span>
+      <% if @trigger_icon.nil? %>
+        <%= plus_icon(class: styles[:trigger][:icon]) %>
+      <% else %>
+        <%= icon @trigger_icon, class: styles[:trigger][:icon] %>
+      <% end %>
+      <span class="<%= styles[:screen_reader] %>"><%= t("fluxbit.speed_dial.open_actions_menu") %></span>
     </button>
   <% end %>
 </div>

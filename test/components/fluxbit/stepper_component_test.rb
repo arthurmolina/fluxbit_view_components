@@ -38,7 +38,7 @@ class Fluxbit::StepperComponentTest < ViewComponent::TestCase
 
   def test_renders_completed_step_with_checkmark
     render_inline(Fluxbit::StepperComponent.new) do |stepper|
-      stepper.with_step(title: "Step 1", state: :completed, number: "1")
+      stepper.with_step(title: "Step 1", state: :completed, number: "1", icon: "heroicons_solid:check")
     end
 
     assert_selector styled(:step, :default, :completed)

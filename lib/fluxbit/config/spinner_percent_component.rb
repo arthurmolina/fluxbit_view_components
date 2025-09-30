@@ -46,6 +46,15 @@ module Fluxbit::Config::SpinnerPercentComponent
         normal: "animate-spin duration-1000",    # 1 second per rotation (default)
         fast: "animate-spin duration-500",       # 0.5 seconds per rotation
         very_fast: "animate-spin duration-300"   # 0.3 seconds per rotation
+      },
+      svg: {
+        transform: "transform -rotate-90"
+      },
+      percentage_text: {
+        position: "absolute inset-0 flex items-center justify-center text-sm font-semibold"
+      },
+      progress_circle: {
+        transition: "transition-all duration-300 ease-in-out"
       }
     }
   end

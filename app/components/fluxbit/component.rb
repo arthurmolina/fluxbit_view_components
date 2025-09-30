@@ -170,6 +170,17 @@ class Fluxbit::Component < ViewComponent::Base
     end
   end
 
+  def plus_icon(**props)
+    props["aria-hidden"] = "true"
+    props[:xmlns] = "http://www.w3.org/2000/svg"
+    props[:fill] = "currentColor"
+    props[:viewBox] = "0 0 24 24"
+
+    tag.svg(**props) do
+      tag.path("fill-rule" => "evenodd", d: "M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z", "clip-rule" => "evenodd")
+    end
+  end
+
   def chevron_double_left(**props)
     add to: props, class: "w-3 h-2.5", first_element: true
     remove_class_from_props(props)

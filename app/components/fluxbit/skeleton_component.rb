@@ -86,23 +86,23 @@ class Fluxbit::SkeletonComponent < Fluxbit::Component
 
     lines_count.times do |index|
       width_class = case index
-      when 0 then "w-48"
-      when lines_count - 1 then "w-32"
-      else "w-full"
+      when 0 then styles[:widths][:first_line]
+      when lines_count - 1 then styles[:widths][:last_line]
+      else styles[:widths][:full]
       end
 
       content << tag.div(class: "#{styles[:text][:line]} #{width_class} #{styles[:spacing][:small]}")
     end
 
-    content << tag.span("Loading...", class: "sr-only")
+    content << tag.span(t("fluxbit.skeleton.loading"), class: styles[:screen_reader])
     safe_join(content)
   end
 
   def render_image_skeleton
     content = []
-    content << tag.div(class: "flex items-center justify-center #{styles[:image][@size]} w-full") do
+    content << tag.div(class: "#{styles[:image][:container]} #{styles[:image][@size]}") do
       concat(
-        tag.svg(class: "w-8 h-8 text-gray-200 dark:text-gray-600",
+        tag.svg(class: styles[:image][:icon],
                 "aria-hidden": "true",
                 xmlns: "http://www.w3.org/2000/svg",
                 fill: "currentColor",
@@ -113,15 +113,15 @@ class Fluxbit::SkeletonComponent < Fluxbit::Component
         end
       )
     end
-    content << tag.span("Loading...", class: "sr-only")
+    content << tag.span(t("fluxbit.skeleton.loading"), class: styles[:screen_reader])
     safe_join(content)
   end
 
   def render_video_skeleton
     content = []
-    content << tag.div(class: "flex items-center justify-center #{styles[:video][@size]} w-full") do
+    content << tag.div(class: "#{styles[:video][:container]} #{styles[:video][@size]}") do
       concat(
-        tag.svg(class: "w-10 h-10 text-gray-200 dark:text-gray-600",
+        tag.svg(class: styles[:video][:icon],
                 "aria-hidden": "true",
                 xmlns: "http://www.w3.org/2000/svg",
                 fill: "currentColor",
@@ -135,30 +135,30 @@ class Fluxbit::SkeletonComponent < Fluxbit::Component
         end
       )
     end
-    content << tag.span("Loading...", class: "sr-only")
+    content << tag.span(t("fluxbit.skeleton.loading"), class: styles[:screen_reader])
     safe_join(content)
   end
 
   def render_avatar_skeleton
     content = []
     content << tag.div(class: styles[:avatar][@size])
-    content << tag.span("Loading...", class: "sr-only")
+    content << tag.span(t("fluxbit.skeleton.loading"), class: styles[:screen_reader])
     safe_join(content)
   end
 
   def render_card_skeleton
     tag.div(class: styles[:card][:container]) do
       content = []
-      content << tag.div(class: "#{styles[:card][:header]} #{styles[:spacing][:medium]} w-48")
+      content << tag.div(class: "#{styles[:card][:header]} #{styles[:spacing][:medium]} #{styles[:widths][:card_header]}")
 
       lines_count = @lines || @rows
       lines_count.times do |index|
-        width_class = index == lines_count - 1 ? "w-32" : "w-full"
+        width_class = index == lines_count - 1 ? styles[:widths][:last_line] : styles[:widths][:full]
         spacing_class = index < lines_count - 1 ? styles[:spacing][:small] : ""
         content << tag.div(class: "#{styles[:card][:body]} #{spacing_class} #{width_class}")
       end
 
-      content << tag.span("Loading...", class: "sr-only")
+      content << tag.span(t("fluxbit.skeleton.loading"), class: styles[:screen_reader])
       safe_join(content)
     end
   end
@@ -166,16 +166,16 @@ class Fluxbit::SkeletonComponent < Fluxbit::Component
   def render_widget_skeleton
     tag.div(class: styles[:widget][:container]) do
       content = []
-      content << tag.div(class: "#{styles[:widget][:title]} w-48")
+      content << tag.div(class: "#{styles[:widget][:title]} #{styles[:widths][:widget_title]}")
 
       lines_count = @lines || @rows
       lines_count.times do |index|
-        width_class = index == lines_count - 1 ? "w-32" : "w-full"
+        width_class = index == lines_count - 1 ? styles[:widths][:last_line] : styles[:widths][:full]
         spacing_class = index < lines_count - 1 ? styles[:spacing][:small] : ""
         content << tag.div(class: "#{styles[:widget][:content]} #{spacing_class} #{width_class}")
       end
 
-      content << tag.span("Loading...", class: "sr-only")
+      content << tag.span(t("fluxbit.skeleton.loading"), class: styles[:screen_reader])
       safe_join(content)
     end
   end
@@ -190,14 +190,14 @@ class Fluxbit::SkeletonComponent < Fluxbit::Component
           concat(tag.div(class: styles[:list][:avatar]))
           concat(
             tag.div(class: styles[:list][:content]) do
-              concat(tag.div(class: "#{styles[:text][:line]} w-24 #{styles[:spacing][:small]}"))
-              concat(tag.div(class: "#{styles[:text][:small]} w-32"))
+              concat(tag.div(class: "#{styles[:text][:line]} #{styles[:widths][:list_name]} #{styles[:spacing][:small]}"))
+              concat(tag.div(class: "#{styles[:text][:small]} #{styles[:widths][:list_content]}"))
             end
           )
         end
       end
 
-      content << tag.span("Loading...", class: "sr-only")
+      content << tag.span(t("fluxbit.skeleton.loading"), class: styles[:screen_reader])
       safe_join(content)
     end
   end
@@ -208,22 +208,22 @@ class Fluxbit::SkeletonComponent < Fluxbit::Component
 
       lines_count = @lines || @rows
       lines_count.times do |index|
-        width = index == lines_count - 1 ? "w-24" : "w-full"
+        width = index == lines_count - 1 ? styles[:widths][:testimonial_last] : styles[:widths][:full]
         spacing_class = index < lines_count - 1 ? styles[:spacing][:small] : ""
         content << tag.div(class: "#{styles[:testimonial][:quote]} #{width} #{spacing_class}")
       end
 
       content << tag.div(class: styles[:testimonial][:author]) do
-        concat(tag.div(class: "w-8 h-8 bg-gray-200 rounded-full dark:bg-gray-700"))
+        concat(tag.div(class: styles[:testimonial][:avatar]))
         concat(
           tag.div do
-            concat(tag.div(class: "#{styles[:text][:line]} w-32 #{styles[:spacing][:small]}"))
-            concat(tag.div(class: "#{styles[:text][:small]} w-24"))
+            concat(tag.div(class: "#{styles[:text][:line]} #{styles[:widths][:testimonial_name]} #{styles[:spacing][:small]}"))
+            concat(tag.div(class: "#{styles[:text][:small]} #{styles[:widths][:testimonial_title]}"))
           end
         )
       end
 
-      content << tag.span("Loading...", class: "sr-only")
+      content << tag.span(t("fluxbit.skeleton.loading"), class: styles[:screen_reader])
       safe_join(content)
     end
   end
@@ -231,7 +231,7 @@ class Fluxbit::SkeletonComponent < Fluxbit::Component
   def render_button_skeleton
     content = []
     content << tag.div(class: styles[:button])
-    content << tag.span("Loading...", class: "sr-only")
+    content << tag.span(t("fluxbit.skeleton.loading"), class: styles[:screen_reader])
     safe_join(content)
   end
 end

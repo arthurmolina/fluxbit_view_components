@@ -19,7 +19,7 @@ class Fluxbit::SpeedDialComponent < Fluxbit::Component
   # @option props [Symbol] :position (:bottom_right) The position of the speed dial (:top_left, :top_right, :bottom_left, :bottom_right).
   # @option props [Boolean] :square (false) Whether to use square shape instead of rounded.
   # @option props [Boolean] :text_outside (false) Whether to display text outside action buttons.
-  # @option props [String, Symbol] :trigger_icon ("heroicons_solid:plus") The icon for the trigger button.
+  # @option props [String, Symbol] :trigger_icon The icon for the trigger button.
   # @option props [String] :remove_class ('') CSS classes to remove from the default class list.
   # @option props [Hash] **props Remaining options declared as HTML attributes.
   #
@@ -28,10 +28,10 @@ class Fluxbit::SpeedDialComponent < Fluxbit::Component
     super
     @props = props
 
-    @position = options @props.delete(:position), collection: [ :top_left, :top_right, :bottom_left, :bottom_right ], default: @@position
+    @position = options @props.delete(:position), collection: styles[:positions].keys, default: @@position
     @square = options @props.delete(:square), default: @@square
     @text_outside = options @props.delete(:text_outside), default: @@text_outside
-    @trigger_icon = @props.delete(:trigger_icon) || "heroicons_solid:plus"
+    @trigger_icon = @props.delete(:trigger_icon)
     @props[:id] ||= "speed-dial-#{random_id}"
 
     add class: [
@@ -67,7 +67,7 @@ class Fluxbit::SpeedDialComponent < Fluxbit::Component
     [
       styles[:menu][:base],
       styles[:menu][:hidden],
-      top_position? ? "mt-4" : "mb-4"
+      top_position? ? styles[:menu][:spacing][:top] : styles[:menu][:spacing][:bottom]
     ]
   end
 end

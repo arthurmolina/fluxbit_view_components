@@ -29,9 +29,9 @@ class Fluxbit::TimelineItemComponent < Fluxbit::Component
     @description = @props.delete(:description)
     @date = @props.delete(:date)
     @icon = @props.delete(:icon)
-    @status = options @props.delete(:status), collection: [ :default, :completed, :current, :pending ], default: :default
-    @color = options @props.delete(:color), collection: [ :blue, :green, :red, :yellow, :purple, :indigo ], default: :blue
-    @ring = options @props.delete(:ring), collection: [ :none, :small, :default, :large ], default: :default
+    @status = options @props.delete(:status), collection: styles[:item][:indicator][:status].keys, default: :default
+    @color = options @props.delete(:color), collection: styles[:item][:indicator][:colors].keys, default: :blue
+    @ring = options @props.delete(:ring), collection: styles[:item][:indicator][:rings].keys, default: :default
     @href = @props.delete(:href)
 
     if @variant != :stepper
@@ -45,7 +45,7 @@ class Fluxbit::TimelineItemComponent < Fluxbit::Component
     super
     if @variant == :stepper
       # Add stepper classes after @is_last is set
-      add class: stepper_item_classes, to: @props
+      add class: styles[:stepper][:item], to: @props
     end
   end
 
@@ -60,36 +60,12 @@ class Fluxbit::TimelineItemComponent < Fluxbit::Component
     ].compact.join(" ")
   end
 
-  def content_classes
-    styles[:item][:content][:base]
-  end
-
-  def title_classes
-    styles[:item][:content][:title]
-  end
-
-  def description_classes
-    styles[:item][:content][:description]
-  end
-
-  def date_classes
-    styles[:item][:content][:date]
-  end
-
-  def connector_classes
-    styles[:item][:connector]
-  end
-
   def render_as_link?
     @href.present?
   end
 
   def is_last?
     @is_last || false
-  end
-
-  def stepper_item_classes
-    styles[:stepper][:item]
   end
 
   def stepper_indicator_classes

@@ -37,9 +37,9 @@ class Fluxbit::StepperComponent < Fluxbit::Component
     super
     @props = props
 
-    @orientation = options @props.delete(:orientation), collection: [ :horizontal, :vertical ], default: @@orientation
-    @variant = options @props.delete(:variant), collection: [ :default, :progress, :detailed ], default: @@variant
-    @color = options @props.delete(:color), collection: [ :blue, :green, :red, :yellow, :indigo, :purple ], default: @@color
+    @orientation = options @props.delete(:orientation), collection: styles[:base].keys, default: @@orientation
+    @variant = options @props.delete(:variant), collection: styles[:list].keys, default: @@variant
+    @color = options @props.delete(:color), collection: styles[:step][:default][:active].keys, default: @@color
 
     add class: styles[:base][@orientation], to: @props, first_element: true
     remove_class_from_props(@props)
@@ -62,9 +62,9 @@ class Fluxbit::StepperComponent < Fluxbit::Component
       if @orientation == :vertical && @variant != :detailed
         # Vertical layout: wrapper div for proper positioning
         concat(
-          tag.div(class: "relative") do
+          tag.div(class: styles[:layout][:wrapper]) do
             content = []
-            content << tag.div(class: "flex items-center") do
+            content << tag.div(class: styles[:layout][:flex_center]) do
               concat(render_step_indicator(step))
               concat(render_step_content(step)) if step.title.present? || step.description.present? || step.content.present?
             end
@@ -91,8 +91,8 @@ class Fluxbit::StepperComponent < Fluxbit::Component
 
   def render_step_indicator(step)
     tag.div(class: step_circle_classes(step)) do
-      if step.state == :completed && @variant != :progress
-        anyicon("heroicons_solid:check", class: styles[:step_icon][@variant][:completed])
+      if step.icon.present?
+        anyicon(step.icon, class: styles[:step_icon][@variant][:completed])
       elsif step.state == :completed && @variant == :progress
         content_tag(:span, "✓", class: step_number_classes(step))
       else
@@ -120,41 +120,37 @@ class Fluxbit::StepperComponent < Fluxbit::Component
 
     connector_classes = if step.state == :completed
                           styles[:connector][:completed][@variant][@orientation]
-    elsif step.state == :active
+                        elsif step.state == :active
                           styles[:connector][:active][@color][@variant][@orientation]
-    else
+                        else
                           styles[:connector][@variant][@orientation]
-    end
+                        end
 
     tag.div(class: connector_classes)
   end
 
   def render_vertical_connector(step)
     # Position based on variant (different circle sizes)
-    left_position = case @variant
-    when :progress then "left-4"  # w-8 circles
-    when :detailed then "left-6"  # w-12 circles
-    else "left-5"                  # w-10 circles (default)
-    end
+    left_position = styles[:vertical_connector][:positions][@variant] || styles[:vertical_connector][:positions][:default]
 
-    connector_classes = if step.state == :completed
-                          "absolute #{left_position} top-full w-0.5 h-6 bg-green-200 dark:bg-green-700"
-    elsif step.state == :active
-                          color_bg = case @color
-                          when :blue then "bg-blue-200 dark:bg-blue-700"
-                          when :green then "bg-green-200 dark:bg-green-700"
-                          when :red then "bg-red-200 dark:bg-red-700"
-                          when :yellow then "bg-yellow-200 dark:bg-yellow-700"
-                          when :indigo then "bg-indigo-200 dark:bg-indigo-700"
-                          when :purple then "bg-purple-200 dark:bg-purple-700"
-                          else "bg-blue-200 dark:bg-blue-700"
-                          end
-                          "absolute #{left_position} top-full w-0.5 h-6 #{color_bg}"
-    else
-                          "absolute #{left_position} top-full w-0.5 h-6 bg-gray-200 dark:bg-gray-700"
-    end
+    connector_classes = [
+      styles[:vertical_connector][:base],
+      left_position,
+      vertical_connector_color(step)
+    ].compact.join(" ")
 
     tag.div(class: connector_classes)
+  end
+
+  def vertical_connector_color(step)
+    case step.state
+    when :completed
+      styles[:vertical_connector][:colors][:completed]
+    when :active
+      styles[:vertical_connector][:colors][@color] || styles[:vertical_connector][:colors][:blue]
+    else
+      styles[:vertical_connector][:colors][:default]
+    end
   end
 
   def step_circle_classes(step)
@@ -194,7 +190,7 @@ class Fluxbit::StepperComponent < Fluxbit::Component
   class Step < Fluxbit::Component
     include Fluxbit::Config::StepperComponent
 
-    attr_reader :title, :description, :state, :number
+    attr_reader :title, :description, :state, :number, :icon
 
     ##
     # Initializes a step item for the stepper.
@@ -204,6 +200,7 @@ class Fluxbit::StepperComponent < Fluxbit::Component
     # @option props [String] :description The description of the step.
     # @option props [Symbol] :state (:pending) The state of the step (:pending, :active, :completed).
     # @option props [String, Integer] :number The step number or custom text.
+    # @option props [String] :icon The icon name to display for completed state.
     #
     # @return [Fluxbit::StepperComponent::Step]
     def initialize(**props)
@@ -214,6 +211,7 @@ class Fluxbit::StepperComponent < Fluxbit::Component
       @description = @props.delete(:description)
       @state = options @props.delete(:state), collection: [ :pending, :active, :completed ], default: :pending
       @number = @props.delete(:number)
+      @icon = @props.delete(:icon)
 
       remove_class_from_props(@props)
     end

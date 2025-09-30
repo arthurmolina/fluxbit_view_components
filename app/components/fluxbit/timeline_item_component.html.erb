@@ -19,10 +19,6 @@
       <div class="<%= stepper_indicator_classes %>">
         <% if @icon %>
           <%= icon(@icon, class: (@status == :completed || @status == :current) ? styles[:stepper][:icon_completed] : styles[:stepper][:icon]) %>
-        <% elsif @status == :completed %>
-          <%= icon("heroicons_solid:check", class: styles[:stepper][:icon_completed]) %>
-        <% else %>
-          <%= icon("heroicons_solid:calendar", class: styles[:stepper][:icon]) %>
         <% end %>
       </div>
       <% unless is_last? %>
@@ -37,33 +33,31 @@
         <time class="<%= styles[:stepper][:description] %>"><%= @date %></time>
       <% end %>
       <% if @description %>
-        <p class="text-base font-normal text-gray-500 dark:text-gray-400"><%= @description %></p>
+        <p class="<%= styles[:stepper][:description_paragraph] %>"><%= @description %></p>
       <% end %>
     </div>
   <% else %>
     <!-- Default and vertical variants -->
     <div class="<%= indicator_classes %>">
       <% if @icon %>
-        <%= icon(@icon, class: "w-3.5 h-3.5") %>
-      <% elsif @status == :completed %>
-        <%= icon("heroicons_solid:check", class: "w-3.5 h-3.5") %>
+        <%= icon(@icon, class: styles[:item][:icon]) %>
       <% else %>
-        <div class="w-2.5 h-2.5 bg-current rounded-full"></div>
+        <div class="<%= styles[:item][:dot] %>"></div>
       <% end %>
     </div>
-    <div class="<%= content_classes %>">
+    <div class="<%= styles[:item][:content][:base] %>">
       <% if @date %>
-        <time class="<%= date_classes %>"><%= @date %></time>
+        <time class="<%= styles[:item][:content][:date] %>"><%= @date %></time>
       <% end %>
       <% if @title %>
         <% if render_as_link? %>
-          <a href="<%= @href %>" class="<%= title_classes %>"><%= @title %></a>
+          <a href="<%= @href %>" class="<%= styles[:item][:content][:title] %>"><%= @title %></a>
         <% else %>
-          <h3 class="<%= title_classes %>"><%= @title %></h3>
+          <h3 class="<%= styles[:item][:content][:title] %>"><%= @title %></h3>
         <% end %>
       <% end %>
       <% if @description %>
-        <p class="<%= description_classes %>"><%= @description %></p>
+        <p class="<%= styles[:item][:content][:description] %>"><%= @description %></p>
       <% end %>
     </div>
   <% end %>

@@ -17,7 +17,11 @@ module Fluxbit::Config::SpeedDialComponent
       },
       menu: {
         base: "flex flex-col items-center space-y-2",
-        hidden: "hidden"
+        hidden: "hidden",
+        spacing: {
+          top: "mt-4",
+          bottom: "mb-4"
+        }
       },
       trigger: {
         base: "flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-all duration-200",
@@ -38,7 +42,8 @@ module Fluxbit::Config::SpeedDialComponent
           base: "relative",
           outside: "block mb-px text-sm font-medium text-gray-900 dark:text-white"
         }
-      }
+      },
+      screen_reader: "sr-only"
     }
   end
   # rubocop: enable Layout/LineLength, Metrics/BlockLength

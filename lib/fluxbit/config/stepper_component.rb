@@ -270,6 +270,28 @@ module Fluxbit::Config::StepperComponent
             }
           }
         }
+      },
+      layout: {
+        wrapper: "relative",
+        flex_center: "flex items-center"
+      },
+      vertical_connector: {
+        base: "absolute top-full w-0.5 h-6",
+        positions: {
+          progress: "left-4",    # w-8 circles
+          detailed: "left-6",    # w-12 circles
+          default: "left-5"      # w-10 circles
+        },
+        colors: {
+          completed: "bg-green-200 dark:bg-green-700",
+          default: "bg-gray-200 dark:bg-gray-700",
+          blue: "bg-blue-200 dark:bg-blue-700",
+          green: "bg-green-200 dark:bg-green-700",
+          red: "bg-red-200 dark:bg-red-700",
+          yellow: "bg-yellow-200 dark:bg-yellow-700",
+          indigo: "bg-indigo-200 dark:bg-indigo-700",
+          purple: "bg-purple-200 dark:bg-purple-700"
+        }
       }
     }
   end

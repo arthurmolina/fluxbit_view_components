@@ -10,10 +10,23 @@ module Fluxbit::Config::SkeletonComponent
     {
       base: "animate-pulse",
       container: "w-full",
+      screen_reader: "sr-only",
       text: {
         line: "h-2.5 bg-gray-200 rounded-full dark:bg-gray-700",
         small: "h-2 bg-gray-200 rounded-full dark:bg-gray-700",
         large: "h-3 bg-gray-200 rounded-full dark:bg-gray-700"
+      },
+      widths: {
+        first_line: "w-48",
+        last_line: "w-32",
+        full: "w-full",
+        card_header: "w-48",
+        widget_title: "w-48",
+        list_name: "w-24",
+        list_content: "w-32",
+        testimonial_last: "w-24",
+        testimonial_name: "w-32",
+        testimonial_title: "w-24"
       },
       avatar: {
         small: "w-8 h-8 bg-gray-200 rounded-full dark:bg-gray-700",
@@ -23,12 +36,16 @@ module Fluxbit::Config::SkeletonComponent
       image: {
         small: "h-32 bg-gray-300 rounded dark:bg-gray-700",
         medium: "h-48 bg-gray-300 rounded dark:bg-gray-700",
-        large: "h-64 bg-gray-300 rounded dark:bg-gray-700"
+        large: "h-64 bg-gray-300 rounded dark:bg-gray-700",
+        container: "flex items-center justify-center w-full",
+        icon: "w-8 h-8 text-gray-200 dark:text-gray-600"
       },
       video: {
         small: "h-32 bg-gray-300 rounded dark:bg-gray-700",
         medium: "h-48 bg-gray-300 rounded dark:bg-gray-700",
-        large: "h-64 bg-gray-300 rounded dark:bg-gray-700"
+        large: "h-64 bg-gray-300 rounded dark:bg-gray-700",
+        container: "flex items-center justify-center w-full",
+        icon: "w-10 h-10 text-gray-200 dark:text-gray-600"
       },
       button: "h-8 bg-gray-200 rounded dark:bg-gray-700 w-20",
       card: {
@@ -50,7 +67,8 @@ module Fluxbit::Config::SkeletonComponent
       testimonial: {
         container: "p-4",
         quote: "h-2 bg-gray-200 rounded-full dark:bg-gray-700",
-        author: "flex items-center mt-4 space-x-3"
+        author: "flex items-center mt-4 space-x-3",
+        avatar: "w-8 h-8 bg-gray-200 rounded-full dark:bg-gray-700"
       },
       spacing: {
         none: "",

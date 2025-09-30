@@ -99,7 +99,8 @@ class Fluxbit::TimelineComponentTest < ViewComponent::TestCase
     render_inline(Fluxbit::TimelineComponent.new) do |timeline|
       timeline.with_item(
         title: "Completed Task",
-        status: :completed
+        status: :completed,
+        icon: "heroicons_solid:check"
       )
     end
 
@@ -165,8 +166,8 @@ class Fluxbit::TimelineComponentTest < ViewComponent::TestCase
 
   def test_stepper_variant_is_horizontal
     render_inline(Fluxbit::TimelineComponent.new(variant: :stepper)) do |timeline|
-      timeline.with_item(title: "Step 1", date: "January 2024", status: :completed)
-      timeline.with_item(title: "Step 2", date: "February 2024")
+      timeline.with_item(title: "Step 1", date: "January 2024", status: :completed, icon: "heroicons_solid:check")
+      timeline.with_item(title: "Step 2", date: "February 2024", icon: "heroicons_solid:calendar")
     end
 
     assert_selector "ol.items-center.sm\\:flex"

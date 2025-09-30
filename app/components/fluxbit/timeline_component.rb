@@ -12,15 +12,6 @@ class Fluxbit::TimelineComponent < Fluxbit::Component
     )
   }
 
-  private
-
-  def items_with_position
-    items.map.with_index do |item, index|
-      item.instance_variable_set(:@is_last, index == items.length - 1)
-      item
-    end
-  end
-
   # Initializes the Timeline component with various customization options.
   #
   # @param [Hash] **props The properties to customize the timeline.
@@ -34,8 +25,8 @@ class Fluxbit::TimelineComponent < Fluxbit::Component
     super
     @props = props
 
-    @variant = options @props.delete(:variant), collection: [ :default, :vertical, :stepper, :activity ], default: @@variant
-    @position = options @props.delete(:position), collection: [ :left, :center, :right ], default: @@position
+    @variant = options @props.delete(:variant), collection: styles[:variants].keys, default: @@variant
+    @position = options @props.delete(:position), collection: styles[:positions].keys, default: @@position
 
     add class: [
       styles[:base],
@@ -46,7 +37,21 @@ class Fluxbit::TimelineComponent < Fluxbit::Component
     remove_class_from_props(@props)
   end
 
+  def call
+    content_tag(@variant == :stepper ? "ol" : "ul", **@props) do
+      items_with_position.join.html_safe
+    end
+  end
+
   private
+
+  def items_with_position
+    items.map.with_index do |item, index|
+      item.instance_variable_set(:@is_last, index == items.length - 1)
+      item
+    end
+  end
+
 
   def timeline_classes
     [
@@ -54,9 +59,5 @@ class Fluxbit::TimelineComponent < Fluxbit::Component
       styles[:variants][@variant],
       styles[:positions][@position]
     ].compact.join(" ")
-  end
-
-  def list_tag
-    @variant == :stepper ? "ol" : "ul"
   end
 end

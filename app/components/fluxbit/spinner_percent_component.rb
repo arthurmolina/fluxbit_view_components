@@ -93,7 +93,7 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
 
   def percentage_text_classes
     [
-      "absolute inset-0 flex items-center justify-center text-sm font-semibold",
+      styles[:percentage_text][:position],
       styles[:text_colors][@color]
     ].compact.join(" ")
   end
@@ -145,7 +145,7 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
   end
 
   def svg_content
-    tag.svg(class: "transform -rotate-90 #{svg_classes}", viewBox: "0 0 100 100") do
+    tag.svg(class: "#{styles[:svg][:transform]} #{svg_classes}", viewBox: "0 0 100 100") do
       concat(
         tag.circle(cx: "50", cy: "50", r: "45", stroke: "currentColor",
           "stroke-width": "8", fill: "transparent", class: background_circle_classes)
@@ -154,7 +154,7 @@ class Fluxbit::SpinnerPercentComponent < Fluxbit::Component
         tag.circle(cx: "50", cy: "50", r: "45", stroke: "currentColor",
           "stroke-width": "8", fill: "transparent", "stroke-linecap": "round",
           "stroke-dasharray": stroke_dasharray, "stroke-dashoffset": stroke_dashoffset,
-          class: "#{progress_circle_classes} transition-all duration-300 ease-in-out",
+          class: "#{progress_circle_classes} #{styles[:progress_circle][:transition]}",
           "data-fx-spinner-percent-target": "progress")
       )
     end
