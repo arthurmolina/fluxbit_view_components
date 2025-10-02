@@ -35,7 +35,7 @@ This library is open source and is a work in progress. Below we have the situati
 | Button            | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | ButtonGroup       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Card              | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Carousel          | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Carousel          | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Chat Bubble       | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Clipboard         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Device Mockups    | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
@@ -47,7 +47,7 @@ This library is open source and is a work in progress. Below we have the situati
 | Indicators        | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Jumbotron         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | KBD               | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Link              | <img src="/yes.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| Link              | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | List Group        | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Mega Menu         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Modal             | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">

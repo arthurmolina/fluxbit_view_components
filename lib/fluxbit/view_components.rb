@@ -26,6 +26,7 @@ module Fluxbit
     require "fluxbit/config/breadcrumb_component"
     require "fluxbit/config/button_component"
     require "fluxbit/config/card_component"
+    require "fluxbit/config/carousel_component"
     require "fluxbit/config/drawer_component"
     require "fluxbit/config/dropdown_component"
     require "fluxbit/config/flex_component"

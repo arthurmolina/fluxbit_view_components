@@ -1,0 +1,26 @@
+<%= fx_carousel do |carousel| %>
+  <% carousel.with_slide do %>
+    <div class="flex h-full items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
+      <div class="text-center text-white">
+        <h2 class="text-4xl font-bold mb-4">Welcome to Our Service</h2>
+        <p class="text-xl">Slide 1 - Custom Content</p>
+      </div>
+    </div>
+  <% end %>
+  <% carousel.with_slide do %>
+    <div class="flex h-full items-center justify-center bg-gradient-to-r from-green-500 to-teal-600">
+      <div class="text-center text-white">
+        <h2 class="text-4xl font-bold mb-4">Amazing Features</h2>
+        <p class="text-xl">Slide 2 - Custom Content</p>
+      </div>
+    </div>
+  <% end %>
+  <% carousel.with_slide do %>
+    <div class="flex h-full items-center justify-center bg-gradient-to-r from-orange-500 to-red-600">
+      <div class="text-center text-white">
+        <h2 class="text-4xl font-bold mb-4">Get Started Today</h2>
+        <p class="text-xl">Slide 3 - Custom Content</p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
