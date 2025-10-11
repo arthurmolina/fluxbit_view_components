@@ -1,0 +1,7 @@
+<%= render Fluxbit::BottomNavigationComponent.new do |nav| %>
+  <% nav.with_item(href: "/new", icon: "heroicons_solid:document-plus", tooltip_text: "New document") { "New document" } %>
+  <% nav.with_item(href: "/bookmark", icon: "heroicons_solid:bookmark", tooltip_text: "Bookmark") { "Bookmark" } %>
+  <% nav.with_pagination(current_page: 1, total_pages: 345, previous_href: "/page/0", next_href: "/page/2") %>
+  <% nav.with_item(href: "/settings", icon: "heroicons_solid:cog-6-tooth", tooltip_text: "Settings") { "Settings" } %>
+  <% nav.with_item(href: "/profile", icon: "heroicons_solid:user", tooltip_text: "Profile") { "Profile" } %>
+<% end %>

@@ -30,7 +30,7 @@ This library is open source and is a work in progress. Below we have the situati
 | AvatarGroup       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Badge             | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Banner            | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Bottom Navigation | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Bottom Navigation | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Breadcrumb        | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Button            | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | ButtonGroup       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">

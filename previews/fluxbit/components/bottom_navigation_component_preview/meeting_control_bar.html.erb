@@ -1,0 +1,6 @@
+<%= render Fluxbit::BottomNavigationComponent.new(border: false) do |nav| %>
+  <% nav.with_item(href: "#", icon: "heroicons_solid:microphone", tooltip_text: "Microphone", active: true) { "Microphone" } %>
+  <% nav.with_item(href: "#", icon: "heroicons_solid:video-camera", tooltip_text: "Camera") { "Camera" } %>
+  <% nav.with_item(href: "#", icon: "heroicons_solid:chat-bubble-left-right", tooltip_text: "Feedback") { "Feedback" } %>
+  <% nav.with_item(href: "#", icon: "heroicons_solid:cog-6-tooth", tooltip_text: "Settings") { "Settings" } %>
+<% end %>

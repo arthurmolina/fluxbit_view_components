@@ -23,6 +23,7 @@ module Fluxbit
     require "fluxbit/config/avatar_component"
     require "fluxbit/config/badge_component"
     require "fluxbit/config/banner_component"
+    require "fluxbit/config/bottom_navigation_component"
     require "fluxbit/config/breadcrumb_component"
     require "fluxbit/config/button_component"
     require "fluxbit/config/card_component"

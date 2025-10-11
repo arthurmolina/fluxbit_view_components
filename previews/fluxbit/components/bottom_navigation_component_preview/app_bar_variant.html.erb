@@ -1,0 +1,7 @@
+<%= render Fluxbit::BottomNavigationComponent.new(variant: :app_bar) do |nav| %>
+  <% nav.with_item(href: "/", icon: "heroicons_solid:home", tooltip_text: "Home") { "Home" } %>
+  <% nav.with_item(href: "/wallet", icon: "heroicons_solid:wallet", tooltip_text: "Wallet") { "Wallet" } %>
+  <% nav.with_cta(href: "/new", icon: "heroicons_solid:plus", tooltip_text: "Create New") { "New Item" } %>
+  <% nav.with_item(href: "/settings", icon: "heroicons_solid:cog-6-tooth", tooltip_text: "Settings") { "Settings" } %>
+  <% nav.with_item(href: "/profile", icon: "heroicons_solid:user", tooltip_text: "Profile") { "Profile" } %>
+<% end %>

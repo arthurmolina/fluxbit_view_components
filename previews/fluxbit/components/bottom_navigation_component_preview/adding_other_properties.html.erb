@@ -1,0 +1,7 @@
+<%# Example: Adding custom ID and data attributes %>
+<%= render Fluxbit::BottomNavigationComponent.new(id: "main-navigation", data: { controller: "navigation", action: "click->navigation#track" }) do |nav| %>
+  <% nav.with_item(href: "/", icon: "heroicons_solid:home", data: { turbo: false }) { "Home" } %>
+  <% nav.with_item(href: "/wallet", icon: "heroicons_solid:wallet") { "Wallet" } %>
+  <% nav.with_item(href: "/settings", icon: "heroicons_solid:cog-6-tooth") { "Settings" } %>
+  <% nav.with_item(href: "/profile", icon: "heroicons_solid:user") { "Profile" } %>
+<% end %>

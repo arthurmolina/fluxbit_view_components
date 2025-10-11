@@ -1,0 +1,6 @@
+<%= render Fluxbit::BottomNavigationComponent.new do |nav| %>
+  <% nav.with_item(href: "/") { "Home" } %>
+  <% nav.with_item(href: "/wallet") { "Wallet" } %>
+  <% nav.with_item(href: "/settings") { "Settings" } %>
+  <% nav.with_item(href: "/profile") { "Profile" } %>
+<% end %>
