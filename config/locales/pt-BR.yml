@@ -10,7 +10,7 @@ pt-BR:
       dismiss: Dismiss
     pagination:
       aria_label:
-        nav: 
+        nav:
           one: Página
           other: Páginas
         prev: Anterior
@@ -21,3 +21,7 @@ pt-BR:
       last: Último
       prev: Anterior
       next: Próximo
+    skeleton:
+      loading: Carregando...
+    speed_dial:
+      open_actions_menu: Abrir menu de ações

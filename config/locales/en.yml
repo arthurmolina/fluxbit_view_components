@@ -24,3 +24,7 @@ en:
       last: Last
       prev: Previous
       next: Next
+    skeleton:
+      loading: Loading...
+    speed_dial:
+      open_actions_menu: Open actions menu
