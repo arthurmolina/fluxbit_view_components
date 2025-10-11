@@ -57,11 +57,7 @@ class Fluxbit::BottomNavigationComponent < Fluxbit::Component
 
     @variant = options(@props.delete(:variant), collection: styles[:variants].keys, default: @@variant)
     @border = options(@props.delete(:border), default: @@border)
-
-    declare_classes
-
-    # Handle class removal
-    @props[:class] = remove_class(@props.delete(:remove_class) || "", @props[:class])
+    @remove_class = @props.delete(:remove_class) || ""
   end
 
   def call
@@ -70,10 +66,11 @@ class Fluxbit::BottomNavigationComponent < Fluxbit::Component
     pagination # Ensure pagination is rendered if present
     button_group # Ensure button_group is rendered if present
 
-    # Adjust height when button_group is present
-    if button_group?
-      @props[:class] = @props[:class].gsub(/\bh-16\b/, 'h-auto')
-    end
+    # Declare classes after button_group is rendered so we know which variant to use
+    declare_classes
+
+    # Handle class removal after classes are declared
+    @props[:class] = remove_class(@remove_class, @props[:class])
 
     tag.div(**@props) do
       safe_join([
@@ -98,17 +95,14 @@ class Fluxbit::BottomNavigationComponent < Fluxbit::Component
   private
 
   def declare_classes
-    add(class: styles[:variants][@variant][:base], to: @props, first_element: true)
+    base_key = button_group? ? :base_with_button_group : :base
+    add(class: styles[:variants][@variant][base_key], to: @props, first_element: true)
     add(class: styles[:variants][@variant][:border], to: @props) if @border && @variant == :default
   end
 
   def container_classes
-    base = styles[:container][:base]
-
-    # When button_group is present, set specific height for items container
-    if button_group?
-      base = base.gsub(/\bh-full\b/, 'h-16')
-    end
+    base_key = button_group? ? :base_with_button_group : :base
+    base = styles[:container][base_key]
 
     # Auto-calculate columns based on items count and presence of CTA/pagination
     columns = calculate_columns
@@ -335,7 +329,7 @@ class Fluxbit::BottomNavigationComponent < Fluxbit::Component
         disabled: @current_page <= 1
       ) do
         concat(chevron_left(class: styles[:pagination][:icon]))
-        concat(tag.span(@previous_label, class: "sr-only"))
+        concat(tag.span(@previous_label, class: styles[:pagination][:sr_only]))
       end
     end
 
@@ -346,7 +340,7 @@ class Fluxbit::BottomNavigationComponent < Fluxbit::Component
         data: { href: @next_href },
         disabled: @current_page >= @total_pages
       ) do
-        concat(tag.span(@next_label, class: "sr-only"))
+        concat(tag.span(@next_label, class: styles[:pagination][:sr_only]))
         concat(chevron_right(class: styles[:pagination][:icon]))
       end
     end
@@ -397,7 +391,7 @@ class Fluxbit::BottomNavigationComponent < Fluxbit::Component
     def button_group_grid_classes
       [
         styles[:button_group][:grid],
-        "grid-cols-#{@columns}"
+        styles[:button_group][:columns][@columns - 2]
       ].compact.join(" ")
     end
 

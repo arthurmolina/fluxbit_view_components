@@ -10,15 +10,18 @@ module Fluxbit::Config::BottomNavigationComponent
       variants: {
         default: {
           base: "fixed bottom-0 left-0 z-50 w-full h-16 bg-white dark:bg-gray-700",
+          base_with_button_group: "fixed bottom-0 left-0 z-50 w-full h-auto bg-white dark:bg-gray-700",
           border: "border-t border-gray-200 dark:border-gray-600"
         },
         app_bar: {
           base: "fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600",
+          base_with_button_group: "fixed z-50 w-full h-auto max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600",
           border: ""
         }
       },
       container: {
         base: "grid h-full max-w-lg mx-auto font-medium",
+        base_with_button_group: "grid h-16 max-w-lg mx-auto font-medium",
         columns: [
           "grid-cols-2",  # 2 columns (index 0)
           "grid-cols-3",  # 3 columns (index 1)
@@ -49,14 +52,21 @@ module Fluxbit::Config::BottomNavigationComponent
         container: "inline-flex items-center justify-center col-span-2",
         button: "inline-flex items-center justify-center h-full px-5 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed",
         icon: "w-3 h-3 text-gray-500 dark:text-gray-400",
-        info: "flex items-center text-sm text-gray-500 dark:text-gray-400"
+        info: "flex items-center text-sm text-gray-500 dark:text-gray-400",
+        sr_only: "sr-only"
       },
       button_group: {
         container: "grid max-w-xs p-1 mx-auto my-2 bg-gray-100 rounded-lg dark:bg-gray-600",
         grid: "grid gap-1",
         button: "px-5 py-1.5 text-xs font-medium hover:bg-white dark:hover:bg-gray-700 rounded-lg",
         button_active: "text-gray-900 bg-white dark:text-white dark:bg-gray-700",
-        button_inactive: "text-gray-500 dark:text-gray-400"
+        button_inactive: "text-gray-500 dark:text-gray-400",
+        columns: [
+          "grid-cols-2",  # 2 columns (index 0)
+          "grid-cols-3",  # 3 columns (index 1)
+          "grid-cols-4",  # 4 columns (index 2)
+          "grid-cols-5"   # 5 columns (index 3)
+        ]
       }
     }
   end
