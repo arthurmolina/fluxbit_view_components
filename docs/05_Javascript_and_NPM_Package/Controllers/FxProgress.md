@@ -1,4 +1,7 @@
-# FxProgress Controller
+---
+label: FxProgress
+title: FxProgress Controller
+---
 
 The FxProgress controller provides comprehensive progress bar functionality with support for animations, multiple progress bars, and vanilla JavaScript access.
 

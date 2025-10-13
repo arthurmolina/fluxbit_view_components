@@ -7,6 +7,7 @@ import FxProgress from './progress_controller'
 import FxRowClick from './row_click_controller'
 import FxSelectAll from './select_all_controller'
 import FxSpinnerPercent from './spinner_percent_controller'
+import FxThemeButton from './theme_button_controller'
 
 export {
   FxAssigner,
@@ -17,7 +18,8 @@ export {
   FxProgress,
   FxRowClick,
   FxSelectAll,
-  FxSpinnerPercent
+  FxSpinnerPercent,
+  FxThemeButton
 }
 
 export function registerFluxbitControllers(application) {
@@ -30,6 +32,7 @@ export function registerFluxbitControllers(application) {
   application.register('fx-row-click', FxRowClick)
   application.register('fx-select-all', FxSelectAll)
   application.register('fx-spinner-percent', FxSpinnerPercent)
+  application.register('fx-theme-button', FxThemeButton)
 
   // Make controllers globally accessible for vanilla JS
   if (typeof window !== 'undefined') {
@@ -42,7 +45,8 @@ export function registerFluxbitControllers(application) {
       FxMethodLink,
       FxRowClick,
       FxSelectAll,
-      FxSpinnerPercent
+      FxSpinnerPercent,
+      FxThemeButton
     }
   }
 }

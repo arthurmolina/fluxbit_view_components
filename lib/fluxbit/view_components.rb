@@ -48,6 +48,7 @@ module Fluxbit
     require "fluxbit/config/timeline_component"
     require "fluxbit/config/table_component"
     require "fluxbit/config/text_component"
+    require "fluxbit/config/theme_button_component"
     require "fluxbit/config/tooltip_component"
   end
 end

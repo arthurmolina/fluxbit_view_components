@@ -1,0 +1,8 @@
+<div class="flex flex-wrap items-center gap-4 justify-center p-8">
+  <% %i{transparent default success danger info warning dark light purple}.each do |color| %>
+    <div class="flex flex-col items-center gap-2">
+      <%= render Fluxbit::ThemeButtonComponent.new(color: color) %>
+      <span class="text-xs text-gray-600 dark:text-gray-400"><%= color.to_s.titlecase %></span>
+    </div>
+  <% end %>
+</div>

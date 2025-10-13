@@ -1,0 +1,9 @@
+<div class="flex items-center gap-4 justify-center p-8">
+  <% (0..4).each do |size| %>
+    <%= render Fluxbit::ThemeButtonComponent.new(size: size) %>
+  <% end %>
+</div>
+
+<p class="text-sm text-gray-600 dark:text-gray-400 mt-4">
+  Sizes: 0 (XS) to 4 (XL)
+</p>

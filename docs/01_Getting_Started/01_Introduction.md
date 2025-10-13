@@ -20,6 +20,17 @@ This library includes a variety of interactive elements such as buttons, modals,
 
 This library is open source and is a work in progress. Below we have the situation of each component. Fell free to contribute with us! :)
 
+### Component Development Philosophy
+
+Some components from Flowbite will not be implemented in this library. We focus on creating reusable, generic components that provide a solid foundation for building user interfaces. Components that are highly application-specific or require extensive content customization (like Jumbotron, Footer, Navbar, Mega Menu, and Sidebar) are intentionally excluded, as they are better implemented directly in your application where you have full control over the structure and content.
+
+Additionally, certain components may not provide significant value as ViewComponents. For example:
+- **Layout components** (Jumbotron, Footer, Sidebar) - These are typically unique to each application and benefit from being implemented directly in your views
+- **Simple wrappers** (Ratings, Video, Images, Lists) - These add minimal abstraction over standard HTML and are better handled with Tailwind utility classes
+- **Highly customizable elements** (Navbar, Gallery, Mega Menu) - The flexibility needed often outweighs the benefits of abstraction
+
+This approach keeps the library focused on truly reusable components while giving you the flexibility to build custom solutions where it makes sense.
+
 ### Components
 
 | Element           | Code   | Tests | Previews | Documentation
@@ -42,20 +53,15 @@ This library is open source and is a work in progress. Below we have the situati
 | Drawer            | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Dropdowns         | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Flex              | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Footer            | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Gravatar          | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Indicators        | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Jumbotron         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | KBD               | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Link              | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | List Group        | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Mega Menu         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Modal             | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Navbar            | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Pagination        | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Popover           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
-| Progress          | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Sidebar           | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
+| Progress          | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Skeleton          | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Speed Dial        | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Spinner           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
@@ -63,6 +69,7 @@ This library is open source and is a work in progress. Below we have the situati
 | Stepper           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Tab               | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Table             | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
+| ThemeButton       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Timeline          | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | Toast             | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Tooltip           | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
@@ -94,5 +101,4 @@ This library is open source and is a work in progress. Below we have the situati
 | Blockquote | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Heading    | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
 | HR         | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
-| Lists      | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;"> | <img src="/no.png" style="margin: 0;">
 | Text       | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;"> | <img src="/yes.png" style="margin: 0;">
