@@ -1,0 +1,112 @@
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+pt-BR:
+  <%= plural %>:
+    class_name:
+      one: <%= singular.titlecase %>
+      other: <%= plural.titlecase %>
+    titles:
+      index: <%= plural.titlecase %>
+      new: Novo <%= singular.titlecase %>
+      edit: Editar <%= singular.titlecase %>
+      show: Detalhes de <%= singular.titlecase %>
+    fields:
+      id: Identificador
+<% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
+      <%= attr.name %>: <%= attr.name.titlecase %>
+<% end -%>
+      created_at: Criado em
+      updated_at: Última Atualizado
+    help_text:
+<% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
+      <%= attr.name %>: Ajuda para <%= attr.name.titlecase %>
+<% end -%>
+    helper_popover:
+<% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
+      <%= attr.name %>: Ajuda no popover para <%= attr.name.titlecase %>
+<% end -%>
+    messages:
+      not_found: "<%= singular.titlecase %> não encontrado."
+      not_selected_for_action: "Nenhum <%= plural %> selecionado para ação."
+      not_authorized: "Você não está autorizado a executar esta ação."
+      no_records: "Nenhum <%= plural %> encontrados."
+      no_records_sub: "Tente ajustar a sua busca ou filtros."      
+      create_success: "<%= singular.titlecase %> foi criado com sucesso."
+      update_success: "<%= singular.titlecase %> foi atualizado com sucesso."
+      destroy_success: "<%= singular.titlecase %> foi apagado com sucesso."
+      destroy_failure: "Falha ao tentar apagar um <%= singular %>."
+      bulk_update_success:
+        one: "O <%= singular %> foi atualizado com sucesso."
+        other: "%{count} <%= plural %> foram atualizados com sucesso."
+      bulk_update_failure: "Falha ao tentar atualizar alguns <%= plural %>. %{errors}"
+      bulk_destroy_success:
+        one: "O <%= singular %> foi apagado com sucesso."
+        other: "%{count} <%= plural %> foram apagados com sucesso."
+      bulk_destroy_failure: "Falha ao tentar apagar alguns <%= plural %>. %{errors}"
+      order_error: "Parâmetro de ordenamento inválido."
+      confirm_destroy: "Você tem certeza de que quer apagar este item?"
+      confirm_bulk_destroy: "Você tem certeza de que quer apagar <span id=\"mass-deletion-count\" data-fx-select-all-target=\"count\">0</span> item(s)?"
+      pagination_info: "Mostrando <b>%{start}</b> à <b>%{end}</b> de <b>%{total}</b> <%= plural %>"
+      errors_message: 
+        one: "%{count} erro impediu que este <%= singular %> fosse salvo:"
+        other: "%{count} erros impediram que este <%= singular %> fosse salvo:"
+<% attributes
+  .select { |a| %i[boolean].include?(a.type) }
+  .each do |attr|
+-%>
+      click_to_change<%= attr.name %>: Clique para modificar <%= attr.name %>
+<% end -%>
+    actions:
+      new: "Novo <%= singular.titlecase %>"
+      actions: "Ações (<span data-fx-select-all-target=\"count\">0</span>)"
+      edit: "Editar"
+      show: "Ver"
+      back: "Voltar"
+      save: "Salvar"
+      cancel: "Cancelar"
+      create: "Criar"
+      update: "Atualizar"
+      destroy: "Apagar"
+      export: "Exportar"
+<% attributes
+  .select { |a| %i[boolean].include?(a.type) }
+  .each do |attr|
+-%>
+      activate_<%= attr.name %>_selected: Ativar <%= attr.name %> selecionado
+      deactivate_<%= attr.name %>_selected: Desativar <%= attr.name %> selecionado
+<% end -%>
+      delete_selected: "Apagar selecionado"
+      remove_filters: "Remover filtros"
+      bulk_destroy: "Apagar selecionados"
+      cancel_destroy: "Não, cancelar"
+      confirm_destroy: "Sim, Tenho certeza"
+      per_page: "%{count} por página"
+    helpers:
+      search: "Procurar <%= plural %>..."
+      sort: "Ordenar <%= plural %>..."
+      export: "Exportar para CSV"
+      filter: "Filtrar"
+<% attributes
+  .select { |a| %i[integer decimal text string].include?(a.type) }
+  .each do |attr|
+-%>
+      filter_<%= attr.name %>: "Filtrar por <%= attr.name %>"
+<% end -%>
+      click_to_edit: "Clique para editar"
+<% attributes
+  .select { |a| %i[boolean].include?(a.type) }
+  .each do |attr|
+-%>
+      click_to_change_<%= attr.name %>: "Clique para mudar <%= attr.name %>"
+<% end -%>
+      click_to_destroy_selected: "Clique para apagar selecionados"
+      submits_with: "Salvando..."
+    values:
+      no_value: "-"
+<% attributes
+  .select { |a| %i[boolean].include?(a.type) }
+  .each do |attr|
+-%>
+      <%= attr.name %>:
+        true: Ativo
+        false: Inativo
+<% end -%>

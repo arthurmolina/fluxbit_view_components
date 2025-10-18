@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Application Name" %></title>
+    <title><%%= content_for(:title) || "Application Name" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <%%= csrf_meta_tags %>
+    <%%= csp_meta_tag %>
 
-    <%= yield :head %>
+    <%%= yield :head %>
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <script>
       if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
@@ -23,21 +23,21 @@
       }
     </script>
   </head>
-  <body class="<%= fx_body_class %>">
+  <body class="<%%= fx_body_class %>">
     <p class="notice">
-      <% if notice %>
-        <%= fx_alert(color: :info, 'data-turbo-cache' => "false", with_content: notice) %>
-      <% end %>
+      <%% if notice %>
+        <%%= fx_alert(color: :info, 'data-turbo-cache' => "false", with_content: notice) %>
+      <%% end %>
     </p>
     <p class="alert">
-      <% if alert %>
-        <%= fx_alert(color: :danger, 'data-turbo-cache' => "false", with_content: alert) %>
-      <% end %>
+      <%% if alert %>
+        <%%= fx_alert(color: :danger, 'data-turbo-cache' => "false", with_content: alert) %>
+      <%% end %>
     </p>
     <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <!-- Replace with your company logo -->
-        <%= fx_heading(class: "text-center text-blue-900 flex justify-center items-center", remove_class: "text-gray-900") do %>
+        <%%= fx_heading(class: "text-center text-blue-900 flex justify-center items-center", remove_class: "text-gray-900") do %>
           <svg width="512" height="512" viewBox="0 0 31.999996 31.999992" fill="#0068e6" aria-hidden="true" data-slot="icon" version="1.1" id="fluxbit" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"  alt="Fluxbit Logo" class="h-24 w-auto px-2">
             <g transform="translate(-14.895488,-76.954309)">
               <g transform="matrix(0.03883817,0,0,0.03883817,-18.205404,74.713827)">
@@ -48,15 +48,15 @@
             </g>
           </svg>
           Fluxbit
-        <% end %>
+        <%% end %>
         <!-- /End replace -->
 
-        <%= yield(:header) if content_for?(:header) %>
+        <%%= yield(:header) if content_for?(:header) %>
       </div>
 
       <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="py-8 px-4 sm:px-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-800 dark:border-slate-700">
-          <%= yield %>
+          <%%= yield %>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
-<%% if @<%= file_name %>.errors.any? %>
-  <%%= turbo_stream.replace "<%= file_name %>_form", partial: "<%= file_name.pluralize %>/form", locals: { <%= file_name %>: @<%= file_name %> } %>
-<%% else %>
-  <%%= turbo_stream.append "<%= file_name.pluralize %>", partial: "<%= file_name.pluralize %>/<%= file_name %>", locals: { <%= file_name %>: @<%= file_name %> } %>
-  <%%= turbo_stream.update "modal", "" %>
-  <%%= turbo_stream.replace "notice", fx_alert(with_content: "<%= class_name %> was successfully created.", variant: :success) %>
-<%% end %>
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+<%%= if @<%= singular %>.errors.any?
+  turbo_stream.replace "<%= singular %>_form", partial: "<%= namespace_path %>/<%= plural %>/form", locals: { <%= plural %>: [@<%= singular %>] }
+else
+  flash[:notice] = @message
+  turbo_stream.action :refresh, "body"
+end %>

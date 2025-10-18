@@ -1,0 +1,20 @@
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+<%% if @errors.empty? %>
+  <%%# On success: replace the existing row, clear drawer, and show notice %>
+  <%% @<%= plural %>.each do |<%= singular %>| %>
+    <%%= turbo_stream.replace dom_id(<%= singular %>), 
+          partial: "<%= namespace_path %>/<%= plural %>/<%= plural %>", 
+          locals: { <%= plural %>: [<%= singular %>] } %>
+  <%% end %>
+<%% end %>
+<%%= turbo_stream.append "notice" do %>
+  <%%= fx_alert(color: @errors.any? ? :danger : :success) { @message } %>
+<%% end %>
+<%%= turbo_stream.after "notice" do %>
+  <script id="temp-script-<%= Time.current.to_i %>">
+    (function() {
+      document.getElementById("dropdownActionButton").classList.add("hidden");
+      document.currentScript.remove();
+    })();
+  </script>
+<%% end %>

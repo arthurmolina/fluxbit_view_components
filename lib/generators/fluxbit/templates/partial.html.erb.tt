@@ -1,18 +1,61 @@
-<tr id="<%%= dom_id(<%= file_name %>) %>">
-  <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| 
-    attr_name = attr.name -%>
-    <td class="px-4 py-2"><%%= <%= file_name %>.<%= attr_name %> %></td>
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+<%%= fx_table(striped: true, only_rows: true, hover: true) do |table| %>
+  <%% <%= plural %>.each do |<%= singular %>| %>
+    <%% table.with_row(
+      id: dom_id(<%= singular %>), 
+      class: "cursor-pointer hover:bg-gray-50",
+      title: <%= %{t("#{plural}.helpers.click_to_edit")} %>,
+      <% if options[:turbo] && options[:ui] != "none" -%>data: {
+        controller: "fx-row-click",
+        fx_row_click_url_value: edit_<%= path_prefix %><%= singular %>_path(<%= singular %>),
+        fx_row_click_frame_value: "<%= options[:ui] == "modal" ? "modal" : "drawer" %>"
+      }<% end -%>) do |row| %>
+      <%% row.with_cell(width: "1%") { fx_checkbox(id: dom_id(<%= singular %>, "select"), value: <%= singular %>.id, name: "<%= singular %>_ids[]", data: { "fx-select-all-target": "select" }) } %>
+
+<% attributes.reject { |attr| attr.type == :password_digest }.first(5).each do |attr| 
+  attr_name = attr.name
+  attr_type = attr.type -%>
+
+  <% if attr_type == :boolean -%>
+      <%% row.with_cell(width: "1%", class: "text-center") do %>
+        <%%= link_to "#",
+            class: "inline-flex items-center justify-center w-full h-full",
+            data: { 
+              controller: "fx-method-link",
+              fx_method_link_method_value: "patch",
+              fx_method_link_url_value: <%= path_prefix %><%= singular %>_path(<%= singular %>),
+              fx_method_link_params_value: { <%= singular %>: { <%= attr_name %>: !<%= singular %>.<%= attr_name %> } }
+            },
+            title: <%= %{t("#{plural}.helpers.click_to_change_#{attr_name}")} %> do %>
+          <%%= anyicon(
+            "heroicons_solid:#{<%= singular %>.<%= attr_name %>? ? 'check-circle' : 'x-circle'}",
+            class: "size-5 #{<%= singular %>.<%= attr_name %>? ? 'text-green-600' : 'text-red-600'}") %>
+        <%% end %>
+      <%% end %>
+  <% else -%>
+      <%% row.with_cell { <%= singular %>.<%= attr_name %>.to_s } %>
   <% end -%>
-  <td class="px-4 py-2">
-    <%%= fx_button with_content: "Show", as: :a, href: <%= file_name %>_path(<%= file_name %>) %>
-  </td>
-  <td class="px-4 py-2">
-    <%%= fx_button with_content: "Edit", as: :a, href: edit_<%= file_name %>_path(<%= file_name %>), 
-          data: { turbo_frame: "modal" } %>
-  </td>
-  <td class="px-4 py-2">
-    <%%= fx_button with_content: "Delete", as: :a, href: <%= file_name %>_path(<%= file_name %>), 
-          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, 
-          variant: :danger %>
-  </td>
-</tr>
+<% end -%>
+
+      <%% row.with_cell(width: "1%") do %>
+        <%%= fx_button data: { href: <%= path_prefix %><%= singular %>_path(<%= singular %>) },
+            color: :danger_outline,
+            onclick: "event.preventDefault();",
+            data: {
+              controller: "fx-assigner",
+              fx_assigner_change_param: {
+                "#confirm-deletion-button" => {
+                  "data-fx-method-link-url-value" => <%= path_prefix %><%= singular %>_path(<%= singular %>),
+                }
+              }.to_json,
+              fx_assigner_prevent_default_param: "true",
+              action: "fx-assigner#assign",
+              "modal-target": "confirm-deletion-modal",
+              "modal-toggle": "confirm-deletion-modal"
+            }, remove_class: "w-full" do %>
+          <%%= anyicon("heroicons_solid:trash", class: "size-4") %>
+        <%% end %>
+      <%% end %>
+    <%% end %>
+  <%% end %>
+<%% end %>

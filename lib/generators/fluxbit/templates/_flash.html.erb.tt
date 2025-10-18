@@ -1,0 +1,15 @@
+<%% mapping = {
+  "notice"  => :success,
+  "success" => :success,
+  "error"   => :danger,
+  "alert"   => :warning,
+  "warning" => :warning
+} %>
+
+<%% flash.each do |type, msg| %>
+  <%% next if msg.blank? %>
+  <%% color = mapping[type.to_s] || :info %>
+  <%%= fx_alert(color: color) do %>
+    <%%= safe_join(Array(msg).map { |m| sanitize(m.to_s, tags: [], attributes: []) }, tag.br) %>
+  <%% end %>
+<%% end %>

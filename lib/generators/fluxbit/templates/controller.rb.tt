@@ -1,125 +1,366 @@
-class <%= class_name.pluralize %>Controller < ApplicationController
-  before_action :set_<%= file_name %>, only: [:show, :edit, :update, :destroy]
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+# frozen_string_literal: true
 
-  # GET /<%= file_name.pluralize %>
+class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize %>Controller < ApplicationController
+  include Pundit::Authorization
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  before_action :set_<%= singular %>, only: %i[ show edit update destroy ]
+  before_action :set_<%= plural %>_for_bulk_actions, only: %i[ update_all destroy_all ]
+<% if options[:pundit] %>
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
+<% end %>
+
+  # GET /<%= plural %>
   def index
-    @pagy, @<%= file_name.pluralize %> = pagy(policy_scope(<%= class_name %>))
+<% if options[:paginator] -%>
+    Pagy::DEFAULT[:limit] = (params[:per_page].presence || 5).to_i
+<% end -%>
+    @<%= plural %> = policy_scope(<%= class_name.singularize %>).all
+
+    # Search and filter logic
+    @q = params[:q]
+    @<%= plural %> = @<%= plural %>.where("name LIKE ?", "%#{@q}%") if @q.present?
+<% attributes.first(5).each do |att|
+    name, type = att.name, att.type.to_s 
+  next if type == 'password_digest'  # handle password fields separately 
+-%>
+<% if ['integer','decimal'].include?(type) -%>
+    @<%= name %> = params[:<%= name %>]
+    @<%= plural %> = @<%= plural %>.where("<%= name %> >= ?", @<%= name %>) if @<%= name %>.present?
+<% elsif ['text', 'string'].include?(type) -%>
+    @<%= name %> = params[:<%= name %>]
+    @<%= plural %> = @<%= plural %>.where("<%= name %> LIKE ?", "%#{@<%= name %>}") if @<%= name %>.present?
+<% end -%>
+<% end -%>
+    @has_filters = [<%= attributes.reject { |a| 
+      a.type.to_s == "password_digest" }.map { |a| "@#{a.name}" }.join(', ') %>, @q].compact_blank.any?
+
+    # Sort logic
+    if params[:order].present?
+      order = params[:order].rpartition("_")
+      order_options = %w[<%= attributes.map(&:name).join(" ") %> created_at updated_at]
+      if order.length == 3 && %w[asc desc].include?(order.last) && order_options.include?(order.first)
+        @<%= plural %> = @<%= plural %>.order(order.first.to_sym => order.last.to_sym)
+      else
+        flash[:error] = t("<%= plural %>.messages.order_error")
+        @<%= plural %> = @<%= plural %>.order(created_at: :desc)
+      end
+    else
+      @<%= plural %> = @<%= plural %>.order(created_at: :desc) # Default order
+    end
+
+<% if options[:paginator] -%>
+    @pagy, @<%= plural %> = pagy(@<%= plural %>)
+<% end -%>
     respond_to do |format|
-      format.html   # index.html.erb
-      format.json { render json: @<%= file_name.pluralize %> }
+      format.html # index.html.erb
+      format.json
+      format.csv { send_data generate_csv(@<%= plural %>), filename: "<%= plural %>-#{Date.today}.csv" }
     end
   end
 
-  # GET /<%= file_name.pluralize %>/1
+  # GET /<%= plural %>/1
   def show
-    authorize @<%= file_name %>
+    authorize @<%= singular %>
     respond_to do |format|
-      format.html   # show.html.erb
-      format.json { render json: @<%= file_name %> }
+      format.html # show.html.erb
+      format.json
     end
   end
 
-  # GET /<%= file_name.pluralize %>/new
+  # GET /<%= plural %>/new
   def new
-    @<%= file_name %> = <%= class_name %>.new
-    authorize @<%= file_name %>
+    @<%= singular %> = <%= class_name.singularize %>.new
+    authorize @<%= singular %>
     respond_to do |format|
-      format.html   # new.html.erb (form in modal)
-      format.json { render json: @<%= file_name %> }
+      format.html # new.html.erb (form in modal)
+      format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> } }
     end
   end
 
-  # GET /<%= file_name.pluralize %>/1/edit
+  # GET /<%= plural %>/1/edit
   def edit
-    authorize @<%= file_name %>
+    authorize @<%= singular %>
     respond_to do |format|
-      format.html   # edit.html.erb (form in modal)
-      format.json { render json: @<%= file_name %> }
+      format.html
+      format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> } }
     end
   end
 
-  # POST /<%= file_name.pluralize %>
+  # POST /<%= plural %>
   def create
-    @<%= file_name %> = <%= class_name %>.new(<%= file_name %>_params)
-    authorize @<%= file_name %>
+    @<%= singular %> = <%= class_name.singularize %>.new(<%= singular %>_params)
+    authorize @<%= singular %>
+
     respond_to do |format|
-      if @<%= file_name %>.save
-        format.html do 
-          flash[:notice] = "<%= class_name %> was successfully created."
-          redirect_to @<%= file_name %>  # redirect to show page
+      if @<%= singular %>.save
+        @message = t("<%= plural %>.messages.create_success")
+        format.html do
+          flash[:notice] = @message
+          redirect_to @<%= singular %> # redirect to show page
         end
-        format.turbo_stream   # renders create.turbo_stream.erb
-        format.json { render json: @<%= file_name %>, status: :created }
+<% if options[:turbo] -%>
+        format.turbo_stream # renders create.turbo_stream.erb
+<% end -%>
+        format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> }, status: :created }
       else
         format.html do
           # Re-render the form for HTML (status 422 for validation errors)
-          render :new, status: :unprocessable_entity 
+          render :new, status: :unprocessable_entity
         end
-        format.turbo_stream   # renders create.turbo_stream.erb (re-render form with errors)
-        format.json { render json: @<%= file_name %>.errors, status: :unprocessable_entity }
+<% if options[:turbo] -%>
+        format.turbo_stream # renders create.turbo_stream.erb (re-render form with errors)
+<% end -%>
+        format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> }, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /<%= file_name.pluralize %>/1
+  # PATCH/PUT /<%= plural %>/1
   def update
-    authorize @<%= file_name %>
+    authorize @<%= singular %>
     respond_to do |format|
-      if @<%= file_name %>.update(<%= file_name %>_params)
-        format.html do 
-          flash[:notice] = "<%= class_name %> was successfully updated."
-          redirect_to @<%= file_name %> 
+      if @<%= singular %>.update(<%= singular %>_params)
+        @message = t("<%= plural %>.messages.update_success")
+        format.html do
+          flash[:notice] = @message
+          redirect_to <%= path_prefix %><%= plural %>_path
         end
-        format.turbo_stream   # renders update.turbo_stream.erb
-        format.json { render json: @<%= file_name %> }
+<% if options[:turbo] -%>
+        format.turbo_stream # renders update.turbo_stream.erb
+<% end -%>
+        format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> } }
       else
-        format.html do 
-          render :edit, status: :unprocessable_entity 
+        format.html do
+          render :edit, status: :unprocessable_entity
         end
-        format.turbo_stream   # renders update.turbo_stream.erb (re-render form with errors)
-        format.json { render json: @<%= file_name %>.errors, status: :unprocessable_entity }
+<% if options[:turbo] -%>
+        format.turbo_stream # renders update.turbo_stream.erb (re-render form with errors)
+<% end -%>
+        format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> }, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /<%= file_name.pluralize %>/1
+  # DELETE /<%= plural %>/1
   def destroy
-    authorize @<%= file_name %>
-    @<%= file_name %>.destroy
+    authorize @<%= singular %>
+    @message = if @<%= singular %>.destroy
+      t("<%= plural %>.messages.destroy_success")
+    else
+      t("<%= plural %>.messages.destroy_failure")
+    end
+
     respond_to do |format|
-      format.html do 
-        flash[:notice] = "<%= class_name %> was successfully deleted."
-        redirect_to <%= file_name.pluralize %>_path 
+      format.html do
+        flash[:notice] = @message
+        redirect_to <%= path_prefix %><%= plural %>_path
       end
-      format.turbo_stream   # renders destroy.turbo_stream.erb
+<% if options[:turbo] -%>
+      format.turbo_stream # renders destroy.turbo_stream.erb
+<% end -%>
       format.json { head :no_content }
     end
   end
 
+  def update_all
+    authorize @<%= plural %>
+    @errors = []
+    @count = 0
+
+    ActiveRecord::Base.transaction do
+      @<%= plural %>.each do |<%= singular %>|
+        if <%= singular %>.update(<%= singular %>_params)
+          @count += 1
+        else
+          @errors << { id: <%= singular %>.id, errors: <%= singular %>.errors.full_messages }
+        end
+      end
+
+      # Rollback if any validation fails (optional - remove if you want partial updates)
+      raise ActiveRecord::Rollback if @errors.any?
+    end
+
+    @message = if @errors.empty?
+      t("<%= plural %>.messages.bulk_update_success", count: @count)
+    else
+      t("<%= plural %>.messages.bulk_update_failure", count: @count, errors: @errors.map { |e| "<%= singular.humanize %> ID #{e[:id]}: #{e[:errors].join(', ')}" }.join('; '))
+    end
+
+    respond_with_bulk_result(@errors.empty?)
+  end
+
+  def destroy_all
+    authorize @<%= plural %>
+    @errors = []
+    @count = 0
+
+    ActiveRecord::Base.transaction do
+      @<%= plural %>.each do |<%= singular %>|
+        if <%= singular %>.destroy
+          @count += 1
+        else
+          @errors << { id: <%= singular %>.id, errors: <%= singular %>.errors.full_messages }
+        end
+      end
+
+      # Rollback if any validation fails (optional - remove if you want partial updates)
+      raise ActiveRecord::Rollback if @errors.any?
+    end
+
+    @message = if @errors.empty?
+      t("<%= plural %>.messages.bulk_destroy_success", count: @count)
+    else
+      t("<%= plural %>.messages.bulk_destroy_failure", errors: @errors.map { |e| "<%= singular.humanize %> ID #{e[:id]}: #{e[:errors].join(', ')}" }.join('; '))
+    end
+    respond_with_bulk_result(@errors.empty?)
+  end
+
   private
 
-    def set_<%= file_name %>
-      @<%= file_name %> = <%= class_name %>.find(params[:id])
-      # Note: Pundit authorization for @<%= file_name %> happens in each action
+  def set_<%= singular %>
+    @<%= singular %> = <%= class_name.singularize %>.find(params[:id])
+    # Note: Pundit authorization for @<%= singular %> happens in each action
+  rescue ActiveRecord::RecordNotFound
+    message = t("<%= plural %>.messages.not_found")
+    respond_to do |format|
+      format.html do
+        flash[:error] = message
+        redirect_to <%= path_prefix %><%= plural %>_path
+      end
+      format.json { render json: { error: message }, status: :not_found }
+<% if options[:turbo] -%>
+      format.turbo_stream { render turbo_stream: turbo_stream.append("notice", partial: "shared/alert", locals: { message: message, color: :error }) }
+<% end -%>
     end
+  end
 
-    # Only allow a list of trusted parameters through.
-    def <%= file_name %>_params
-      params.require(:<%= file_name %>).permit(
-        <%# Permit all scaffolded attributes; references use foreign_key_id %>
-        <%- allowed_attrs = attributes.map do |att| 
-              attr_name, attr_type = att.name, att.type.to_s
-              if ['references', 'belongs_to'].include?(attr_type)
-                ":#{attr_name}_id"
-              elsif attr_type == 'password_digest'
-                # For password digest, permit password and password_confirmation
-                ':password, :password_confirmation'
-              else
-                ":#{attr_name}"
-              end 
-            end
-        -%>
-        <%= allowed_attrs.join(', ') %>
-      )
+  def set_<%= plural %>_for_bulk_actions
+    <%= singular %>_ids = Array(params[:<%= singular %>_ids]).reject(&:blank?)
+    @<%= plural %> = <%= class_name.singularize %>.where(id: <%= singular %>_ids)
+
+    if @<%= plural %>.empty?
+      message = t("<%= plural %>.messages.not_selected_for_action")
+      respond_to do |format|
+        format.html do
+          flash[:warning] = message
+          redirect_to <%= path_prefix %><%= plural %>_path
+        end
+<% if options[:turbo] -%>
+        format.turbo_stream { render turbo_stream: turbo_stream.append("notice", partial: "shared/alert", locals: { message: message, color: :error }) }
+<% end -%>
+        format.json { render json: { message: message }, status: :bad_request }
+      end
     end
+  end
+
+  def respond_with_bulk_result(success)
+    respond_to do |format|
+      if success
+        format.html do
+          flash[:notice] = @message
+          redirect_to <%= path_prefix %><%= plural %>_path
+        end
+<% if options[:turbo] -%>
+        format.turbo_stream
+<% end -%>
+        format.json { render json: { message: @message, count: @count }, status: :ok }
+      else
+        format.html do
+          flash[:error] = @message
+          redirect_to <%= path_prefix %><%= plural %>_path
+        end
+<% if options[:turbo] -%>
+        format.turbo_stream
+<% end -%>
+        format.json {
+          render json: {
+            message: @message,
+            errors: @errors
+          }, status: :unprocessable_entity
+        }
+      end
+    end
+  end
+
+  # Only allow a list of trusted parameters through.
+  def <%= singular %>_params
+    params.require(:<%= singular %>).permit(
+<%- allowed_attrs = attributes.map do |att| 
+            attr_name, attr_type = att.name, att.type.to_s
+            if ['references', 'belongs_to'].include?(attr_type)
+              ":#{attr_name}_id"
+            elsif attr_type == 'password_digest'
+              # For password digest, permit password and password_confirmation
+              ':password, :password_confirmation'
+            else
+              ":#{attr_name}"
+            end 
+          end
+      -%>
+      <%= allowed_attrs.join(', ') %>
+    )
+  end
+
+  def user_not_authorized
+    message = t("<%= plural %>.messages.not_authorized")
+    respond_to do |format|
+      format.html do
+        flash[:error] = message
+        redirect_to <%= path_prefix %><%= plural %>_path
+      end
+      format.json { render json: { error: message }, status: :forbidden }
+<% if options[:turbo] -%>
+      format.turbo_stream { render turbo_stream: turbo_stream.append("error", partial: "shared/alert", locals: { message: message, color: :error }) }
+<% end -%>
+    end
+  end
+
+  def generate_csv(<%= plural %>)
+    attribute_names = %w[<%= attributes.map(&:name).map(&:camelize).join(" ") %>]
+    require "csv" unless defined?(CSV)
+
+    CSV.generate(headers: true) do |csv|
+      csv << attribute_names
+      <%= plural %>.each do |<%= singular %>|
+        csv << [
+<% attributes.reject { |attr| attr.type == :password_digest }.each_with_index do |attr, idx| -%>
+          <%=
+            case attr.type
+            when :boolean
+              "I18n.t(#{singular}.#{attr.name}?, scope: \"#{plural}.values.#{attr.name}\")"
+            when :datetime
+              "#{singular}.#{attr.name}.strftime('%Y-%m-%d %H:%M:%S')"
+            else
+              "#{singular}.#{attr.name}"
+            end
+          %><%= "," unless idx == attributes.size - 1 %>
+<% end -%>
+        ]
+      end
+    end
+  rescue LoadError
+    # Fallback if CSV is not available
+    content = "#{attribute_names.join(',')}\n"
+    <%= plural %>.each do |<%= singular %>|
+
+      content += [
+<% attributes.reject { |attr| attr.type == :password_digest }.each_with_index do |attr, idx| -%>
+        <%=
+          case attr.type
+          when :boolean
+            "I18n.t(#{singular}.#{attr.name}?, scope: \"#{plural}.values.#{attr.name}\")"
+          when :datetime
+            "#{singular}.#{attr.name}.strftime('%Y-%m-%d %H:%M:%S')"
+          else
+            "#{singular}.#{attr.name}"
+          end
+        %><%= "," unless idx == attributes.size - 1 %>
+<% end -%>
+      ].join(",")
+    end
+    content
+  end
 end

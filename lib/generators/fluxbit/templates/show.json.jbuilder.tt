@@ -1,0 +1,6 @@
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+# app/views/<%= plural %>s/show.json.jbuilder
+json.extract! @<%= singular %>, <%= attributes.reject { |a| 
+      a.type.to_s == "password_digest" }.map { |a|
+        ":#{a.name}" }.join(', ') %>, :created_at, :updated_at
+json.url <%= path_prefix %><%= singular %>_url(@<%= singular %>, format: :json)

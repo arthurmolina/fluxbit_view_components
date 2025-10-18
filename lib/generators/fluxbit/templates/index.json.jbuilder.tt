@@ -1,0 +1,33 @@
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+# app/views/<%= plural %>/index.json.jbuilder
+json.<%= plural %> @<%= plural %> do |<%= singular %>|
+  json.id <%= singular %>.id
+<% attributes.each do |att|
+  name = att.name
+  next if att.type.to_s == 'password_digest'  # handle password fields separately 
+-%>
+  json.<%= name %> <%= singular %>.<%= name %>
+<% end -%>
+  json.created_at <%= singular %>.created_at
+  json.updated_at <%= singular %>.updated_at
+  json.url <%= path_prefix %><%= singular %>_url(<%= singular %>, format: :json)
+end
+
+json.pagination do
+  json.current_page @pagy.page
+  json.total_pages @pagy.pages
+  json.total_count @pagy.count
+  json.per_page @pagy.limit
+  json.next_page @pagy.next
+  json.prev_page @pagy.prev
+end
+
+json.filters do
+  json.search @q
+<% attributes
+  .select { |a| %i[integer decimal text string].include?(a.type) }
+  .each do |att|
+-%>
+  json.<%= att.name %> @<%= att.name %>
+<% end -%>
+end

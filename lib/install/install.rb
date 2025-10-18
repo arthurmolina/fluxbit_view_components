@@ -7,6 +7,7 @@ layout_path = Rails.root.join("app/views/layouts/application.html.erb")
 importmap_binstub = Rails.root.join("bin/importmap")
 importmap_config = Rails.root.join("config/importmap.rb")
 stimulus_path = Rails.root.join("app/javascript/controllers/index.js")
+application_js_path = Rails.root.join("app/javascript/application.js")
 package_json_path = Rails.root.join("package.json")
 tailwind_config_path = Rails.root.join("tailwind.config.js")
 stylesheets_path = Rails.root.join("app/assets/stylesheets/application.tailwind.css")
@@ -25,6 +26,12 @@ system "#{RbConfig.ruby} ./bin/rails tailwindcss:install"
 say.call "- Installing Flowbite via npm..."
 system "npm install flowbite --save"
 
+say.call "- Installing Fluxbit ViewComponents JavaScript package via npm..."
+system "npm install fluxbit_view_components --save"
+
+say.call "- Installing flowbite-datepicker via npm..."
+system "npm install flowbite-datepicker --save"
+
 say.call "- Copying tailwind.config.js from template..."
 if File.exist?(template_path)
   FileUtils.cp(template_path, tailwind_config_path)
@@ -41,6 +48,57 @@ if stylesheets_path.exist?
   File.write(stylesheets_path, content)
 else
   say.call "⚠️ Couldn't find application.tailwind.css, skipping CSS modifications", :red
+end
+
+if application_js_path.exist?
+  say.call "- Updating application.js with Fluxbit imports..."
+  app_js_content = File.read(application_js_path)
+
+  unless app_js_content.include?("flowbite/dist/flowbite.turbo.js")
+    # Find the line with "./controllers" import and add before it
+    if app_js_content.include?("./controllers")
+      gsub_file application_js_path.to_s, 'import "./controllers"',
+        'import "flowbite/dist/flowbite.turbo.js"' + "\n" +
+        'import "flowbite-datepicker"' + "\n" +
+        'import "./controllers"' + "\n" +
+        'import "fluxbit-view-components"'
+      say.call "  Added Flowbite and Fluxbit imports to application.js"
+    else
+      say.call "  ⚠️ Couldn't find './controllers' import in application.js", :red
+      say.call "     Add these lines manually:", :red
+      say.call '     import "flowbite/dist/flowbite.turbo.js"', :red
+      say.call '     import "flowbite-datepicker"', :red
+      say.call '     import "fluxbit-view-components"', :red
+    end
+  else
+    say.call "  Flowbite imports already exist in application.js, skipping..."
+  end
+else
+  say.call "⚠️ Couldn't find application.js, skipping JavaScript modifications", :red
+  say.call "   Add these lines to your application.js:", :red
+  say.call '   import "flowbite/dist/flowbite.turbo.js"', :red
+  say.call '   import "flowbite-datepicker"', :red
+  say.call '   import "fluxbit-view-components"', :red
+end
+
+if stimulus_path.exist?
+  say.call "- Updating controllers/index.js with Fluxbit controllers..."
+  controllers_content = File.read(stimulus_path)
+
+  unless controllers_content.include?("registerFluxbitControllers")
+    # Add the Fluxbit controller registration at the end
+    controllers_content << "\nimport { registerFluxbitControllers } from \"fluxbit-view-components\"\n"
+    controllers_content << "registerFluxbitControllers(Stimulus)\n"
+    File.write(stimulus_path, controllers_content)
+    say.call "  Added Fluxbit controller registration to controllers/index.js"
+  else
+    say.call "  Fluxbit controllers already registered, skipping..."
+  end
+else
+  say.call "⚠️ Couldn't find controllers/index.js, skipping Stimulus controller setup", :red
+  say.call "   Add these lines to your controllers/index.js:", :red
+  say.call '   import { registerFluxbitControllers } from "fluxbit-view-components"', :red
+  say.call '   registerFluxbitControllers(Stimulus)', :red
 end
 
 if layout_path.exist?

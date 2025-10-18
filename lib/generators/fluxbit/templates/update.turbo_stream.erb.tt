@@ -1,12 +1,10 @@
-<%% if @<%= file_name %>.errors.any? %>
-  <%%# On failure: re-render the form (with errors still in modal) %>
-  <%%= turbo_stream.replace "<%= file_name %>_form", partial: "<%= file_name.pluralize %>/form", 
-        locals: { <%= file_name %>: @<%= file_name %> } %>
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+<%% if @<%= singular %>.errors.any? %>
+  <%%# On failure: re-render the form (with errors still in drawer) %>
+  <%%= turbo_stream.replace "<%= singular %>_form", partial: "<%= namespace_path %>/<%= plural %>/form", locals: { <%= plural %>: [@<%= singular %>] } %>
 <%% else %>
-  <%%# On success: replace the existing row, clear modal, and show notice %>
-  <%%= turbo_stream.replace "<%%= dom_id(@<%= file_name %>) %>", 
-        partial: "<%= file_name.pluralize %>/<%= file_name %>", 
-        locals: { <%= file_name %>: @<%= file_name %> } %>
-  <%%= turbo_stream.update "modal", "" %>
-  <%%= turbo_stream.replace "notice", fx_alert(with_content: "<%= class_name %> was successfully updated.", variant: :success) %>
+  <%%# On success: replace the existing row, clear drawer, and show notice %>
+  <%%= turbo_stream.replace dom_id(@<%= singular %>), partial: "<%= namespace_path %>/<%= plural %>/<%= plural %>",  locals: { <%= plural %>: [@<%= singular %>] } %>
+  <%%= turbo_stream.update "drawer", "" %>
+  <%%= turbo_stream.append "notice", fx_alert(with_content: @message, color: :success) %>
 <%% end %>

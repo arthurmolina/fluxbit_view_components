@@ -1,0 +1,9 @@
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+<%% if @errors.any? %>
+  <%%= turbo_stream.append "notice", fx_alert(with_content: @message, color: :danger) %>
+<%% else %>
+  <%% @<%= plural %>.each do |<%= singular %>| %>
+    <%%= turbo_stream.remove dom_id(<%= singular %>) %>
+  <%% end %> 
+  <%%= turbo_stream.append "notice", fx_alert(with_content: @message, color: :success) %>
+<%% end %>

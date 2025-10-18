@@ -1,0 +1,44 @@
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+<%% if <%= singular %>.persisted? %>
+  <%%= fx_flex(vertical: false, gap: 1, class: "mt-4") do %>
+    <%%= fx_flex(align_items: :center, justify_content: :center, class: "bg-blue-500 dark:bg-blue-700 size-6 rounded-full") do %>
+      <%%= anyicon("heroicons_solid:plus", class: "size-4 text-white justify-center") %>
+    <%% end %>
+    <%%= fx_flex(vertical: true) do %>
+      <p class="text-sm font-medium text-gray-900 dark:text-white"><%%= t("<%= plural %>.fields.created_at") %></p>
+      <p class="text-sm text-gray-500">
+        <%%= <%= singular %>.created_at.strftime("%A, %B %d, %Y at %I:%M %p") %>
+      </p>
+      <p class="text-xs text-gray-400">
+        <%%= time_ago_in_words(<%= singular %>.created_at) %>
+      </p>
+    <%% end %>
+  <%% end %>
+
+  <%%= fx_flex(vertical: false, gap: 1, class: "mt-4") do %>
+    <%%= fx_flex(align_items: :center, justify_content: :center, class: "bg-green-500 dark:bg-green-700 size-6 rounded-full") do %>
+      <%%= anyicon("heroicons_solid:pencil", class: "size-4 text-white justify-center") %>
+    <%% end %>
+    <%%= fx_flex(vertical: true) do %>
+      <p class="text-sm font-medium text-gray-900 dark:text-white"><%%= t("<%= plural %>.fields.updated_at") %></p>
+      <p class="text-sm text-gray-500">
+        <%%= <%= singular %>.updated_at.strftime("%A, %B %d, %Y at %I:%M %p") %>
+      </p>
+      <p class="text-xs text-gray-400">
+        <%%= time_ago_in_words(<%= singular %>.updated_at) %>
+      </p>
+    <%% end %>
+  <%% end %>
+
+  <%%= fx_flex(vertical: false, gap: 1, class: "mt-4") do %>
+    <%%= fx_flex(align_items: :center, justify_content: :center, class: "bg-gray-500 dark:bg-gray-700 size-6 rounded-full") do %>
+      <%%= anyicon("heroicons_solid:finger-print", class: "size-4 text-white justify-center") %>
+    <%% end %>
+    <%%= fx_flex(vertical: true) do %>
+      <p class="text-sm font-medium text-gray-900 dark:text-white"><%%= t("<%= plural %>.fields.id") %></p>
+      <p class="text-sm text-gray-500">
+        <%%= <%= singular %>.id %>
+      </p>
+    <%% end %>
+  <%% end %>
+<%% end %>

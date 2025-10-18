@@ -1,17 +1,44 @@
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
 <p id="notice"><%%= notice %></p>
 
-<%%= fx_heading with_content: "<%= class_name %> Details" %>
+<%%= fx_heading(class: "m-4", size: 2) { t("<%= plural %>.titles.show") } %>
 
-<%%= fx_card do %>
-  <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
-    <p class="mb-2">
-      <strong><%= attr.name.humanize %>:</strong>
-      <%%= @<%= file_name %>.<%= attr.name %> %>
-    </p>
+<%%= fx_card(class: "m-4") do |card| %>
+  <%% card.with_section do %>
+    <div class="grid gap-4 sm:grid-cols-2">
+
+<% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
+  <% attr_name = attr.name -%>
+  <% if attr.type == :boolean -%>
+      <div>
+        <p class="text-xs uppercase tracking-wide text-gray-500"><%%= t("<%= plural %>.fields.<%= attr_name %>") %></p>
+        <%%= fx_badge(pill: true, color: @<%= singular %>.<%= attr_name %>? ? :success_bordered : :danger_bordered) { t(@<%= singular %>.<%= attr_name %>?, scope: "<%= plural %>.values.<%= attr_name %>") } %>
+      </div>
+  <% elsif attr.type == :text -%>
+      <div class="sm:col-span-2">
+        <p class="text-xs uppercase tracking-wide text-gray-500"><%%= t("<%= plural %>.fields.<%= attr_name %>") %></p>
+        <p class="mt-1 leading-relaxed text-gray-700 whitespace-pre-line"><%%= @<%= singular %>.<%= attr_name %> || t("<%= plural %>.values.no_value") %></p>
+      </div>
+  <% else -%>
+      <div>
+        <p class="text-xs uppercase tracking-wide text-gray-500"><%%= t("<%= plural %>.fields.<%= attr_name %>") %></p>
+        <p class="mt-1 font-medium text-gray-900"><%%= @<%= singular %>.<%= attr_name %> || t("<%= plural %>.values.no_value") %></p>
+      </div>
   <% end -%>
+<% end -%>
+    </div>
+
+    <%%= render "metadata", <%= singular %>: @<%= singular %> %>
+  <%% end %>
 <%% end %>
 
-<div class="mt-4">
-  <%%= fx_button "Edit", href: edit_<%= file_name %>_path(@<%= file_name %>), data: { turbo_frame: "modal" } %>
-  <%%= fx_button "Back", href: <%= file_name.pluralize %>_path %>
+<div class="m-4 flex gap-2">
+  <%%= fx_button as: :a, href: edit_<%= path_prefix %><%= singular %>_path(@<%= singular %>), data: { turbo_frame: "drawer" }, remove_class: "w-full", class: "p-2 px-4" do %>
+    <%%= anyicon("heroicons_solid:pencil", class: "size-4") %>
+    <span class="pl-2"><%%= t("<%= plural %>.actions.edit") %></span>
+  <%% end %>
+  <%%= fx_button as: :a, href: <%= path_prefix %><%= plural %>_path, remove_class: "w-full", class: "p-2 px-4" do %>
+    <%%= anyicon("heroicons_solid:arrow-left", class: "size-4") %>
+    <span class="pl-2"><%%= t("<%= plural %>.actions.back") %></span>
+  <%% end %>
 </div>

@@ -1,10 +1,47 @@
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+<% if options[:ui] == "drawer" -%>
+<% if options[:turbo] -%>
 <%% if turbo_frame_request? %>
-  <turbo-frame id="modal">
-    <%%= fx_modal(title: "Edit <%= class_name %>") do %>
-      <%%= render "form", <%= file_name %>: @<%= file_name %> %>
+  <turbo-frame id="drawer">
+    <%%= fx_drawer(id: "edit-drawer", placement: :right, sizing: :xl, data: {controller: "fx-drawer"}) do |drawer| %>
+      <%% drawer.with_header { t("<%= plural %>.titles.edit") } %>
+      <%%= render "form", <%= singular %>: @<%= singular %> %>
     <%% end %>
+    <script>document.dispatchEvent(new CustomEvent("showDrawer:edit-drawer"));</script>
   </turbo-frame>
 <%% else %>
-  <%%= fx_heading(with_content: "Edit <%= class_name %>") %>
-  <%%= render "form", <%= file_name %>: @<%= file_name %> %>
+  <%%= fx_heading(class: "m-4", size: 2) { t("<%= plural %>.titles.edit") } %>
+  <%%= fx_card(class: "m-4") do |card| %>
+    <%% card.with_section do %>
+      <%%= render "form", <%= singular %>: @<%= singular %> %>
+    <%% end %>
+  <%% end %>
 <%% end %>
+<% end -%>
+<% elsif options[:ui] == "modal" -%>
+<% if options[:turbo] -%>
+<%% if turbo_frame_request? %>
+  <turbo-frame id="modal">
+    <%%= fx_modal(id: "edit-modal", size: :xl, data: {controller: "fx-modal"}) do |modal| %>
+      <%% modal.with_header { t("<%= plural %>.titles.edit") } %>
+      <%%= render "form", <%= singular %>: @<%= singular %> %>
+    <%% end %>
+    <script>document.dispatchEvent(new CustomEvent("showModal:edit-modal"));</script>
+  </turbo-frame>
+<%% else %>
+  <%%= fx_heading(class: "m-4", size: 2) { t("<%= plural %>.titles.edit") } %>
+  <%%= fx_card(class: "m-4") do |card| %>
+    <%% card.with_section do %>
+      <%%= render "form", <%= singular %>: @<%= singular %> %>
+    <%% end %>
+  <%% end %>
+<%% end %>
+<% end -%>
+<% else -%>
+  <%%= fx_heading(class: "m-4", size: 2) { t("<%= plural %>.titles.edit") } %>
+  <%%= fx_card(class: "m-4") do |card| %>
+    <%% card.with_section do %>
+      <%%= render "form", <%= singular %>: @<%= singular %> %>
+    <%% end %>
+  <%% end %>
+<% end -%>

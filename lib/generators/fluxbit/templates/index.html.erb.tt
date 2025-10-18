@@ -1,30 +1,254 @@
-<p id="notice"><%%= notice %></p>
-
-<%%= fx_heading do %><%= class_name.pluralize %><%% end %>
-
-<div class="mb-4">
-  <%%= fx_button with_content: "New <%= class_name %>", as: :a, href: new_<%= file_name %>_path, 
-        data: { turbo_frame: "modal" } %>
-</div>
-
-<turbo-frame id="modal"></turbo-frame>
-
-<table class="w-full text-sm text-left text-gray-600">
-  <thead class="bg-gray-50 text-gray-700">
-    <tr>
-<% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
-      <th scope="col" class="px-4 py-2"><%= attr.name.humanize %></th>
+<% singular = file_name.singularize; plural = file_name.pluralize -%>
+<div data-controller="fx-select-all">
+  <div id="notice" class="fixed top-4 right-4 z-50 max-w-md w-auto">
+    <%%= render "shared/flash" %>
+  </div>
+<% if options[:turbo] -%>
+<% if options[:ui] == "drawer" -%>
+  <turbo-frame id="drawer"></turbo-frame>
+<% elsif options[:ui] == "modal" -%>
+  <turbo-frame id="modal"></turbo-frame>
 <% end -%>
-      <th scope="col" class="px-4 py-2" colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody id="<%= file_name.pluralize %>">
-    <%% @<%= file_name.pluralize %>.each do |<%= file_name %>| %>
-      <%%= render <%= file_name %> %>
-    <%% end %>
-  </tbody>
-</table>
+<% end -%>
+  <%%= fx_heading(class: "m-4", size: 2) { t("<%= plural %>.titles.index") } %>
+  
+  <%%= fx_breadcrumb(class: "m-4") do |breadcrumb| %>
+    <%% breadcrumb.with_item(href: root_path, icon: "heroicons_solid:home") %>
+<% if namespaced? -%>
+<% namespace_path.split("/").each do |ns| -%>
+    <%% breadcrumb.with_item { "<%= ns.camelize %>" } %>
+<% end -%>
+<% end -%>
+    <%% breadcrumb.with_item(href: <%= path_prefix %><%= plural %>_path) { t("<%= plural %>.titles.index") } %>
+    <%% breadcrumb.with_item(current_page: true) { "Index" } %>
+  <%% end %>
 
-<div class="mt-4">
-  <%%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  <%%= fx_card(class: "m-4") do |card| %>
+    <%% card.with_section do %>
+      <%%= form_with(id: "<%= singular %>_index", url: <%= path_prefix %><%= plural %>_path, method: :get, local: true,
+          data: { controller: "fx-auto-submit" }) do |form| %>
+        <div class="flex justify-between">
+          <div class="flex gap-2 items-end">
+<% if options[:paginator] -%>
+            <input type="hidden" id="perPageParam" name="per_page" value="<%%= params["per_page"] %>">
+<% end -%>
+            <%%= fx_text_field name: :q, value: params[:q], type: :search,
+                placeholder: t("<%= plural %>.helpers.search"),
+                addon: "heroicons_solid:magnifying-glass",
+                data: { action: 'keydown.enter->fx-auto-submit#submit' } %>
+            <%% if @has_filters %>
+              <%%= fx_button as: :a, href: <%= path_prefix %><%= plural %>_path(<% if options[:paginator] %>per_page: params["per_page"]<% end %>),
+                  color: :light, class: "w-auto px-4 h-[42px]", remove_class: "w-full",
+                  title: t("<%= plural %>.actions.remove_filters") do %>
+                <%%= anyicon("heroicons_solid:x-mark", class: "size-3") %>
+              <%% end #button %>
+            <%% end %>
+          </div>
+          <div class="flex gap-2">
+            <%%= fx_button as: :a, href: new_<%= path_prefix %><%= singular %>_path,
+                class: "w-auto px-4", remove_class: "w-full"<% if options[:turbo] && options[:ui] != "none" %>, data: { turbo_frame: "<%= options[:ui] == "modal" ? "modal" : "drawer" %>" }<% end %> do %>
+              <%%= anyicon("heroicons_solid:plus", class: "size-4") %>
+              <span class="pl-2 pr-4 hidden md:inline"><%%= t("<%= plural %>.actions.new") %></span>
+            <%% end #button %>
+
+            <%%= fx_button id: "actionButton", as: :button, type: "button", color: :light, class: "w-auto px-4",
+                title: "Actions", data: { "fx-select-all-target": "showOnEmptySelect" },
+                remove_class: "w-full" do |actions_button| %>
+              <%%= anyicon("heroicons_solid:ellipsis-vertical", class: "size-4") %>
+              <span class="pl-2 pr-4 hidden md:inline">
+                <%%== t("<%= plural %>.actions.actions") %>
+              </span>
+              <%% actions_button.with_dropdown(id: "dropdownActionButton") do |dropdown| %>
+<% attributes
+  .select { |a| %i[boolean].include?(a.type) }
+  .each do |attr|
+-%>
+                <%% dropdown.with_item do %>
+                  <%%= link_to "#",
+                      class: "inline-flex px-2",
+                      data: { 
+                        controller: "fx-method-link",
+                        fx_method_link_method_value: "patch",
+                        fx_method_link_url_value: update_all_<%= path_prefix %><%= plural %>_path,
+                        fx_method_link_params_value: { <%= singular %>: { <%= attr.name %>: true } },
+                        fx_method_link_form_data_id_value: "<%= singular %>_edit"
+                      },
+                      title: t("<%= plural %>.messages.click_to_change_<%= attr.name %>") do %>
+                    <%%= anyicon("heroicons_solid:check-circle", class: "size-5") %>
+                    <%%= t("<%= plural %>.actions.activate_<%= attr.name %>_selected") %>
+                  <%% end # link_to %>
+                <%% end # dropdown item %>
+
+                <%% dropdown.with_item do %>
+                  <%%= link_to "#",
+                      class: "inline-flex px-2",
+                      data: { 
+                        controller: "fx-method-link",
+                        fx_method_link_method_value: "patch",
+                        fx_method_link_url_value: update_all_<%= path_prefix %><%= plural %>_path,
+                        fx_method_link_params_value: { <%= singular %>: { <%= attr.name %>: false } },
+                        fx_method_link_form_data_id_value: "<%= singular %>_edit"
+                      },
+                      title: t("<%= plural %>.messages.click_to_change_<%= attr.name %>") do %>
+                    <%%= anyicon("heroicons_solid:x-circle", class: "size-5") %>
+                    <%%= t("<%= plural %>.actions.deactivate_<%= attr.name %>_selected") %>
+                  <%% end # link_to %>
+                <%% end # dropdown item %>
+<% end -%>
+                <%% dropdown.with_item do %>
+                  <%%= link_to "#",
+                      onclick: "event.preventDefault();",
+                      class: "inline-flex px-2",
+                      data: {
+                        "modal-target": "confirm-mass-deletion-modal",
+                        "modal-toggle": "confirm-mass-deletion-modal"
+                      },
+                      title: t("<%= plural %>.messages.click_to_destroy_selected") do %>
+                    <%%= anyicon("heroicons_solid:trash", class: "size-5") %>
+                    <%%= t("<%= plural %>.actions.delete_selected") %>
+                  <%% end # link_to %>
+                <%% end # dropdown item %>
+              <%% end # dropdown %>
+            <%% end # button %>
+
+            <%%= fx_button id: "filterButton", as: :button, type: "button", color: :light, class: "w-auto px-4",
+                title: t("<%= plural %>.helpers.filter"), remove_class: "w-full" do |filter_button| %>
+              <%%= anyicon("heroicons_solid:funnel", class: "size-4") %>
+              <span class="pl-2 pr-4 hidden md:inline"><%%= t("<%= plural %>.helpers.filter") %></span>
+              <%% filter_button.with_dropdown(id: "dropdownFilterButton") do |dropdown| %>
+                <div class="px-2">
+<% attributes
+  .select { |a| %i[integer decimal text string].include?(a.type) }
+  .first(5)
+  .each do |attr|
+-%>
+                  <%%= fx_text_field id: "<%= attr.name %>Filter", label: t("<%= plural %>.fields.<%= attr.name -%>"), name: "<%= attr.name -%>",
+                      value: @<%= attr.name %>, placeholder: t("<%= plural %>.helpers.filter_<%= attr.name -%>"), class: "mb-2",
+                      data: { action: "keydown.enter->fx-auto-submit#submit" }
+                  %>
+<% end -%>
+                  <%% if @has_filters %>
+                    <%%= fx_link href: <%= path_prefix %><%= plural -%>_path(<% if options[:paginator] %>per_page: params["per_page"]<% end %>) { t("<%= plural -%>.actions.remove_filters") } %>
+                  <%% end %>
+                </div>
+              <%% end #dropdown %>
+            <%% end # button %>
+
+            <%%= fx_button as: :a, href: <%= path_prefix %><%= plural -%>_path(request.query_parameters.merge(format: :csv)), type: "button",
+                color: :light, class: "w-auto px-4", title: t("<%= plural %>.helpers.export"), remove_class: "w-full" do %>
+              <%%= anyicon("heroicons_solid:arrow-down-tray", class: "size-4") %>
+              <span class="pl-2 pr-4 hidden md:inline"><%%= t("<%= plural %>.actions.export") %></span>
+            <%% end # button %>
+          </div>
+        </div>
+      <%% end #form %>
+    <%% end # section %>
+
+    <%% card.with_section(no_class: true) do %>
+      <%%= form_with(id: "<%= singular %>_edit", name: "<%= singular %>_edit", url: <%= path_prefix %><%= plural %>_path, method: :get, local: true) do |form| %>
+        <%%= fx_table(striped: true, bordered: true, hover: true, tbody_html: {id: "<%= plural %>"}) do |table| %>
+          <%% table.with_header do |header| %>
+            <%% header.with_cell(title: "Select All/Deselect All") {
+              fx_checkbox(id: "<%= singular %>_select_all", data: { "fx-select-all-target": "selectAll" }) } %>
+<% attributes.reject { |attr| attr.type == :password_digest }.first(5).each do |attr| -%>
+            <%% header.with_cell { fx_sort_field(:<%= attr.name %>, :<%= path_prefix %><%= plural %>_path, t("<%= plural %>.fields.<%= attr.name %>")) } %>
+<% end -%>
+            <%% header.with_cell { "" } %>
+          <%% end %>
+          <%% if @<%= plural %>.count > 0 %>
+            <%% render "<%= plural %>", <%= plural %>: @<%= plural %> %>
+          <%% else %>
+            <tr id="not_found"><td colspan=7>
+              <div class="text-center text-gray-500 dark:text-gray-400 py-20 flex flex-col items-center justify-center">
+                <%%= anyicon("heroicons_solid:exclamation-circle", class: "size-12 mb-2") %>
+                <p><%%= t("<%= plural %>.messages.no_records") %></p>
+                <p><%%= t("<%= plural %>.messages.no_records_sub") %></p>
+              </div>
+            </td></tr>
+          <%% end %>
+        <%% end # table %>
+      <%% end # form %>
+    <%% end #section %>
+
+<% if options[:paginator] -%>
+    <%% if @<%= plural %>.count > 1 %>
+      <%% card.with_section do %>
+        <%%= fx_flex(gap: 2, align_items: :center, justify_content: :space_between) do %>
+          <div class="text-sm text-gray-700 dark:text-gray-400 m-0 p-2">
+            <%%== t("<%= plural %>.messages.pagination_info", start: @pagy.from, end: @pagy.to, total: @pagy.count) %>
+          </div>
+          <%%= fx_flex(gap: 2, align_items: :center) do %>
+            <%%= fx_pagination @pagy, id: 'nav', sizing: 1, show_first_last: true %>
+            <%%= fx_select id: "perPage", name:"per_page", class: "pr-4", data: {
+                controller: "fx-assigner fx-auto-submit",
+                fx_assigner_change_param: {
+                    "#perPageParam" => {
+                      "value": { element: "#per_page", attribute: "value" }
+                    }
+                  }.to_json,
+                fx_assigner_prevent_default_param: "true",
+                fx_auto_submit_form_id_param: "<%= singular %>_index",
+                action: "change->fx-assigner#assign change->fx-auto-submit#submit",
+              },
+              options: options_for_select([
+                [t("<%= plural %>.actions.per_page", count: 5), "5"],
+                [t("<%= plural %>.actions.per_page", count: 10), "10"],
+                [t("<%= plural %>.actions.per_page", count: 20), "20"],
+                [t("<%= plural %>.actions.per_page", count: 50), "50"],
+                [t("<%= plural %>.actions.per_page", count: 100), "100"]
+              ], selected: params["per_page"] || "5") %>
+          <%% end # flex %>
+        <%% end # flex %>
+      <%% end # section %>
+    <%% end # if count %>
+<% end -%>
+  <%% end # card %>
+
+  <%%= fx_modal id: "confirm-deletion-modal", size: 1 do |modal| %>
+    <%%= fx_flex(vertical: true, align_items: :center) do %>
+      <%%= anyicon("heroicons_solid:trash", class: "size-11 text-red-600 pb-2") %>
+      <%%= t("<%= plural %>.messages.confirm_destroy") %>
+      <%%= fx_flex(gap: 2, class: "mt-4") do %>
+        <%%= fx_button(as: :button, color: :light, class: "w-auto px-4", remove_class: "w-full",
+            data: {
+              "modal-target": "confirm-deletion-modal",
+              "modal-toggle": "confirm-deletion-modal"
+            }) { t("<%= plural %>.actions.cancel_destroy") } %>
+        <%%= fx_button(as: :a, href: "#", id: "confirm-deletion-button",
+            color: :danger, class: "w-auto text-nowrap px-4", remove_class: "w-full",
+            data: {
+              controller: "fx-method-link",
+              fx_method_link_method_value: "delete",
+              fx_method_link_url_value: <%= path_prefix %><%= singular %>_path(0),
+              "modal-target": "confirm-deletion-modal",
+              "modal-toggle": "confirm-deletion-modal"
+            }) { t("<%= plural %>.actions.confirm_destroy") } %>
+      <%% end #flex %>
+    <%% end #flex %>
+  <%% end # modal %>
+
+  <%%= fx_modal id: "confirm-mass-deletion-modal", size: 1 do |modal| %>
+    <%%= fx_flex(vertical: true, align_items: :center) do %>
+      <%%= anyicon("heroicons_solid:trash", class: "size-11 text-red-600 pb-2") %>
+      <div><%%== t("<%= plural %>.messages.confirm_bulk_destroy") %></div>
+      <%%= fx_flex(gap: 2, class: "mt-4") do %>
+        <%%= fx_button(as: :button, color: :light, class: "w-auto px-4", remove_class: "w-full",
+            data: {
+              "modal-target": "confirm-mass-deletion-modal",
+              "modal-toggle": "confirm-mass-deletion-modal"
+            }) { t("<%= plural %>.actions.cancel_destroy") } %>
+        <%%= fx_button(as: :a, href: "#", id: "confirm-deletion-button",
+            color: :danger, class: "w-auto text-nowrap px-4", remove_class: "w-full",
+            data: {
+              "modal-target": "confirm-mass-deletion-modal",
+              "modal-toggle": "confirm-mass-deletion-modal",
+
+              controller: "fx-method-link",
+              fx_method_link_method_value: "delete",
+              fx_method_link_url_value: destroy_all_<%= path_prefix %><%= plural %>_path,
+              fx_method_link_form_data_id_value: "<%= singular %>_edit"
+            }) { t("<%= plural %>.actions.confirm_destroy") } %>
+      <%% end #flex %>
+    <%% end #flex %>
+  <%% end # modal %>
 </div>

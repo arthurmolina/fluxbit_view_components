@@ -1,0 +1,1 @@
+<%%= fx_alert(color: color) { message } %>
