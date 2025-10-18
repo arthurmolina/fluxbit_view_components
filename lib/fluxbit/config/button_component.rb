@@ -10,7 +10,7 @@ module Fluxbit::Config::ButtonComponent
   # rubocop: disable Layout/LineLength, Metrics/BlockLength
   mattr_accessor :styles do
     {
-      base: "group flex items-center justify-center p-0.5 text-center font-medium relative focus:z-10 focus:outline-hidden",
+      base: "group flex items-center justify-center text-center font-medium relative focus:z-10 focus:outline-hidden",
       full_sized: "w-full",
       colors: {
         transparent: "text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white",
