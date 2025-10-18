@@ -1,0 +1,126 @@
+<%# Demonstrates label, help_text, and helper_popover features %>
+<div class="space-y-8">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Labels, Help Text, and Helper Popovers</h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      The SelectComponent supports labels, help text, and helper popovers to enhance user experience.
+    </p>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Basic Label and Help Text</h4>
+    <%= fx_select(
+      "country",
+      [["United States", "US"], ["Canada", "CA"], ["Mexico", "MX"], ["United Kingdom", "UK"]],
+      label: "Country of Residence",
+      help_text: "Select your primary country of residence",
+      prompt: "Choose a country"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">With Helper Popover</h4>
+    <%= fx_select(
+      "tax_status",
+      [["Individual", "individual"], ["Business", "business"], ["Non-profit", "nonprofit"]],
+      label: "Tax Status",
+      help_text: "Your tax status determines applicable rates",
+      helper_popover: "This information is used for tax calculations and should match your official tax documentation",
+      helper_popover_placement: "right"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Multiple Help Text Lines</h4>
+    <%= fx_select(
+      "subscription",
+      [["Free", "free"], ["Pro", "pro"], ["Enterprise", "enterprise"]],
+      label: "Subscription Plan",
+      help_text: [
+        "Choose the plan that fits your needs",
+        "You can upgrade or downgrade at any time"
+      ]
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Different Popover Placements</h4>
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <%= fx_select(
+          "placement_top",
+          ["Option 1", "Option 2"],
+          label: "Top Placement",
+          helper_popover: "Popover appears on top",
+          helper_popover_placement: "top"
+        ) %>
+      </div>
+      <div>
+        <%= fx_select(
+          "placement_right",
+          ["Option 1", "Option 2"],
+          label: "Right Placement",
+          helper_popover: "Popover appears on the right",
+          helper_popover_placement: "right"
+        ) %>
+      </div>
+      <div>
+        <%= fx_select(
+          "placement_bottom",
+          ["Option 1", "Option 2"],
+          label: "Bottom Placement",
+          helper_popover: "Popover appears on bottom",
+          helper_popover_placement: "bottom"
+        ) %>
+      </div>
+      <div>
+        <%= fx_select(
+          "placement_left",
+          ["Option 1", "Option 2"],
+          label: "Left Placement",
+          helper_popover: "Popover appears on the left",
+          helper_popover_placement: "left"
+        ) %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Without Label (label: false)</h4>
+    <%= fx_select(
+      "no_label",
+      [["Option 1", "opt1"], ["Option 2", "opt2"], ["Option 3", "opt3"]],
+      label: false,
+      help_text: "This select has no label"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Without Help Text (help_text: false)</h4>
+    <%= fx_select(
+      "no_help",
+      [["Option 1", "opt1"], ["Option 2", "opt2"]],
+      label: "Minimal Select",
+      help_text: false
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Complete Example</h4>
+    <%= fx_select(
+      "complete_example",
+      [
+        ["Beginner", "beginner"],
+        ["Intermediate", "intermediate"],
+        ["Advanced", "advanced"],
+        ["Expert", "expert"]
+      ],
+      label: "Experience Level",
+      help_text: "Select your current skill level to get personalized recommendations",
+      helper_popover: "Your experience level helps us tailor content and difficulty to match your needs. You can change this later in settings.",
+      helper_popover_placement: "right",
+      prompt: "Select your level",
+      class: "custom-select"
+    ) %>
+  </div>
+</div>

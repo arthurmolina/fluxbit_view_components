@@ -4,35 +4,33 @@
     <h4 class="font-semibold mb-3">Real Form Builder Integration with Product Model</h4>
 
     <%= form_with(model: (@product || Product.new), local: true, class: "space-y-4", builder: Fluxbit::FormBuilder) do |form| %>
-      <%= fx_select(
-        form: form,
-        attribute: :category,
-        options: [
+      <%# Rails-style: form.fx_select(attribute, choices, options, html_options) %>
+      <%= form.fx_select(
+        :category,
+        [
           ["Electronics", "electronics"],
           ["Clothing", "clothing"],
           ["Books", "books"],
           ["Home & Garden", "home_garden"],
           ["Sports", "sports"]
         ],
-        help_text: "Choose the product category"
+        { help_text: "Choose the product category" }
       ) %>
 
-      <%= fx_select(
-        form: form,
-        attribute: :status,
-        options: [
+      <%= form.fx_select(
+        :status,
+        [
           ["Active", "active"],
           ["Inactive", "inactive"],
           ["Draft", "draft"],
           ["Archived", "archived"]
         ],
-        help_text: "Current product status"
+        { prompt: "Select status", help_text: "Current product status" }
       ) %>
 
-      <%= fx_select(
-        form: form,
-        attribute: :priority,
-        options: [
+      <%= form.fx_select(
+        :priority,
+        [
           ["High", "high"],
           ["Medium", "medium"],
           ["Low", "low"]
@@ -40,17 +38,17 @@
         help_text: "Product priority level"
       ) %>
 
-      <%= fx_select(
-        form: form,
-        attribute: :country,
-        options: [
+      <%= form.fx_select(
+        :country,
+        [
           ["United States", "US"],
           ["Canada", "CA"],
           ["United Kingdom", "UK"],
           ["Germany", "DE"],
           ["France", "FR"]
         ],
-        help_text: "Country of origin"
+        { prompt: "Choose country" },
+        { class: "custom-select-class", help_text: "Country of origin" }
       ) %>
 
       <div class="pt-4">
@@ -77,11 +75,10 @@
       end
     %>
 
-    <%= form_with model: invalid_product, local: true, class: "space-y-4" do |form| %>
-      <%= fx_select(
-        form: form,
-        attribute: :category,
-        options: [
+    <%= form_with model: invalid_product, local: true, class: "space-y-4", builder: Fluxbit::FormBuilder do |form| %>
+      <%= form.fx_select(
+        :category,
+        [
           ["Electronics", "electronics"],
           ["Clothing", "clothing"],
           ["Books", "books"]
@@ -89,10 +86,9 @@
         help_text: "This field will show validation errors"
       ) %>
 
-      <%= fx_select(
-        form: form,
-        attribute: :status,
-        options: [
+      <%= form.fx_select(
+        :status,
+        [
           ["Active", "active"],
           ["Inactive", "inactive"],
           ["Draft", "draft"]
@@ -108,26 +104,28 @@
       When not using a form builder, you can still create select fields by providing name and options manually.
     </p>
 
+    <%# Rails-style: fx_select(name, options, options_hash) %>
     <%= fx_select(
-      name: "product[category]",
-      label: "Product Category",
-      options: [
+      "product[category]",
+      [
         ["Electronics", "electronics"],
         ["Clothing", "clothing"],
         ["Books", "books"]
       ],
-      value: "electronics",
+      label: "Product Category",
+      selected: "electronics",
       help_text: "Standalone select field without form builder"
     ) %>
 
     <%= fx_select(
-      name: "product[status]",
-      label: "Product Status",
-      options: [
+      "product[status]",
+      [
         ["Active", "active"],
         ["Inactive", "inactive"],
         ["Draft", "draft"]
       ],
+      label: "Product Status",
+      prompt: "Choose status",
       help_text: "Current status of the product"
     ) %>
   </div>

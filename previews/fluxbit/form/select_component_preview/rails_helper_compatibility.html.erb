@@ -1,0 +1,98 @@
+<%# Demonstrates compatibility with Rails select helpers %>
+<div class="space-y-8">
+  <div>
+    <h3 class="text-lg font-semibold mb-4">Rails Helper Compatibility</h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      The SelectComponent is fully compatible with Rails' native <code>select</code> and <code>select_tag</code> helpers.
+      It accepts the same parameter formats and behaves identically.
+    </p>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Using options_for_select (Pre-formatted HTML)</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+      You can pass pre-formatted HTML from <code>options_for_select</code> just like with Rails helpers.
+    </p>
+
+    <%= fx_select(
+      label: "Status (with pre-selected option)",
+      name: "status",
+      options: options_for_select(
+        [["Active", "active"], ["Inactive", "inactive"], ["Pending", "pending"]],
+        selected: "active"
+      )
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Using options_for_select with disabled options</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+      Disabled options work exactly like Rails' <code>select_tag</code>.
+    </p>
+
+    <%= fx_select(
+      label: "Plan (some options disabled)",
+      name: "plan",
+      options: options_for_select(
+        [["Free", "free"], ["Pro", "pro"], ["Enterprise", "enterprise"], ["Legacy", "legacy"]],
+        selected: "free",
+        disabled: ["legacy"]
+      )
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Using grouped_options_for_select</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+      Grouped options also work with pre-formatted HTML.
+    </p>
+
+    <%= fx_select(
+      label: "Product Category",
+      name: "product_category",
+      grouped: true,
+      options: {
+        "Electronics" => [["Computers", "computers"], ["Phones", "phones"], ["Tablets", "tablets"]],
+        "Clothing" => [["Shirts", "shirts"], ["Pants", "pants"], ["Shoes", "shoes"]],
+        "Books" => [["Fiction", "fiction"], ["Non-Fiction", "nonfiction"], ["Textbooks", "textbooks"]]
+      }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Rails-style: Positional parameters with prompt</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+      Using <code>fx_select(name, options, prompt: ...)</code> just like <code>select_tag</code>.
+    </p>
+
+    <%= fx_select(
+      "country",
+      [["United States", "US"], ["Canada", "CA"], ["Mexico", "MX"], ["United Kingdom", "UK"]],
+      prompt: "Select your country",
+      label: "Country"
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Rails-style: Simple array (most common)</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+      Just like Rails, you can use simple arrays for basic selections: <code>fx_select(name, array)</code>
+    </p>
+
+    <%= fx_select "priority", ["High", "Medium", "Low"], label: "Priority", prompt: "Select priority level" %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Named parameters (backwards compatible)</h4>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+      You can still use named parameters for compatibility with older code.
+    </p>
+
+    <%= fx_select(
+      name: "language",
+      options: [["English", "en"], ["Spanish", "es"], ["French", "fr"], ["German", "de"]],
+      prompt: "Choose a language",
+      label: "Language"
+    ) %>
+  </div>
+</div>

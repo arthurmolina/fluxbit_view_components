@@ -77,14 +77,39 @@ module Fluxbit
       end
     end
 
-    # select(object, method, choices = nil, options = {}, html_options = {}, &block) public
-    def fx_select(method, **options, &block)
-      options[:error] ||= error_for(method)
-      options[:error] = !!options[:error] if options[:error_hidden] && options[:error]
-      value = object&.public_send(method)
-      options[:selected] = value if value.present?
+    # Mimics Rails' form.select signature:
+    # select(method, choices = nil, options = {}, html_options = {}, &block)
+    #
+    # @param method [Symbol] The attribute name
+    # @param choices [Array, Hash, String, nil] Options for the select (raw data or pre-formatted HTML)
+    # @param options [Hash] Options like prompt, include_blank, selected, disabled
+    # @param html_options [Hash] HTML attributes for the select tag
+    # @param block [Proc] Optional block for custom options
+    #
+    # @example Basic usage
+    #   form.fx_select :role, ["Admin", "User", "Guest"]
+    #
+    # @example With options
+    #   form.fx_select :country, countries, { prompt: "Select a country" }, { class: "custom-class" }
+    #
+    # @example With pre-formatted options
+    #   form.fx_select :status, options_for_select(statuses, selected: "active")
+    def fx_select(method, choices = nil, options = {}, html_options = {}, &block)
+      # Handle Rails-style signature
+      all_options = html_options.merge(options)
 
-      render Fluxbit::Form::SelectComponent.new(form: self, attribute: method, **options, &block)
+      # Set the choices/options
+      all_options[:options] = choices if choices.present?
+
+      # Add error handling
+      all_options[:error] ||= error_for(method)
+      all_options[:error] = !!all_options[:error] if all_options[:error_hidden] && all_options[:error]
+
+      # Set selected value from object if not explicitly provided
+      value = object&.public_send(method)
+      all_options[:selected] ||= value if value.present?
+
+      render Fluxbit::Form::SelectComponent.new(form: self, attribute: method, **all_options, &block)
     end
 
     def fx_submit(content = nil, **options, &block)

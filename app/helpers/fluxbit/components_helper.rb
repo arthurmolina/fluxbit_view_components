@@ -12,10 +12,49 @@ module Fluxbit
 
     # Forms
     [ :help_text, :form_builder, :label, :range,
-      :select, :toggle, :upload_image, :dropzone ].each do |component|
+      :toggle, :upload_image, :dropzone ].each do |component|
       define_method("fx_#{component}") do |*args, **kwargs, &block|
         fluxbit_method("Form::#{component.to_s.camelize}", *args, **kwargs, &block)
       end
+    end
+
+    # Mimics Rails' select_tag signature:
+    # select_tag(name, option_tags = nil, options = {})
+    #
+    # @param name [String, Symbol] Name attribute for the select tag
+    # @param option_tags [String, Array, Hash, nil] Pre-formatted HTML or raw options data
+    # @param options [Hash] HTML attributes and select options (prompt, class, etc.)
+    # @param block [Proc] Optional block for custom options
+    #
+    # @example Basic usage
+    #   fx_select "role", ["Admin", "User", "Guest"]
+    #
+    # @example With options
+    #   fx_select "country", countries, prompt: "Select a country", class: "custom-select"
+    #
+    # @example With pre-formatted options
+    #   fx_select "status", options_for_select(statuses, selected: "active")
+    #
+    # @example Named parameters (backwards compatible)
+    #   fx_select name: "role", options: ["Admin", "User"], prompt: "Choose..."
+    def fx_select(name = nil, option_tags = nil, options = {}, &block)
+      # Handle both positional and named parameters
+      if name.is_a?(Hash)
+        # Named parameters: fx_select(name: "role", options: [...], prompt: "...")
+        options = name
+        name = options.delete(:name)
+        option_tags = options.delete(:options) || options.delete(:choices)
+      elsif option_tags.is_a?(Hash) && options.empty?
+        # Two args with second being options: fx_select("role", prompt: "...")
+        options = option_tags
+        option_tags = options.delete(:options) || options.delete(:choices)
+      end
+
+      # Set the options/choices
+      options[:options] = option_tags if option_tags.present?
+      options[:name] = name if name.present?
+
+      fluxbit_method("Form::Select", **options, &block)
     end
     def form_builder(...) = fluxbit_method("Form::FormBuilder", ...)
 

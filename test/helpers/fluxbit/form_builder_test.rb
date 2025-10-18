@@ -54,7 +54,7 @@ class Fluxbit::ViewHelperTest < ActionView::TestCase
   end
 
   test "#fx_select" do
-    @rendered_content = @builder.fx_select(:status, options: { "Active" => "active", "Draft" => "draft" })
+    @rendered_content = @builder.fx_select(:status, { "Active" => "active", "Draft" => "draft" })
 
     assert_selector "label.text-sm.flex", text: "Status"
     assert_selector "select[name='product[status]']" do
@@ -64,10 +64,10 @@ class Fluxbit::ViewHelperTest < ActionView::TestCase
   end
 
   test "#fx_select with grouped options" do
-    @rendered_content = @builder.fx_select(:status, grouped: true, options: {
+    @rendered_content = @builder.fx_select(:status, {
       "Professional" => [ "Doctors", "Nurses" ],
       "Culturals" => [ "Artists", "Musicians" ]
-    })
+    }, { grouped: true })
 
     assert_selector "label.text-sm.flex", text: "Status"
     assert_selector "select[name='product[status]']" do
@@ -81,7 +81,7 @@ class Fluxbit::ViewHelperTest < ActionView::TestCase
   end
 
   test "#fx_select with time zones" do
-    @rendered_content = @builder.fx_select(:status, time_zone: true)
+    @rendered_content = @builder.fx_select(:status, nil, { time_zone: true })
     assert_selector "label.text-sm.flex", text: "Status"
     assert_selector "select[name='product[status]']" do
       ::ActiveSupport::TimeZone.all.first(50).each do |tz|
@@ -91,12 +91,52 @@ class Fluxbit::ViewHelperTest < ActionView::TestCase
   end
 
   test "#fx_select with choices" do
-    @rendered_content = @builder.fx_select(:status, options: [ "active", "draft" ])
+    @rendered_content = @builder.fx_select(:status, [ "active", "draft" ])
 
     assert_selector "label.text-sm.flex", text: "Status"
     assert_selector "select[name='product[status]']" do
       assert_selector "option[value='active']", text: "active"
       assert_selector "option[value='draft']", text: "draft"
+    end
+  end
+
+  test "#fx_select with Rails-style positional parameters" do
+    @rendered_content = @builder.fx_select(:status, ["Active", "Draft", "Archived"])
+
+    assert_selector "label.text-sm.flex", text: "Status"
+    assert_selector "select[name='product[status]']" do
+      assert_selector "option", text: "Active"
+      assert_selector "option", text: "Draft"
+      assert_selector "option", text: "Archived"
+    end
+  end
+
+  test "#fx_select with Rails-style options hash" do
+    @rendered_content = @builder.fx_select(:status, ["Active", "Draft"], { prompt: "Select status" })
+
+    assert_selector "select[name='product[status]']" do
+      assert_selector "option[value='']", text: "Select status"
+      assert_selector "option", text: "Active"
+      assert_selector "option", text: "Draft"
+    end
+  end
+
+  test "#fx_select with Rails-style html_options" do
+    @rendered_content = @builder.fx_select(:status, ["Active", "Draft"], {}, { class: "custom-class" })
+
+    assert_selector "select.custom-class[name='product[status]']"
+  end
+
+  test "#fx_select with options_for_select" do
+    choices = ActionView::Helpers::FormOptionsHelper.instance_method(:options_for_select).bind(self).call(
+      [["Active", "active"], ["Draft", "draft"]],
+      selected: "active"
+    )
+    @rendered_content = @builder.fx_select(:status, choices)
+
+    assert_selector "select[name='product[status]']" do
+      assert_selector "option[value='active'][selected]", text: "Active"
+      assert_selector "option[value='draft']", text: "Draft"
     end
   end
 

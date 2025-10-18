@@ -55,6 +55,8 @@ class Fluxbit::Form::SelectComponentPreview < ViewComponent::Preview
   def sizes; end
   def disabled; end
   def with_helper_text; end
+  def with_label_and_help; end
+  def rails_helper_compatibility; end
   def with_form_builder
     @product ||= ::BaseProductModel.new(
       name: "Sample Product",

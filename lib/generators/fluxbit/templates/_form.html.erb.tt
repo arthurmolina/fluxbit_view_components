@@ -16,22 +16,22 @@
   next if type == 'password_digest'  # handle password fields separately 
 -%>
 <% if ['references','belongs_to'].include?(type) -%>
-  <%%= form.fx_select :<%= "#{name}_id" %>, <%= name.camelize %>.all, :id, :name, prompt: true, label: t("<%= plural %>.fields.<%= name %>"), wrapper_html: {class: "mb-4"} %>
+  <%%= form.fx_select :<%= "#{name}_id" %>, <%= name.camelize %>.all.pluck(:name, :id), { prompt: t("<%= plural %>.prompts.<%= name %>") }, {wrapper_html: {class: "mb-4"} } %>
 <% elsif type == 'boolean' -%>
-  <%%= form.fx_toggle :<%= name %>, label: t("<%= plural %>.fields.<%= name %>"), wrapper_html: {class: "mb-4"} %>
+  <%%= form.fx_toggle :<%= name %>, wrapper_html: {class: "mb-4"} %>
 <% elsif type == 'password' -%>
-  <%%= form.fx_password_field :<%= name %>, label: t("<%= plural %>.fields.<%= name %>"), wrapper_html: {class: "mb-4"} %>
+  <%%= form.fx_password_field :<%= name %>, wrapper_html: {class: "mb-4"} %>
 <% elsif type == 'text' -%>
-  <%%= form.fx_text_area :<%= name %>, label: t("<%= plural %>.fields.<%= name %>"), rows: 5, wrapper_html: {class: "mb-4"} %>
+  <%%= form.fx_text_area :<%= name %>, rows: 5, wrapper_html: {class: "mb-4"} %>
 <% elsif type == 'attachment' || type == 'attachments' -%>
-  <%%= form.fx_dropzone :<%= name %>, label: t("<%= plural %>.fields.<%= name %>"), wrapper_html: {class: "mb-4"}, <%= 'multiple: true' if type == 'attachments' %>%>
+  <%%= form.fx_dropzone :<%= name %>, wrapper_html: {class: "mb-4"}, <%= 'multiple: true' if type == 'attachments' %>%>
 <% else -%>
-  <%%= form.fx_text_field :<%= name %>, label: t("<%= plural %>.fields.<%= name %>"), wrapper_html: {class: "mb-4"} %>
+  <%%= form.fx_text_field :<%= name %>, wrapper_html: {class: "mb-4"} %>
 <% end -%>
 <% end -%>
 <% if attributes.any? { |a| a.type == :password_digest } -%>
-  <%%= form.fx_password_field :password, label: t("<%= plural %>.fields.password"), wrapper_html: {class: "mb-4"} %>
-  <%%= form.fx_password_field :password_confirmation, label: t("<%= plural %>.fields.password_confirmation"), wrapper_html: {class: "mb-4"} %>
+  <%%= form.fx_password_field :password, wrapper_html: {class: "mb-4"} %>
+  <%%= form.fx_password_field :password_confirmation, wrapper_html: {class: "mb-4"} %>
 <% end -%>
   <%%= form.fx_submit value: t(@<%= singular %>.persisted? ? "<%= plural %>.actions.update" : "<%= plural %>.actions.save"), data: { turbo_submits_with: t("<%= plural %>.helpers.submits_with") }, class: "mt-4" %>
   <%%= render "metadata", <%= singular %>: @<%= singular %> %>

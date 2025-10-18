@@ -12,17 +12,21 @@ pt-BR:
     fields:
       id: Identificador
 <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
-      <%= attr.name %>: <%= attr.name.titlecase %>
+      <%= attr.name %><%= ['references','belongs_to'].include?(attr.type) ? '_id' : '' %>: <%= attr.name.titlecase %>
 <% end -%>
       created_at: Criado em
       updated_at: Última Atualizado
     help_text:
 <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
-      <%= attr.name %>: Ajuda para <%= attr.name.titlecase %>
+      <%= attr.name %><%= ['references','belongs_to'].include?(attr.type) ? '_id' : '' %>: Ajuda para <%= attr.name.titlecase %>
 <% end -%>
     helper_popover:
 <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
-      <%= attr.name %>: Ajuda no popover para <%= attr.name.titlecase %>
+      <%= attr.name %><%= ['references','belongs_to'].include?(attr.type) ? '_id' : '' %>: Ajuda no popover para <%= attr.name.titlecase %>
+<% end -%>
+    prompts:
+<% attributes.select { |attr| ['references','belongs_to'].include?(attr.type) }.each do |attr| -%>
+      <%= attr.name %>_id: Selecione um <%= attr.name.titlecase %>
 <% end -%>
     messages:
       not_found: "<%= singular.titlecase %> não encontrado."

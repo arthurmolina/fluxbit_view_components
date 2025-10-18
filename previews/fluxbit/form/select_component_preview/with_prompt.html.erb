@@ -1,6 +1,31 @@
-<%= fx_select(
-  label: "Department",
-  name: "department",
-  options: [["Engineering", "eng"], ["Marketing", "mkt"], ["Sales", "sales"], ["Support", "support"]],
-  select_options: { prompt: "Select a department..." }
-) %>
+<div class="space-y-6">
+  <div>
+    <h4 class="font-semibold mb-3">Prompt via select_options parameter</h4>
+    <%= fx_select(
+      label: "Department",
+      name: "department",
+      options: [["Engineering", "eng"], ["Marketing", "mkt"], ["Sales", "sales"], ["Support", "support"]],
+      select_options: { prompt: "Select a department..." }
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">Prompt as direct parameter (Rails-style)</h4>
+    <%= fx_select(
+      label: "Category",
+      name: "category",
+      options: [["Electronics", "electronics"], ["Clothing", "clothing"], ["Books", "books"]],
+      prompt: "Choose a category..."
+    ) %>
+  </div>
+
+  <div>
+    <h4 class="font-semibold mb-3">With include_blank option</h4>
+    <%= fx_select(
+      label: "Priority",
+      name: "priority",
+      options: [["High", "high"], ["Medium", "medium"], ["Low", "low"]],
+      include_blank: "Not set"
+    ) %>
+  </div>
+</div>
