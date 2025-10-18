@@ -10,6 +10,13 @@ module.exports = {
     './test/components/**/*.html.erb',
     '../previews/fluxbit/**/*.{erb,rb}',
     './node_modules/flowbite/**/*.js'
+  ],
+  safelist: [
+    'duration-300',
+    'duration-500',
+    'duration-1000',
+    'duration-[3s]',
+    'animate-spin'
   ]
 }
 
