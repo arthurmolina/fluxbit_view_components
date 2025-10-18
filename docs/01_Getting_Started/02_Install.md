@@ -51,12 +51,36 @@ Run the installer to generate the configuration files:
   bin/rails tailwindcss:install
 ```
 
-## Install Flowbite via NPM
+## Install Flowbite and Fluxbit ViewComponents via NPM
 
 ```sh
   npm install flowbite --save
+  npm install fluxbit_view_components --save
+  npm install flowbite-datepicker --save
 ```
-> 💡 Replace `yarn` with `npm` or `bun` depending on your setup.
+> 💡 Replace `npm` with `yarn` or `bun` depending on your setup.
+
+## Configure JavaScript Files
+
+### Update `app/javascript/application.js`
+
+Add the following imports to your `app/javascript/application.js` file:
+
+```js
+import "flowbite/dist/flowbite.turbo.js"
+import "flowbite-datepicker"
+import "./controllers"
+import "fluxbit-view-components"
+```
+
+### Update `app/javascript/controllers/index.js`
+
+Add the following lines to register Fluxbit Stimulus controllers:
+
+```js
+import { registerFluxbitControllers } from "fluxbit-view-components"
+registerFluxbitControllers(Stimulus)
+```
 
 ## Configure `tailwind.config.js`
 
@@ -115,6 +139,8 @@ Edit `app/views/layouts/application.html.erb`:
 Your app is now configured with:
 
 - TailwindCSS
-- Flowbite
-- Fluxbit ViewComponents styles and helpers
+- Flowbite and Flowbite Datepicker
+- Fluxbit ViewComponents (Ruby gem and JavaScript package)
+- Fluxbit Stimulus controllers
+- All necessary styles and helpers
 

@@ -11,20 +11,32 @@ The `fluxbit:scaffold` generator is the main generator in Fluxbit ViewComponents
 rails generate fluxbit:scaffold ModelName attribute:type attribute:type
 ```
 
-### Example
+### Examples
 
+**Basic scaffold:**
 ```bash
 rails generate fluxbit:scaffold Product name:string price:decimal category:string stock:integer description:text
 ```
 
-This creates a complete Product CRUD interface with:
+**Admin area scaffold:**
+```bash
+rails generate fluxbit:scaffold Product name:string price:decimal --namespace admin --ui drawer
+```
+
+**API scaffold:**
+```bash
+rails generate fluxbit:scaffold Product name:string price:decimal --namespace api/v1 --no-turbo
+```
+
+These create complete CRUD interfaces with:
 - Full controller with CRUD operations
 - Responsive table view with sorting and filtering
-- Modal-based forms (configurable)
+- Modal/drawer forms (configurable)
 - Bulk actions (update/delete multiple records)
 - Authorization with Pundit
 - Turbo Stream responses
 - Multi-language support
+- Optional namespace organization
 
 ## Command Options
 
@@ -79,10 +91,35 @@ rails generate fluxbit:scaffold Product name:string --pundit
 rails generate fluxbit:scaffold Product name:string --no-pundit
 ```
 
+### Namespace (`--namespace`)
+Generate scaffolds within a namespace (e.g., admin area, API versions).
+
+```bash
+# Simple namespace
+rails generate fluxbit:scaffold Product name:string --namespace admin
+
+# Nested namespace
+rails generate fluxbit:scaffold Product name:string --namespace api/v1
+```
+
+**Simple namespace** (`admin`):
+- Controller: `Admin::ProductsController` in `app/controllers/admin/products_controller.rb`
+- Views: `app/views/admin/products/`
+- Routes: `namespace :admin do resources :products end`
+- Path helpers: `admin_products_path`, `new_admin_product_path`, etc.
+
+**Nested namespace** (`api/v1`):
+- Controller: `Api::V1::ProductsController` in `app/controllers/api/v1/products_controller.rb`
+- Views: `app/views/api/v1/products/`
+- Routes: Nested namespace blocks
+- Path helpers: `api_v1_products_path`, `new_api_v1_product_path`, etc.
+
 ## Generated Files
 
+> **Note**: When using `--namespace`, all file paths include the namespace. For example, with `--namespace admin`, the controller is at `app/controllers/admin/products_controller.rb` and views are in `app/views/admin/products/`.
+
 ### Controller
-**File**: `app/controllers/products_controller.rb`
+**File**: `app/controllers/products_controller.rb` (or `app/controllers/admin/products_controller.rb` with namespace)
 
 Features:
 - Full CRUD operations (index, show, new, create, edit, update, destroy)
@@ -105,12 +142,41 @@ Features:
 ### Routes
 **Added to**: `config/routes.rb`
 
+Without namespace:
 ```ruby
 resources :products do
   collection do
     put "update_all"
     patch "update_all"
     delete "destroy_all"
+  end
+end
+```
+
+With namespace (`--namespace admin`):
+```ruby
+namespace :admin do
+  resources :products do
+    collection do
+      put "update_all"
+      patch "update_all"
+      delete "destroy_all"
+    end
+  end
+end
+```
+
+With nested namespace (`--namespace api/v1`):
+```ruby
+namespace :api do
+  namespace :v1 do
+    resources :products do
+      collection do
+        put "update_all"
+        patch "update_all"
+        delete "destroy_all"
+      end
+    end
   end
 end
 ```
@@ -128,6 +194,47 @@ end
 These partials use Fluxbit components and are reusable across your application.
 
 ## Advanced Features
+
+### Namespaces
+Use namespaces to organize your application into logical areas:
+
+#### Admin Area
+```bash
+rails generate fluxbit:scaffold Product name:string price:decimal --namespace admin
+```
+
+Creates an admin area for managing products at `/admin/products` with:
+- Controllers in `app/controllers/admin/`
+- Views in `app/views/admin/products/`
+- Path helpers: `admin_products_path`, `new_admin_product_path(@product)`
+- Namespace in routes automatically configured
+
+#### API Versioning
+```bash
+rails generate fluxbit:scaffold Product name:string --namespace api/v1
+```
+
+Creates a versioned API at `/api/v1/products` with:
+- Controllers in `app/controllers/api/v1/`
+- Views in `app/views/api/v1/products/`
+- Path helpers: `api_v1_products_path`, `new_api_v1_product_path`
+- JSON responses configured automatically
+
+#### Multiple Namespaces
+You can scaffold the same model in multiple namespaces:
+
+```bash
+# Public-facing products
+rails generate fluxbit:scaffold Product name:string price:decimal
+
+# Admin management
+rails generate fluxbit:scaffold Product name:string price:decimal --namespace admin
+
+# API v1
+rails generate fluxbit:scaffold Product name:string price:decimal --namespace api/v1
+```
+
+Each namespace has its own controllers, views, and routes, sharing the same model.
 
 ### Search and Filtering
 The generator creates intelligent search and filtering based on attribute types with auto-submit functionality:

@@ -946,6 +946,82 @@ class FxSpinnerPercent extends Controller {
   }
 }
 
+class FxThemeButton extends Controller {
+  static targets=[ "lightIcon", "darkIcon", "systemIcon" ];
+  static values={
+    theme: {
+      type: String,
+      default: "system"
+    }
+  };
+  connect() {
+    this.themeValue = this.getSavedTheme() || "system";
+    this.applyTheme(this.themeValue);
+    this.updateIcon();
+  }
+  toggle() {
+    const themes = [ "light", "dark", "system" ];
+    const currentIndex = themes.indexOf(this.themeValue);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    this.themeValue = themes[nextIndex];
+    this.applyTheme(this.themeValue);
+    this.saveTheme(this.themeValue);
+    this.updateIcon();
+    this.dispatch("changed", {
+      detail: {
+        theme: this.themeValue
+      }
+    });
+  }
+  applyTheme(theme) {
+    const html = document.documentElement;
+    if (theme === "system") {
+      localStorage.removeItem("theme");
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        html.classList.add("dark");
+      } else {
+        html.classList.remove("dark");
+      }
+    } else if (theme === "dark") {
+      localStorage.setItem("theme", "dark");
+      html.classList.add("dark");
+    } else {
+      localStorage.setItem("theme", "light");
+      html.classList.remove("dark");
+    }
+  }
+  getSavedTheme() {
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved;
+    if (document.documentElement.classList.contains("dark")) {
+      return "dark";
+    }
+    return "system";
+  }
+  saveTheme(theme) {
+    if (theme === "system") {
+      localStorage.removeItem("theme");
+    } else {
+      localStorage.setItem("theme", theme);
+    }
+  }
+  updateIcon() {
+    this.lightIconTargets.forEach(icon => icon.classList.add("hidden"));
+    this.darkIconTargets.forEach(icon => icon.classList.add("hidden"));
+    this.systemIconTargets.forEach(icon => icon.classList.add("hidden"));
+    if (this.themeValue === "light" && this.hasLightIconTarget) {
+      this.lightIconTargets.forEach(icon => icon.classList.remove("hidden"));
+    } else if (this.themeValue === "dark" && this.hasDarkIconTarget) {
+      this.darkIconTargets.forEach(icon => icon.classList.remove("hidden"));
+    } else if (this.themeValue === "system" && this.hasSystemIconTarget) {
+      this.systemIconTargets.forEach(icon => icon.classList.remove("hidden"));
+    }
+  }
+  themeValueChanged() {
+    this.updateIcon();
+  }
+}
+
 function registerFluxbitControllers(application) {
   application.register("fx-assigner", FxAssigner);
   application.register("fx-auto-submit", FxAutoSubmit);
@@ -956,6 +1032,7 @@ function registerFluxbitControllers(application) {
   application.register("fx-row-click", FxRowClick);
   application.register("fx-select-all", FxSelectAll);
   application.register("fx-spinner-percent", FxSpinnerPercent);
+  application.register("fx-theme-button", FxThemeButton);
   if (typeof window !== "undefined") {
     window.FluxbitControllers = {
       FxProgress: FxProgress,
@@ -966,9 +1043,10 @@ function registerFluxbitControllers(application) {
       FxMethodLink: FxMethodLink,
       FxRowClick: FxRowClick,
       FxSelectAll: FxSelectAll,
-      FxSpinnerPercent: FxSpinnerPercent
+      FxSpinnerPercent: FxSpinnerPercent,
+      FxThemeButton: FxThemeButton
     };
   }
 }
 
-export { FxAssigner, FxAutoSubmit, FxDrawer, FxMethodLink, FxModal, FxProgress, FxRowClick, FxSelectAll, FxSpinnerPercent, registerFluxbitControllers };
+export { FxAssigner, FxAutoSubmit, FxDrawer, FxMethodLink, FxModal, FxProgress, FxRowClick, FxSelectAll, FxSpinnerPercent, FxThemeButton, registerFluxbitControllers };

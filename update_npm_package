@@ -1,0 +1,2 @@
+yarn prerelease
+cp app/assets/javascripts/fluxbit_view_components.js demo/node_modules/fluxbit-view-components/app/assets/javascripts/fluxbit_view_components.js

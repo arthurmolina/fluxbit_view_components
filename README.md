@@ -24,6 +24,16 @@ Render Fluxbit ViewComponents:
 <%= fx_card(title: "Title") do %>
   <p>Card example</p>
 <% end %>
+
+<!-- Breadcrumb navigation -->
+<%= fx_breadcrumb do |c| %>
+  <% c.with_item href: "/" do %>Home<% end %>
+  <% c.with_item href: "/projects" do %>Projects<% end %>
+  <% c.with_item current_page: true do %>Current Page<% end %>
+<% end %>
+
+<!-- Pagination controls -->
+<%= fx_pagination(page: 1, last: 10, count: 100) %>
 ```
 
 ## Dependencies
