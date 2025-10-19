@@ -9,8 +9,24 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), builder: Fluxbit::FormBuilder) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.fx_email_field :email, autofocus: true, autocomplete: "email", wrapper_html: {class: "mb-6 field"} %>
-  <%= f.fx_password_field :password, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"}, help_text: @minimum_password_length ? "#{@minimum_password_length} characters minimum" : "" %>
-  <%= f.fx_password_field :password_confirmation, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"} %>
+  <%= f.fx_password :password,
+    autocomplete: "new-password",
+    show_strength: true,
+    min_length: 6,
+    require_uppercase: true,
+    require_lowercase: true,
+    require_numbers: true,
+    require_special: true,
+    wrapper_html: {class: "mb-6 field"},
+    help_text: @minimum_password_length ? "#{@minimum_password_length} #{t('devise.registrations.new.password_help')}" : "" %>
+  <%= f.fx_password :password_confirmation,
+    autocomplete: "new-password",
+    min_length: 6,
+    require_uppercase: true,
+    require_lowercase: true,
+    require_numbers: true,
+    require_special: true,
+    wrapper_html: {class: "mb-6 field"} %>
   <%= f.fx_submit "Sign up" %>
 
 <% end %>

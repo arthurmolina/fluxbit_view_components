@@ -16,8 +16,23 @@
         @minimum_password_length ? "#{@minimum_password_length} characters minimum" : ""
       ]
   %>
-  <%= f.fx_password_field :password_confirmation, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"} %>
-  <%= f.fx_password_field :current_password, autocomplete: "current-password", wrapper_html: {class: "mb-6 field"}, help_text: "We need your current password to confirm your changes" %>
+  <%= f.fx_password :password_confirmation,
+    autocomplete: "new-password",
+    min_length: 6,
+    require_uppercase: true,
+    require_lowercase: true,
+    require_numbers: true,
+    require_special: true,
+    wrapper_html: {class: "mb-6 field"} %>
+  <%= f.fx_password :current_password,
+    autocomplete: "current-password",
+    min_length: 6,
+    require_uppercase: true,
+    require_lowercase: true,
+    require_numbers: true,
+    require_special: true,
+    wrapper_html: {class: "mb-6 field"},
+    help_text: "We need your current password to confirm your changes" %>
   <%= f.fx_submit "Update" %>
 <% end %>
 
