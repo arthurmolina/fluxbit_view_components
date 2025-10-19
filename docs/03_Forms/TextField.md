@@ -41,7 +41,7 @@ The result is:
 | name:              |          | Field name (required unless using a form builder)
 | label:             |          | Text label above the field
 | value:             |          | Value for the input
-| placeholder:       |          | Placeholder text shown when empty
+| placeholder:       |          | Placeholder text shown when empty (supports I18n, pass `false` to disable)
 | type:              | :text    | Input type (`:text`, `:email`, `:password`, `:textarea`, `:number`, `:url`, `:tel`, `:search`, `:color`, `:date`, `:datetime_local`, `:month`, `:time`, `:week`, `:currency`)
 | multiline:         | false    | Renders a `<textarea>` if true (or type is `:textarea`)
 | icon:              |          | Left icon (Anyicon name or symbol)
@@ -146,6 +146,8 @@ en:
       attribute_name: "Custom help text"
     helper_popover:
       attribute_name: "Custom popover content"
+    placeholders:
+      attribute_name: "Custom placeholder text"
 ```
 
 ### Usage Examples
@@ -162,16 +164,19 @@ en:
       password: "Must be at least 8 characters"
     helper_popover:
       password: "Use a combination of letters, numbers, and symbols"
+    placeholders:
+      email: "Enter your email address"
+      password: "Enter a strong password"
 
 # In your form
 &lt;%= fx_text_field(form: form, attribute: :email) %&gt;
-# Automatically uses "Email Address" as label and help text from translations
+# Automatically uses "Email Address" as label, help text, and placeholder from translations
 
 # Override with custom values
-&lt;%= fx_text_field(form: form, attribute: :email, label: "Custom Label") %&gt;
+&lt;%= fx_text_field(form: form, attribute: :email, label: "Custom Label", placeholder: "Custom placeholder") %&gt;
 
-# Disable automatic labels/help text
-&lt;%= fx_text_field(form: form, attribute: :email, label: false, help_text: false) %&gt;
+# Disable automatic labels/help text/placeholders
+&lt;%= fx_text_field(form: form, attribute: :email, label: false, help_text: false, placeholder: false) %&gt;
 ```
 
 ### Override Behavior

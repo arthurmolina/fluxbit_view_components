@@ -71,7 +71,7 @@ The result is:
 | grouped:                   | false    | Enables grouped select options (optgroups)
 | time_zone:                 | false    | Uses Rails time zone select options
 | select_options:            | {}       | Hash of options for select (prompt, selected, disabled, include_blank, etc)
-| prompt:                    |          | Prompt text shown as first option (can also be in select_options)
+| prompt:                    |          | Prompt text shown as first option (supports I18n, pass `false` to disable, can also be in select_options)
 | include_blank:             |          | Include blank option (boolean or string, can also be in select_options)
 | selected:                  |          | Pre-selected value (can also be in select_options)
 | disabled:                  |          | Disabled option values as array or single value (can also be in select_options)
@@ -214,6 +214,8 @@ en:
       attribute_name: "Custom help text"
     helper_popover:
       attribute_name: "Custom popover content"
+    prompts:
+      attribute_name: "Custom prompt text"
 ```
 
 ### Usage Examples
@@ -232,16 +234,20 @@ en:
       status: "Current status of the user account"
     helper_popover:
       role: "Roles determine what actions users can perform in the system"
+    prompts:
+      role: "Select a role"
+      country: "Choose your country"
+      status: "Select account status"
 
 # In your form
 &lt;%= fx_select(form: form, attribute: :role, options: role_options) %&gt;
-# Automatically uses labels and help text from translations
+# Automatically uses labels, help text, and prompt from translations
 
 # Override with custom values
-&lt;%= fx_select(form: form, attribute: :role, label: "Custom Label") %&gt;
+&lt;%= fx_select(form: form, attribute: :role, label: "Custom Label", prompt: "Custom prompt") %&gt;
 
-# Disable automatic labels/help text
-&lt;%= fx_select(form: form, attribute: :role, label: false, help_text: false) %&gt;
+# Disable automatic labels/help text/prompts
+&lt;%= fx_select(form: form, attribute: :role, label: false, help_text: false, prompt: false) %&gt;
 ```
 
 ### Override Behavior
