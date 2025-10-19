@@ -28,3 +28,12 @@ en:
       loading: Loading...
     speed_dial:
       open_actions_menu: Open actions menu
+    form:
+      password:
+        checks:
+          length: At least %{count} characters
+          uppercase: Contains uppercase letter
+          lowercase: Contains lowercase letter
+          numbers: Contains number
+          special: Contains special character
+        strength: Password strength

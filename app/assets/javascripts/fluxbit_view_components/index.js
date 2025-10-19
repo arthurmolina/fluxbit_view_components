@@ -3,6 +3,7 @@ import FxAutoSubmit from './auto_submit_controller'
 import FxDrawer from './drawer_controller'
 import FxMethodLink from './method_link_controller'
 import FxModal from './modal_controller'
+import FxPassword from './password_controller'
 import FxProgress from './progress_controller'
 import FxRowClick from './row_click_controller'
 import FxSelectAll from './select_all_controller'
@@ -15,6 +16,7 @@ export {
   FxDrawer,
   FxMethodLink,
   FxModal,
+  FxPassword,
   FxProgress,
   FxRowClick,
   FxSelectAll,
@@ -28,6 +30,7 @@ export function registerFluxbitControllers(application) {
   application.register('fx-drawer', FxDrawer)
   application.register('fx-method-link', FxMethodLink)
   application.register('fx-modal', FxModal)
+  application.register('fx-password', FxPassword)
   application.register('fx-progress', FxProgress)
   application.register('fx-row-click', FxRowClick)
   application.register('fx-select-all', FxSelectAll)
@@ -37,12 +40,13 @@ export function registerFluxbitControllers(application) {
   // Make controllers globally accessible for vanilla JS
   if (typeof window !== 'undefined') {
     window.FluxbitControllers = {
-      FxProgress,
-      FxModal,
-      FxDrawer,
       FxAssigner,
       FxAutoSubmit,
+      FxDrawer,
       FxMethodLink,
+      FxModal,
+      FxPassword,
+      FxProgress,
       FxRowClick,
       FxSelectAll,
       FxSpinnerPercent,

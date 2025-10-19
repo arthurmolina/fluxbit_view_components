@@ -1,0 +1,24 @@
+<div class="space-y-4">
+  <%= render Fluxbit::Form::PasswordComponent.new(
+    name: "password_default",
+    label: "Default State",
+    color: :default,
+    show_strength: true
+  ) %>
+
+  <%= render Fluxbit::Form::PasswordComponent.new(
+    name: "password_success",
+    label: "Success State",
+    color: :success,
+    show_strength: true,
+    help_text: "Password meets all requirements"
+  ) %>
+
+  <%= render Fluxbit::Form::PasswordComponent.new(
+    name: "password_danger",
+    label: "Error State",
+    color: :danger,
+    show_strength: true,
+    help_text: "Password does not meet minimum requirements"
+  ) %>
+</div>

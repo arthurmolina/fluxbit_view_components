@@ -25,3 +25,12 @@ pt-BR:
       loading: Carregando...
     speed_dial:
       open_actions_menu: Abrir menu de ações
+    form:
+      password:
+        checks:
+          length: Pelo menos %{count} caracteres
+          uppercase: Contém letra maiúscula
+          lowercase: Contém letra minúscula
+          numbers: Contém número
+          special: Contém caractere especial
+        strength: Força da senha

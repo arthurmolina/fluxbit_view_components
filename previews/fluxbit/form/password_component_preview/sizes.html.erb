@@ -1,0 +1,22 @@
+<div class="space-y-4">
+  <%= render Fluxbit::Form::PasswordComponent.new(
+    name: "password_sm",
+    label: "Small Password Field",
+    sizing: 2,
+    show_strength: true
+  ) %>
+
+  <%= render Fluxbit::Form::PasswordComponent.new(
+    name: "password_md",
+    label: "Medium Password Field",
+    sizing: 0,
+    show_strength: true
+  ) %>
+
+  <%= render Fluxbit::Form::PasswordComponent.new(
+    name: "password_lg",
+    label: "Large Password Field",
+    sizing: 1,
+    show_strength: true
+  ) %>
+</div>

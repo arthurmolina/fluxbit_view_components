@@ -1,0 +1,12 @@
+<%= form_with(model: @user, builder: Fluxbit::FormBuilder) do |form| %>
+  <div class="space-y-4">
+    <%= form.fx_password :password,
+      label: "Password",
+      show_strength: true,
+      help_text: "Create a secure password" %>
+
+    <%= form.fx_password :password_confirmation,
+      label: "Confirm Password",
+      help_text: "Re-enter your password" %>
+  </div>
+<% end %>
