@@ -24,6 +24,7 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
   # @param helper_popover_placement [String] Placement of the popover (default: "right")
   # @param name [String] Name of the field (required, unless using form builder)
   # @param value [String] Value for the field (optional)
+  # @param placeholder [String] Placeholder text for the input field (optional, defaults to I18n if object/attribute present, pass false to disable)
   # @param type [Symbol] Input type (`:text`, `:email`, etc)
   # @param icon [Symbol] Left icon (optional)
   # @param right_icon [Symbol] Right icon (optional)
@@ -55,6 +56,7 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
     @sizing = sizing_with_addon @props.delete(:sizing)
     @props[:type] = @type
 
+    define_placeholder(@props.delete(:placeholder))
     declare_classes
     @props[:class] = remove_class(@props.delete(:remove_class) || "", @props[:class])
   end
@@ -66,6 +68,20 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
   end
 
   private
+
+  def define_placeholder(placeholder)
+    return if placeholder.is_a?(FalseClass)
+
+    if placeholder.nil? && @object.present? && @attribute.present?
+      placeholder = I18n.t(
+        @attribute,
+        scope: [ @object.class.name.pluralize.underscore.to_sym, :placeholders ],
+        default: nil
+      )
+    end
+
+    @props[:placeholder] = placeholder if placeholder.present?
+  end
 
   def valid_color(color)
     return color if styles[:bg].key?(color)

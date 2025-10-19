@@ -59,6 +59,30 @@ class Fluxbit::Form::SelectComponentTest < ViewComponent::TestCase
     assert_selector "option", text: "Choose a number"
   end
 
+  def test_prompt_disabled_with_false
+    render_inline(Fluxbit::Form::SelectComponent.new(name: "number", options: [ 1, 2, 3 ], prompt: false))
+    refute_selector "option[value='']"
+  end
+
+  def test_prompt_explicit_overrides_i18n
+    # Even if I18n is set up, an explicit prompt value should be used
+    render_inline(Fluxbit::Form::SelectComponent.new(
+      name: "status",
+      options: [ "Active", "Inactive" ],
+      prompt: "Custom prompt"
+    ))
+
+    assert_selector "option", text: "Custom prompt"
+  end
+
+  def test_no_prompt_when_not_provided
+    # When no prompt is provided and no I18n is available, no prompt should be rendered
+    result = render_inline(Fluxbit::Form::SelectComponent.new(name: "status", options: [ "Active", "Inactive" ]))
+
+    # Check that there's no empty value option (which would be the prompt)
+    refute_match /<option value="">(?!Active|Inactive)/, result.to_html
+  end
+
   def test_renders_with_custom_class
     render_inline(Fluxbit::Form::SelectComponent.new(name: "country", options: %w[BR US], class: "my-select"))
     assert_selector "select.my-select"

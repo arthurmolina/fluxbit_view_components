@@ -22,7 +22,7 @@ class Fluxbit::Form::SelectComponent < Fluxbit::Form::TextFieldComponent
   # @param select_options [Hash] Options for select tag (prompt, selected, disabled, etc)
   # @param choices [Array] List of choices for options (alternative to options)
   # @param options [Array, Hash, String] List or hash of options, or pre-formatted HTML from options_for_select
-  # @param prompt [String, Boolean] Prompt text or true to use default (optional)
+  # @param prompt [String, Boolean, false] Prompt text, true to use default, or false to disable (optional, defaults to I18n if object/attribute present)
   # @param include_blank [String, Boolean] Include blank option (optional)
   # @param selected [Object] Pre-selected value (optional)
   # @param disabled [Array, Object] Disabled options (optional)
@@ -39,12 +39,15 @@ class Fluxbit::Form::SelectComponent < Fluxbit::Form::TextFieldComponent
     @options = @props.delete(:options) || {}
 
     # Extract select-specific options
-    @prompt = @select_options.delete(:prompt) || @props.delete(:prompt)
+    prompt_value = @select_options.delete(:prompt) || @props.delete(:prompt)
     @include_blank = @select_options.delete(:include_blank) || @props.delete(:include_blank)
     @selected = @select_options.delete(:selected) || @props.delete(:selected)
     @disabled_options = @select_options.delete(:disabled) || @props.delete(:disabled)
 
     @options = ::ActiveSupport::TimeZone.all if @time_zone
+
+    # Define prompt with I18n support
+    define_prompt(prompt_value)
   end
 
   def input
@@ -120,6 +123,27 @@ class Fluxbit::Form::SelectComponent < Fluxbit::Form::TextFieldComponent
   end
 
   private
+
+  def define_prompt(prompt)
+    # If prompt is explicitly false, don't set it
+    return if prompt.is_a?(FalseClass)
+
+    # If prompt is explicitly provided (string or true), use it
+    if prompt.present?
+      @prompt = prompt
+      return
+    end
+
+    # If no prompt provided and we have an object and attribute, try I18n lookup
+    if prompt.nil? && @object.present? && @attribute.present?
+      i18n_prompt = I18n.t(
+        @attribute,
+        scope: [ @object.class.name.pluralize.underscore.to_sym, :prompts ],
+        default: nil
+      )
+      @prompt = i18n_prompt if i18n_prompt.present?
+    end
+  end
 
   # Check if options are already pre-formatted HTML
   # Pre-formatted options are strings containing HTML tags

@@ -1,4 +1,5 @@
 require "test_helper"
+require "ostruct"
 
 class Fluxbit::Form::TextFieldComponentTest < ViewComponent::TestCase
   def test_renders_basic
@@ -10,6 +11,30 @@ class Fluxbit::Form::TextFieldComponentTest < ViewComponent::TestCase
   def test_renders_placeholder
     render_inline(Fluxbit::Form::TextFieldComponent.new(name: "nickname", placeholder: "Type here"))
     assert_selector "input[placeholder='Type here']"
+  end
+
+  def test_placeholder_disabled_with_false
+    render_inline(Fluxbit::Form::TextFieldComponent.new(name: "nickname", placeholder: false))
+    assert_no_selector "input[placeholder]"
+  end
+
+  def test_placeholder_explicit_overrides_i18n
+    # Even if I18n is set up, an explicit placeholder value should be used
+    render_inline(Fluxbit::Form::TextFieldComponent.new(
+      name: "email",
+      placeholder: "Custom placeholder"
+    ))
+
+    assert_selector "input[placeholder='Custom placeholder']"
+  end
+
+  def test_no_placeholder_when_not_provided
+    # When no placeholder is provided and no I18n is available, no placeholder should be rendered
+    result = render_inline(Fluxbit::Form::TextFieldComponent.new(name: "email"))
+
+    # The input should be rendered but without a placeholder attribute (or empty placeholder)
+    assert_selector "input[name='email']"
+    refute_match /placeholder=["'][^"']+["']/, result.to_html
   end
 
   def test_renders_value

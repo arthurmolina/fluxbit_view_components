@@ -24,6 +24,10 @@ pt-BR:
 <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
       <%= attr.name %><%= ['references','belongs_to'].include?(attr.type) ? '_id' : '' %>: Ajuda no popover para <%= attr.name.titlecase %>
 <% end -%>
+    placeholders:
+<% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
+      <%= attr.name %><%= ['references','belongs_to'].include?(attr.type) ? '_id' : '' %>: Placeholder para <%= attr.name.titlecase %>
+<% end -%>
     prompts:
 <% attributes.select { |attr| ['references','belongs_to'].include?(attr.type) }.each do |attr| -%>
       <%= attr.name %>_id: Selecione um <%= attr.name.titlecase %>
