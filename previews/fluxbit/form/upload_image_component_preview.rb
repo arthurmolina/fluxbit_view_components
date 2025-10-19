@@ -15,6 +15,7 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
   # @param help_text [String] "Help text below field"
   # @param helper_popover [String] "Helper popover content"
   # @param helper_popover_placement select "Popover placement" :placement_options
+  # @param rounded [Boolean] "Show as circle (true) or square with rounded edges (false)"
   # @param accept [String] "Accepted file types"
   # @param multiple [Boolean] "Allow multiple files"
   # @param disabled [Boolean] "Disabled state"
@@ -27,6 +28,7 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
     help_text: "Upload a profile photo. Recommended size: 160x160 pixels.",
     helper_popover: "Choose a clear, professional photo that represents you well. The image will be cropped to a circle.",
     helper_popover_placement: "right",
+    rounded: true,
     accept: "image/*",
     multiple: false,
     disabled: false)
@@ -39,6 +41,7 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
       help_text: help_text.present? ? help_text : nil,
       helper_popover: helper_popover.present? ? helper_popover : nil,
       helper_popover_placement: helper_popover_placement,
+      rounded: rounded,
       accept: accept.present? ? accept : nil,
       multiple: multiple,
       disabled: disabled
@@ -53,6 +56,10 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
   def with_help; end
   def file_restrictions; end
   def multiple_files; end
+
+  # Square image with rounded edges
+  # @label Square Shape
+  def square_shape; end
   def with_form_builder
     @product ||= ::BaseProductModel.new(
       name: "Sample Product",

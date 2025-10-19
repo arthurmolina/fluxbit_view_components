@@ -22,11 +22,14 @@ class Fluxbit::Form::UploadImageComponent < Fluxbit::Form::FieldComponent
   # @param image_path [String] Path to the image to be displayed (optional)
   # @param image_placeholder [String] Placeholder image path if no image is attached (optional)
   # @param title [Boolean, String] Whether to show a title (true for default, false to hide, or custom string)
+  # @param rounded [Boolean] Whether to show image as circle (true, default) or square with rounded edges (false)
   # @param class [String] Additional CSS classes for the input element
   # @param ... any other HTML attribute supported by file_field_tag
   def initialize(**props)
     super(**props)
     @title = @props.delete(:title) || "Change"
+    @rounded = @props.delete(:rounded)
+    @rounded = true if @rounded.nil?
     @image_path = @props.delete(:image_path) ||
       (if @object&.send(@attribute).respond_to?(:attached?) && @object&.send(@attribute)&.send("attached?")
         @object&.send(@attribute)&.variant(resize_to_fit: [ 160, 160 ])
@@ -44,7 +47,15 @@ class Fluxbit::Form::UploadImageComponent < Fluxbit::Form::FieldComponent
 
   def image_element
     image_tag @image_path,
-              class: "img_photo_#{id} img_photo absolute inset-0 w-full h-full object-cover rounded-full",
+              class: "img_photo_#{id} img_photo absolute inset-0 w-full h-full object-cover #{image_rounded_class}",
               alt: @attribute&.to_s&.humanize
+  end
+
+  def container_rounded_class
+    @rounded ? "rounded-full" : "rounded-lg"
+  end
+
+  def image_rounded_class
+    @rounded ? "rounded-full" : "rounded-lg"
   end
 end

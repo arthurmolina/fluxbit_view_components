@@ -54,4 +54,20 @@ class Fluxbit::Form::UploadImageComponentTest < ViewComponent::TestCase
     render_inline(Fluxbit::Form::UploadImageComponent.new(attribute: :photo))
     assert_includes rendered_content, "function loadFile"
   end
+
+  def test_renders_rounded_by_default
+    render_inline(Fluxbit::Form::UploadImageComponent.new(attribute: :avatar))
+    assert_includes rendered_content, "rounded-full"
+  end
+
+  def test_renders_with_rounded_true
+    render_inline(Fluxbit::Form::UploadImageComponent.new(attribute: :avatar, rounded: true))
+    assert_includes rendered_content, "rounded-full"
+  end
+
+  def test_renders_with_rounded_false
+    render_inline(Fluxbit::Form::UploadImageComponent.new(attribute: :avatar, rounded: false))
+    assert_includes rendered_content, "rounded-lg"
+    assert_no_selector ".rounded-full"
+  end
 end
