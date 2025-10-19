@@ -41,6 +41,7 @@ The result is:
 | secure:            | true        | Whether to use HTTPS for the Gravatar URL
 | filetype:          | :png        | The filetype of the Gravatar (`:png`, `:jpg`, `:gif`)
 | default:           | :robohash   | The default image to use if no Gravatar is found (`:identicon`, `:monsterid`, `:wavatar`, `:retro`, `:robohash`, `:mp`, `:404`, `:blank`)
+| url_only:          | false       | If true, returns only the Gravatar URL string instead of rendering the avatar component
 | color:             | nil         | Border color (`:dark`, `:danger`, `:gray`, `:info`, `:light`, `:purple`, `:success`, `:warning`, `:pink`)
 | status:            | false       | Status indicator (`:online`, `:busy`, `:offline`, `:away`)
 | status_position:   | :top_right  | Position of status indicator (`:top_left`, `:top_right`, `:bottom_left`, `:bottom_right`)
@@ -98,6 +99,20 @@ This component does not define any named slots. The Gravatar content is automati
 ### Adding other properties
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Components::GravatarComponentPreview" scenario="adding_other_properties" panels="source"></lookbook-embed>
+
+### URL only mode
+
+When you need just the Gravatar URL without rendering the avatar component, you can use the `url_only` option:
+
+```erb
+<%= fx_gravatar(email: "user@example.com", url_only: true) %>
+<!-- Returns: "https://secure.gravatar.com/avatar/b58996c504c5638798eb6b511e6f49af.png?d=robohash&r=pg&s=40" -->
+
+<!-- Use it in your own custom markup -->
+<img src="<%= fx_gravatar(email: "user@example.com", url_only: true, size: :lg) %>" alt="Avatar" class="my-custom-class" />
+```
+
+This is useful when you want to use the Gravatar URL in custom components or pass it to JavaScript.
 
 ## Customization
 

@@ -24,6 +24,7 @@ class Fluxbit::GravatarComponent < Fluxbit::AvatarComponent
   # @option props [Symbol] :filetype (:png) The filetype of the Gravatar (:png, :jpg, :gif).
   # @option props [Symbol] :default (:identicon) The default image to use if no Gravatar is found.
   # @option props [Integer] :size (:md) The size of the Gravatar base on the size provided by AvatarComponent.
+  # @option props [Boolean] :url_only (false) If true, returns only the Gravatar URL instead of rendering the avatar component.
   # @option props [String] :remove_class ('') Classes to be removed from the default Gravatar class list.
   # @option props [Hash] **props Remaining options declared as HTML attributes, applied to the Gravatar container.
   def initialize(**props)
@@ -37,8 +38,14 @@ class Fluxbit::GravatarComponent < Fluxbit::AvatarComponent
     }
     add class: gravatar_styles[:base], to: @props
     @email = @props.delete(:email)
+    @url_only = @props.delete(:url_only)
     src = gravatar_url
     super(src: src, **@props)
+  end
+
+  def call
+    return gravatar_url if @url_only
+    super
   end
 
   # The raw MD5 hash of the users' email. Gravatar is particularly tricky as
