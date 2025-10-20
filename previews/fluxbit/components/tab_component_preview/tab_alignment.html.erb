@@ -1,0 +1,136 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Left Aligned (Default)<% end %>
+    <%= fx_tab(align: :left, variant: :underline) do |tabs| %>
+      <%= tabs.with_tab title: "Profile", active: true do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Profile tab content with left-aligned tabs.
+          </p>
+        </div>
+      <% end %>
+      <%= tabs.with_tab title: "Dashboard" do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Dashboard tab content.
+          </p>
+        </div>
+      <% end %>
+      <%= tabs.with_tab title: "Settings" do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Settings tab content.
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Center Aligned<% end %>
+    <%= fx_tab(align: :center, variant: :underline) do |tabs| %>
+      <%= tabs.with_tab title: "Profile", active: true do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Profile tab content with center-aligned tabs.
+          </p>
+        </div>
+      <% end %>
+      <%= tabs.with_tab title: "Dashboard" do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Dashboard tab content.
+          </p>
+        </div>
+      <% end %>
+      <%= tabs.with_tab title: "Settings" do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Settings tab content.
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Right Aligned<% end %>
+    <%= fx_tab(align: :right, variant: :underline) do |tabs| %>
+      <%= tabs.with_tab title: "Profile", active: true do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Profile tab content with right-aligned tabs.
+          </p>
+        </div>
+      <% end %>
+      <%= tabs.with_tab title: "Dashboard" do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Dashboard tab content.
+          </p>
+        </div>
+      <% end %>
+      <%= tabs.with_tab title: "Settings" do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Settings tab content.
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Pills Variant - Center Aligned<% end %>
+    <%= fx_tab(align: :center, variant: :pills, color: :purple) do |tabs| %>
+      <%= tabs.with_tab title: "Home", active: true do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Home content with center-aligned pill tabs.
+          </p>
+        </div>
+      <% end %>
+      <%= tabs.with_tab title: "About" do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            About content.
+          </p>
+        </div>
+      <% end %>
+      <%= tabs.with_tab title: "Contact" do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Contact content.
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Default Variant - Right Aligned<% end %>
+    <%= fx_tab(align: :right, variant: :default, color: :green) do |tabs| %>
+      <%= tabs.with_tab title: "Overview", active: true do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Overview content with right-aligned tabs.
+          </p>
+        </div>
+      <% end %>
+      <%= tabs.with_tab title: "Details" do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            Details content.
+          </p>
+        </div>
+      <% end %>
+      <%= tabs.with_tab title: "History" do %>
+        <div class="p-4">
+          <p class="text-gray-600 dark:text-gray-400">
+            History content.
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

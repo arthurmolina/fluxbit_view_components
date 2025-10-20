@@ -43,6 +43,7 @@ The result is:
 | variant:           | :default | Tab variant style (`:default`, `:underline`, `:pills`, `:full_width`).
 | color:             | :blue    | Color theme for active tabs (`:blue`, `:cyan`, `:green`, `:indigo`, `:pink`, `:purple`, `:red`, `:yellow`, `:gray`).
 | vertical:          | false    | Display tabs vertically instead of horizontally.
+| align:             | :left    | Horizontal alignment of tabs (`:left`, `:center`, `:right`). Only applies to horizontal tabs.
 | tab_panel:         | :default | Panel styling variant (`:default`, `:hidden`).
 | ul_html:           | {}       | Additional HTML attributes for the tab list container.
 | remove_class:      | ""       | Classes to be removed from the default class list.
@@ -98,6 +99,10 @@ The component supports the following slots:
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Components::TabComponentPreview" scenario="disabled_tabs" panels="source"></lookbook-embed>
 
+### Tab alignment
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Components::TabComponentPreview" scenario="tab_alignment" panels="source"></lookbook-embed>
+
 ### Adding/Removing classes
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Components::TabComponentPreview" scenario="adding_removing_classes" panels="source"></lookbook-embed>
@@ -117,6 +122,7 @@ To do this you can create a initializer file like the:
 Fluxbit::Config::TabComponent.variant = :underline # the default is :default
 Fluxbit::Config::TabComponent.color = :green # the default is :blue
 Fluxbit::Config::TabComponent.vertical = false # the default is false
+Fluxbit::Config::TabComponent.align = :center # the default is :left
 Fluxbit::Config::TabComponent.tab_panel = :default # the default is :default
 Fluxbit::Config::TabComponent.styles[:tab_list][:variant][:custom] = 'custom-tab-styling' # Custom variant
 ```

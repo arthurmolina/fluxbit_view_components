@@ -86,4 +86,38 @@ class Fluxbit::TabComponentTest < ViewComponent::TestCase
 
     assert_selector styled(:tab_list, :tab_item, :base), text: "Tab 1"
   end
+
+  def test_renders_tab_with_left_alignment
+    render_inline(Fluxbit::TabComponent.new(align: :left)) do |tab|
+      tab.with_tab(title: "Tab 1") { "Content 1" }
+    end
+
+    assert_selector styled(:tab_list, :align, :left)
+  end
+
+  def test_renders_tab_with_center_alignment
+    render_inline(Fluxbit::TabComponent.new(align: :center)) do |tab|
+      tab.with_tab(title: "Tab 1") { "Content 1" }
+    end
+
+    assert_selector styled(:tab_list, :align, :center)
+  end
+
+  def test_renders_tab_with_right_alignment
+    render_inline(Fluxbit::TabComponent.new(align: :right)) do |tab|
+      tab.with_tab(title: "Tab 1") { "Content 1" }
+    end
+
+    assert_selector styled(:tab_list, :align, :right)
+  end
+
+  def test_renders_vertical_tab_without_alignment
+    render_inline(Fluxbit::TabComponent.new(vertical: true, align: :center)) do |tab|
+      tab.with_tab(title: "Tab 1") { "Content 1" }
+    end
+
+    # Alignment should not be applied to vertical tabs
+    assert_no_selector styled(:tab_list, :align, :center)
+    assert_selector styled(:tab_list, :ul, :vertical)
+  end
 end

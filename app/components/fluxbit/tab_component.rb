@@ -13,11 +13,22 @@ class Fluxbit::TabComponent < Fluxbit::Component
     end
   }
 
+  # Initializes the Tab component with the given properties.
+  #
+  # @param [Hash] props The properties to customize the Tab component.
+  # @option props [Symbol] :variant (:default) The variant style (:default, :underline, :pills, :full_width).
+  # @option props [Symbol] :color (:blue) The color theme for active tabs.
+  # @option props [Boolean] :vertical (false) Whether tabs should be displayed vertically.
+  # @option props [Symbol] :tab_panel (:default) The style for tab panels (:default, :none).
+  # @option props [Symbol] :align (:left) Horizontal alignment of tabs (:left, :center, :right). Only applies to horizontal tabs.
+  # @option props [Hash] :ul_html ({}) HTML attributes to apply to the ul element.
+  # @option props [Hash] **props Remaining options declared as HTML attributes, applied to the tab container.
   def initialize(**props)
     @variant = (props.delete(:variant) || @@variant).to_sym
     @color = props.delete(:color) || @@color
     @vertical = props.delete(:vertical) || @@vertical
     @tab_panel = (props.delete(:tab_panel) || @@tab_panel).to_sym
+    @align = (props.delete(:align) || @@align).to_sym
     @tabs_group = []
     @ul_html = props.delete(:ul_html) || {}
     @props = props
@@ -45,6 +56,7 @@ class Fluxbit::TabComponent < Fluxbit::Component
   def render_tab_list
     add class: styles[:tab_list][:ul][@vertical ? :vertical : :horizontal], to: @ul_html, first_element: true
     add class: styles[:tab_list][:variant][variant], to: @ul_html
+    add class: styles[:tab_list][:align][@align], to: @ul_html unless @vertical
     @ul_html[:role] = "tablist"
 
     if @has_panels

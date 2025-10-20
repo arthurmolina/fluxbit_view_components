@@ -5,6 +5,7 @@ module Fluxbit::Config::TabComponent
   mattr_accessor :color, default: :blue
   mattr_accessor :vertical, default: false
   mattr_accessor :tab_panel, default: :default
+  mattr_accessor :align, default: :left
 
   # rubocop: disable Layout/LineLength, Metrics/BlockLength
   mattr_accessor :styles do
@@ -17,6 +18,11 @@ module Fluxbit::Config::TabComponent
         ul: {
           horizontal: "flex text-center",
           vertical: "flex-column space-y space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0"
+        },
+        align: {
+          left: "justify-start",
+          center: "justify-center",
+          right: "justify-end"
         },
         li: "",
         variant: {

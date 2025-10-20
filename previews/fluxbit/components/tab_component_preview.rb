@@ -8,12 +8,14 @@ class Fluxbit::Components::TabComponentPreview < ViewComponent::Preview
   # @param variant select "variant" :variant_options
   # @param color select "Color" :color_options
   # @param tab_panel select "Tab Panel" :tab_panel_options
+  # @param align select "Alignment" :align_options
   # @param vertical [Boolean] toggle "vertical?"
-  def playground(variant: :default, color: :blue, tab_panel: :default, vertical: false)
+  def playground(variant: :default, color: :blue, tab_panel: :default, align: :left, vertical: false)
     render Fluxbit::TabComponent.new(
       variant: variant,
       color: color,
       tab_panel: tab_panel,
+      align: align,
       vertical: vertical,
     ) do |tabs|
       tabs.with_tab title: "Profile", active: true, icon: anyicon("heroicons_solid:user") do |content|
@@ -38,6 +40,7 @@ class Fluxbit::Components::TabComponentPreview < ViewComponent::Preview
   def colored_tabs; end
   def navigation_only; end
   def disabled_tabs; end
+  def tab_alignment; end
   def adding_removing_classes; end
   def adding_other_properties; end
 
@@ -57,5 +60,9 @@ class Fluxbit::Components::TabComponentPreview < ViewComponent::Preview
 
   def tab_panel_options
     Fluxbit::Config::TabComponent.styles[:tabpanel][:horizontal].keys
+  end
+
+  def align_options
+    Fluxbit::Config::TabComponent.styles[:tab_list][:align].keys
   end
 end
