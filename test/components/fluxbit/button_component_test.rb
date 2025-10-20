@@ -37,4 +37,16 @@ class Fluxbit::ButtonComponentTest < ViewComponent::TestCase
 
     assert_selector styled(:disabled)
   end
+
+  def test_applies_selected_class_when_selected_is_true
+    render_inline(Fluxbit::ButtonComponent.new(selected: true)) { "Click me" }
+
+    assert_selector styled(:selected)
+  end
+
+  def test_does_not_apply_selected_class_when_selected_is_false
+    render_inline(Fluxbit::ButtonComponent.new(selected: false)) { "Click me" }
+
+    assert_no_selector styled(:selected)
+  end
 end

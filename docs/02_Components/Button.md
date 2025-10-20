@@ -47,6 +47,7 @@ The result is:
 | pill:              | false    | If set to true, the component will have rounded corners, giving it a "pill" shape.
 | size:              | 1        | Specifies the size of the component. Medium is the default size (e.g., 0 to <%=Fluxbit::Config::ButtonComponent.styles[:size].count - 1 %>).
 | as:                | :button  | Change the HTML element, for example, to "a" element.
+| selected:          | false    | If set to true, the button will appear darker to indicate selected state.
 | popover_text:      | nil      | Popover text
 | popover_placement: | :right   | Popover placement
 | popover_trigger:   | :hover   | Popover trigger: :hover or :click
@@ -96,6 +97,10 @@ The component supports the following slots:
 ### Disabled buttons
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Components::ButtonComponentPreview" scenario="disabled_buttons" panels="source"></lookbook-embed>
+
+### Selected buttons
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Components::ButtonComponentPreview" scenario="selected_buttons" panels="source"></lookbook-embed>
 
 ### With popover
 

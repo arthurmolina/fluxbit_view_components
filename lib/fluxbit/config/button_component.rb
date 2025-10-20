@@ -5,6 +5,7 @@ module Fluxbit::Config::ButtonComponent
   mattr_accessor :pill, default: false
   mattr_accessor :size, default: 1
   mattr_accessor :as, default: :button
+  mattr_accessor :selected, default: false
 
   # TODO: Gradient and Gradient Duotone need their outline version.
   # rubocop: disable Layout/LineLength, Metrics/BlockLength
@@ -50,6 +51,7 @@ module Fluxbit::Config::ButtonComponent
         teal_to_lime_gradient: "text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 enabled:hover:bg-gradient-to-l enabled:hover:from-teal-200 enabled:hover:to-lime-200 enabled:hover:text-gray-900 focus:ring-4 focus:ring-lime-200 dark:focus:ring-teal-700"
       },
       disabled: "cursor-not-allowed opacity-50",
+      selected: "brightness-90 dark:brightness-75",
       inner: {
         base: "flex items-stretch items-center transition-all duration-200",
         position: {

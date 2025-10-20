@@ -2,7 +2,7 @@
   <div>
     <%= fx_heading(size: 3) do %>Text Formatting Toolbar<% end %>
     <%= fx_button_group(class: "mt-2") do |group| %>
-      <%= group.with_button(color: :light) do %>
+      <%= group.with_button(color: :light, selected: true) do %>
         <%= anyicon("heroicons_solid:bold", class: "w-4 h-4") %>
       <% end %>
       <%= group.with_button(color: :light) do %>
@@ -95,7 +95,7 @@
       <%= group.with_button(color: :light) do %>
         <%= anyicon("heroicons_solid:bars-3-bottom-right", class: "w-4 h-4") %>
       <% end %>
-      <%= group.with_button(color: :light) do %>
+      <%= group.with_button(color: :light, selected: true) do %>
         <%= anyicon("heroicons_solid:bars-4", class: "w-4 h-4") %>
       <% end %>
     <% end %>

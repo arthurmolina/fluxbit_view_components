@@ -8,11 +8,13 @@ class Fluxbit::Components::ButtonComponentPreview < ViewComponent::Preview
   # @param color select "Color" :color_options
   # @param pill [Boolean] toggle "Pill"
   # @param size select "size" :size_options
-  def playground(color: :default, pill: false, size: '1')
+  # @param selected [Boolean] toggle "Selected"
+  def playground(color: :default, pill: false, size: '1', selected: false)
     render Fluxbit::ButtonComponent.new(
       color: color,
       pill: pill,
       size: size.to_i,
+      selected: selected,
       class: 'w-full'
     ).with_content("A button")
   end
@@ -24,6 +26,7 @@ class Fluxbit::Components::ButtonComponentPreview < ViewComponent::Preview
   def outline_buttons; end
   def button_sizes; end
   def disabled_buttons; end
+  def selected_buttons; end
   def with_popover; end
   def with_tooltip; end
   def button_with_icon; end

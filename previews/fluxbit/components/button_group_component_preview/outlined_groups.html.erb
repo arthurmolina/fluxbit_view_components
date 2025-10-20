@@ -4,7 +4,7 @@
     <%= fx_button_group(class: "mt-2") do |group| %>
       <%= group.with_button(color: :default_outline) do %>First<% end %>
       <%= group.with_button(color: :default_outline) do %>Second<% end %>
-      <%= group.with_button(color: :default_outline) do %>Third<% end %>
+      <%= group.with_button(color: :default_outline, selected: true) do %>Third<% end %>
     <% end %>
   </div>
   
@@ -12,7 +12,7 @@
     <%= fx_heading(size: 3) do %>Success Outlined Group<% end %>
     <%= fx_button_group(class: "mt-2") do |group| %>
       <%= group.with_button(color: :success_outline) do %>Add<% end %>
-      <%= group.with_button(color: :success_outline) do %>Save<% end %>
+      <%= group.with_button(color: :success_outline, selected: true) do %>Save<% end %>
       <%= group.with_button(color: :success_outline) do %>Submit<% end %>
     <% end %>
   </div>
@@ -20,7 +20,7 @@
   <div>
     <%= fx_heading(size: 3) do %>Danger Outlined Group<% end %>
     <%= fx_button_group(class: "mt-2") do |group| %>
-      <%= group.with_button(color: :danger_outline) do %>Delete<% end %>
+      <%= group.with_button(color: :danger_outline, selected: true) do %>Delete<% end %>
       <%= group.with_button(color: :danger_outline) do %>Remove<% end %>
       <%= group.with_button(color: :danger_outline) do %>Clear<% end %>
     <% end %>

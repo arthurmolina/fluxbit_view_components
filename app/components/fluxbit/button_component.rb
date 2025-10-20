@@ -26,6 +26,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
   # @option props [Symbol, String] :color The color style of the button.
   # @option props [Symbol, String] :size The size of the button (e.g., `0` to `4`).
   # @option props [Boolean] :disabled (false) Sets the button to a disabled state.
+  # @option props [Boolean] :selected (false) Makes the button appear darker to indicate selected state.
   # @option props [String] :remove_class ('') Classes to remove from the default class list.
   # @option props [String] :popover_text (nil) Popover text (from Fluxbit::Component).
   # @option props [Symbol] :popover_placement (:right) Popover placement (e.g., `:right`, `:left`, `:top`, `:bottom`) (from Fluxbit::Component).
@@ -44,6 +45,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
     @as = options @props.delete(:as), default: @@as
     @pill = options @props.delete(:pill), default: @@pill
     @color = options (@props.delete(:color) || "").to_sym, collection: styles[:colors].keys, default: @@color
+    @selected = options @props.delete(:selected), default: @@selected
     @grouped = options @props.delete(:grouped), default: false
     @first_button = options @props.delete(:first_button), default: false
     @last_button = options @props.delete(:last_button), default: false
@@ -52,6 +54,7 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
     @remove_dropdown_arrow = options(@props.delete(:remove_dropdown_arrow), default: false)
     declare_size(@props.delete(:size) || @@size)
     declare_disabled
+    declare_selected
     declare_classes
     @props[:class] = remove_class(@props.delete(:remove_class) || "", @props[:class])
   end
@@ -87,6 +90,12 @@ class Fluxbit::ButtonComponent < Fluxbit::Component
     return unless @props[:disabled].present? && @props[:disabled] == true
 
     add(class: styles[:disabled], to: @props, first_element: true)
+  end
+
+  def declare_selected
+    return unless @selected.present? && @selected == true
+
+    add(class: styles[:selected], to: @props, first_element: true)
   end
 
   def before_render
