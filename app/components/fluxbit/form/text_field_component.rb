@@ -159,6 +159,7 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
     end
 
     if @form.present? && @attribute.present?
+      @props[:value] = @value if @value.present?
       @form.public_send(input_type, @attribute, @props)
     else
       public_send("#{input_type}_tag", @name, @value, @props)
