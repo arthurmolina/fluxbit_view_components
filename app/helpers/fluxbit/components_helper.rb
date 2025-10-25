@@ -12,7 +12,7 @@ module Fluxbit
 
     # Forms
     [ :help_text, :form_builder, :label, :range,
-      :toggle, :upload_image, :dropzone ].each do |component|
+      :toggle, :upload_image, :dropzone, :radio_group_button ].each do |component|
       define_method("fx_#{component}") do |*args, **kwargs, &block|
         fluxbit_method("Form::#{component.to_s.camelize}", *args, **kwargs, &block)
       end

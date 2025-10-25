@@ -77,6 +77,11 @@ module Fluxbit
       end
     end
 
+    def fx_radio_group_button(method, **options, &block)
+      options[:name] ||= "#{@object_name}[#{method}]"
+      render Fluxbit::Form::RadioGroupButtonComponent.new(**options), &block
+    end
+
     # Mimics Rails' form.select signature:
     # select(method, choices = nil, options = {}, html_options = {}, &block)
     #

@@ -1,0 +1,46 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Default<% end %>
+    <%= fx_radio_group_button(name: "color_default", color: :default) do |radio| %>
+      <%= radio.with_radio_option(value: "1", checked: true) do %>Option 1<% end %>
+      <%= radio.with_radio_option(value: "2") do %>Option 2<% end %>
+      <%= radio.with_radio_option(value: "3") do %>Option 3<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Success<% end %>
+    <%= fx_radio_group_button(name: "color_success", color: :success) do |radio| %>
+      <%= radio.with_radio_option(value: "1", checked: true) do %>Option 1<% end %>
+      <%= radio.with_radio_option(value: "2") do %>Option 2<% end %>
+      <%= radio.with_radio_option(value: "3") do %>Option 3<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Danger<% end %>
+    <%= fx_radio_group_button(name: "color_danger", color: :danger) do |radio| %>
+      <%= radio.with_radio_option(value: "1", checked: true) do %>Option 1<% end %>
+      <%= radio.with_radio_option(value: "2") do %>Option 2<% end %>
+      <%= radio.with_radio_option(value: "3") do %>Option 3<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Info<% end %>
+    <%= fx_radio_group_button(name: "color_info", color: :info) do |radio| %>
+      <%= radio.with_radio_option(value: "1", checked: true) do %>Option 1<% end %>
+      <%= radio.with_radio_option(value: "2") do %>Option 2<% end %>
+      <%= radio.with_radio_option(value: "3") do %>Option 3<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Purple<% end %>
+    <%= fx_radio_group_button(name: "color_purple", color: :purple) do |radio| %>
+      <%= radio.with_radio_option(value: "1", checked: true) do %>Option 1<% end %>
+      <%= radio.with_radio_option(value: "2") do %>Option 2<% end %>
+      <%= radio.with_radio_option(value: "3") do %>Option 3<% end %>
+    <% end %>
+  </div>
+</div>

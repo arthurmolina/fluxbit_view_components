@@ -1,0 +1,23 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>With Disabled Option<% end %>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      The "Premium" option is disabled and cannot be selected.
+    </p>
+    <%= fx_radio_group_button(name: "plan_disabled") do |radio| %>
+      <%= radio.with_radio_option(value: "free", checked: true) do %>Free<% end %>
+      <%= radio.with_radio_option(value: "pro") do %>Pro<% end %>
+      <%= radio.with_radio_option(value: "premium", disabled: true) do %>Premium<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Multiple Disabled Options<% end %>
+    <%= fx_radio_group_button(name: "features_disabled", color: :success) do |radio| %>
+      <%= radio.with_radio_option(value: "basic", checked: true) do %>Basic<% end %>
+      <%= radio.with_radio_option(value: "standard", disabled: true) do %>Standard<% end %>
+      <%= radio.with_radio_option(value: "advanced", disabled: true) do %>Advanced<% end %>
+      <%= radio.with_radio_option(value: "enterprise", disabled: true) do %>Enterprise<% end %>
+    <% end %>
+  </div>
+</div>

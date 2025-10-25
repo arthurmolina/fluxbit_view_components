@@ -1,0 +1,29 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>View Mode Selector<% end %>
+    <%= fx_radio_group_button(name: "view_mode") do |radio| %>
+      <%= radio.with_radio_option(value: "list", checked: true) do %>List View<% end %>
+      <%= radio.with_radio_option(value: "grid") do %>Grid View<% end %>
+      <%= radio.with_radio_option(value: "table") do %>Table View<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Time Period<% end %>
+    <%= fx_radio_group_button(name: "time_period") do |radio| %>
+      <%= radio.with_radio_option(value: "day") do %>Day<% end %>
+      <%= radio.with_radio_option(value: "week", checked: true) do %>Week<% end %>
+      <%= radio.with_radio_option(value: "month") do %>Month<% end %>
+      <%= radio.with_radio_option(value: "year") do %>Year<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Chart Type<% end %>
+    <%= fx_radio_group_button(name: "chart_type") do |radio| %>
+      <%= radio.with_radio_option(value: "line", checked: true) do %>Line<% end %>
+      <%= radio.with_radio_option(value: "bar") do %>Bar<% end %>
+      <%= radio.with_radio_option(value: "pie") do %>Pie<% end %>
+    <% end %>
+  </div>
+</div>

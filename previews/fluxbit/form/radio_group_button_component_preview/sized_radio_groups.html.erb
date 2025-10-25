@@ -1,0 +1,46 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Extra Small (size: 0)<% end %>
+    <%= fx_radio_group_button(name: "size_0", size: 0) do |radio| %>
+      <%= radio.with_radio_option(value: "1", checked: true) do %>XS 1<% end %>
+      <%= radio.with_radio_option(value: "2") do %>XS 2<% end %>
+      <%= radio.with_radio_option(value: "3") do %>XS 3<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Small (size: 1)<% end %>
+    <%= fx_radio_group_button(name: "size_1", size: 1) do |radio| %>
+      <%= radio.with_radio_option(value: "1", checked: true) do %>Small 1<% end %>
+      <%= radio.with_radio_option(value: "2") do %>Small 2<% end %>
+      <%= radio.with_radio_option(value: "3") do %>Small 3<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Medium (size: 2 - Default)<% end %>
+    <%= fx_radio_group_button(name: "size_2", size: 2) do |radio| %>
+      <%= radio.with_radio_option(value: "1", checked: true) do %>Medium 1<% end %>
+      <%= radio.with_radio_option(value: "2") do %>Medium 2<% end %>
+      <%= radio.with_radio_option(value: "3") do %>Medium 3<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Large (size: 3)<% end %>
+    <%= fx_radio_group_button(name: "size_3", size: 3) do |radio| %>
+      <%= radio.with_radio_option(value: "1", checked: true) do %>Large 1<% end %>
+      <%= radio.with_radio_option(value: "2") do %>Large 2<% end %>
+      <%= radio.with_radio_option(value: "3") do %>Large 3<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Extra Large (size: 4)<% end %>
+    <%= fx_radio_group_button(name: "size_4", size: 4) do |radio| %>
+      <%= radio.with_radio_option(value: "1", checked: true) do %>XL 1<% end %>
+      <%= radio.with_radio_option(value: "2") do %>XL 2<% end %>
+      <%= radio.with_radio_option(value: "3") do %>XL 3<% end %>
+    <% end %>
+  </div>
+</div>

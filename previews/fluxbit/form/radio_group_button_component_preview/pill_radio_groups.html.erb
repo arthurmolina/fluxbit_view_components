@@ -1,0 +1,29 @@
+<div class="space-y-8">
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Pill Style - Default Color<% end %>
+    <%= fx_radio_group_button(name: "pill_default", pill: true) do |radio| %>
+      <%= radio.with_radio_option(value: "list", checked: true) do %>List<% end %>
+      <%= radio.with_radio_option(value: "grid") do %>Grid<% end %>
+      <%= radio.with_radio_option(value: "table") do %>Table<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Pill Style - Success Color<% end %>
+    <%= fx_radio_group_button(name: "pill_success", pill: true, color: :success) do |radio| %>
+      <%= radio.with_radio_option(value: "yes", checked: true) do %>Yes<% end %>
+      <%= radio.with_radio_option(value: "no") do %>No<% end %>
+      <%= radio.with_radio_option(value: "maybe") do %>Maybe<% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= fx_heading(size: 4, class: "mb-4") do %>Pill Style - Info Color<% end %>
+    <%= fx_radio_group_button(name: "pill_info", pill: true, color: :info) do |radio| %>
+      <%= radio.with_radio_option(value: "day") do %>Day<% end %>
+      <%= radio.with_radio_option(value: "week", checked: true) do %>Week<% end %>
+      <%= radio.with_radio_option(value: "month") do %>Month<% end %>
+      <%= radio.with_radio_option(value: "year") do %>Year<% end %>
+    <% end %>
+  </div>
+</div>
