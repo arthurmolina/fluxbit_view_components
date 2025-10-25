@@ -44,7 +44,7 @@ class Fluxbit::GravatarComponent < Fluxbit::AvatarComponent
   end
 
   def call
-    return gravatar_url if @url_only
+    return gravatar_url.html_safe if @url_only
     super
   end
 
