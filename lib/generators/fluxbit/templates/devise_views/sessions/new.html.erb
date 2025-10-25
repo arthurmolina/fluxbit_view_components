@@ -4,7 +4,7 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), builder: Fluxbit::FormBuilder) do |f| %>
   <%= f.fx_email_field :email, autofocus: true, autocomplete: "email", wrapper_html: {class: "mb-6 field"} %>
-  <%= f.fx_password_field :password, autocomplete: "current-password", wrapper_html: {class: "mb-6 field"} %>
+  <%= f.fx_password :password, autocomplete: "current-password", wrapper_html: {class: "mb-6 field"} %>
 
   <% if devise_mapping.rememberable? %>
     <%= f.fx_toggle :remember_me, wrapper_html: {class: "mb-6 field"} %>

@@ -10,7 +10,7 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <%= f.fx_password_field :password, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"},
+  <%= f.fx_password :password, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"},
       help_text: [
         "Leave blank if you don't want to change it",
         @minimum_password_length ? "#{@minimum_password_length} characters minimum" : ""

@@ -5,8 +5,24 @@
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, builder: Fluxbit::FormBuilder) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
-  <%= f.fx_password_field :password, autofocus: true, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"}, help_text: @minimum_password_length ? "#{@minimum_password_length} characters minimum" : ""%>
-  <%= f.fx_password_field :password_confirmation, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"} %>
+  <%= f.fx_password :password,
+    autofocus: true,
+    autocomplete: "new-password",
+    min_length: 6,
+    require_uppercase: true,
+    require_lowercase: true,
+    require_numbers: true,
+    require_special: true,
+    wrapper_html: {class: "mb-6 field"} %>
+  <%= f.fx_password :password_confirmation,
+    autocomplete: "new-password",
+    min_length: 6,
+    require_uppercase: true,
+    require_lowercase: true,
+    require_numbers: true,
+    require_special: true,
+    wrapper_html: {class: "mb-6 field"},
+    help_text: "We need your current password to confirm your changes" %>
   <%= f.fx_submit "Change my password" %>
 <% end %>
 

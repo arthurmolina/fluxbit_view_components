@@ -32,8 +32,22 @@
         <div class="py-8 px-4 sm:px-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-800 dark:border-slate-700">
           <%= form_with(builder: Fluxbit::FormBuilder) do |f| %>
             <%= f.fx_email_field :email, autofocus: true, autocomplete: "email", wrapper_html: {class: "mb-6 field"} %>
-            <%= f.fx_password_field :password, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"}, help_text: "6 characters minimum" %>
-            <%= f.fx_password_field :password_confirmation, autocomplete: "new-password", wrapper_html: {class: "mb-6 field"} %>
+            <%= f.fx_password :password,
+              autocomplete: "new-password",
+              min_length: 6,
+              require_uppercase: true,
+              require_lowercase: true,
+              require_numbers: true,
+              require_special: true,
+              wrapper_html: {class: "mb-6 field"}  %>
+            <%= f.fx_password :password_confirmation,
+              autocomplete: "new-password",
+              min_length: 6,
+              require_uppercase: true,
+              require_lowercase: true,
+              require_numbers: true,
+              require_special: true,
+              wrapper_html: {class: "mb-6 field"} %>
             <%= f.fx_submit "Sign up" %>
           <% end %>
 
