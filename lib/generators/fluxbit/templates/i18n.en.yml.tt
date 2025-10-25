@@ -9,6 +9,7 @@ en:
       new: New <%= singular.titlecase %>
       edit: Edit <%= singular.titlecase %>
       show: <%= singular.titlecase %> Details
+      index_name: Index
     fields:
       id: Record ID
 <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>

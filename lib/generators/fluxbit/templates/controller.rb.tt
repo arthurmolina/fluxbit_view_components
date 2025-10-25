@@ -15,7 +15,8 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
   # GET /<%= plural %>
   def index
 <% if options[:paginator] -%>
-    Pagy::DEFAULT[:limit] = (params[:per_page].presence || 5).to_i
+    @page_size = 10
+    Pagy::DEFAULT[:limit] = (params[:per_page].presence || @page_size).to_i
 <% end -%>
     @<%= plural %> = policy_scope(<%= class_name.singularize %>).all
 

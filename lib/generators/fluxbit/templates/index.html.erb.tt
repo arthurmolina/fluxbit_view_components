@@ -20,7 +20,7 @@
 <% end -%>
 <% end -%>
     <%% breadcrumb.with_item(href: <%= path_prefix %><%= plural %>_path) { t("<%= plural %>.titles.index") } %>
-    <%% breadcrumb.with_item(current_page: true) { "Index" } %>
+    <%% breadcrumb.with_item(current_page: true) { t("<%= plural %>.titles.index_name") } %>
   <%% end %>
 
   <%%= fx_card(class: "m-4") do |card| %>
@@ -178,7 +178,7 @@
             <%%== t("<%= plural %>.messages.pagination_info", start: @pagy.from, end: @pagy.to, total: @pagy.count) %>
           </div>
           <%%= fx_flex(gap: 2, align_items: :center) do %>
-            <%%= fx_pagination @pagy, id: 'nav', sizing: 1, show_first_last: true %>
+            <%%= fx_pagination(@pagy, id: 'nav', sizing: 1, show_first_last: true) if @<%= plural %>.count > @page_size%>
             <%%= fx_select id: "perPage", name:"per_page", class: "pr-4", data: {
                 controller: "fx-assigner fx-auto-submit",
                 fx_assigner_change_param: {

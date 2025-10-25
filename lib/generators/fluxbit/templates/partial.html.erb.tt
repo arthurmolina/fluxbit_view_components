@@ -38,10 +38,10 @@
 <% end -%>
 
       <%% row.with_cell(width: "1%") do %>
-        <%%= fx_button data: { href: <%= path_prefix %><%= singular %>_path(<%= singular %>) },
-            color: :danger_outline,
+        <%%= fx_button color: :danger_outline,
             onclick: "event.preventDefault();",
             data: {
+              href: <%= path_prefix %><%= singular %>_path(<%= singular %>),
               controller: "fx-assigner",
               fx_assigner_change_param: {
                 "#confirm-deletion-button" => {

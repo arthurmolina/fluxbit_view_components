@@ -9,13 +9,14 @@ pt-BR:
       new: Novo <%= singular.titlecase %>
       edit: Editar <%= singular.titlecase %>
       show: Detalhes de <%= singular.titlecase %>
+      index_name: Inicio
     fields:
       id: Identificador
 <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
       <%= attr.name %><%= ['references','belongs_to'].include?(attr.type) ? '_id' : '' %>: <%= attr.name.titlecase %>
 <% end -%>
       created_at: Criado em
-      updated_at: Última Atualizado
+      updated_at: Última Atualização
     help_text:
 <% attributes.reject { |attr| attr.type == :password_digest }.each do |attr| -%>
       <%= attr.name %><%= ['references','belongs_to'].include?(attr.type) ? '_id' : '' %>: Ajuda para <%= attr.name.titlecase %>

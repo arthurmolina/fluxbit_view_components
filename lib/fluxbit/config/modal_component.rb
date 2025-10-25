@@ -53,7 +53,7 @@ module Fluxbit::Config::ModalComponent
         no_title: "-mt-4"
       },
       header: {
-        base: "flex items-start justify-between rounded-t border-b p-5 dark:border-gray-600",
+        base: "flex items-start justify-between rounded-t border-b p-5 border-gray-200 dark:border-gray-600",
         flat: "border-b-0 p-2",
         title: "text-xl font-medium text-gray-900 dark:text-white",
         close: {
