@@ -28,7 +28,7 @@
         <div class="py-8 px-4 sm:px-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-800 dark:border-slate-700">
           <%= form_with(builder: Fluxbit::FormBuilder) do |f| %>
             <%= f.fx_email_field :email, autofocus: true, autocomplete: "email", wrapper_html: {class: "mb-6 field"} %>
-            <%= f.fx_password_field :password, autocomplete: "current-password", wrapper_html: {class: "mb-6 field"} %>
+            <%= f.fx_password :password, autocomplete: "current-password", wrapper_html: {class: "mb-6 field"} %>
             <%= f.fx_toggle :remember_me, wrapper_html: {class: "mb-6 field"} %>
             <%= f.fx_submit "Log in" %>
 
