@@ -1,0 +1,25 @@
+<div class="space-y-4">
+  <div>
+    <p class="mb-2 text-sm text-gray-600">Using <code>title:</code> parameter (auto-styled as h3):</p>
+    <%= fx_modal(id: 'modal-param', title: 'Simple Text Title') do %>
+      This modal uses the <code>title:</code> parameter, which automatically wraps the title in an h3 tag with pre-styled classes.
+    <% end %>
+    <%= fx_button("data-modal-target": "modal-param", "data-modal-toggle": "modal-param", with_content: 'Open modal with title param') %>
+  </div>
+
+  <div>
+    <p class="mb-2 text-sm text-gray-600">Using <code>with_title</code> slot (custom HTML):</p>
+    <%= fx_modal(id: 'modal-slot') do |modal| %>
+      <% modal.with_title do %>
+        <div class="flex items-center gap-2">
+          <%= render Fluxbit::BadgeComponent.new(color: :success, with_content: 'New') %>
+          <h2 class="text-xl font-bold text-purple-600">Custom Styled Title</h2>
+        </div>
+      <% end %>
+      This modal uses the <code>with_title</code> slot, giving you full control over the HTML structure and styling.
+    <% end %>
+    <%= fx_button("data-modal-target": "modal-slot", "data-modal-toggle": "modal-slot", with_content: 'Open modal with title slot') %>
+  </div>
+</div>
+
+<div class="h-40"></div>

@@ -25,6 +25,7 @@ class Fluxbit::Components::ModalComponentPreview < ViewComponent::Preview
 
   def default_modal; end
   def with_title_and_footer; end
+  def title_comparison; end
   def placements; end
   def sizes; end
   def flat; end

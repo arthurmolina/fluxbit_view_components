@@ -48,20 +48,51 @@ The result is:
 
 The component supports the following slots:
 
-- **with_title** (or simply `title`): Renders a slot for the modal title.
+- **with_title** (or simply `title`): Renders a slot for the modal title with full control over HTML and styling.
 - **with_footer** (or simply `footer`): Renders a slot for the modal footer.
 
-> **Note:** If you set `title:` via the constructor and also provide `with_title` block content, both will appear unless you handle that manually. Typically, you’d choose one approach.
+### Title: Parameter vs Slot
+
+You can set the modal title in two ways:
+
+1. **Using the `title:` parameter** - Automatically wraps your text in an `<h3>` tag with pre-styled classes:
+   ```html
+   &lt;%= fx_modal(title: "My Modal Title") do %&gt;
+     Content here
+   &lt;% end %&gt;
+   ```
+
+2. **Using the `with_title` slot** - Gives you full control over the HTML structure and styling:
+   ```html
+   &lt;%= fx_modal do |modal| %&gt;
+     &lt;% modal.with_title do %&gt;
+       &lt;h1 class="custom-class"&gt;Custom &lt;strong&gt;Styled&lt;/strong&gt; Title&lt;/h1&gt;
+     &lt;% end %&gt;
+     Content here
+   &lt;% end %&gt;
+   ```
+
+> **Note:** If you provide both `title:` parameter and `with_title` slot, both will render (slot first, then the parameter). Typically, you should choose one approach. Use the parameter for simple text titles, and use the slot when you need custom HTML or styling.
 
 ## Examples
 
-### Default Modal
+### Default Modal (with title parameter)
+
+Shows a modal using the `title:` parameter for a simple text title.
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Components::ModalComponentPreview" scenario="default_modal" panels="source"></lookbook-embed>
 
-### Modal with slots Title and Footer
+### Modal with Title and Footer Slots
+
+Shows a modal using the `with_title` slot for custom HTML title and `with_footer` slot for footer content.
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Components::ModalComponentPreview" scenario="with_title_and_footer" panels="source"></lookbook-embed>
+
+### Comparing Title Parameter vs Title Slot
+
+Shows the difference between using `title:` parameter (auto-styled) vs `with_title` slot (custom control).
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Components::ModalComponentPreview" scenario="title_comparison" panels="source"></lookbook-embed>
 
 ### Modal placements
 
