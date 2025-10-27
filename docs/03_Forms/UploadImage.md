@@ -88,6 +88,10 @@ This component does not define any named slots. The upload functionality is hand
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::UploadImageComponentPreview" scenario="multiple_files" panels="source"></lookbook-embed>
 
+### Required vs optional fields
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Form::UploadImageComponentPreview" scenario="required_field" panels="source"></lookbook-embed>
+
 ### With form builder
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::UploadImageComponentPreview" scenario="with_form_builder" panels="source"></lookbook-embed>

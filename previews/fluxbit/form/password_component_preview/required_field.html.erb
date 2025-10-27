@@ -1,0 +1,53 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Required vs Optional Password Fields</h3>
+
+  <div class="space-y-4">
+    <%= fx_password(
+      name: "password",
+      label: "Password (Required)",
+      placeholder: "Enter your password",
+      show_strength: true,
+      required: true,
+      min_length: 8,
+      require_uppercase: true,
+      require_lowercase: true,
+      require_numbers: true,
+      help_text: "This field is required for account security"
+    ) %>
+
+    <%= fx_password(
+      name: "current_password",
+      label: "Current Password (Required)",
+      placeholder: "Enter your current password",
+      show_strength: false,
+      required: true,
+      help_text: "Required to confirm your identity"
+    ) %>
+
+    <%= fx_password(
+      name: "optional_password",
+      label: "Secondary Password (Optional)",
+      placeholder: "Enter an optional secondary password",
+      show_strength: false,
+      required: false,
+      help_text: "Optional - used for additional verification"
+    ) %>
+
+    <%= fx_password(
+      name: "confirm_password",
+      label: "Confirm Password (Required)",
+      placeholder: "Re-enter your password",
+      show_strength: false,
+      required: true,
+      help_text: "Must match the password above"
+    ) %>
+  </div>
+
+  <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded">
+    <p class="text-sm text-gray-700">
+      <strong>Note:</strong> When <code class="bg-blue-100 px-1 rounded">required: true</code> is set,
+      the wrapper div receives a <code class="bg-blue-100 px-1 rounded">required</code> CSS class.
+      You can use this class to style required fields differently (e.g., with an asterisk in your CSS).
+    </p>
+  </div>
+</div>

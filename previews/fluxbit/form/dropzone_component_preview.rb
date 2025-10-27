@@ -17,6 +17,7 @@ class Fluxbit::Form::DropzoneComponentPreview < ViewComponent::Preview
   # @param multiple [Boolean] toggle "Allow multiple file selection"
   # @param accept [String] "Comma-separated list of accepted file types (optional)"
   # @param disabled [Boolean] toggle "Disables the input if true"
+  # @param required [Boolean] toggle "Marks the field as required"
   def playground(
     name: "file_upload",
     label: "",
@@ -27,7 +28,8 @@ class Fluxbit::Form::DropzoneComponentPreview < ViewComponent::Preview
     help_text: "",
     multiple: false,
     accept: "",
-    disabled: false)
+    disabled: false,
+    required: false)
     render Fluxbit::Form::DropzoneComponent.new(
       name: name,
       label: label == "" ? nil : label,
@@ -38,7 +40,8 @@ class Fluxbit::Form::DropzoneComponentPreview < ViewComponent::Preview
       help_text: help_text == "" ? nil : help_text,
       multiple: multiple,
       accept: accept == "" ? nil : accept,
-      disabled: disabled
+      disabled: disabled,
+      required: required
     )
   end
 
@@ -50,6 +53,7 @@ class Fluxbit::Form::DropzoneComponentPreview < ViewComponent::Preview
   def file_restrictions; end
   def with_helper_text; end
   def disabled_dropzone; end
+  def required_field; end
   def custom_content; end
   def with_form_builder
     @product ||= ::BaseProductModel.new(

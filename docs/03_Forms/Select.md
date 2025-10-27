@@ -79,7 +79,11 @@ The result is:
 | sizing:                    | 1        | Field size (0 to 2)
 | shadow:                    | false    | Adds a drop shadow if true
 | multiple:                  | false    | Allows multiple selections
+| disabled:                  | false    | Disables the select if true
+| readonly:                  | false    | Makes the select readonly if true
+| required:                  | false    | Marks the field as required (adds "required" class to wrapper)
 | remove_class:              | ""       | Classes to be removed from the default class list
+| wrapper_html:              | {}       | Additional HTML attributes for the wrapper div
 | **props                    |          | Any other HTML attribute for `<select>`
 
 ## Slots
@@ -119,6 +123,10 @@ This component does not define any named slots. The select options can be provid
 ### Disabled select
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::SelectComponentPreview" scenario="disabled" panels="source"></lookbook-embed>
+
+### Required vs optional fields
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Form::SelectComponentPreview" scenario="required_field" panels="source"></lookbook-embed>
 
 ### With helper text
 

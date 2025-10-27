@@ -1,0 +1,81 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Required vs Optional Toggles</h3>
+
+  <div class="space-y-4">
+    <div>
+      <h4 class="font-medium mb-2">Required Toggle</h4>
+      <%= fx_toggle(
+        name: "accept_terms",
+        label: "Accept Terms & Conditions",
+        required: true,
+        help_text: "You must accept the terms to proceed",
+        color: :success
+      ) %>
+    </div>
+
+    <div>
+      <h4 class="font-medium mb-2">Optional Toggle</h4>
+      <%= fx_toggle(
+        name: "notifications",
+        label: "Enable Notifications",
+        required: false,
+        help_text: "Optional - receive email updates",
+        color: :default
+      ) %>
+    </div>
+
+    <div>
+      <h4 class="font-medium mb-2">Required Settings</h4>
+      <div class="space-y-3">
+        <%= fx_toggle(
+          name: "privacy_consent",
+          label: "I consent to data processing",
+          required: true,
+          color: :success
+        ) %>
+
+        <%= fx_toggle(
+          name: "age_verification",
+          label: "I am 18 years or older",
+          required: true,
+          color: :success
+        ) %>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="font-medium mb-2">Optional Preferences</h4>
+      <div class="space-y-3">
+        <%= fx_toggle(
+          name: "email_notifications",
+          label: "Email Notifications",
+          required: false,
+          checked: true,
+          color: :default
+        ) %>
+
+        <%= fx_toggle(
+          name: "push_notifications",
+          label: "Push Notifications",
+          required: false,
+          color: :default
+        ) %>
+
+        <%= fx_toggle(
+          name: "marketing_emails",
+          label: "Marketing Emails",
+          required: false,
+          color: :default
+        ) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded">
+    <p class="text-sm text-gray-700">
+      <strong>Note:</strong> When <code class="bg-blue-100 px-1 rounded">required: true</code> is set,
+      the wrapper div receives a <code class="bg-blue-100 px-1 rounded">required</code> CSS class.
+      You can use this class to style required fields differently (e.g., with an asterisk in your CSS).
+    </p>
+  </div>
+</div>

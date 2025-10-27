@@ -23,6 +23,7 @@ module Fluxbit::Config::Form::LabelComponent
         "text-md",
         "text-lg"
       ],
+      required: "text-red-500 px-1 required",
       helper_popover: "px-2 text-slate-400"
     }
   end

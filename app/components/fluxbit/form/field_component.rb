@@ -9,6 +9,7 @@ class Fluxbit::Form::FieldComponent < Fluxbit::Form::Component
     @name = @props.delete(:name) || (@attribute if @form.present?)
     @value = @props.delete(:value)
     @id = @props.delete(:id)
+    @required = @props.delete(:required)
 
     @object = @form&.object
     @help_text = define_help_text(props.delete(:help_text), @object, @attribute)
@@ -21,7 +22,7 @@ class Fluxbit::Form::FieldComponent < Fluxbit::Form::Component
   end
 
   def define_wrapper_options
-    add(to: @wrapper_html, class: "required") if @props[:required].present?
+    add(to: @wrapper_html, class: "required") if @required.present?
     add(to: @wrapper_html, class: @name.to_s) if @name.present?
   end
 end

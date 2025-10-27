@@ -1,0 +1,60 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Required vs Optional Fields</h3>
+
+  <div class="space-y-4">
+    <%= fx_select(
+      name: "country",
+      label: "Country (Required)",
+      options: [
+        ["United States", "US"],
+        ["Canada", "CA"],
+        ["United Kingdom", "UK"],
+        ["Germany", "DE"],
+        ["France", "FR"]
+      ],
+      prompt: "Select a country",
+      required: true,
+      help_text: "Please select your country of residence"
+    ) %>
+
+    <%= fx_select(
+      name: "state",
+      label: "State/Province (Optional)",
+      options: [
+        ["California", "CA"],
+        ["New York", "NY"],
+        ["Texas", "TX"],
+        ["Florida", "FL"]
+      ],
+      prompt: "Select a state (optional)",
+      required: false,
+      help_text: "Optional - select if applicable"
+    ) %>
+
+    <%= fx_select(
+      name: "role",
+      label: "User Role (Required)",
+      options: ["Admin", "Editor", "Viewer", "Guest"],
+      prompt: "Choose a role",
+      required: true,
+      help_text: "This determines your access level"
+    ) %>
+
+    <%= fx_select(
+      name: "department",
+      label: "Department (Optional)",
+      options: ["Sales", "Marketing", "Engineering", "Support", "HR"],
+      include_blank: "Not specified",
+      required: false,
+      help_text: "Optional department assignment"
+    ) %>
+  </div>
+
+  <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded">
+    <p class="text-sm text-gray-700">
+      <strong>Note:</strong> When <code class="bg-blue-100 px-1 rounded">required: true</code> is set,
+      the wrapper div receives a <code class="bg-blue-100 px-1 rounded">required</code> CSS class.
+      You can use this class to style required fields differently (e.g., with an asterisk in your CSS).
+    </p>
+  </div>
+</div>

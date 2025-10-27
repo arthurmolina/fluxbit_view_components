@@ -1,0 +1,68 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Required vs Optional Image Upload</h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h4 class="font-medium mb-2">Required Profile Photo (Circle)</h4>
+      <%= fx_upload_image(
+        name: "avatar",
+        label: "Profile Photo (Required)",
+        title: "Upload Photo",
+        rounded: true,
+        required: true,
+        image_placeholder: "https://via.placeholder.com/160x160?text=Required",
+        help_text: "A profile photo is required for your account"
+      ) %>
+    </div>
+
+    <div>
+      <h4 class="font-medium mb-2">Optional Cover Image (Square)</h4>
+      <%= fx_upload_image(
+        name: "cover",
+        label: "Cover Image (Optional)",
+        title: "Add Cover",
+        rounded: false,
+        required: false,
+        image_placeholder: "https://via.placeholder.com/160x160?text=Optional",
+        help_text: "Optional - customize your profile with a cover image"
+      ) %>
+    </div>
+  </div>
+
+  <div class="space-y-4 mt-6">
+    <div>
+      <h4 class="font-medium mb-2">Required Company Logo</h4>
+      <%= fx_upload_image(
+        name: "company_logo",
+        label: "Company Logo (Required)",
+        title: "Upload Logo",
+        rounded: false,
+        required: true,
+        accept: "image/png,image/svg+xml",
+        image_placeholder: "https://via.placeholder.com/200x80?text=Logo+Required",
+        help_text: "PNG or SVG format required for company branding"
+      ) %>
+    </div>
+
+    <div>
+      <h4 class="font-medium mb-2">Optional Team Photo</h4>
+      <%= fx_upload_image(
+        name: "team_photo",
+        label: "Team Photo (Optional)",
+        title: "Add Team Photo",
+        rounded: true,
+        required: false,
+        image_placeholder: "https://via.placeholder.com/160x160?text=Team",
+        help_text: "Optional - showcase your team"
+      ) %>
+    </div>
+  </div>
+
+  <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded">
+    <p class="text-sm text-gray-700">
+      <strong>Note:</strong> When <code class="bg-blue-100 px-1 rounded">required: true</code> is set,
+      the wrapper div receives a <code class="bg-blue-100 px-1 rounded">required</code> CSS class.
+      You can use this class to style required fields differently (e.g., with an asterisk in your CSS).
+    </p>
+  </div>
+</div>

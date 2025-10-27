@@ -49,7 +49,9 @@ The result is:
 | disabled:                | false      | Disables the toggle if true
 | checked:                 | false      | Sets initial checked state
 | value:                   | "1"        | Value when toggle is checked
+| required:                | false      | Marks the field as required (adds "required" class to wrapper)
 | remove_class:            | ""         | Classes to be removed from the default class list
+| wrapper_html:            | {}         | Additional HTML attributes for the wrapper div
 | **props                  |            | Any other HTML attribute for `<input type="checkbox">`
 
 ## Slots
@@ -91,6 +93,10 @@ The component supports the following slots:
 ### Disabled toggle
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::ToggleComponentPreview" scenario="disabled" panels="source"></lookbook-embed>
+
+### Required vs optional fields
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Form::ToggleComponentPreview" scenario="required_field" panels="source"></lookbook-embed>
 
 ### With helper text
 

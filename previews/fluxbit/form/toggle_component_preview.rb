@@ -21,11 +21,12 @@ class Fluxbit::Form::ToggleComponentPreview < ViewComponent::Preview
   # @param sizing select "Toggle size" :sizing_options
   # @param invert_label [Boolean] toggle "Invert label and toggle position"
   # @param disabled [Boolean] toggle "Disables the toggle if true"
+  # @param required [Boolean] toggle "Marks the field as required"
   def playground(
     id: 'toggle_playground', label: "Enable notifications", other_label: "",
     help_text: "Receive email notifications", helper_popover: "Toggle notifications on or off", helper_popover_placement: "right",
     name: "notifications", checked: false, value: "1", color: :default, unchecked_color: :default, button_color: :default,
-    sizing: 1, invert_label: false, disabled: false)
+    sizing: 1, invert_label: false, disabled: false, required: false)
     render Fluxbit::Form::ToggleComponent.new(
       id: id,
       label: label,
@@ -42,6 +43,7 @@ class Fluxbit::Form::ToggleComponentPreview < ViewComponent::Preview
       sizing: sizing,
       invert_label: invert_label,
       disabled: disabled,
+      required: required
     )
   end
 
@@ -55,6 +57,7 @@ class Fluxbit::Form::ToggleComponentPreview < ViewComponent::Preview
   def inverted_label; end
   def toggle_states; end
   def disabled; end
+  def required_field; end
   def with_helper_text; end
   def with_helper_popover; end
   def with_additional_label; end

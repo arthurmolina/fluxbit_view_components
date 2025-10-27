@@ -20,11 +20,12 @@ class Fluxbit::Form::SelectComponentPreview < ViewComponent::Preview
   # @param shadow [Boolean] toggle "Adds drop shadow if true"
   # @param disabled [Boolean] toggle "Disables the select if true"
   # @param multiple [Boolean] toggle "Allows multiple selections if true"
+  # @param required [Boolean] toggle "Marks the field as required"
   def playground(
     id: 'select_playground', label: "User Role",
     help_text: "Choose a role for the user", helper_popover: "Helper popover", helper_popover_placement: "right",
     name: "role", value: nil, grouped: false, time_zone: false,
-    color: :default, sizing: 1, shadow: false, disabled: false, multiple: false)
+    color: :default, sizing: 1, shadow: false, disabled: false, multiple: false, required: false)
     render Fluxbit::Form::SelectComponent.new(
       id: id,
       label: label,
@@ -41,6 +42,7 @@ class Fluxbit::Form::SelectComponentPreview < ViewComponent::Preview
       shadow: shadow,
       disabled: disabled,
       multiple: multiple,
+      required: required
     )
   end
 
@@ -54,6 +56,7 @@ class Fluxbit::Form::SelectComponentPreview < ViewComponent::Preview
   def validation_states; end
   def sizes; end
   def disabled; end
+  def required_field; end
   def with_helper_text; end
   def with_label_and_help; end
   def rails_helper_compatibility; end

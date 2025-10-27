@@ -105,6 +105,12 @@ Password fields with different validation states (default, success, error).
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::PasswordComponentPreview" scenario="validation_states" panels="source"></lookbook-embed>
 
+### Required vs optional fields
+
+Demonstrating required and optional password fields.
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Form::PasswordComponentPreview" scenario="required_field" panels="source"></lookbook-embed>
+
 ### With form builder
 
 Using the password component with Rails form builder.

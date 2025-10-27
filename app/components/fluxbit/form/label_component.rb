@@ -32,6 +32,7 @@ class Fluxbit::Form::LabelComponent < Fluxbit::Form::Component
     @sizing = @props[:sizing].to_i || @@sizing
     @sizing = (styles[:sizes].count - 1) if @sizing > (styles[:sizes].count - 1)
     @color = options(@props.delete(:color), collection: styles[:colors], default: @@color)
+    @required = @props.delete(:required) || false
 
     add class: styles[:colors][@color], to: @props, first_element: true
     add class: styles[:base], to: @props, first_element: true
@@ -59,10 +60,16 @@ class Fluxbit::Form::LabelComponent < Fluxbit::Form::Component
   def call
     safe_join(
       [
-        content_tag(:label, safe_join([ content || @with_content, span_helper_popover ]), @props),
+        content_tag(:label, safe_join([ content || @with_content, span_helper_popover, required ]), @props),
         help_text,
         render_popover
       ]
     )
+  end
+
+  def required
+    return "" unless @required
+
+    content_tag(:span, "*", class: styles[:required])
   end
 end

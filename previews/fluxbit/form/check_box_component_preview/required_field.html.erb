@@ -1,0 +1,73 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Required vs Optional Checkboxes</h3>
+
+  <div class="space-y-4">
+    <div>
+      <h4 class="font-medium mb-2">Required Checkbox</h4>
+      <%= fx_check_box(
+        name: "accept_terms",
+        label: "I accept the terms and conditions",
+        value: "1",
+        required: true,
+        help_text: "You must accept the terms to continue"
+      ) %>
+    </div>
+
+    <div>
+      <h4 class="font-medium mb-2">Optional Checkbox</h4>
+      <%= fx_check_box(
+        name: "newsletter",
+        label: "Subscribe to our newsletter",
+        value: "1",
+        required: false,
+        help_text: "Optional - receive updates and promotions"
+      ) %>
+    </div>
+
+    <div>
+      <h4 class="font-medium mb-2">Required Checkbox Group</h4>
+      <div class="space-y-2">
+        <%= fx_check_box(
+          name: "privacy_policy",
+          label: "I have read and agree to the Privacy Policy",
+          value: "1",
+          required: true
+        ) %>
+
+        <%= fx_check_box(
+          name: "age_confirmation",
+          label: "I confirm that I am 18 years or older",
+          value: "1",
+          required: true
+        ) %>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="font-medium mb-2">Optional Preferences</h4>
+      <div class="space-y-2">
+        <%= fx_check_box(
+          name: "notifications",
+          label: "Enable email notifications",
+          value: "1",
+          required: false
+        ) %>
+
+        <%= fx_check_box(
+          name: "marketing",
+          label: "Receive marketing emails",
+          value: "1",
+          required: false
+        ) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded">
+    <p class="text-sm text-gray-700">
+      <strong>Note:</strong> When <code class="bg-blue-100 px-1 rounded">required: true</code> is set,
+      the wrapper div receives a <code class="bg-blue-100 px-1 rounded">required</code> CSS class.
+      You can use this class to style required fields differently (e.g., with an asterisk in your CSS).
+    </p>
+  </div>
+</div>

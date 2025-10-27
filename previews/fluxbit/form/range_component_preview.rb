@@ -18,6 +18,7 @@ class Fluxbit::Form::RangeComponentPreview < ViewComponent::Preview
   # @param help_text [String] "Help text below the field"
   # @param helper_popover [String] "Content for helper popover"
   # @param disabled [Boolean] "Disabled state"
+  # @param required [Boolean] "Marks the field as required"
   def playground(
     name: "volume",
     label: "Volume Level",
@@ -29,7 +30,8 @@ class Fluxbit::Form::RangeComponentPreview < ViewComponent::Preview
     sizing: 1,
     help_text: "Adjust the volume level from 0 to 100",
     helper_popover: "Use this slider to control the audio volume. Higher values increase the volume.",
-    disabled: false)
+    disabled: false,
+    required: false)
     render Fluxbit::Form::RangeComponent.new(
       name: name,
       label: label.present? ? label : nil,
@@ -41,7 +43,8 @@ class Fluxbit::Form::RangeComponentPreview < ViewComponent::Preview
       sizing: sizing,
       help_text: help_text.present? ? help_text : nil,
       helper_popover: helper_popover.present? ? helper_popover : nil,
-      disabled: disabled
+      disabled: disabled,
+      required: required
     )
   end
 
@@ -52,6 +55,7 @@ class Fluxbit::Form::RangeComponentPreview < ViewComponent::Preview
   def with_helper_text; end
   def with_helper_popover; end
   def disabled_range; end
+  def required_field; end
   def use_cases; end
   def with_form_builder
     @product ||= ::BaseProductModel.new(

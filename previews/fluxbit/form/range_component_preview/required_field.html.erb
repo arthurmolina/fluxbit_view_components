@@ -1,0 +1,43 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Required vs Optional Fields</h3>
+
+  <div class="space-y-4">
+    <%= fx_range(
+      name: "volume",
+      label: "Volume (Required)",
+      value: 50,
+      min: 0,
+      max: 100,
+      required: true,
+      help_text: "This field is marked as required - note the 'required' class on the wrapper"
+    ) %>
+
+    <%= fx_range(
+      name: "brightness",
+      label: "Brightness (Optional)",
+      value: 75,
+      min: 0,
+      max: 100,
+      required: false,
+      help_text: "This field is optional"
+    ) %>
+
+    <%= fx_range(
+      name: "quality",
+      label: "Quality Rating (Required)",
+      value: 8,
+      min: 1,
+      max: 10,
+      required: true,
+      help_text: "Rate the quality from 1 to 10"
+    ) %>
+  </div>
+
+  <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded">
+    <p class="text-sm text-gray-700">
+      <strong>Note:</strong> When <code class="bg-blue-100 px-1 rounded">required: true</code> is set,
+      the wrapper div receives a <code class="bg-blue-100 px-1 rounded">required</code> CSS class.
+      You can use this class to style required fields differently (e.g., with an asterisk in your CSS).
+    </p>
+  </div>
+</div>

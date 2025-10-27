@@ -21,6 +21,7 @@ class Fluxbit::Form::PasswordComponentPreview < ViewComponent::Preview
   # @param sizing select "Field size" :sizing_options
   # @param help_text [String] "Help text below field"
   # @param disabled [Boolean] "Disabled state"
+  # @param required [Boolean] "Marks the field as required"
   def playground(
     name: "password",
     label: "Password",
@@ -34,7 +35,8 @@ class Fluxbit::Form::PasswordComponentPreview < ViewComponent::Preview
     color: :default,
     sizing: 0,
     help_text: "",
-    disabled: false
+    disabled: false,
+    required: false
   )
     render Fluxbit::Form::PasswordComponent.new(
       name: name,
@@ -49,7 +51,8 @@ class Fluxbit::Form::PasswordComponentPreview < ViewComponent::Preview
       color: color,
       sizing: sizing,
       help_text: help_text.present? ? help_text : nil,
-      disabled: disabled
+      disabled: disabled,
+      required: required
     )
   end
 
@@ -76,6 +79,10 @@ class Fluxbit::Form::PasswordComponentPreview < ViewComponent::Preview
   # Password field with validation state
   # @label Validation States
   def validation_states; end
+
+  # Required vs optional password fields
+  # @label Required Field
+  def required_field; end
 
   # Password field using form builder
   # @label With Form Builder

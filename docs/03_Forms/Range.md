@@ -89,6 +89,10 @@ This component does not define any named slots. The range slider content is dete
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::RangeComponentPreview" scenario="disabled_range" panels="source"></lookbook-embed>
 
+### Required vs optional fields
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Form::RangeComponentPreview" scenario="required_field" panels="source"></lookbook-embed>
+
 ### Range for different use cases
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::RangeComponentPreview" scenario="use_cases" panels="source"></lookbook-embed>

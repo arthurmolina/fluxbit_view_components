@@ -110,6 +110,10 @@ This component does not define any named slots. The field content is determined 
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::TextFieldComponentPreview" scenario="disabled_readonly" panels="source"></lookbook-embed>
 
+### Required vs optional fields
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Form::TextFieldComponentPreview" scenario="required_field" panels="source"></lookbook-embed>
+
 ### With shadow effects
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::TextFieldComponentPreview" scenario="with_shadow" panels="source"></lookbook-embed>

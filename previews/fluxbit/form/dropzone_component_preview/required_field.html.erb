@@ -1,0 +1,57 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Required vs Optional Dropzones</h3>
+
+  <div class="space-y-4">
+    <%= fx_dropzone(
+      name: "document",
+      label: "Upload Document (Required)",
+      title: "Required Document",
+      subtitle: "Click or drag your file here",
+      required: true,
+      accept: ".pdf,.doc,.docx",
+      help_text: "Please upload a PDF or Word document (required)"
+    ) %>
+
+    <%= fx_dropzone(
+      name: "attachment",
+      label: "Additional Files (Optional)",
+      title: "Optional Attachments",
+      subtitle: "Add supporting documents if needed",
+      required: false,
+      multiple: true,
+      help_text: "Optional - upload additional files to support your submission"
+    ) %>
+
+    <%= fx_dropzone(
+      name: "avatar",
+      label: "Profile Photo (Required)",
+      title: "Upload Your Photo",
+      subtitle: "JPG, PNG or GIF format",
+      icon: "heroicons_solid:camera",
+      height: 2,
+      required: true,
+      accept: "image/*",
+      help_text: "A profile photo is required for your account"
+    ) %>
+
+    <%= fx_dropzone(
+      name: "cover_image",
+      label: "Cover Image (Optional)",
+      title: "Add a Cover Image",
+      subtitle: "Optional - customize your profile",
+      icon: "heroicons_solid:photo",
+      height: 2,
+      required: false,
+      accept: "image/*",
+      help_text: "Optional - add a custom cover image to personalize your profile"
+    ) %>
+  </div>
+
+  <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded">
+    <p class="text-sm text-gray-700">
+      <strong>Note:</strong> When <code class="bg-blue-100 px-1 rounded">required: true</code> is set,
+      the wrapper div receives a <code class="bg-blue-100 px-1 rounded">required</code> CSS class.
+      You can use this class to style required fields differently (e.g., with an asterisk in your CSS).
+    </p>
+  </div>
+</div>

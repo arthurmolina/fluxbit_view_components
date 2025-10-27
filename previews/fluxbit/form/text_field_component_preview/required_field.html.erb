@@ -1,0 +1,56 @@
+<div class="space-y-6">
+  <h3 class="text-lg font-semibold mb-4">Required vs Optional Fields</h3>
+
+  <div class="space-y-4">
+    <%= fx_text_field(
+      name: "username",
+      label: "Username (Required)",
+      placeholder: "Enter your username",
+      required: true,
+      help_text: "This field is required - note the 'required' class on the wrapper"
+    ) %>
+
+    <%= fx_text_field(
+      name: "nickname",
+      label: "Nickname (Optional)",
+      placeholder: "Enter a nickname",
+      required: false,
+      help_text: "This field is optional"
+    ) %>
+
+    <%= fx_text_field(
+      name: "email",
+      label: "Email Address (Required)",
+      type: :email,
+      placeholder: "your.email@example.com",
+      required: true,
+      help_text: "We'll never share your email with anyone"
+    ) %>
+
+    <%= fx_text_field(
+      name: "phone",
+      label: "Phone Number (Optional)",
+      type: :tel,
+      placeholder: "(555) 123-4567",
+      required: false,
+      help_text: "Optional contact number"
+    ) %>
+
+    <%= fx_text_field(
+      name: "bio",
+      label: "Bio (Required)",
+      multiline: true,
+      placeholder: "Tell us about yourself...",
+      required: true,
+      help_text: "Minimum 50 characters"
+    ) %>
+  </div>
+
+  <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded">
+    <p class="text-sm text-gray-700">
+      <strong>Note:</strong> When <code class="bg-blue-100 px-1 rounded">required: true</code> is set,
+      the wrapper div receives a <code class="bg-blue-100 px-1 rounded">required</code> CSS class.
+      You can use this class to style required fields differently (e.g., with an asterisk in your CSS).
+    </p>
+  </div>
+</div>

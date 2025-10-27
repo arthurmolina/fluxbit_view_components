@@ -44,10 +44,14 @@ The result is:
 | icon_html:         | {}                       | Additional HTML attributes for the icon element
 | height:            | 0                        | Height preset (0: auto, 1: h-32, 2: h-64, 3: h-96)
 | help_text:         |                          | Help or error text below the field
+| helper_popover:    |                          | Content for a popover helper
+| helper_popover_placement: | "right"          | Placement of the popover (`:top`, `:right`, `:bottom`, `:left`)
 | multiple:          | false                    | Allow multiple file selection
 | accept:            |                          | Comma-separated list of accepted file types
 | disabled:          | false                    | Disables the input if true
+| required:          | false                    | Marks the field as required (adds "required" class to wrapper)
 | remove_class:      | ""                       | Classes to be removed from the default class list
+| wrapper_html:      | {}                       | Additional HTML attributes for the wrapper div
 | **props            |                          | Additional HTML attributes for the file input element
 
 ## Slots
@@ -96,6 +100,10 @@ The component supports custom content via the default slot. When content is prov
 ### Disabled state
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::DropzoneComponentPreview" scenario="disabled_dropzone" panels="source"></lookbook-embed>
+
+### Required vs optional fields
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Form::DropzoneComponentPreview" scenario="required_field" panels="source"></lookbook-embed>
 
 ### Custom content slot
 

@@ -19,6 +19,7 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
   # @param accept [String] "Accepted file types"
   # @param multiple [Boolean] "Allow multiple files"
   # @param disabled [Boolean] "Disabled state"
+  # @param required [Boolean] "Marks the field as required"
   def playground(
     name: "avatar",
     label: "Profile Photo",
@@ -31,7 +32,8 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
     rounded: true,
     accept: "image/*",
     multiple: false,
-    disabled: false)
+    disabled: false,
+    required: false)
     render Fluxbit::Form::UploadImageComponent.new(
       name: name,
       label: label.present? ? label : nil,
@@ -44,7 +46,8 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
       rounded: rounded,
       accept: accept.present? ? accept : nil,
       multiple: multiple,
-      disabled: disabled
+      disabled: disabled,
+      required: required
     )
   end
 
@@ -56,6 +59,7 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
   def with_help; end
   def file_restrictions; end
   def multiple_files; end
+  def required_field; end
 
   # Square image with rounded edges
   # @label Square Shape

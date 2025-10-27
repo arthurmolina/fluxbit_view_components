@@ -20,6 +20,7 @@ class Fluxbit::Form::TextFieldComponentPreview < ViewComponent::Preview
   # @param shadow [Boolean] "Add drop shadow"
   # @param disabled [Boolean] "Disabled state"
   # @param readonly [Boolean] "Readonly state"
+  # @param required [Boolean] "Marks the field as required"
   # @param multiline [Boolean] "Multiline textarea"
   # @param help_text [String] "Help text below field"
   # @param helper_popover [String] "Helper popover content"
@@ -37,6 +38,7 @@ class Fluxbit::Form::TextFieldComponentPreview < ViewComponent::Preview
     shadow: false,
     disabled: false,
     readonly: false,
+    required: false,
     multiline: false,
     help_text: "Choose a unique username",
     helper_popover: "Username must be 3-20 characters long and contain only letters, numbers, and underscores")
@@ -54,6 +56,7 @@ class Fluxbit::Form::TextFieldComponentPreview < ViewComponent::Preview
       shadow: shadow,
       disabled: disabled,
       readonly: readonly,
+      required: required,
       multiline: multiline,
       help_text: help_text.present? ? help_text : nil,
       helper_popover: helper_popover.present? ? helper_popover : nil
@@ -71,6 +74,7 @@ class Fluxbit::Form::TextFieldComponentPreview < ViewComponent::Preview
   def sizes; end
   def with_helper_popover; end
   def disabled_readonly; end
+  def required_field; end
   def with_shadow; end
   def with_form_builder
     @product ||= ::BaseProductModel.new(

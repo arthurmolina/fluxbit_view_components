@@ -45,7 +45,9 @@ The result is:
 | helper_popover_placement: | :right | Placement of the popover (`:top`, `:right`, `:bottom`, `:left`)
 | disabled:          | false       | Disables the input if true
 | checked:           | false       | Marks the input as checked if true
+| required:          | false       | Marks the field as required (adds "required" class to wrapper)
 | remove_class:      | ""          | Classes to be removed from the default class list
+| wrapper_html:      | {}          | Additional HTML attributes for the wrapper div
 | **props            |             | Additional HTML attributes for the input element
 
 ## Slots
@@ -73,6 +75,10 @@ This component does not define any named slots. The checkbox content is determin
 ### Disabled checkboxes
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::CheckBoxComponentPreview" scenario="disabled_checkboxes" panels="source"></lookbook-embed>
+
+### Required vs optional fields
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Form::CheckBoxComponentPreview" scenario="required_field" panels="source"></lookbook-embed>
 
 ### With helper text
 

@@ -49,7 +49,8 @@ class Fluxbit::Form::Component < Fluxbit::Component
       color:                    @color,
       helper_popover:           @helper_popover,
       helper_popover_placement: @helper_popover_placement,
-      class:                    @label_class
+      class:                    @label_class,
+      required:                 @required
     ).with_content(@label).render_in(view_context)
   end
 
