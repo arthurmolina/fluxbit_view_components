@@ -98,8 +98,8 @@ class Fluxbit::Form::SelectComponent < Fluxbit::Form::TextFieldComponent
     # If options are already HTML (from options_for_select/grouped_options_for_select), use as-is
     if options_are_preformatted?
       html = @options.dup
-      # Add prompt if needed and not already in the HTML
-      html = add_prompt_to_html(html) if @prompt && !html.include?(@prompt.to_s)
+      # Add prompt if needed and not already in the HTML (only for select_tag)
+      html = add_prompt_to_html(html) if @prompt && !html.include?(@prompt.to_s) && !using_form_builder?
       return html
     end
 
@@ -118,11 +118,17 @@ class Fluxbit::Form::SelectComponent < Fluxbit::Form::TextFieldComponent
     end
 
     # Add prompt option at the beginning if specified
-    html = add_prompt_to_html(html) if @prompt
+    # Only add it manually for select_tag (form.select handles it via options hash)
+    html = add_prompt_to_html(html) if @prompt && !using_form_builder?
     html
   end
 
   private
+
+  # Check if we're using a form builder
+  def using_form_builder?
+    @form.present? && @attribute.present?
+  end
 
   def define_prompt(prompt)
     # If prompt is explicitly false, don't set it
