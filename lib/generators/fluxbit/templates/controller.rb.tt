@@ -12,7 +12,7 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
   after_action :verify_policy_scoped, only: :index
 <% end %>
 
-  # GET /<%= plural %>
+  # GET /<%= "#{namespace_path}/" %><%= plural %>
   def index
 <% if options[:paginator] -%>
     @page_size = 10
@@ -62,7 +62,7 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
     end
   end
 
-  # GET /<%= plural %>/1
+  # GET /<%= "#{namespace_path}/" %><%= plural %>/1
   def show
     authorize @<%= singular %>
     respond_to do |format|
@@ -71,26 +71,26 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
     end
   end
 
-  # GET /<%= plural %>/new
+  # GET /<%= "#{namespace_path}/" %><%= plural %>/new
   def new
     @<%= singular %> = <%= class_name.singularize %>.new
     authorize @<%= singular %>
     respond_to do |format|
       format.html # new.html.erb (form in modal)
-      format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> } }
+      format.json { render template: "<%= "#{namespace_path}/" %><%= plural %>/show", locals: { <%= singular %>: @<%= singular %> } }
     end
   end
 
-  # GET /<%= plural %>/1/edit
+  # GET /<%= "#{namespace_path}/" %><%= plural %>/1/edit
   def edit
     authorize @<%= singular %>
     respond_to do |format|
       format.html
-      format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> } }
+      format.json { render template: "<%= "#{namespace_path}/" %><%= plural %>/show", locals: { <%= singular %>: @<%= singular %> } }
     end
   end
 
-  # POST /<%= plural %>
+  # POST /<%= "#{namespace_path}/" %><%= plural %>
   def create
     @<%= singular %> = <%= class_name.singularize %>.new(<%= singular %>_params)
     authorize @<%= singular %>
@@ -100,26 +100,31 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
         @message = t("<%= plural %>.messages.create_success")
         format.html do
           flash[:notice] = @message
-          redirect_to @<%= singular %> # redirect to show page
+
+          if turbo_frame_request?
+            render "shared/send_alert_via_drawer", locals: { message: @message, color: :success }
+          else
+            redirect_to <%= path_prefix %><%= plural %>_path
+          end
         end
 <% if options[:turbo] -%>
         format.turbo_stream # renders create.turbo_stream.erb
 <% end -%>
-        format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> }, status: :created }
+        format.json { render template: "<%= "#{namespace_path}/" %><%= plural %>/show", locals: { <%= singular %>: @<%= singular %> }, status: :created }
       else
         format.html do
           # Re-render the form for HTML (status 422 for validation errors)
-          render :new, status: :unprocessable_entity
+          render :new, status: :unprocessable_content
         end
 <% if options[:turbo] -%>
         format.turbo_stream # renders create.turbo_stream.erb (re-render form with errors)
 <% end -%>
-        format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> }, status: :unprocessable_entity }
+        format.json { render template: "<%= "#{namespace_path}/" %><%= plural %>/show", locals: { <%= singular %>: @<%= singular %> }, status: :unprocessable_content }
       end
     end
   end
 
-  # PATCH/PUT /<%= plural %>/1
+  # PATCH/PUT /<%= "#{namespace_path}/" %><%= plural %>/1
   def update
     authorize @<%= singular %>
     respond_to do |format|
@@ -127,37 +132,49 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
         @message = t("<%= plural %>.messages.update_success")
         format.html do
           flash[:notice] = @message
-          redirect_to <%= path_prefix %><%= plural %>_path
+
+          if turbo_frame_request?
+            render "shared/send_alert_via_drawer", locals: { message: @message, color: :success }
+          else
+            redirect_to <%= path_prefix %><%= plural %>_path
+          end
         end
 <% if options[:turbo] -%>
         format.turbo_stream # renders update.turbo_stream.erb
 <% end -%>
-        format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> } }
+        format.json { render template: "<%= "#{namespace_path}/" %><%= plural %>/show", locals: { <%= singular %>: @<%= singular %> } }
       else
         format.html do
-          render :edit, status: :unprocessable_entity
+          render :edit, status: :unprocessable_content
         end
 <% if options[:turbo] -%>
         format.turbo_stream # renders update.turbo_stream.erb (re-render form with errors)
 <% end -%>
-        format.json { render template: "<%= plural %>/show", locals: { <%= singular %>: @<%= singular %> }, status: :unprocessable_entity }
+        format.json { render template: "<%= "#{namespace_path}/" %><%= plural %>/show", locals: { <%= singular %>: @<%= singular %> }, status: :unprocessable_content }
       end
     end
   end
 
-  # DELETE /<%= plural %>/1
+  # DELETE /<%= "#{namespace_path}/" %><%= plural %>/1
   def destroy
     authorize @<%= singular %>
-    @message = if @<%= singular %>.destroy
-      t("<%= plural %>.messages.destroy_success")
+    if @<%= singular %>.destroy
+      @message = t("<%= plural %>.messages.destroy_success")
+      color_alert = :success
     else
-      t("<%= plural %>.messages.destroy_failure")
+      @message = t("<%= plural %>.messages.destroy_failure")
+      color_alert = :danger
     end
 
     respond_to do |format|
       format.html do
         flash[:notice] = @message
-        redirect_to <%= path_prefix %><%= plural %>_path
+
+        if turbo_frame_request?
+          render "shared/send_alert_via_drawer", locals: { message: @message, color: color_alert }
+        else
+          redirect_to <%= path_prefix %><%= plural %>_path
+        end
       end
 <% if options[:turbo] -%>
       format.turbo_stream # renders destroy.turbo_stream.erb
@@ -166,6 +183,7 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
     end
   end
 
+  # UPDATE_ALL /<%= "#{namespace_path}/" %><%= plural %>/update_all
   def update_all
     authorize @<%= plural %>
     @errors = []
@@ -193,6 +211,7 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
     respond_with_bulk_result(@errors.empty?)
   end
 
+  # DESTROY_ALL /<%= "#{namespace_path}/" %><%= plural %>/destroy_all
   def destroy_all
     authorize @<%= plural %>
     @errors = []
@@ -225,15 +244,20 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
     @<%= singular %> = <%= class_name.singularize %>.find(params[:id])
     # Note: Pundit authorization for @<%= singular %> happens in each action
   rescue ActiveRecord::RecordNotFound
-    message = t("<%= plural %>.messages.not_found")
+    @message = t("<%= plural %>.messages.not_found")
     respond_to do |format|
       format.html do
-        flash[:error] = message
-        redirect_to <%= path_prefix %><%= plural %>_path
+        flash[:error] = @message
+
+        if turbo_frame_request?
+          render "shared/send_alert_via_drawer", locals: { message: @message, color: :success }
+        else
+          redirect_to <%= path_prefix %><%= plural %>_path
+        end
       end
-      format.json { render json: { error: message }, status: :not_found }
+      format.json { render json: { error: @message }, status: :not_found }
 <% if options[:turbo] -%>
-      format.turbo_stream { render turbo_stream: turbo_stream.append("notice", partial: "shared/alert", locals: { message: message, color: :error }) }
+      format.turbo_stream { render turbo_stream: turbo_stream.append("notice", partial: "shared/alert", locals: { message: @message, color: :error }) }
 <% end -%>
     end
   end
@@ -243,16 +267,21 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
     @<%= plural %> = <%= class_name.singularize %>.where(id: <%= singular %>_ids)
 
     if @<%= plural %>.empty?
-      message = t("<%= plural %>.messages.not_selected_for_action")
+      @message = t("<%= plural %>.messages.not_selected_for_action")
       respond_to do |format|
         format.html do
-          flash[:warning] = message
-          redirect_to <%= path_prefix %><%= plural %>_path
+          flash[:warning] = @message
+
+          if turbo_frame_request?
+            render "shared/send_alert_via_drawer", locals: { message: @message, color: :danger }
+          else
+            redirect_to <%= path_prefix %><%= plural %>_path
+          end
         end
 <% if options[:turbo] -%>
-        format.turbo_stream { render turbo_stream: turbo_stream.append("notice", partial: "shared/alert", locals: { message: message, color: :error }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.append("notice", partial: "shared/alert", locals: { message: @message, color: :danger }) }
 <% end -%>
-        format.json { render json: { message: message }, status: :bad_request }
+        format.json { render json: { message: @message }, status: :bad_request }
       end
     end
   end
@@ -262,7 +291,12 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
       if success
         format.html do
           flash[:notice] = @message
-          redirect_to <%= path_prefix %><%= plural %>_path
+
+          if turbo_frame_request?
+            render "shared/send_alert_via_drawer", locals: { message: @message, color: :success }
+          else
+            redirect_to <%= path_prefix %><%= plural %>_path
+          end
         end
 <% if options[:turbo] -%>
         format.turbo_stream
@@ -271,7 +305,12 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
       else
         format.html do
           flash[:error] = @message
-          redirect_to <%= path_prefix %><%= plural %>_path
+
+          if turbo_frame_request?
+            render "shared/send_alert_via_drawer", locals: { message: @message, color: :danger }
+          else
+            redirect_to <%= path_prefix %><%= plural %>_path
+          end
         end
 <% if options[:turbo] -%>
         format.turbo_stream
@@ -280,7 +319,7 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
           render json: {
             message: @message,
             errors: @errors
-          }, status: :unprocessable_entity
+          }, status: :unprocessable_content
         }
       end
     end
@@ -306,15 +345,15 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
   end
 
   def user_not_authorized
-    message = t("<%= plural %>.messages.not_authorized")
+    @message = t("<%= plural %>.messages.not_authorized")
     respond_to do |format|
       format.html do
-        flash[:error] = message
+        flash[:error] = @message
         redirect_to <%= path_prefix %><%= plural %>_path
       end
-      format.json { render json: { error: message }, status: :forbidden }
+      format.json { render json: { error: @message }, status: :forbidden }
 <% if options[:turbo] -%>
-      format.turbo_stream { render turbo_stream: turbo_stream.append("error", partial: "shared/alert", locals: { message: message, color: :error }) }
+      format.turbo_stream { render turbo_stream: turbo_stream.append("error", partial: "shared/alert", locals: { message: @message, color: :error }) }
 <% end -%>
     end
   end

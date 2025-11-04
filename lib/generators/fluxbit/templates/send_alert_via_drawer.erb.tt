@@ -1,0 +1,10 @@
+<turbo-frame id="drawer">
+<script>
+  alertsContainer = document.getElementById("notice");
+  if (alertsContainer) {
+    const alertElement = document.createElement("div");
+    alertElement.innerHTML = `<%%= j fx_alert(color: color) { sanitize(message.to_s, tags: [], attributes: []) } %>`;
+    alertsContainer.appendChild(alertElement);
+  }
+</script>
+</turbo-frame>

@@ -95,6 +95,7 @@ module Fluxbit
 
       # Generate shared partials
       template "_alert.html.erb.tt", File.join("app/views/shared", "_alert.html.erb")
+      template "send_alert_via_drawer.html.erb.tt", File.join("app/views/shared", "send_alert_via_drawer_alert.html.erb")
       template "_flash.html.erb.tt", File.join("app/views/shared", "_flash.html.erb")
     end
 

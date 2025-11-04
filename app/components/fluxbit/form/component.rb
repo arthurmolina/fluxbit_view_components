@@ -24,7 +24,8 @@ class Fluxbit::Form::Component < Fluxbit::Component
   end
 
   def define_helper_popover(helper_popover, object, attribute)
-    return helper_popover if (helper_popover != false && !helper_popover.nil?) || object.nil?
+    return nil if helper_popover == false
+    return helper_popover if !helper_popover.nil? || object.nil?
 
     I18n.t(attribute, scope: [ object.class.name.pluralize.underscore.to_sym, :helper_popover ], default: nil)
   end
