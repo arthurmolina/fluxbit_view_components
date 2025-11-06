@@ -15,19 +15,23 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
     @next = @props.delete(:next)
     @page = @props.delete(:page) || 1
     @previous = @props.delete(:previous)
-    @size = @props.delete(:size) || :default
+    @size = @props.delete(:size) || 3
     @ends = @props.delete(:ends) || true
     @request_path = @props.delete(:request_path) || nil
 
     if @pagy
-      @count = @pagy.count
-      @last = @pagy.last
-      @next = @pagy.next
-      @page = @pagy.page
-      @previous = @pagy.previous
-      @size = @pagy.vars[:size]
-      @ends = @pagy.vars[:ends]
-      @request_path = @pagy.vars[:request_path]
+      @count = @pagy.count if @pagy.respond_to?(:count)
+      @last = @pagy.last if @pagy.respond_to?(:last)
+      @next = @pagy.next if @pagy.respond_to?(:next)
+      @page = @pagy.page if @pagy.respond_to?(:page)
+      @previous = @pagy.prev if @pagy.respond_to?(:prev)
+      @previous = @pagy.previous if @pagy.respond_to?(:previous)
+
+      if @pagy.respond_to?(:vars)
+        @size = @pagy.vars[:size]
+        @ends = @pagy.vars[:ends]
+        @request_path = @pagy.vars[:request_path]
+      end
     end
 
     unless @size.is_a?(Integer) && @size >= 0
@@ -186,13 +190,14 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
   end
 
   def url_for(page)
-    vars = @pagy&.vars || {}
+    vars = @pagy.respond_to?(:vars) ? @pagy&.vars : {}
     # Use current request parameters as base
     params = (respond_to?(:request) ? request.GET : controller.request.GET).dup
     params.merge!(vars[:params].transform_keys(&:to_s)) if vars[:params].is_a?(Hash)
     # Set page and possibly limit
-    params[vars[:page_param].to_s] = page
-    params[vars[:limit_param].to_s] = vars[:limit] if vars[:limit_extra]
+    page_param = vars[:page_param]&.to_s.presence || 'page'
+    params[page_param] = page
+    params[vars[:limit_param].to_s] = vars[:limit] if vars[:limit_extra] && vars[:limit_param]
     # Apply params proc if given
     params = vars[:params].call(params) if vars[:params].is_a?(Proc)
 

@@ -13,7 +13,7 @@ class Fluxbit::PaginationComponentTest < ViewComponent::TestCase
       last: last,
       next: next_page,
       page: page,
-      previous: prev_page,
+      prev: prev_page,
       vars: {
         size: 10,
         page_param: :page,
@@ -22,6 +22,19 @@ class Fluxbit::PaginationComponentTest < ViewComponent::TestCase
         limit_param: :per_page,
         request_path: nil
       }.merge(vars)
+    )
+  end
+
+  # New-style Pagy mock (without vars method, uses 'previous' instead of 'prev')
+  PagyStubNew = Struct.new(:count, :last, :next, :page, :previous, keyword_init: true)
+
+  def build_pagy_stub_new(page:, last:, next_page:, previous_page:)
+    PagyStubNew.new(
+      count: last * 10,
+      last: last,
+      next: next_page,
+      page: page,
+      previous: previous_page
     )
   end
 
@@ -98,6 +111,54 @@ class Fluxbit::PaginationComponentTest < ViewComponent::TestCase
   test "first/last buttons disabled state at extremes" do
     pagy = build_pagy_stub(page: 10, last: 10, next_page: nil, prev_page: 9)
     render_inline(Fluxbit::PaginationComponent.new(pagy, show_first_last: true, aria_label: "Pages"))
+
+    assert_selector "a#{styled(:page_link)}#{styled(:disabled)}#{styled(:next)}[aria-disabled='true']"
+    assert_selector "a#{styled(:page_link)}#{styled(:previous)}[href*='?page=1']"
+  end
+
+  # Tests for new-style Pagy (without vars method, uses 'previous' instead of 'prev')
+  test "new pagy: renders with prev/next and correct page parameter in URLs" do
+    pagy = build_pagy_stub_new(page: 2, last: 5, next_page: 3, previous_page: 1)
+    render_inline(Fluxbit::PaginationComponent.new(pagy))
+
+    # Should use 'page' as default parameter name
+    assert_selector "a#{styled(:page_link)}[href*='?page=1']"
+    assert_selector "a#{styled(:page_link)}#{styled(:next)}[href*='?page=3']"
+    # Should NOT have empty parameter (was the bug: ?=2 instead of ?page=2)
+    refute_selector "a[href*='?=']"
+  end
+
+  test "new pagy: shows first/last when show_first_last: true" do
+    pagy = build_pagy_stub_new(page: 3, last: 5, next_page: 4, previous_page: 2)
+    render_inline(Fluxbit::PaginationComponent.new(pagy, show_first_last: true))
+
+    assert_selector "a#{styled(:page_link)}#{styled(:previous)}[href*='?page=1']"
+    assert_selector "a#{styled(:page_link)}#{styled(:next)}[href*='?page=5']"
+    assert_selector "a[aria-label='#{I18n.t('fluxbit.pagination.aria_label.first', default: 'First', raise: false)}']"
+    assert_selector "a[aria-label='#{I18n.t('fluxbit.pagination.aria_label.last',  default: 'Last',  raise: false)}']"
+  end
+
+  test "new pagy: renders page links correctly with default page parameter" do
+    pagy = build_pagy_stub_new(page: 2, last: 4, next_page: 3, previous_page: 1)
+    render_inline(Fluxbit::PaginationComponent.new(pagy, size: 4))
+
+    assert_selector "a#{styled(:current)}[aria-current='page']", text: "2"
+    assert_selector "a#{styled(:page_link)}[href*='?page=1']", text: "1"
+    assert_selector "a#{styled(:page_link)}[href*='?page=3']", text: "3"
+    assert_selector "a#{styled(:page_link)}[href*='?page=4']", text: "4"
+  end
+
+  test "new pagy: handles disabled state at page boundaries" do
+    # At first page
+    pagy = build_pagy_stub_new(page: 1, last: 5, next_page: 2, previous_page: nil)
+    render_inline(Fluxbit::PaginationComponent.new(pagy, show_first_last: true))
+
+    assert_selector "a#{styled(:page_link)}#{styled(:disabled)}#{styled(:previous)}[aria-disabled='true']"
+    assert_selector "a#{styled(:page_link)}#{styled(:next)}[href*='?page=5']"
+
+    # At last page
+    pagy = build_pagy_stub_new(page: 5, last: 5, next_page: nil, previous_page: 4)
+    render_inline(Fluxbit::PaginationComponent.new(pagy, show_first_last: true))
 
     assert_selector "a#{styled(:page_link)}#{styled(:disabled)}#{styled(:next)}[aria-disabled='true']"
     assert_selector "a#{styled(:page_link)}#{styled(:previous)}[href*='?page=1']"
