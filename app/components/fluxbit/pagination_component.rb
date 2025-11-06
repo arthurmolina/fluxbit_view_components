@@ -14,7 +14,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
     @last = @props.delete(:last) || 1
     @next = @props.delete(:next)
     @page = @props.delete(:page) || 1
-    @prev = @props.delete(:prev)
+    @previous = @props.delete(:previous)
     @size = @props.delete(:size) || :default
     @ends = @props.delete(:ends) || true
     @request_path = @props.delete(:request_path) || nil
@@ -24,7 +24,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
       @last = @pagy.last
       @next = @pagy.next
       @page = @pagy.page
-      @prev = @pagy.prev
+      @previous = @pagy.previous
       @size = @pagy.vars[:size]
       @ends = @pagy.vars[:ends]
       @request_path = @pagy.vars[:request_path]
@@ -119,7 +119,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
 
   def prev_button
     props = { role: "link", class: @page_link_style, aria: { label: translate("aria_label.prev") } }
-    if prev_page = @prev
+    if prev_page = @previous
       props[:href] = url_for(prev_page)
     else
       props[:aria][:disabled] = true

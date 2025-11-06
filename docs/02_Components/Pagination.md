@@ -31,7 +31,7 @@ The result is:
 | last:              | 1          | Total number of pages
 | count:             | 0          | Total number of items
 | next:              | nil        | Next page number (calculated automatically if not provided)
-| prev:              | nil        | Previous page number (calculated automatically if not provided)
+| previous:          | nil        | Previous page number (calculated automatically if not provided)
 | size:              | :default   | Number of page links to display around current page (Integer >= 0)
 | ends:              | true       | Whether to show first/last pages with gaps in long pagination
 | request_path:      | nil        | Base path for pagination links (uses current request path if not provided)

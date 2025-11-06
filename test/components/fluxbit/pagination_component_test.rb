@@ -9,12 +9,12 @@ class Fluxbit::PaginationComponentTest < ViewComponent::TestCase
 
   def build_pagy_stub(page:, last:, next_page:, prev_page:, vars: {})
     PagyStub.new(
-      count:  last * 10,
-      last:   last,
-      next:   next_page,
-      page:   page,
-      prev:   prev_page,
-      vars:   {
+      count: last * 10,
+      last: last,
+      next: next_page,
+      page: page,
+      previous: prev_page,
+      vars: {
         size: 10,
         page_param: :page,
         absolute: false,
