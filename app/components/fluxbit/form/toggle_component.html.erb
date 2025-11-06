@@ -6,11 +6,7 @@
       @other_label || (other_label if other_label?)
     end %>
 
-    <% if @form.present? && @attribute.present? %>
-      <%= @form.check_box(@attribute, **@props) %>
-    <% else %>
-      <%= check_box_tag(@name, **@props) %>
-    <% end %>
+    <%= checkbox_without_wrapper %>
 
     <span class="<%= toggle_class %>"></span>
     <%= if @invert_label

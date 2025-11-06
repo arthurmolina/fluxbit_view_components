@@ -50,6 +50,7 @@ class Fluxbit::Form::ToggleComponent < Fluxbit::Form::FieldComponent
     @invert_label = options(@props.delete(:invert_label), collection: [ true, false ], default: @@invert_label)
 
     add to: @props, first_element: true, class: styles[:input]
+    @props[:class] = remove_class(@props.delete(:remove_class) || "", @props[:class])
   end
 
   def valid_color(color)
@@ -77,5 +78,26 @@ class Fluxbit::Form::ToggleComponent < Fluxbit::Form::FieldComponent
       styles[:toggle][:sizes][@sizing],
       styles[:toggle][:active][(@props[:disabled] ? :off : :on)]
     ].compact.join(" ")
+  end
+
+  # Renders the checkbox without Rails' field_with_errors wrapper
+  # We handle errors through help_text instead
+  def checkbox_without_wrapper
+    return check_box_tag(@name, **@props) unless @form.present? && @attribute.present?
+
+    # Temporarily remove errors to prevent field_with_errors wrapper
+    if @object&.errors&.any? && @object.errors.include?(@attribute)
+      # Store the errors for this attribute
+      attribute_errors = @object.errors.where(@attribute).to_a
+      # Delete them temporarily
+      @object.errors.delete(@attribute)
+      # Render checkbox without wrapper
+      checkbox_html = @form.check_box(@attribute, **@props)
+      # Restore the errors
+      attribute_errors.each { |error| @object.errors.add(@attribute, error.type, **error.options) }
+      checkbox_html
+    else
+      @form.check_box(@attribute, **@props)
+    end
   end
 end

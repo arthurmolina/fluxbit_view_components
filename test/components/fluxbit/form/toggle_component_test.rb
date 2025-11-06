@@ -58,4 +58,68 @@ class Fluxbit::Form::ToggleComponentTest < ViewComponent::TestCase
     render_inline(Fluxbit::Form::ToggleComponent.new(name: "tag", class: "toggle-custom"))
     assert_selector "input.toggle-custom"
   end
+
+  def test_does_not_wrap_checkbox_with_field_with_errors_div
+    # Create a mock object with errors
+    user_class = Struct.new(:enabled, :errors) do
+      def self.model_name
+        ActiveModel::Name.new(self, nil, "User")
+      end
+
+      def self.name
+        "User"
+      end
+
+      def self.human_attribute_name(attr, options = {})
+        attr.to_s.humanize
+      end
+    end
+
+    user = user_class.new(false, ActiveModel::Errors.new(user_class.new))
+    user.errors.add(:enabled, "must be accepted")
+
+    # Create a form builder
+    form = ActionView::Helpers::FormBuilder.new(:user, user, vc_test_controller.view_context, {})
+
+    render_inline(Fluxbit::Form::ToggleComponent.new(form: form, attribute: :enabled, label: "Enable"))
+
+    # Should NOT have field_with_errors wrapper around the checkbox
+    refute_selector "div.field_with_errors input[type='checkbox']"
+
+    # Should have the checkbox directly in the label
+    assert_selector "label > input[type='checkbox'][name='user[enabled]']"
+
+    # Should still display the error in help text
+    assert_text "must be accepted"
+  end
+
+  def test_checkbox_without_wrapper_with_form_and_no_errors
+    user_class = Struct.new(:enabled) do
+      def self.model_name
+        ActiveModel::Name.new(self, nil, "User")
+      end
+
+      def self.name
+        "User"
+      end
+
+      def self.human_attribute_name(attr, options = {})
+        attr.to_s.humanize
+      end
+
+      def errors
+        ActiveModel::Errors.new(self)
+      end
+    end
+
+    user = user_class.new(true)
+
+    form = ActionView::Helpers::FormBuilder.new(:user, user, vc_test_controller.view_context, {})
+
+    render_inline(Fluxbit::Form::ToggleComponent.new(form: form, attribute: :enabled, label: "Enable"))
+
+    # Should render checkbox normally
+    assert_selector "label > input[type='checkbox'][name='user[enabled]']"
+    refute_selector "div.field_with_errors"
+  end
 end
