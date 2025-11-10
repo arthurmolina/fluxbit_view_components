@@ -8,6 +8,7 @@ import FxProgress from './progress_controller'
 import FxRowClick from './row_click_controller'
 import FxSelectAll from './select_all_controller'
 import FxSpinnerPercent from './spinner_percent_controller'
+import FxTelephone from './telephone_controller'
 import FxThemeButton from './theme_button_controller'
 
 export {
@@ -21,6 +22,7 @@ export {
   FxRowClick,
   FxSelectAll,
   FxSpinnerPercent,
+  FxTelephone,
   FxThemeButton
 }
 
@@ -35,6 +37,7 @@ export function registerFluxbitControllers(application) {
   application.register('fx-row-click', FxRowClick)
   application.register('fx-select-all', FxSelectAll)
   application.register('fx-spinner-percent', FxSpinnerPercent)
+  application.register('fx-telephone', FxTelephone)
   application.register('fx-theme-button', FxThemeButton)
 
   // Make controllers globally accessible for vanilla JS
@@ -50,6 +53,7 @@ export function registerFluxbitControllers(application) {
       FxRowClick,
       FxSelectAll,
       FxSpinnerPercent,
+      FxTelephone,
       FxThemeButton
     }
   }

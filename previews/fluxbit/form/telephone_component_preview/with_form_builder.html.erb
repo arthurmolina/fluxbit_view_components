@@ -1,0 +1,20 @@
+<div class="max-w-2xl">
+  <%= form_with model: @product, url: "#", class: "space-y-4" do |form| %>
+    <div>
+      <h3 class="text-lg font-medium mb-4">Contact Information</h3>
+
+      <%= render Fluxbit::Form::TelephoneComponent.new(
+        form: form,
+        attribute: :phone,
+        label: "Phone Number",
+        default_country: "BR",
+        help_text: "Enter your contact phone number"
+      ) %>
+    </div>
+
+    <div class="flex gap-2 pt-4">
+      <%= form.submit "Save", class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" %>
+      <%= link_to "Cancel", "#", class: "px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300" %>
+    </div>
+  <% end %>
+</div>

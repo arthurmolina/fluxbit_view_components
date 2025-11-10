@@ -1,0 +1,41 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-medium mb-2">Brazil (+55)</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_br",
+      label: "Brazilian Phone",
+      default_country: "BR",
+      placeholder: "Enter Brazilian phone number"
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium mb-2">United States (+1)</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_us",
+      label: "US Phone",
+      default_country: "US",
+      placeholder: "Enter US phone number"
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium mb-2">United Kingdom (+44)</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_uk",
+      label: "UK Phone",
+      default_country: "GB",
+      placeholder: "Enter UK phone number"
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium mb-2">Germany (+49)</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_de",
+      label: "German Phone",
+      default_country: "DE",
+      placeholder: "Enter German phone number"
+    ) %>
+  </div>
+</div>

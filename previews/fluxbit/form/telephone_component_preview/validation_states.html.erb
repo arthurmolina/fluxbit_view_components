@@ -1,0 +1,33 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-medium mb-2">Default State</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_default",
+      label: "Phone Number",
+      color: :default,
+      placeholder: "Enter your phone number"
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium mb-2">Success State</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_success",
+      label: "Phone Number",
+      color: :success,
+      value: "11999998888",
+      help_text: "Phone number is valid"
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium mb-2">Danger State</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_danger",
+      label: "Phone Number",
+      color: :danger,
+      value: "123",
+      help_text: "Please enter a valid phone number"
+    ) %>
+  </div>
+</div>

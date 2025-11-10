@@ -1,0 +1,23 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-medium mb-2">Disabled</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_disabled",
+      label: "Phone Number",
+      value: "11999998888",
+      disabled: true,
+      help_text: "This field is disabled"
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium mb-2">Readonly</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_readonly",
+      label: "Phone Number",
+      value: "11999998888",
+      readonly: true,
+      help_text: "This field is readonly"
+    ) %>
+  </div>
+</div>

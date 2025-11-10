@@ -15,6 +15,7 @@ class BaseProductModel
   attribute :stock_quantity, :integer
   attribute :email, :string
   attribute :website, :string
+  attribute :phone, :string
   attribute :available, :boolean
   attribute :template, :string
 
@@ -162,6 +163,7 @@ class BaseProductModel
     when 'stock_quantity' then 'Stock Quantity'
     when 'email' then 'Contact Email'
     when 'website' then 'Product Website'
+    when 'phone' then 'Phone Number'
     when 'available' then 'Available'
     else
       attr.to_s.humanize

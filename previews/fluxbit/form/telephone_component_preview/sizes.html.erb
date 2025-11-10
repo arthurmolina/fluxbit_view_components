@@ -1,0 +1,31 @@
+<div class="space-y-6">
+  <div>
+    <h3 class="text-lg font-medium mb-2">Size 0 (Small)</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_sm",
+      label: "Phone Number",
+      sizing: 0,
+      placeholder: "Small size"
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium mb-2">Size 1 (Medium)</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_md",
+      label: "Phone Number",
+      sizing: 1,
+      placeholder: "Medium size"
+    ) %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium mb-2">Size 2 (Large)</h3>
+    <%= render Fluxbit::Form::TelephoneComponent.new(
+      name: "phone_lg",
+      label: "Phone Number",
+      sizing: 2,
+      placeholder: "Large size"
+    ) %>
+  </div>
+</div>

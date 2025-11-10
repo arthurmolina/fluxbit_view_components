@@ -1067,6 +1067,88 @@ class FxSpinnerPercent extends Controller {
   }
 }
 
+class FxTelephone extends Controller {
+  static targets=[ "countrySelect" ];
+  static values={
+    mask: {
+      type: String,
+      default: "(##) #####-####"
+    }
+  };
+  connect() {
+    this.input = this.element.querySelector('input[type="tel"]');
+    if (this.input) {
+      this.input.addEventListener("input", this.applyMask.bind(this));
+      this.input.addEventListener("keydown", this.handleBackspace.bind(this));
+    }
+  }
+  disconnect() {
+    if (this.input) {
+      this.input.removeEventListener("input", this.applyMask.bind(this));
+      this.input.removeEventListener("keydown", this.handleBackspace.bind(this));
+    }
+  }
+  updateMask(event) {
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const newMask = selectedOption.dataset.mask;
+    if (newMask) {
+      this.maskValue = newMask;
+      const currentValue = this.input.value;
+      this.input.value = "";
+      this.input.value = this.getCleanValue(currentValue);
+      this.applyMask({
+        target: this.input
+      });
+    }
+  }
+  handleBackspace(event) {
+    if (event.key === "Backspace" || event.keyCode === 8) {
+      const cursorPosition = this.input.selectionStart;
+      const value = this.input.value;
+      if (cursorPosition > 0) {
+        const charBefore = value.charAt(cursorPosition - 1);
+        if (this.isMaskCharacter(charBefore)) {
+          event.preventDefault();
+          let newPosition = cursorPosition - 1;
+          while (newPosition > 0 && this.isMaskCharacter(value.charAt(newPosition))) {
+            newPosition--;
+          }
+          if (newPosition >= 0) {
+            const cleanValue = this.getCleanValue(value.substring(0, newPosition) + value.substring(cursorPosition));
+            this.input.value = cleanValue;
+            this.applyMask({
+              target: this.input
+            });
+            this.input.setSelectionRange(newPosition, newPosition);
+          }
+        }
+      }
+    }
+  }
+  applyMask(event) {
+    const input = event.target;
+    let value = this.getCleanValue(input.value);
+    let maskedValue = "";
+    let valueIndex = 0;
+    for (let i = 0; i < this.maskValue.length && valueIndex < value.length; i++) {
+      const maskChar = this.maskValue.charAt(i);
+      if (maskChar === "#") {
+        maskedValue += value.charAt(valueIndex);
+        valueIndex++;
+      } else {
+        maskedValue += maskChar;
+      }
+    }
+    input.value = maskedValue;
+  }
+  getCleanValue(value) {
+    return value.replace(/\D/g, "");
+  }
+  isMaskCharacter(char) {
+    return /[\s\-\(\)\/\.]/.test(char);
+  }
+}
+
 class FxThemeButton extends Controller {
   static targets=[ "lightIcon", "darkIcon", "systemIcon" ];
   static values={
@@ -1154,6 +1236,7 @@ function registerFluxbitControllers(application) {
   application.register("fx-row-click", FxRowClick);
   application.register("fx-select-all", FxSelectAll);
   application.register("fx-spinner-percent", FxSpinnerPercent);
+  application.register("fx-telephone", FxTelephone);
   application.register("fx-theme-button", FxThemeButton);
   if (typeof window !== "undefined") {
     window.FluxbitControllers = {
@@ -1167,9 +1250,10 @@ function registerFluxbitControllers(application) {
       FxRowClick: FxRowClick,
       FxSelectAll: FxSelectAll,
       FxSpinnerPercent: FxSpinnerPercent,
+      FxTelephone: FxTelephone,
       FxThemeButton: FxThemeButton
     };
   }
 }
 
-export { FxAssigner, FxAutoSubmit, FxDrawer, FxMethodLink, FxModal, FxPassword, FxProgress, FxRowClick, FxSelectAll, FxSpinnerPercent, FxThemeButton, registerFluxbitControllers };
+export { FxAssigner, FxAutoSubmit, FxDrawer, FxMethodLink, FxModal, FxPassword, FxProgress, FxRowClick, FxSelectAll, FxSpinnerPercent, FxTelephone, FxThemeButton, registerFluxbitControllers };
