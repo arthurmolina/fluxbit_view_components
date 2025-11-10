@@ -1080,6 +1080,11 @@ class FxTelephone extends Controller {
     if (this.input) {
       this.input.addEventListener("input", this.applyMask.bind(this));
       this.input.addEventListener("keydown", this.handleBackspace.bind(this));
+      if (this.input.value) {
+        this.applyMask({
+          target: this.input
+        });
+      }
     }
   }
   disconnect() {

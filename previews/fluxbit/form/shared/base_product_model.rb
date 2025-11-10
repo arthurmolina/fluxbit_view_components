@@ -16,6 +16,7 @@ class BaseProductModel
   attribute :email, :string
   attribute :website, :string
   attribute :phone, :string
+  attribute :phone_country, :string
   attribute :available, :boolean
   attribute :template, :string
 

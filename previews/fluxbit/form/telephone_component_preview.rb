@@ -78,13 +78,13 @@ class Fluxbit::Form::TelephoneComponentPreview < ViewComponent::Preview
 
   # @label With Form Builder
   def with_form_builder
-    @product ||= ::BaseProductModel.new(
+    @product = ::BaseProductModel.new(
       name: "Sample Product",
-      phone: "5511999998888"
+      phone: "5511999998888",
+      phone_country: "BR"
     )
 
-    @product.valid? if @product
-    @product
+    @product.valid?
   end
 
   private
@@ -98,6 +98,6 @@ class Fluxbit::Form::TelephoneComponentPreview < ViewComponent::Preview
   end
 
   def country_options
-    Fluxbit::Form::TelephoneComponent::COUNTRIES.map { |c| c[:code] }
+    Fluxbit::Config::Form::TelephoneComponent.telephone_countries.map { |c| c[:code] }
   end
 end

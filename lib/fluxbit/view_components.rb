@@ -16,6 +16,7 @@ module Fluxbit
       require "fluxbit/config/form/password_component"
       require "fluxbit/config/form/radio_group_button_component"
       require "fluxbit/config/form/range_component"
+      require "fluxbit/config/form/telephone_component"
       require "fluxbit/config/form/text_field_component"
       require "fluxbit/config/form/toggle_component"
     end

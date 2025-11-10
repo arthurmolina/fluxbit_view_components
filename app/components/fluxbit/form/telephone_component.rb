@@ -11,35 +11,21 @@
 #   = render Fluxbit::Form::TelephoneComponent.new(name: :phone, default_country: "BR")
 #
 class Fluxbit::Form::TelephoneComponent < Fluxbit::Form::TextFieldComponent
-  COUNTRIES = [
-    { code: "BR", name: "Brasil", dial_code: "+55", flag: "🇧🇷", mask: "(##) #####-####" },
-    { code: "US", name: "United States", dial_code: "+1", flag: "🇺🇸", mask: "(###) ###-####" },
-    { code: "CA", name: "Canada", dial_code: "+1", flag: "🇨🇦", mask: "(###) ###-####" },
-    { code: "GB", name: "United Kingdom", dial_code: "+44", flag: "🇬🇧", mask: "#### ### ####" },
-    { code: "DE", name: "Germany", dial_code: "+49", flag: "🇩🇪", mask: "### #########" },
-    { code: "FR", name: "France", dial_code: "+33", flag: "🇫🇷", mask: "# ## ## ## ##" },
-    { code: "ES", name: "Spain", dial_code: "+34", flag: "🇪🇸", mask: "### ## ## ##" },
-    { code: "IT", name: "Italy", dial_code: "+39", flag: "🇮🇹", mask: "### ### ####" },
-    { code: "PT", name: "Portugal", dial_code: "+351", flag: "🇵🇹", mask: "### ### ###" },
-    { code: "AR", name: "Argentina", dial_code: "+54", flag: "🇦🇷", mask: "## ####-####" },
-    { code: "MX", name: "Mexico", dial_code: "+52", flag: "🇲🇽", mask: "## #### ####" },
-    { code: "JP", name: "Japan", dial_code: "+81", flag: "🇯🇵", mask: "##-####-####" },
-    { code: "CN", name: "China", dial_code: "+86", flag: "🇨🇳", mask: "### #### ####" },
-    { code: "IN", name: "India", dial_code: "+91", flag: "🇮🇳", mask: "##### #####" },
-    { code: "AU", name: "Australia", dial_code: "+61", flag: "🇦🇺", mask: "### ### ###" },
-  ].freeze
+  include Fluxbit::Config::Form::TelephoneComponent
 
   # Initializes the telephone component with the given properties.
   #
   # @param default_country [String] The default country code (ISO 3166-1 alpha-2, e.g., "BR", "US")
-  # @param country_field_name [String] Name for the hidden country code field (optional)
+  # @param country_field_name [String] Name for the hidden country code field (optional, deprecated in favor of :country)
+  # @param country [Symbol] Attribute name for the country field when using form builder (e.g., :phone_country)
   # @param ... all other parameters from TextFieldComponent
   def initialize(**props)
-    @default_country = props.delete(:default_country) || "BR"
+    @default_country = props.delete(:default_country) || @@default_country
     @country_field_name = props.delete(:country_field_name)
+    @country_attribute = props.delete(:country)
 
-    # Set default sizing to 1 (Medium) if not specified
-    props[:sizing] = 1 unless props.key?(:sizing)
+    # Set default sizing from config if not specified
+    props[:sizing] = @@default_sizing unless props.key?(:sizing)
 
     # Force type to tel
     props[:type] = :tel
@@ -66,55 +52,89 @@ class Fluxbit::Form::TelephoneComponent < Fluxbit::Form::TextFieldComponent
     # Remove the original size classes
     current_classes = @props[:class].to_s
 
-    # Define our custom size classes that make sense: Small < Medium < Large
-    custom_size_class = case @sizing
-    when 0
-      "p-2 text-xs rounded-lg"        # Small
-    when 1
-      "p-2.5 text-sm rounded-lg"      # Medium
-    when 2
-      "p-4 text-base rounded-lg"      # Large
-    else
-      "p-2.5 text-sm rounded-lg"
-    end
+    # Get size class from config
+    size_index = [@sizing, 0].max
+    size_index = [size_index, @@telephone_styles[:input][:sizes].length - 1].min
+    custom_size_class = @@telephone_styles[:input][:sizes][size_index]
 
     # Remove the old size class and add our custom one
     # First remove common padding/text classes that might conflict
-    current_classes = current_classes.gsub(/\bp-[\d.]+\b/, '')
-                                    .gsub(/\btext-(xs|sm|base|md|lg|xl)\b/, '')
-                                    .gsub(/\brounded-lg\b/, '')
+    current_classes = current_classes.gsub(/\bp-[\d.]+\b/, "")
+                                    .gsub(/\btext-(xs|sm|base|md|lg|xl)\b/, "")
+                                    .gsub(/\brounded-lg\b/, "")
                                     .strip
 
     @props[:class] = "#{current_classes} #{custom_size_class}".strip
   end
 
   def current_country
-    COUNTRIES.find { |c| c[:code] == @default_country } || COUNTRIES.first
+    @@telephone_countries.find { |c| c[:code] == @default_country } || @@telephone_countries.first
   end
 
   def country_select
     content_tag :div, class: "relative flex-shrink-0" do
-      content_tag :select,
-                  id: country_select_id,
-                  name: @country_field_name || "#{@name}_country",
-                  class: country_select_classes,
-                  data: {
-                    fx_telephone_target: "countrySelect",
-                    action: "change->fx-telephone#updateMask"
-                  } do
-        safe_join(
-          COUNTRIES.map do |country|
-            content_tag :option,
-                        "#{country[:flag]} #{country[:dial_code]}",
-                        value: country[:code],
-                        selected: country[:code] == @default_country,
-                        data: {
-                          dial_code: country[:dial_code],
-                          mask: country[:mask]
-                        }
-          end
+      if @form.present? && @country_attribute.present?
+        # Use form builder's select to get proper name attribute
+        @form.select(
+          @country_attribute,
+          options_for_select(
+            @@telephone_countries.map { |c| [ "#{c[:flag]} #{c[:dial_code]}", c[:code], { "data-dial-code": c[:dial_code], "data-mask": c[:mask] } ] },
+            country_select_value
+          ),
+          {},
+          {
+            id: country_select_id,
+            class: country_select_classes,
+            data: {
+              fx_telephone_target: "countrySelect",
+              action: "change->fx-telephone#updateMask"
+            }
+          }
+        )
+      else
+        # Standalone select (no form builder)
+        select_tag(
+          country_select_name,
+          country_options_html,
+          id: country_select_id,
+          class: country_select_classes,
+          data: {
+            fx_telephone_target: "countrySelect",
+            action: "change->fx-telephone#updateMask"
+          }
         )
       end
+    end
+  end
+
+  def country_options_html
+    safe_join(
+      @@telephone_countries.map do |country|
+        content_tag :option,
+                    "#{country[:flag]} #{country[:dial_code]}",
+                    value: country[:code],
+                    selected: country[:code] == country_select_value,
+                    data: {
+                      dial_code: country[:dial_code],
+                      mask: country[:mask]
+                    }
+      end
+    )
+  end
+
+  def country_select_name
+    # Only used in standalone mode
+    @country_field_name || "#{@name}_country"
+  end
+
+  def country_select_value
+    # Priority:
+    # 1. Value from object attribute (when using form builder with country attribute)
+    # 2. Default country
+    if @form.present? && @country_attribute.present? && @object.present?
+      @object.public_send(@country_attribute) rescue @default_country
+    else
+      @default_country
     end
   end
 
@@ -123,49 +143,21 @@ class Fluxbit::Form::TelephoneComponent < Fluxbit::Form::TextFieldComponent
   end
 
   def country_select_classes
-    # Override sizing to make more sense: Small < Medium < Large
-    size_padding = case @sizing
-    when 0
-      "p-2"        # Small
-    when 1
-      "p-2.5"      # Medium
-    when 2
-      "p-4"        # Large
-    else
-      "p-2.5"
-    end
+    # Get size from config
+    size_index = [@sizing, 0].max
+    size_index = [size_index, @@telephone_styles[:country_select][:sizes].length - 1].min
+    size_config = @@telephone_styles[:country_select][:sizes][size_index]
 
-    # Adjust text sizes to match
-    size_text = case @sizing
-    when 0
-      "text-xs"    # Small
-    when 1
-      "text-sm"    # Medium
-    when 2
-      "text-base"  # Large
-    else
-      "text-sm"
-    end
+    # Get color from config
+    color = @color || :default
+    color_classes = @@telephone_styles[:country_select][:colors][color] || @@telephone_styles[:country_select][:colors][:default]
 
     [
-      "mt-1",
-      "block",
-      "w-24",
-      size_padding,
-      size_text,
-      "text-slate-900",
-      "bg-slate-50",
-      "border",
-      "border-r-0",
-      "border-slate-300",
-      "rounded-l-lg",
-      "focus:ring-blue-500",
-      "focus:border-blue-500",
-      "dark:bg-slate-700",
-      "dark:border-slate-600",
-      "dark:text-white",
-      "dark:focus:ring-blue-500",
-      "dark:focus:border-blue-500"
+      @@telephone_styles[:country_select][:base],
+      @@telephone_styles[:country_select][:width],
+      size_config[:padding],
+      size_config[:text],
+      color_classes
     ].join(" ")
   end
 

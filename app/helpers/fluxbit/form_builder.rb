@@ -68,7 +68,7 @@ module Fluxbit
       end
     end
 
-    [ :range, :toggle, :upload_image, :dropzone, :password ].each do |component|
+    [ :range, :toggle, :upload_image, :dropzone, :password, :telephone ].each do |component|
       define_method("fx_#{component}") do |method, **options, &block|
         options[:error] ||= error_for(method)
         options[:error] = !!options[:error] if options[:error_hidden] && options[:error]
