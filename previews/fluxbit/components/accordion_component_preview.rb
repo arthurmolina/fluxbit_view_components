@@ -10,21 +10,21 @@ class Fluxbit::Components::AccordionComponentPreview < ViewComponent::Preview
       color: color,
       collapse_all: collapse_all
     ) do |accordion|
-      accordion.with_panel(open: true, index: 0) do |panel|
+      accordion.with_panel(open: true) do |panel|
         panel.with_header { "Header" }
         panel.with_body do
           tag.p(class: "text-gray-500 dark:text-gray-400") { "Content 1" }
         end
       end
 
-      accordion.with_panel(index: 1) do |panel|
+      accordion.with_panel do |panel|
         panel.with_header { "Header 2" }
         panel.with_body do
           tag.p(class: "mb-2 text-gray-500 dark:text-gray-400") { "Content 2" }
         end
       end
 
-      accordion.with_panel(index: 2) do |panel|
+      accordion.with_panel do |panel|
         panel.with_header { "Header 3" }
         panel.with_body do
           tag.p(class: "mb-2 text-gray-500 dark:text-gray-400") { "Content 3" }

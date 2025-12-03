@@ -6,7 +6,10 @@ class Fluxbit::AccordionComponent < Fluxbit::Component
   include Fluxbit::Config::AccordionComponent
 
   renders_many :panels, lambda { |**attrs, &block|
+    @panel_index ||= 0
+    attrs[:index] = @panel_index unless attrs.key?(:index)
     panel = Panel.new(accordion_id: fx_id, flush: @flush, color: @color, **attrs)
+    @panel_index += 1
     block.call(panel) if block_given?
     panel
   }
@@ -58,7 +61,7 @@ class Fluxbit::AccordionComponent < Fluxbit::Component
     # @param [Boolean] flush (false) Whether the panel should use flush styling.
     # @param [Symbol, String] color (:default) The color theme for this panel.
     # @param [Boolean] open (false) Whether the panel should start in an expanded state.
-    # @param [Integer] index (0) The panel's position index for proper styling (first, middle, last).
+    # @param [Integer] index The panel's position index for proper styling (first, middle, last). Automatically increments for each panel if not specified.
     # @param [Hash] **props Additional HTML attributes for the panel container.
     #
     # @return [Fluxbit::AccordionComponent::Panel]
