@@ -37,10 +37,12 @@ The result is:
 | Param              | Default     | Description
 |:-------------------|:------------|:------------
 | email:             |             | The email address associated with the Gravatar
+| name:              | nil         | The display name for the Gravatar (used with `:initials` and `:color` defaults to generate initials and colors)
+| initials:          | nil         | Custom initials to display (used with `:initials` default, e.g., "JD" for John Doe)
 | rating:            | :pg         | The rating of the Gravatar (`:g`, `:pg`, `:r`, `:x`)
 | secure:            | true        | Whether to use HTTPS for the Gravatar URL
 | filetype:          | :png        | The filetype of the Gravatar (`:png`, `:jpg`, `:gif`)
-| default:           | :robohash   | The default image to use if no Gravatar is found (`:identicon`, `:monsterid`, `:wavatar`, `:retro`, `:robohash`, `:mp`, `:404`, `:blank`)
+| default:           | :robohash   | The default image to use if no Gravatar is found (`:identicon`, `:monsterid`, `:wavatar`, `:retro`, `:robohash`, `:mp`, `:404`, `:blank`, `:initials`, `:color`)
 | url_only:          | false       | If true, returns only the Gravatar URL string instead of rendering the avatar component
 | color:             | nil         | Border color (`:dark`, `:danger`, `:gray`, `:info`, `:light`, `:purple`, `:success`, `:warning`, `:pink`)
 | status:            | false       | Status indicator (`:online`, `:busy`, `:offline`, `:away`)

@@ -19,6 +19,8 @@ class Fluxbit::GravatarComponent < Fluxbit::AvatarComponent
   #
   # @param [Hash] props The properties to customize the Gravatar.
   # @option props [String] :email The email address associated with the Gravatar.
+  # @option props [String] :name The display name for the Gravatar (used with :initials and :color defaults).
+  # @option props [String] :initials Custom initials to display (used with :initials default).
   # @option props [Symbol] :rating (:g) The rating of the Gravatar (:g, :pg, :r, :x).
   # @option props [Boolean] :secure (true) Whether to use HTTPS for the Gravatar URL.
   # @option props [Symbol] :filetype (:png) The filetype of the Gravatar (:png, :jpg, :gif).
@@ -34,7 +36,9 @@ class Fluxbit::GravatarComponent < Fluxbit::AvatarComponent
       secure: options(@props.delete(:secure), default: true),
       filetype: options((@props.delete(:filetype)|| "").to_sym, collection: gravatar_styles[:filetype], default: @@filetype),
       default: options((@props.delete(:default)|| "").to_sym, collection: gravatar_styles[:default], default: @@default),
-      size: gravatar_styles[:size][options(@props[:size], collection: gravatar_styles[:size], default: @@size)]
+      size: gravatar_styles[:size][options(@props[:size], collection: gravatar_styles[:size], default: @@size)],
+      name: @props.delete(:name),
+      initials: @props.delete(:initials)
     }
     add class: gravatar_styles[:base], to: @props
     @email = @props.delete(:email)
@@ -88,6 +92,8 @@ class Fluxbit::GravatarComponent < Fluxbit::AvatarComponent
       case key
       when :forcedefault
         processed_options[key] = "y" if val
+      when :name, :initials
+        processed_options[key] = val if val.present?
       else
         processed_options[key] = val
       end

@@ -6,6 +6,8 @@ class Fluxbit::Components::GravatarComponentPreview < ViewComponent::Preview
   # You can use this component to display Gravatar avatars with various customization options
   #
   # @param email text "Email address"
+  # @param name text "Display name"
+  # @param initials text "Custom initials"
   # @param rating select "Rating" :rating_options
   # @param secure [Boolean] toggle "Secure URL?"
   # @param filetype select "Filetype" :filetype_options
@@ -16,6 +18,8 @@ class Fluxbit::Components::GravatarComponentPreview < ViewComponent::Preview
   # @param status_position select "Status Position" :status_position_options
   # @param size select "Size" :size_options
   def playground(email: "user@example.com",
+                 name: "",
+                 initials: "",
                  rating: :pg,
                  secure: true,
                  filetype: :png,
@@ -27,6 +31,8 @@ class Fluxbit::Components::GravatarComponentPreview < ViewComponent::Preview
                  size: :md)
     render Fluxbit::GravatarComponent.new(
       email: email,
+      name: name.present? ? name : nil,
+      initials: initials.present? ? initials : nil,
       rating: rating,
       secure: secure,
       filetype: filetype,

@@ -23,4 +23,16 @@
     <%= fx_gravatar(email: "nonexistent6@example.com", default: :blank, size: :md) %>
     <p class="text-sm text-gray-600 mt-2">Blank</p>
   </div>
+  <div class="text-center">
+    <%= fx_gravatar(email: "nonexistent7@example.com", name: "John Doe", default: :initials, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">Initials (name: John Doe)</p>
+  </div>
+  <div class="text-center">
+    <%= fx_gravatar(email: "nonexistent8@example.com", initials: "AB", default: :initials, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">Initials (initials: AB)</p>
+  </div>
+  <div class="text-center">
+    <%= fx_gravatar(email: "nonexistent9@example.com", name: "Jane Smith", default: :color, size: :md) %>
+    <p class="text-sm text-gray-600 mt-2">Color (Jane Smith)</p>
+  </div>
 </div>
