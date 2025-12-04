@@ -1,0 +1,142 @@
+<div class="space-y-8">
+  <div>
+    <h3 class="text-lg font-medium mb-4">Upload with Initials Placeholder</h3>
+    <p class="text-sm text-gray-600 mb-4">
+      When you provide the <code>initials</code> parameter, the component displays a colorful gradient background with the initials instead of a placeholder image.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "avatar_1",
+          label: "John Doe",
+          initials: "JD",
+          title: "Upload Photo",
+          help_text: "Initials: JD"
+        ) %>
+      </div>
+
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "avatar_2",
+          label: "Alice Brown",
+          initials: "AB",
+          title: "Upload Photo",
+          help_text: "Initials: AB"
+        ) %>
+      </div>
+
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "avatar_3",
+          label: "Mary Jane",
+          initials: "MJ",
+          title: "Upload Photo",
+          help_text: "Initials: MJ"
+        ) %>
+      </div>
+
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "avatar_4",
+          label: "Robert Smith",
+          initials: "RS",
+          title: "Upload Photo",
+          help_text: "Initials: RS"
+        ) %>
+      </div>
+
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "avatar_5",
+          label: "Emma Wilson",
+          initials: "EW",
+          title: "Upload Photo",
+          help_text: "Initials: EW"
+        ) %>
+      </div>
+
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "avatar_6",
+          label: "Tom Anderson",
+          initials: "TA",
+          title: "Upload Photo",
+          help_text: "Initials: TA"
+        ) %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium mb-4">Square Shape with Initials</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "logo_1",
+          label: "Company Logo",
+          initials: "CO",
+          title: "Upload Logo",
+          rounded: false,
+          help_text: "Square shape with initials"
+        ) %>
+      </div>
+
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "logo_2",
+          label: "Brand Icon",
+          initials: "BI",
+          title: "Upload Icon",
+          rounded: false,
+          help_text: "Square shape with initials"
+        ) %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium mb-4">Different Initial Lengths</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "single",
+          label: "Single Initial",
+          initials: "A",
+          title: "Upload",
+          help_text: "1 character (text-4xl)"
+        ) %>
+      </div>
+
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "double",
+          label: "Two Initials",
+          initials: "AB",
+          title: "Upload",
+          help_text: "2 characters (text-4xl)"
+        ) %>
+      </div>
+
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "triple",
+          label: "Three Initials",
+          initials: "ABC",
+          title: "Upload",
+          help_text: "3 characters (text-3xl)"
+        ) %>
+      </div>
+
+      <div>
+        <%= render Fluxbit::Form::UploadImageComponent.new(
+          name: "quad",
+          label: "Four Initials",
+          initials: "ABCD",
+          title: "Upload",
+          help_text: "4+ characters (text-2xl)"
+        ) %>
+      </div>
+    </div>
+  </div>
+</div>

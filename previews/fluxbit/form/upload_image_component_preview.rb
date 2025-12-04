@@ -12,6 +12,7 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
   # @param title [String] "Upload button text"
   # @param image_path [String] "Current image URL"
   # @param image_placeholder [String] "Placeholder image URL"
+  # @param initials [String] "Initials to display as placeholder (e.g., JD)"
   # @param help_text [String] "Help text below field"
   # @param helper_popover [String] "Helper popover content"
   # @param helper_popover_placement select "Popover placement" :placement_options
@@ -26,6 +27,7 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
     title: "Change Photo",
     image_path: "",
     image_placeholder: "https://via.placeholder.com/160x160?text=Upload",
+    initials: "",
     help_text: "Upload a profile photo. Recommended size: 160x160 pixels.",
     helper_popover: "Choose a clear, professional photo that represents you well. The image will be cropped to a circle.",
     helper_popover_placement: "right",
@@ -40,6 +42,7 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
       title: title.present? ? title : nil,
       image_path: image_path.present? ? image_path : nil,
       image_placeholder: image_placeholder.present? ? image_placeholder : nil,
+      initials: initials.present? ? initials : nil,
       help_text: help_text.present? ? help_text : nil,
       helper_popover: helper_popover.present? ? helper_popover : nil,
       helper_popover_placement: helper_popover_placement,
@@ -79,6 +82,7 @@ class Fluxbit::Form::UploadImageComponentPreview < ViewComponent::Preview
     @product
   end
   def profile_examples; end
+  def with_initials; end
   def adding_removing_classes; end
   def adding_other_properties; end
 

@@ -45,7 +45,9 @@ The result is:
 | helper_popover_placement:     | "right"  | Placement of the popover (`:top`, `:right`, `:bottom`, `:left`)
 | image_path:                   |          | Path to the current image to display
 | image_placeholder:            |          | Placeholder image path if no image is attached
+| initials:                     |          | Initials to display as placeholder with gradient background (e.g., "JD") - overrides `image_placeholder`
 | title:                        | "Change" | Button text (true for default, false to hide, or custom string)
+| rounded:                      | true     | Show as circle (true) or square with rounded edges (false)
 | accept:                       |          | File types accepted (e.g., "image/*", ".jpg,.png")
 | multiple:                     | false    | Allow multiple file selection
 | disabled:                     | false    | Disables the input if true
@@ -99,6 +101,12 @@ This component does not define any named slots. The upload functionality is hand
 ### Profile photo examples
 
 <lookbook-embed app="/lookbook/" preview="Fluxbit::Form::UploadImageComponentPreview" scenario="profile_examples" panels="source"></lookbook-embed>
+
+### With initials placeholder
+
+Instead of using a placeholder image, you can display user initials with a colorful gradient background. The gradient color is automatically generated based on the initials for consistent appearance.
+
+<lookbook-embed app="/lookbook/" preview="Fluxbit::Form::UploadImageComponentPreview" scenario="with_initials" panels="source"></lookbook-embed>
 
 ### Adding/Removing classes
 
