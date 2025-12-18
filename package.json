@@ -1,6 +1,6 @@
 {
   "name": "fluxbit-view-components",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "description": "ViewComponents for Fluxbit View Components",
   "main": "app/assets/javascripts/fluxbit_view_components.js",
   "module": "app/assets/javascripts/fluxbit_view_components/index.js",
