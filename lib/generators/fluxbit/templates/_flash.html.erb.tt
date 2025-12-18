@@ -6,10 +6,12 @@
   "warning" => :warning
 } %>
 
-<%% flash.each do |type, msg| %>
-  <%% next if msg.blank? %>
-  <%% color = mapping[type.to_s] || :info %>
-  <%%= fx_alert(color: color) do %>
-    <%%= safe_join(Array(msg).map { |m| sanitize(m.to_s, tags: [], attributes: []) }, tag.br) %>
+<div id="notice" class="fixed top-4 right-4 z-50 max-w-md w-auto">
+  <%% flash.each do |type, msg| %>
+    <%% next if msg.blank? %>
+    <%% color = mapping[type.to_s] || :info %>
+    <%%= fx_alert(color: color) do %>
+      <%%= safe_join(Array(msg).map { |m| sanitize(m.to_s, tags: [], attributes: []) }, tag.br) %>
+    <%% end %>
   <%% end %>
-<%% end %>
+</div>

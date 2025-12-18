@@ -4,7 +4,7 @@ PATH
     fluxbit_view_components (0.5.1)
       anyicon (>= 1.0.0)
       rails (>= 5.0.0)
-      view_component (>= 3.0.0, < 4.0.0)
+      view_component (>= 3.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -369,7 +369,7 @@ DEPENDENCIES
   rails (~> 8.0.1)
   rake (~> 13.0)
   rubocop-rails-omakase
-  selenium-webdriver (= 4.9.0)
+  selenium-webdriver (~> 4.1, = 4.9.0)
   sprockets-rails
   sqlite3
   standard
@@ -378,4 +378,4 @@ DEPENDENCIES
   webdrivers (~> 5.0)
 
 BUNDLED WITH
-   2.5.6
+  4.0.1

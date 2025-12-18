@@ -89,6 +89,8 @@ module Fluxbit
       # Generate i18n
       template "i18n.en.yml.tt",    File.join("config", "locales", "#{file_name.pluralize}.en.yml")
       template "i18n.pt-BR.yml.tt", File.join("config", "locales", "#{file_name.pluralize}.pt-BR.yml")
+      template "i18n.general.en.yml.tt",    File.join("config", "locales", "general.en.yml")
+      template "i18n.general.pt-BR.yml.tt", File.join("config", "locales", "general.pt-BR.yml")
 
       # Generate Policy
       template "policy.rb.tt", File.join("app/policies", "#{file_name.singularize}_policy.rb")
@@ -97,6 +99,7 @@ module Fluxbit
       template "_alert.html.erb.tt", File.join("app/views/shared", "_alert.html.erb")
       template "send_alert_via_drawer.html.erb.tt", File.join("app/views/shared", "send_alert_via_drawer_alert.html.erb")
       template "_flash.html.erb.tt", File.join("app/views/shared", "_flash.html.erb")
+      template "sortable.rb.tt", File.join("app/controllers/concerns", "sortable.rb")
     end
 
     private

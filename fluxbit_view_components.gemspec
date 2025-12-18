@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "anyicon", ">= 1.0.0"
   spec.add_runtime_dependency "rails", ">= 5.0.0"
-  spec.add_runtime_dependency "view_component", ">= 3.0.0", "< 4.0.0"
+  spec.add_runtime_dependency "view_component", ">= 3.0.0"
 
   spec.add_development_dependency "webdrivers", "~> 5.0"
   spec.add_development_dependency "selenium-webdriver", "~> 4.1"

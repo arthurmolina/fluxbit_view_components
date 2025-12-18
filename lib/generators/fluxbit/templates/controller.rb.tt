@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize %>Controller < ApplicationController
+  include Sortable
   include Pundit::Authorization
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -241,7 +242,7 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
   private
 
   def set_<%= singular %>
-    @<%= singular %> = <%= class_name.singularize %>.find(params[:id])
+    @<%= singular %> = policy_scope(<%= class_name.singularize %>).find(params[:id])
     # Note: Pundit authorization for @<%= singular %> happens in each action
   rescue ActiveRecord::RecordNotFound
     @message = t("<%= plural %>.messages.not_found")
@@ -264,7 +265,7 @@ class <%= namespaced? ? "#{namespace_module}::" : "" %><%= class_name.pluralize 
 
   def set_<%= plural %>_for_bulk_actions
     <%= singular %>_ids = Array(params[:<%= singular %>_ids]).reject(&:blank?)
-    @<%= plural %> = <%= class_name.singularize %>.where(id: <%= singular %>_ids)
+    @<%= plural %> = policy_scope(<%= class_name.singularize %>).where(id: <%= singular %>_ids)
 
     if @<%= plural %>.empty?
       @message = t("<%= plural %>.messages.not_selected_for_action")

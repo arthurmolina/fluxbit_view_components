@@ -1,0 +1,23 @@
+module Sortable
+  extend ActiveSupport::Concern
+
+  included do
+    helper_method :apply_sorting
+  end
+
+  private
+
+  def apply_sorting(resource_class, order_param, order_options = %i[created_at updated_at], default_order = { created_at: :desc })
+    if order_param.present?
+      order = order_param.rpartition("_")
+      if order.length == 3 && %w[asc desc].include?(order.last) && order_options.include?(order.first.to_sym)
+        resource_class.order(order.first.to_sym => order.last.to_sym)
+      else
+        flash[:error] = t("general.messages.order_error")
+        resource_class.order(default_order)
+      end
+    else
+      resource_class.order(default_order) # Default order
+    end
+  end
+end
