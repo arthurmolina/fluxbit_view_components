@@ -99,7 +99,8 @@ class Fluxbit::Form::TextFieldComponent < Fluxbit::Form::FieldComponent
         first_element: true,
         class: [
           styles[:default],
-          (@props.key?(:readonly) || @props.key?(:disabled) ? styles[:text][@color] : styles[:text][:default]),
+          styles[:text][@color],
+          # (@props.key?(:readonly) || @props.key?(:disabled) ? styles[:text][@color] : styles[:text][:default]),
           styles[:ring][@color],
           styles[:bg][@color],
           styles[:placeholder][@color],

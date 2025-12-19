@@ -10,10 +10,10 @@ module Fluxbit::Config::Form::TextFieldComponent
       default: "mt-1 block w-full border disabled:cursor-not-allowed disabled:opacity-50 disabled:text-slate-900 disabled:dark:text-slate-400 disabled:bg-slate-100 disabled:dark:bg-slate-700",
       text: {
         default: "text-slate-900 dark:text-white",
-        success: "text-green-900",
-        danger: "text-red-900",
-        info: "text-cyan-900",
-        warning: "text-yellow-900"
+        success: "text-green-900 dark:text-green-900",
+        danger: "text-red-900 dark:text-red-900",
+        info: "text-cyan-900 dark:text-cyan-900",
+        warning: "text-yellow-900 dark:text-yellow-900"
       },
       ring: {
         default: "focus:ring-blue-500 dark:focus:ring-blue-500",
