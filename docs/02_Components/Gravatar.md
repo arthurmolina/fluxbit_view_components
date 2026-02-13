@@ -6,6 +6,49 @@ title: Fluxbit::GravatarComponent or fx_gravatar
 The `Fluxbit::GravatarComponent` is a customizable Gravatar avatar component that extends `Fluxbit::AvatarComponent`.
 It allows you to display user avatars from Gravatar service with various styles, sizes, colors, and status indicators. The component automatically constructs Gravatar URLs based on email addresses and supports features like different rating levels, file types, and fallback options.
 
+## Three Ways to Use Gravatar
+
+There are three ways to work with Gravatar URLs, depending on your needs:
+
+### 1. Standalone module (no Rails views required)
+
+Use `Fluxbit::Gravatar.url` anywhere in your Ruby code -- controllers, models, background jobs, API serializers, or plain Ruby scripts. No view context is needed.
+
+```ruby
+# Basic usage
+url = Fluxbit::Gravatar.url(email: "user@example.com")
+# => "https://secure.gravatar.com/avatar/b58996c504c5638798eb6b511e6f49af.png?d=robohash&r=pg&s=50"
+
+# With options
+url = Fluxbit::Gravatar.url(
+  email: "user@example.com",
+  size: :lg,        # :xs, :sm, :md, :lg, :xl or an Integer (pixels)
+  rating: :g,       # :g, :pg, :r, :x
+  default: :identicon,
+  filetype: :jpg
+)
+
+# Get just the MD5 hash (Gravatar identifier)
+id = Fluxbit::Gravatar.gravatar_id("user@example.com")
+# => "b58996c504c5638798eb6b511e6f49af"
+```
+
+### 2. View helper (`fx_gravatar_url`)
+
+Use the `fx_gravatar_url` helper in ERB templates when you only need the URL string, for example to build your own custom markup:
+
+```erb
+<img src="<%= fx_gravatar_url(email: "user@example.com", size: :xl) %>"
+     alt="User avatar"
+     class="my-custom-class" />
+```
+
+The helper accepts the same options as `Fluxbit::Gravatar.url` (see the Standalone module section above).
+
+### 3. Component (`fx_gravatar`)
+
+Renders a full avatar component with Gravatar image, status indicators, borders, and all the styling from `AvatarComponent`. This is the original usage and remains unchanged.
+
 To start using the gravatar you can use the default way to call the component:
 
 ```html
@@ -115,6 +158,8 @@ When you need just the Gravatar URL without rendering the avatar component, you 
 ```
 
 This is useful when you want to use the Gravatar URL in custom components or pass it to JavaScript.
+
+**Tip:** For URL-only use cases, consider using the dedicated `fx_gravatar_url` helper or `Fluxbit::Gravatar.url` instead. See the [Three Ways to Use Gravatar](#three-ways-to-use-gravatar) section above.
 
 ## Customization
 

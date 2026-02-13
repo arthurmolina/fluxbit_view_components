@@ -2,6 +2,10 @@
 
 module Fluxbit
   module ViewHelper
+    def fx_gravatar_url(...)
+      Fluxbit::Gravatar.url(...)
+    end
+
     def fx_body_class
       "h-full bg-slate-100 dark:bg-slate-900 dark:text-white"
     end

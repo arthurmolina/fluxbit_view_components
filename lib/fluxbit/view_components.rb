@@ -54,4 +54,6 @@ module Fluxbit
     require "fluxbit/config/theme_button_component"
     require "fluxbit/config/tooltip_component"
   end
+
+  require "fluxbit/gravatar"
 end
