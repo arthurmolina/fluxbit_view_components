@@ -26,12 +26,12 @@ class Fluxbit::Form::TelephoneComponentTest < ViewComponent::TestCase
 
   def test_renders_with_stimulus_controller
     render_inline(Fluxbit::Form::TelephoneComponent.new(name: "phone"))
-    assert_selector "input[data-controller='fx-telephone']"
+    assert_selector "div[data-controller='fx-telephone']"
   end
 
   def test_renders_with_mask_value
     render_inline(Fluxbit::Form::TelephoneComponent.new(name: "phone", default_country: "BR"))
-    assert_selector "input[data-fx-telephone-mask-value]"
+    assert_selector "div[data-fx-telephone-mask-value]"
   end
 
   def test_country_select_has_target
@@ -96,7 +96,7 @@ class Fluxbit::Form::TelephoneComponentTest < ViewComponent::TestCase
 
   def test_all_countries_are_rendered
     render_inline(Fluxbit::Form::TelephoneComponent.new(name: "phone"))
-    Fluxbit::Form::TelephoneComponent::COUNTRIES.each do |country|
+    Fluxbit::Config::Form::TelephoneComponent.telephone_countries.each do |country|
       assert_selector "option[value='#{country[:code]}']"
     end
   end
