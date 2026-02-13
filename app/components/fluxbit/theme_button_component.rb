@@ -24,8 +24,8 @@ class Fluxbit::ThemeButtonComponent < Fluxbit::ButtonComponent
     props[:remove_dropdown_arrow] = true
 
     # Add Stimulus controller
-    props["data-controller"] = [props["data-controller"], "fx-theme-button"].compact.join(" ")
-    props["data-action"] = [props["data-action"], "click->fx-theme-button#toggle"].compact.join(" ")
+    props["data-controller"] = [ props["data-controller"], "fx-theme-button" ].compact.join(" ")
+    props["data-action"] = [ props["data-action"], "click->fx-theme-button#toggle" ].compact.join(" ")
 
     super(**props)
   end

@@ -34,7 +34,7 @@ class Fluxbit::Form::TextFieldComponentTest < ViewComponent::TestCase
 
     # The input should be rendered but without a placeholder attribute (or empty placeholder)
     assert_selector "input[name='email']"
-    refute_match /placeholder=["'][^"']+["']/, result.to_html
+    refute_match(/placeholder=["'][^"']+["']/, result.to_html)
   end
 
   def test_renders_value

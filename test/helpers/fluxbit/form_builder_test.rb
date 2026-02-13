@@ -101,7 +101,7 @@ class Fluxbit::ViewHelperTest < ActionView::TestCase
   end
 
   test "#fx_select with Rails-style positional parameters" do
-    @rendered_content = @builder.fx_select(:status, ["Active", "Draft", "Archived"])
+    @rendered_content = @builder.fx_select(:status, [ "Active", "Draft", "Archived" ])
 
     assert_selector "label.text-sm.flex", text: "Status"
     assert_selector "select[name='product[status]']" do
@@ -112,7 +112,7 @@ class Fluxbit::ViewHelperTest < ActionView::TestCase
   end
 
   test "#fx_select with Rails-style options hash" do
-    @rendered_content = @builder.fx_select(:status, ["Active", "Draft"], { prompt: "Select status" })
+    @rendered_content = @builder.fx_select(:status, [ "Active", "Draft" ], { prompt: "Select status" })
 
     assert_selector "select[name='product[status]']" do
       assert_selector "option[value='']", text: "Select status"
@@ -122,14 +122,14 @@ class Fluxbit::ViewHelperTest < ActionView::TestCase
   end
 
   test "#fx_select with Rails-style html_options" do
-    @rendered_content = @builder.fx_select(:status, ["Active", "Draft"], {}, { class: "custom-class" })
+    @rendered_content = @builder.fx_select(:status, [ "Active", "Draft" ], {}, { class: "custom-class" })
 
     assert_selector "select.custom-class[name='product[status]']"
   end
 
   test "#fx_select with options_for_select" do
     choices = ActionView::Helpers::FormOptionsHelper.instance_method(:options_for_select).bind(self).call(
-      [["Active", "active"], ["Draft", "draft"]],
+      [ [ "Active", "active" ], [ "Draft", "draft" ] ],
       selected: "active"
     )
     @rendered_content = @builder.fx_select(:status, choices)

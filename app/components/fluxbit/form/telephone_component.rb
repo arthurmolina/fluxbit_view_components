@@ -53,8 +53,8 @@ class Fluxbit::Form::TelephoneComponent < Fluxbit::Form::TextFieldComponent
     current_classes = @props[:class].to_s
 
     # Get size class from config
-    size_index = [@sizing, 0].max
-    size_index = [size_index, @@telephone_styles[:input][:sizes].length - 1].min
+    size_index = [ @sizing, 0 ].max
+    size_index = [ size_index, @@telephone_styles[:input][:sizes].length - 1 ].min
     custom_size_class = @@telephone_styles[:input][:sizes][size_index]
 
     # Remove the old size class and add our custom one
@@ -144,8 +144,8 @@ class Fluxbit::Form::TelephoneComponent < Fluxbit::Form::TextFieldComponent
 
   def country_select_classes
     # Get size from config
-    size_index = [@sizing, 0].max
-    size_index = [size_index, @@telephone_styles[:country_select][:sizes].length - 1].min
+    size_index = [ @sizing, 0 ].max
+    size_index = [ size_index, @@telephone_styles[:country_select][:sizes].length - 1 ].min
     size_config = @@telephone_styles[:country_select][:sizes][size_index]
 
     # Get color from config

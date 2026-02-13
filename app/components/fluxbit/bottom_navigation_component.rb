@@ -79,11 +79,11 @@ class Fluxbit::BottomNavigationComponent < Fluxbit::Component
           if cta?
             # Insert CTA in the middle for both variants
             half = (items.size / 2.0).floor
-            safe_join(items[0...half] + [tag.div(cta, class: styles[:cta_wrapper])] + items[half..])
+            safe_join(items[0...half] + [ tag.div(cta, class: styles[:cta_wrapper]) ] + items[half..])
           elsif pagination?
             # Insert pagination in the middle
             half = (items.size / 2.0).floor
-            safe_join(items[0...half] + [pagination] + items[half..])
+            safe_join(items[0...half] + [ pagination ] + items[half..])
           else
             safe_join(items)
           end
@@ -120,7 +120,7 @@ class Fluxbit::BottomNavigationComponent < Fluxbit::Component
     total += 2 if pagination? # Pagination spans 2 grid cells (col-span-2)
 
     # Ensure columns is within valid range (2-6)
-    [[total, 2].max, 6].min
+    [ [ total, 2 ].max, 6 ].min
   end
 
   ##
@@ -170,7 +170,7 @@ class Fluxbit::BottomNavigationComponent < Fluxbit::Component
       end
 
       if @tooltip_text
-        safe_join([button_content, render_tooltip])
+        safe_join([ button_content, render_tooltip ])
       else
         button_content
       end
@@ -250,7 +250,7 @@ class Fluxbit::BottomNavigationComponent < Fluxbit::Component
       end
 
       if @tooltip_text
-        safe_join([button_content, render_tooltip])
+        safe_join([ button_content, render_tooltip ])
       else
         button_content
       end

@@ -80,7 +80,7 @@ class Fluxbit::Form::SelectComponentTest < ViewComponent::TestCase
     result = render_inline(Fluxbit::Form::SelectComponent.new(name: "status", options: [ "Active", "Inactive" ]))
 
     # Check that there's no empty value option (which would be the prompt)
-    refute_match /<option value="">(?!Active|Inactive)/, result.to_html
+    refute_match(/<option value="">(?!Active|Inactive)/, result.to_html)
   end
 
   def test_renders_with_custom_class

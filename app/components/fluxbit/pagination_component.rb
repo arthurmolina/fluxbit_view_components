@@ -195,7 +195,7 @@ class Fluxbit::PaginationComponent < Fluxbit::Component
     params = (respond_to?(:request) ? request.GET : controller.request.GET).dup
     params.merge!(vars[:params].transform_keys(&:to_s)) if vars[:params].is_a?(Hash)
     # Set page and possibly limit
-    page_param = vars[:page_param]&.to_s.presence || 'page'
+    page_param = vars[:page_param]&.to_s.presence || "page"
     params[page_param] = page
     params[vars[:limit_param].to_s] = vars[:limit] if vars[:limit_extra] && vars[:limit_param]
     # Apply params proc if given

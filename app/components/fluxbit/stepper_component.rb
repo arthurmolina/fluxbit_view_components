@@ -120,11 +120,11 @@ class Fluxbit::StepperComponent < Fluxbit::Component
 
     connector_classes = if step.state == :completed
                           styles[:connector][:completed][@variant][@orientation]
-                        elsif step.state == :active
+    elsif step.state == :active
                           styles[:connector][:active][@color][@variant][@orientation]
-                        else
+    else
                           styles[:connector][@variant][@orientation]
-                        end
+    end
 
     tag.div(class: connector_classes)
   end

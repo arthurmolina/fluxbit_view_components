@@ -128,7 +128,7 @@ class Fluxbit::CarouselComponent < Fluxbit::Component
 
     button_props = {
       type: "button",
-      class: [styles[:controls][:button], is_previous ? styles[:controls][:previous] : styles[:controls][:next]].join(" "),
+      class: [ styles[:controls][:button], is_previous ? styles[:controls][:previous] : styles[:controls][:next] ].join(" "),
       data: {}
     }
 
@@ -150,5 +150,4 @@ class Fluxbit::CarouselComponent < Fluxbit::Component
       end
     end
   end
-
 end

@@ -30,7 +30,7 @@ class Fluxbit::Form::PasswordComponentTest < ViewComponent::TestCase
   end
 
   def test_without_strength_indicator
-    result = render_inline(Fluxbit::Form::PasswordComponent.new(name: "password", show_strength: false))
+    render_inline(Fluxbit::Form::PasswordComponent.new(name: "password", show_strength: false))
     assert_no_selector "[data-fx-password-target='strengthIndicator']"
   end
 
@@ -52,7 +52,7 @@ class Fluxbit::Form::PasswordComponentTest < ViewComponent::TestCase
   end
 
   def test_uppercase_check_not_displayed_when_not_required
-    result = render_inline(Fluxbit::Form::PasswordComponent.new(name: "password", show_strength: true, require_uppercase: false))
+    render_inline(Fluxbit::Form::PasswordComponent.new(name: "password", show_strength: true, require_uppercase: false))
     assert_no_selector "[data-fx-password-target='checkUppercase']"
   end
 
@@ -62,7 +62,7 @@ class Fluxbit::Form::PasswordComponentTest < ViewComponent::TestCase
   end
 
   def test_lowercase_check_not_displayed_when_not_required
-    result = render_inline(Fluxbit::Form::PasswordComponent.new(name: "password", show_strength: true, require_lowercase: false))
+    render_inline(Fluxbit::Form::PasswordComponent.new(name: "password", show_strength: true, require_lowercase: false))
     assert_no_selector "[data-fx-password-target='checkLowercase']"
   end
 
@@ -72,7 +72,7 @@ class Fluxbit::Form::PasswordComponentTest < ViewComponent::TestCase
   end
 
   def test_numbers_check_not_displayed_when_not_required
-    result = render_inline(Fluxbit::Form::PasswordComponent.new(name: "password", show_strength: true, require_numbers: false))
+    render_inline(Fluxbit::Form::PasswordComponent.new(name: "password", show_strength: true, require_numbers: false))
     assert_no_selector "[data-fx-password-target='checkNumbers']"
   end
 
@@ -82,7 +82,7 @@ class Fluxbit::Form::PasswordComponentTest < ViewComponent::TestCase
   end
 
   def test_special_check_not_displayed_when_not_required
-    result = render_inline(Fluxbit::Form::PasswordComponent.new(name: "password", show_strength: true, require_special: false))
+    render_inline(Fluxbit::Form::PasswordComponent.new(name: "password", show_strength: true, require_special: false))
     assert_no_selector "[data-fx-password-target='checkSpecial']"
   end
 

@@ -25,7 +25,7 @@ class Fluxbit::BottomNavigationComponentTest < ViewComponent::TestCase
   end
 
   def test_auto_calculates_columns_based_on_item_count
-    [2, 3, 4, 5].each do |cols|
+    [ 2, 3, 4, 5 ].each do |cols|
       render_inline(Fluxbit::BottomNavigationComponent.new) do |nav|
         cols.times { |i| nav.with_item(href: "/#{i}") { "Item #{i}" } }
       end

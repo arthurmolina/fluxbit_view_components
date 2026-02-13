@@ -98,7 +98,7 @@ else
   say.call "⚠️ Couldn't find controllers/index.js, skipping Stimulus controller setup", :red
   say.call "   Add these lines to your controllers/index.js:", :red
   say.call '   import { registerFluxbitControllers } from "fluxbit-view-components"', :red
-  say.call '   registerFluxbitControllers(Stimulus)', :red
+  say.call "   registerFluxbitControllers(Stimulus)", :red
 end
 
 if layout_path.exist?
