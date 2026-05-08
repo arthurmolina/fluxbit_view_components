@@ -34,7 +34,8 @@ class Fluxbit::Form::UploadImageComponent < Fluxbit::Form::FieldComponent
     @initials = @props.delete(:initials)
     @image_path = @props.delete(:image_path) ||
       (if @object&.send(@attribute).respond_to?(:attached?) && @object&.send(@attribute)&.send("attached?")
-        @object&.send(@attribute)&.variant(resize_to_fit: [ 160, 160 ])
+        attachment = @object.send(@attribute)
+        attachment.variable? ? attachment.variant(resize_to_fit: [ 160, 160 ]) : attachment
        end) || @props.delete(:image_placeholder) || ""
 
     @props["class"] = "absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0"
