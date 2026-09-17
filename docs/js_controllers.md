@@ -1,6 +1,7 @@
 ---
 title: Controllers
-nav_order: 6
+layout: default
+nav_order: 7
 parent: JavaScript and NPM
 has_children: true
 ---

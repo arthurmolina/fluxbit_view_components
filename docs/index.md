@@ -9,7 +9,6 @@ nav_order: 0
 UI Component Library for Ruby on Rails built on **Flowbite** and **Tailwind CSS**.
 
 [Get Started]({{ '/01_Getting_Started/' | relative_url }}){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[Live Demo](https://fluxbit.artz.to){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 [GitHub](https://github.com/arthurmolina/fluxbit_view_components){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 
 ---
@@ -34,6 +33,3 @@ bin/rails fluxbit_view_components:install
 | **Generators** | Scaffold generator with Turbo, Pundit, Pagy/Kaminari support |
 | **JavaScript** | Stimulus controllers for common UI patterns |
 
-## Live Component Previews
-
-Interactive previews with parameters and source code are available at the [live Lookbook demo](https://fluxbit.artz.to).

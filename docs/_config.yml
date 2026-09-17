@@ -11,8 +11,6 @@ color_scheme: dark
 aux_links:
   "GitHub":
     - "https://github.com/arthurmolina/fluxbit_view_components"
-  "Live Demo":
-    - "https://fluxbit.artz.to"
 aux_links_new_tab: true
 
 # Search
