@@ -1,6 +1,7 @@
 ---
 label: Vanilla JavaScript API
 title: Vanilla JavaScript API
+nav_order: 5
 ---
 
 # Vanilla JavaScript API

@@ -1,6 +1,7 @@
 ---
 label: Development Guide
 title: Development Guide
+nav_order: 4
 ---
 
 This guide covers how to develop, test, and contribute to the Fluxbit ViewComponents JavaScript package.

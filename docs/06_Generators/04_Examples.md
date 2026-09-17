@@ -1,6 +1,7 @@
 ---
 label: Examples
 title: Examples
+nav_order: 4
 ---
 
 This guide provides real-world examples of using Fluxbit generators to create different types of applications and features.

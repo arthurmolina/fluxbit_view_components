@@ -1,6 +1,7 @@
 ---
 label: License
-title: License - Fluxbit
+title: License
+nav_order: 3
 ---
 
 # MIT License

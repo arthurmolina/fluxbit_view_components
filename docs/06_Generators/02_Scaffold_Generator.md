@@ -1,6 +1,7 @@
 ---
 label: Scaffold Generator
 title: Scaffold Generator
+nav_order: 2
 ---
 
 The `fluxbit:scaffold` generator is the main generator in Fluxbit ViewComponents. It creates a complete CRUD application with modern Rails patterns, Fluxbit UI components, and production-ready features.

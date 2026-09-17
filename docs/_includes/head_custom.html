@@ -1,0 +1,13 @@
+<script>window.SITE_BASEURL = "{{ site.baseurl }}";</script>
+<script src="{{ '/assets/js/lookbook-embed.js' | prepend: site.baseurl }}" defer></script>
+<style>
+  /* Prevent layout shift while lookbook-embed placeholders load */
+  lookbook-embed { display: block; min-height: 60px; }
+
+  /* Status images in tables */
+  .main-content img[src$="yes.png"] { width: 20px; height: 20px; vertical-align: middle; }
+  .main-content img[src$="no.png"]  { width: 20px; height: 20px; vertical-align: middle; }
+
+  /* Code block copy button */
+  .highlight { position: relative; }
+</style>

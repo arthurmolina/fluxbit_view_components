@@ -1,6 +1,7 @@
 ---
 label: Introduction
 title: Introduction to Fluxbit Generators
+nav_order: 1
 ---
 
 Fluxbit ViewComponents includes powerful Rails generators that help you quickly scaffold complete CRUD applications using Fluxbit components. These generators create production-ready code with modern Rails patterns including Turbo Streams, Hotwire, and authorization.

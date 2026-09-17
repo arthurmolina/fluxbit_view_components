@@ -1,6 +1,7 @@
 ---
 label: Stimulus Controllers
 title: Stimulus Controllers
+nav_order: 3
 ---
 
 This document provides comprehensive documentation for each Stimulus controller included in the Fluxbit ViewComponents JavaScript package.

@@ -1,6 +1,7 @@
 ---
 label: Configuration
 title: Configuration Options
+nav_order: 3
 ---
 
 This guide covers all configuration options available for Fluxbit generators, allowing you to customize the generated code to match your application's needs.

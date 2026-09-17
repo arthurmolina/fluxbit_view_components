@@ -1,6 +1,7 @@
 ---
 label: Install
 title: Installation Guide
+nav_order: 2
 ---
 
 You can install everything automatically by running:

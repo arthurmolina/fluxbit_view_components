@@ -1,6 +1,7 @@
 ---
 label: Setup
 title: Setup and Configuration
+nav_order: 2
 ---
 
 This guide covers how to set up and configure the Fluxbit ViewComponents JavaScript package in your Rails application.

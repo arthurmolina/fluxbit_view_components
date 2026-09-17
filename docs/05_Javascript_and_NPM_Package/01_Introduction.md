@@ -1,6 +1,7 @@
 ---
 label: Stimulus Controllers 
 title: Stimulus Controllers (JS) and NPM Package
+nav_order: 1
 ---
 
 Fluxbit ViewComponents provides a comprehensive JavaScript package that includes Stimulus controllers and utilities to enhance your Rails application with interactive components.

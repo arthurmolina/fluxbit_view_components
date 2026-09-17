@@ -1,0 +1,80 @@
+title: Fluxbit ViewComponents
+description: UI Component Library for Ruby on Rails built on Flowbite/Tailwind CSS
+remote_theme: just-the-docs/just-the-docs@v0.10.0
+
+url: https://arthurmolina.github.io
+baseurl: /fluxbit_view_components
+
+color_scheme: dark
+
+# Header links
+aux_links:
+  "GitHub":
+    - "https://github.com/arthurmolina/fluxbit_view_components"
+  "Live Demo":
+    - "https://fluxbit.artz.to"
+aux_links_new_tab: true
+
+# Search
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+
+# Footer
+footer_content: "Copyright &copy; 2024 Arthur Molina. Distributed under the <a href='https://opensource.org/licenses/MIT'>MIT License</a>."
+
+# Back to top
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Exclude non-documentation files from Jekyll processing
+exclude:
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
+  - COMPONENT_CODE_STYLE_GUIDE.md
+  - COMPONENT_TESTING_STYLE_GUIDE.md
+  - COMPONENTS_DOCUMENTATION_STYLE_GUIDE.md
+  - PULL_REQUEST_TEMPLATE.md
+  - FUNDING.yml
+  - CHANGELOG.md
+
+# Plugins (GitHub Pages safe list)
+plugins:
+  - jekyll-seo-tag
+
+# Default front matter by directory
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: "01_Getting_Started"
+    values:
+      parent: Getting Started
+  - scope:
+      path: "02_Components"
+    values:
+      parent: Components
+  - scope:
+      path: "03_Forms"
+    values:
+      parent: Forms
+  - scope:
+      path: "04_Typography"
+    values:
+      parent: Typography
+  - scope:
+      path: "05_Javascript_and_NPM_Package"
+    values:
+      parent: JavaScript and NPM
+  - scope:
+      path: "05_Javascript_and_NPM_Package/Controllers"
+    values:
+      parent: Controllers
+      grand_parent: JavaScript and NPM
+  - scope:
+      path: "06_Generators"
+    values:
+      parent: Generators

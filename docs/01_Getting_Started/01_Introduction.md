@@ -1,6 +1,7 @@
 ---
 label: Introduction
-title: Fluxbit ViewComponents - UI Component Library for Ruby on Rails
+title: Introduction
+nav_order: 1
 ---
 
 <div style="display: flex; justify-content: center; align-items: center;">
