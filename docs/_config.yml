@@ -37,6 +37,9 @@ exclude:
   - FUNDING.yml
   - CHANGELOG.md
 
+# Google Analytics
+ga_tracking: G-LW03CS0SLN
+
 # Plugins (GitHub Pages safe list)
 plugins:
   - jekyll-seo-tag
